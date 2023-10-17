@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MyMap</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    
+    <!-- add geoJSON files renamed to .js files here -->
+
+
+    <!-- search box -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+    <!-- location-->
+    <link rel="stylesheet" href="leaflet-locatecontrol-gh-pages\dist\L.Control.Locate.mapbox.min.css"/>
+    <script src="leaflet-locatecontrol-gh-pages\dist\L.Control.Locate.min.js"></script>
+
+    <!-- cluster -->
+
+
+    <!-- marker search -->
+    <link rel="stylesheet" href="leaflet-search-master\dist\leaflet-search.src.css"/>
+    <script src="leaflet-search-master\dist\leaflet-search.src.js"></script>
+
+
+
+
+    <style>
+        #map {position: absolute; top: 0; bottom: 0; left: 0; right: 0}
+    </style>
+</head>
+<body>
+    <div id = "map"></div>
+    <input type="file" id="file-input" accept=".gpx, .geojson">
+    <script>
+        //center coordinates at start
+        var map = L.map('map', {
+            minZoom: 2
+        }).setView([45.464664, 9.188540],13);
+
+        //search box
+        L.Control.geocoder().addTo(map);
+
+        //scale
+        L.control.scale({
+            metric: true,
+            imperial: false,
+            maxwidth: 100,
+            position: 'bottomleft'
+        }).addTo(map);
+
+        //location
+        L.control.locate().addTo(map);
+
+        //map at start
+        var osm = L.tileLayer('https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=5oOhPnaZPwb4EiDFpWyW', {
+            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+        }).addTo(map);
+
+        //add other maps
+        var satellite = L.tileLayer('https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key=5oOhPnaZPwb4EiDFpWyW', {
+            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+        });
+
+        var baseMaps = {
+            'Standard': osm,
+            'Satellite': satellite
+        }
+        var layerControl1 = L.control.layers(baseMaps).addTo(map);
+
+
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = '.gpx, .geojson';
+
+        // Position the file input button within the Leaflet map container
+        map.getContainer().appendChild(fileInput);
+
+        // Add an event listener to handle file uploads
+        fileInput.addEventListener('change', handleFileUpload);
+
+        function handleFileUpload(event) {
+        const file = event.target.files[0];
+        const fileType = file.name.endsWith('.gpx') ? 'gpx' : 'geojson';
+
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            const content = e.target.result;
+            if (fileType === 'gpx') {
+            // Handle GPX file
+            console.log('Handling GPX file:', content);
+            } else if (fileType === 'geojson') {
+            // Handle GeoJSON file
+            console.log('Handling GeoJSON file:', content);
+            }
+        };
+
+        reader.readAsText(file);
+        }
+    </script>
+</body>
+</html>
