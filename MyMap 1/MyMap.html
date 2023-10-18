@@ -17,6 +17,7 @@
     <script src = "Tracks/Zambla.js"></script>
     <script src = "Tracks/Selvino.js"></script>
     <script src = "Tracks/Ganda.js"></script>
+    <script src = "Tracks/Brianza.js"></script>
 
 
     <!-- search box -->
@@ -27,12 +28,12 @@
     <link rel="stylesheet" href="leaflet-locatecontrol-gh-pages\dist\L.Control.Locate.mapbox.min.css"/>
     <script src="leaflet-locatecontrol-gh-pages\dist\L.Control.Locate.min.js"></script>
 
-    <!-- cluster -->
+    <!-- cluster-->
     <link rel="stylesheet" href="Leaflet.markercluster-1.4.1\dist\MarkerCluster.css"/>
     <link rel="stylesheet" href="Leaflet.markercluster-1.4.1\dist\MarkerCluster.Default.css"/>
     <script src="Leaflet.markercluster-1.4.1\dist\leaflet.markercluster-src.js"></script>
     <script src="Leaflet.markercluster-1.4.1\dist\leaflet.markercluster.js"></script>
-
+    
     <!-- marker search -->
     <link rel="stylesheet" href="leaflet-search-master\dist\leaflet-search.src.css"/>
     <script src="leaflet-search-master\dist\leaflet-search.src.js"></script>
@@ -87,7 +88,7 @@
         });
 
 
-        //geoJSON file with all passes
+        //variables
         var geoJSONArray = [];
         var geoJSONs = [];
         var marks = [];
@@ -99,20 +100,20 @@
         var selected = [];
         var id;
 
+        //cluster
         var markers = L.markerClusterGroup({
             spiderfyOnMaxZoom: true,
             showCoverageOnHover: false,
             zoomToBoundsOnClick: true
         });
         
-
-        var currentOpenMarkerID = null
+        //marker passes
         var marker = L.geoJSON(passi, {
             onEachFeature: function(feature, layer){
                 var popupContent = "<div><input type='checkbox' id='colorCheckbox' /> Show routes </div>";
                 layer.bindPopup('<p style="line-height: 1; margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></div><div style="background-color: lightgray; padding: 1px;">' + feature.properties.category + '<span style="float: right;">' + feature.properties.height + ' m</span></div><div style="margin-top: 1px;">' + popupContent + '</div>');
                 layer.on('mouseover', function (e) {
-                    id = feature.properties.idd
+                    id = feature.properties.idd;
                     geoJSONArray[id].setStyle({ color: 'red' ,weight:'2'});
                 });
                 layer.on('mouseout', function (e) {
@@ -123,134 +124,20 @@
                     }
                 });
                 layer.on('click', function (e) {
-                    this.openPopup;
                     id = feature.properties.idd
-                
+                    this.openPopup;
                     // Add a listener for the checkbox change event
                     document.getElementById('colorCheckbox').addEventListener('change', function (event) {
                         selected[id] = event.target.checked;
                         updateGeoJSONLayerColor();
                     });
                 }); 
-                
             }});
 
         //cluster representation
         markers.addLayer(marker);
         map.addLayer(markers);
 
-        
-        //add js files of all tracks here with id
-        var gValcava = L.geoJSON(Valcava, {
-            style: function (feature) {
-                return { color: 'pink',weight:'1' };
-            },
-            onEachFeature: function(feature, layer){
-                layer.bindPopup(function (layer) {
-                    return '<p style="margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p> (' + feature.properties.length + ', ' + feature.properties.elevation + ')<p style="margin-top: 5px;">';
-                  });
-                layer.on('click', function (e) {
-                    this.setStyle({color: 'green', weight: 5});
-                });
-                map.on('click', function (e) {
-                    updateGeoJSONLayerColor();
-                })
-            }
-        });
-        var idValcava = Valcava.features[0].properties.idd;
-        geoJSONArray[idValcava] = gValcava;
-        geoJSONs.push(gValcava);
-
-        var gIseran = L.geoJSON(Iseran, {
-            style: function (feature) {
-                return { color: 'pink',weight:'1' };
-            },
-            onEachFeature: function(feature, layer){
-                layer.bindPopup(function (layer) {
-                    return '<p style="margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p> (' + feature.properties.length + ', ' + feature.properties.elevation + ')<p style="margin-top: 5px;">';
-                  });
-                layer.on('click', function (e) {
-                    this.setStyle({color: 'green', weight: 5});
-                });
-                map.on('click', function (e) {
-                    updateGeoJSONLayerColor();
-                })
-            }
-        });
-        var idIseran = Iseran.features[0].properties.idd;
-        geoJSONArray[idIseran] = gIseran;
-        geoJSONs.push(gIseran);
-
-        var gZambla = L.geoJSON(Zambla, {
-            style: function (feature) {
-                return { color: 'pink',weight:'1' };
-            },
-            onEachFeature: function(feature, layer){
-                layer.bindPopup(function (layer) {
-                    return '<p style="margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p> (' + feature.properties.length + ', ' + feature.properties.elevation + ')<p style="margin-top: 5px;">';
-                  });
-                layer.on('click', function (e) {
-                    this.setStyle({color: 'green', weight: 5});
-                });
-                map.on('click', function (e) {
-                    updateGeoJSONLayerColor();
-                })
-            }
-        });
-        var idZambla = Zambla.features[0].properties.idd;
-        geoJSONArray[idZambla] = gZambla;
-        geoJSONs.push(gZambla);
-
-        var gSelvino = L.geoJSON(Selvino, {
-            style: function (feature) {
-                return { color: 'pink',weight:'1' };
-            },
-            onEachFeature: function(feature, layer){
-                layer.bindPopup(function (layer) {
-                    return '<p style="margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p> (' + feature.properties.length + ', ' + feature.properties.elevation + ')<p style="margin-top: 5px;">';
-                  });
-                layer.on('click', function (e) {
-                    this.setStyle({color: 'green', weight: 5});
-                });
-                map.on('click', function (e) {
-                    updateGeoJSONLayerColor();
-                })
-            }
-        });
-        var idSelvino = Selvino.features[0].properties.idd;
-        geoJSONArray[idSelvino] = gSelvino;
-        geoJSONs.push(gSelvino);
-
-        var gGanda = L.geoJSON(Ganda, {
-            style: function (feature) {
-                return { color: 'pink',weight:"1" };
-            },
-            onEachFeature: function(feature, layer){
-                layer.bindPopup(function (layer) {
-                    return '<p style="margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p> (' + feature.properties.length + ', ' + feature.properties.elevation + ')<p style="margin-top: 5px;">';
-                  });
-                layer.on('click', function (e) {
-                    this.setStyle({color: 'green', weight: 5});
-                });
-                map.on('click', function (e) {
-                    updateGeoJSONLayerColor();
-                })
-            }
-        });
-        var idGanda = Ganda.features[0].properties.idd;
-        geoJSONArray[idGanda] = gGanda;
-        geoJSONs.push(gGanda);
-
-        
-        //function to highlight tracks on map
-        function updateGeoJSONLayerColor() {
-            if (selected[id]) {
-                geoJSONArray[id].setStyle({ color: 'red',weight:'2' }); // Change color
-            } else {
-                geoJSONArray[id].setStyle({ color: 'pink',weight:'1' }); // Restore the old color
-            }
-        }
-       
         //marker search
         const searchControl = new L.Control.Search({
             layer: marker,
@@ -261,7 +148,91 @@
         });
         map.addControl(searchControl);
 
-        //layer button 1
+        //Track sytle and feature functions
+        function onEachFeature(feature, layer) {
+            layer.bindPopup(function (layer) {
+                return '<p style="margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p> (' + feature.properties.length + ', ' + feature.properties.elevation + ')<p style="margin-top: 5px;">';
+            });
+            layer.on('click', function (e) {
+                this.setStyle({ color: 'green', weight: 5 });
+            });
+            map.on('click', function (e) {
+                updateGeoJSONLayerColor();
+            });
+        }
+        function TrackStyle(feature) {
+            return { color: 'pink', weight: "1" };
+        }
+
+        //layer button with maps and tracks, add new tracks here
+        var overlayMaps2 = {};
+        var layerControl2 = L.control.layers(null, overlayMaps2,{ position: 'bottomright' }).addTo(map);
+        
+/////////add new tracks here/////////////////////////////////////////////////////////////////////////////////
+        var gValcava = L.geoJSON(Valcava, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idValcava = Valcava.features[0].properties.idd;
+        geoJSONArray[idValcava] = gValcava;
+        geoJSONs.push(gValcava);
+        layerControl2.addOverlay(gValcava, "Passo Valcava");
+
+        var gIseran = L.geoJSON(Iseran, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idIseran = Iseran.features[0].properties.idd;
+        geoJSONArray[idIseran] = gIseran;
+        geoJSONs.push(gIseran);
+        layerControl2.addOverlay(gIseran, "Col d\'Iseran");
+
+        var gZambla = L.geoJSON(Zambla, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idZambla = Zambla.features[0].properties.idd;
+        geoJSONArray[idZambla] = gZambla;
+        geoJSONs.push(gZambla);
+        layerControl2.addOverlay(gZambla, "Passo di Zambla");
+
+        var gSelvino = L.geoJSON(Selvino, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idSelvino = Selvino.features[0].properties.idd;
+        geoJSONArray[idSelvino] = gSelvino;
+        geoJSONs.push(gSelvino);
+        layerControl2.addOverlay(gSelvino, "Selvino");
+
+        var gGanda = L.geoJSON(Ganda, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idGanda = Ganda.features[0].properties.idd;
+        geoJSONArray[idGanda] = gGanda;
+        geoJSONs.push(gGanda);
+        layerControl2.addOverlay(gGanda, "Passo di Ganda");
+
+        var gBrianza = L.geoJSON(Brianza, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idBrianza = Brianza.features[0].properties.idd;
+        geoJSONArray[idBrianza] = gBrianza;
+        geoJSONs.push(gBrianza);
+        layerControl2.addOverlay(gBrianza, "Colle di Brianza");
+        
+        //function to highlight tracks on map
+        function updateGeoJSONLayerColor() {
+            if (selected[id]) {
+                geoJSONArray[id].setStyle({ color: 'red',weight:'2' }); // Change color
+            } else {
+                geoJSONArray[id].setStyle({ color: 'pink',weight:'1' }); // Restore the old color
+            }
+        }
+
+        //layer button 1 for base layers
         geoJSONArray.forEach(function (layer) {
             const features = layer.getLayers();
         
@@ -300,7 +271,7 @@
             });
         });
         var tracks = L.layerGroup(geoJSONs);
-        var marks = L.layerGroup([marker, markers]);
+        var marks = L.layerGroup([marker,markers]);
         var italy = L.layerGroup(geoIT);
         var france = L.layerGroup(geoFR);
         var austria = L.layerGroup(geoAT);
@@ -322,28 +293,7 @@
             "Suisse": suisse,
             "Germany": germany
         };
-        var layerControl = L.control.layers(baseMaps, overlayMaps1).addTo(map);
-
-        //layer button with maps and tracks, add new tracks here
-        var baseMap = {
-            'Tracks': osm,
-        }
-        var overlayMaps2 = {
-            'Passo di Valcava': gValcava,
-            'Col de l\'Iséran': gIseran,
-            'Passo di Zambla': gZambla,
-            'Selvino': gSelvino,
-            'Passo di Ganda': gGanda
-        }
-        var layerControl2 = L.control.layers(baseMap, overlayMaps2).addTo(map);
-
-        
-        
-        
-        
-        
-        
-
+        var layerControl = L.control.layers(baseMaps, overlayMaps1,{ position: 'topright' }).addTo(map);
     </script>
 </body>
 </html>
