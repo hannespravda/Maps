@@ -18,6 +18,16 @@
     <script src = "Tracks/Selvino.js"></script>
     <script src = "Tracks/Ganda.js"></script>
     <script src = "Tracks/Brianza.js"></script>
+    <script src = "Tracks/Ghisallo.js"></script>
+    <script src = "Tracks/Sormano.js"></script>
+    <script src = "Tracks/Valbrona.js"></script>
+    <script src = "Tracks/Madonnina.js"></script>
+    <script src = "Tracks/Primo.js"></script>
+    <script src = "Tracks/Montevecchia.js"></script>
+    <script src = "Tracks/Miragolo.js"></script>
+    <script src = "Tracks/Salmezza.js"></script>
+    <script src = "Tracks/Nespello.js"></script>
+
 
 
     <!-- search box -->
@@ -177,6 +187,88 @@
         geoJSONArray[idValcava] = gValcava;
         geoJSONs.push(gValcava);
         layerControl2.addOverlay(gValcava, "Passo Valcava");
+
+        var gMiragolo = L.geoJSON(Miragolo, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idMiragolo = Miragolo.features[0].properties.idd;
+        geoJSONArray[idMiragolo] = gMiragolo;
+        geoJSONs.push(gMiragolo);
+        layerControl2.addOverlay(gMiragolo, "Miragolo San Salvatore");
+
+        var gNespello = L.geoJSON(Nespello, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idNespello = Nespello.features[0].properties.idd;
+        geoJSONArray[idNespello] = gNespello;
+        geoJSONs.push(gNespello);
+        layerControl2.addOverlay(gNespello, "Forcella di Nespello");
+
+        var gSalmezza = L.geoJSON(Salmezza, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idSalmezza = Salmezza.features[0].properties.idd;
+        geoJSONArray[idSalmezza] = gSalmezza;
+        geoJSONs.push(gSalmezza);
+        layerControl2.addOverlay(gSalmezza, "Valico di Salmezza");
+
+
+        var gMontevecchia = L.geoJSON(Montevecchia, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idMontevecchia = Montevecchia.features[0].properties.idd;
+        geoJSONArray[idMontevecchia] = gMontevecchia;
+        geoJSONs.push(gMontevecchia);
+        layerControl2.addOverlay(gMontevecchia, "Montevecchia");
+
+        var gPrimo = L.geoJSON(Primo, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idPrimo = Primo.features[0].properties.idd;
+        geoJSONArray[idPrimo] = gPrimo;
+        geoJSONs.push(gPrimo);
+        layerControl2.addOverlay(gPrimo, "Monte San Primo");
+
+        var gSormano = L.geoJSON(Sormano, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idSormano = Sormano.features[0].properties.idd;
+        geoJSONArray[idSormano] = gSormano;
+        geoJSONs.push(gSormano);
+        layerControl2.addOverlay(gSormano, "Colma di Sormano");
+
+        var gMadonnina = L.geoJSON(Madonnina, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idMadonnina = Madonnina.features[0].properties.idd;
+        geoJSONArray[idMadonnina] = gMadonnina;
+        geoJSONs.push(gMadonnina);
+        layerControl2.addOverlay(gMadonnina, "Colle della Madonnina");
+
+        var gValbrona = L.geoJSON(Valbrona, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idValbrona = Valbrona.features[0].properties.idd;
+        geoJSONArray[idValbrona] = gValbrona;
+        geoJSONs.push(gValbrona);
+        layerControl2.addOverlay(gValbrona, "Sella di Valbrona");
+
+        var gGhisallo = L.geoJSON(Ghisallo, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idGhisallo = Ghisallo.features[0].properties.idd;
+        geoJSONArray[idGhisallo] = gGhisallo;
+        geoJSONs.push(gGhisallo);
+        layerControl2.addOverlay(gGhisallo, "Madonna del Ghisallo");
 
         var gIseran = L.geoJSON(Iseran, {
             style: TrackStyle,

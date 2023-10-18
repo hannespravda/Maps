@@ -1,17 +1,17 @@
-Tracks
-	id (nur erstes element [0]
-	name
-	length
-	elevation
-	start
-	link
-	
-Pass
-	id (eindeutig nach listenreihenfolge)
-	name
-	height
-	type (Pass, Anstieg, Sackgasse)
-	link
+idd
+height
+name
+category
+country
+link
+
+idd
+name
+length
+elevation
+start
+link
+country
 	
 Vorgehen
 1	Create gpx track https://brouter.de/brouter-web/#map=7/45.058/9.507/osm-mapnik-german_style&profile=fastbike
@@ -25,13 +25,19 @@ Vorgehen
 6	update ID liste hier
 	
 ID
-0		Valcava
+0		Valbrona
 1		Iseran
 2		Zambla
 3		Selvino
 4		Ganda
 
 
-
-Ich habe Main gelöscht
+var gNespello = L.geoJSON(Nespello, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idNespello = Nespello.features[0].properties.idd;
+        geoJSONArray[idNespello] = gNespello;
+        geoJSONs.push(gNespello);
+        layerControl2.addOverlay(gNespello, "Forcella di Nespello");
 
