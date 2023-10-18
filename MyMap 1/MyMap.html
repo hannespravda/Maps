@@ -47,7 +47,7 @@
     <script>
         //center coordinates at start
         var map = L.map('map', {
-            minZoom: 2
+            minZoom: 2,
         }).setView([45.464664, 9.188540],13);
 
         //search box
@@ -86,18 +86,16 @@
             attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
         });
 
-        var baseMaps = {
-            'Standard': osm,
-            'Satellite': satellite,
-            'Street': streets,
-            'Outdoor': outdoor,
-            'Topography': topo
-        }
-        var layerControl1 = L.control.layers(baseMaps).addTo(map);
-
 
         //geoJSON file with all passes
         var geoJSONArray = [];
+        var geoJSONs = [];
+        var marks = [];
+        var geoIT = [];
+        var geoFR = [];
+        var geoDE = [];
+        var geoAT = [];
+        var geoCH = [];
         var selected = [];
         var id;
 
@@ -112,21 +110,21 @@
         var marker = L.geoJSON(passi, {
             onEachFeature: function(feature, layer){
                 var popupContent = "<div><input type='checkbox' id='colorCheckbox' /> Show routes </div>";
-                layer.bindPopup('<p style="line-height: 1; margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></div><div style="background-color: lightgray; padding: 1px;">' + feature.properties.type + '<span style="float: right;">' + feature.properties.height + ' m</span></div><div style="margin-top: 1px;">' + popupContent + '</div>');
+                layer.bindPopup('<p style="line-height: 1; margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></div><div style="background-color: lightgray; padding: 1px;">' + feature.properties.category + '<span style="float: right;">' + feature.properties.height + ' m</span></div><div style="margin-top: 1px;">' + popupContent + '</div>');
                 layer.on('mouseover', function (e) {
-                    id = feature.properties.id
-                    geoJSONArray[id].setStyle({ color: 'red' });
+                    id = feature.properties.idd
+                    geoJSONArray[id].setStyle({ color: 'red' ,weight:'2'});
                 });
                 layer.on('mouseout', function (e) {
                     if (selected[id]) {
-                        geoJSONArray[id].setStyle({ color: 'red' }); // Change color
+                        geoJSONArray[id].setStyle({ color: 'red',weight:'2' }); // Change color
                     } else {
-                        geoJSONArray[id].setStyle({ color: 'purple' }); // Restore the old color
+                        geoJSONArray[id].setStyle({ color: 'pink',weight:'1' }); // Restore the old color
                     }
                 });
                 layer.on('click', function (e) {
                     this.openPopup;
-                    id = feature.properties.id
+                    id = feature.properties.idd
                 
                     // Add a listener for the checkbox change event
                     document.getElementById('colorCheckbox').addEventListener('change', function (event) {
@@ -145,76 +143,111 @@
         //add js files of all tracks here with id
         var gValcava = L.geoJSON(Valcava, {
             style: function (feature) {
-                return { color: 'purple' };
+                return { color: 'pink',weight:'1' };
             },
             onEachFeature: function(feature, layer){
                 layer.bindPopup(function (layer) {
                     return '<p style="margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p> (' + feature.properties.length + ', ' + feature.properties.elevation + ')<p style="margin-top: 5px;">';
                   });
+                layer.on('click', function (e) {
+                    this.setStyle({color: 'green', weight: 5});
+                });
+                map.on('click', function (e) {
+                    updateGeoJSONLayerColor();
+                })
             }
-        }).addTo(map)
-        var idValcava = Valcava.features[0].properties.id;
+        });
+        var idValcava = Valcava.features[0].properties.idd;
         geoJSONArray[idValcava] = gValcava;
+        geoJSONs.push(gValcava);
 
         var gIseran = L.geoJSON(Iseran, {
             style: function (feature) {
-                return { color: 'purple' };
+                return { color: 'pink',weight:'1' };
             },
             onEachFeature: function(feature, layer){
                 layer.bindPopup(function (layer) {
                     return '<p style="margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p> (' + feature.properties.length + ', ' + feature.properties.elevation + ')<p style="margin-top: 5px;">';
                   });
+                layer.on('click', function (e) {
+                    this.setStyle({color: 'green', weight: 5});
+                });
+                map.on('click', function (e) {
+                    updateGeoJSONLayerColor();
+                })
             }
-        }).addTo(map)
-        var idIseran = Iseran.features[0].properties.id;
+        });
+        var idIseran = Iseran.features[0].properties.idd;
         geoJSONArray[idIseran] = gIseran;
+        geoJSONs.push(gIseran);
 
         var gZambla = L.geoJSON(Zambla, {
             style: function (feature) {
-                return { color: 'purple' };
+                return { color: 'pink',weight:'1' };
             },
             onEachFeature: function(feature, layer){
                 layer.bindPopup(function (layer) {
                     return '<p style="margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p> (' + feature.properties.length + ', ' + feature.properties.elevation + ')<p style="margin-top: 5px;">';
                   });
+                layer.on('click', function (e) {
+                    this.setStyle({color: 'green', weight: 5});
+                });
+                map.on('click', function (e) {
+                    updateGeoJSONLayerColor();
+                })
             }
-        }).addTo(map)
-        var idZambla = Zambla.features[0].properties.id;
+        });
+        var idZambla = Zambla.features[0].properties.idd;
         geoJSONArray[idZambla] = gZambla;
+        geoJSONs.push(gZambla);
 
         var gSelvino = L.geoJSON(Selvino, {
             style: function (feature) {
-                return { color: 'purple' };
+                return { color: 'pink',weight:'1' };
             },
             onEachFeature: function(feature, layer){
                 layer.bindPopup(function (layer) {
                     return '<p style="margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p> (' + feature.properties.length + ', ' + feature.properties.elevation + ')<p style="margin-top: 5px;">';
                   });
+                layer.on('click', function (e) {
+                    this.setStyle({color: 'green', weight: 5});
+                });
+                map.on('click', function (e) {
+                    updateGeoJSONLayerColor();
+                })
             }
-        }).addTo(map)
-        var idSelvino = Selvino.features[0].properties.id;
+        });
+        var idSelvino = Selvino.features[0].properties.idd;
         geoJSONArray[idSelvino] = gSelvino;
+        geoJSONs.push(gSelvino);
 
         var gGanda = L.geoJSON(Ganda, {
             style: function (feature) {
-                return { color: 'purple' };
+                return { color: 'pink',weight:"1" };
             },
             onEachFeature: function(feature, layer){
                 layer.bindPopup(function (layer) {
                     return '<p style="margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p> (' + feature.properties.length + ', ' + feature.properties.elevation + ')<p style="margin-top: 5px;">';
                   });
+                layer.on('click', function (e) {
+                    this.setStyle({color: 'green', weight: 5});
+                });
+                map.on('click', function (e) {
+                    updateGeoJSONLayerColor();
+                })
             }
-        }).addTo(map)
-        var idGanda = Ganda.features[0].properties.id;
+        });
+        var idGanda = Ganda.features[0].properties.idd;
         geoJSONArray[idGanda] = gGanda;
+        geoJSONs.push(gGanda);
 
         
         //function to highlight tracks on map
         function updateGeoJSONLayerColor() {
             if (selected[id]) {
-                geoJSONArray[id].setStyle({ color: 'red' }); // Change color
+                geoJSONArray[id].setStyle({ color: 'red',weight:'2' }); // Change color
             } else {
-                geoJSONArray[id].setStyle({ color: 'purple' }); // Restore the old color
+                geoJSONArray[id].setStyle({ color: 'pink',weight:'1' }); // Restore the old color
             }
         }
        
@@ -228,18 +261,88 @@
         });
         map.addControl(searchControl);
 
+        //layer button 1
+        geoJSONArray.forEach(function (layer) {
+            const features = layer.getLayers();
+        
+            features.forEach(function (featureLayer) {
+                const country = featureLayer.feature.properties.country;
+                if (country === 'IT') {
+                    geoIT.push(featureLayer);
+                } else if (country === 'FR') {
+                    geoFR.push(featureLayer);
+                } else if (country === 'DE') {
+                    geoDE.push(featureLayer);
+                } else if (country === 'AT') {
+                    geoAT.push(featureLayer); 
+                } else if (country === 'CH') {
+                    geoCH.push(featureLayer);
+                }
+            });
+        });
+        marks.push(marker);
+        marks.forEach(function (layer) {
+            const features = layer.getLayers();
+        
+            features.forEach(function (featureLayer) {
+                const country = featureLayer.feature.properties.country;
+                if (country === 'IT') {
+                    geoIT.push(featureLayer);
+                } else if (country === 'FR') {
+                    geoFR.push(featureLayer);
+                } else if (country === 'DE') {
+                    geoDE.push(featureLayer);
+                } else if (country === 'AT') {
+                    geoAT.push(featureLayer); 
+                } else if (country === 'CH') {
+                    geoCH.push(featureLayer);
+                }
+            });
+        });
+        var tracks = L.layerGroup(geoJSONs);
+        var marks = L.layerGroup([marker, markers]);
+        var italy = L.layerGroup(geoIT);
+        var france = L.layerGroup(geoFR);
+        var austria = L.layerGroup(geoAT);
+        var germany = L.layerGroup(geoDE);
+        var suisse = L.layerGroup(geoCH);
+        var baseMaps = {
+            "Standard": osm,
+            "Satellite": satellite,
+            "Streets": streets,
+            "Outdoor": outdoor,
+            "Topo": topo
+        };
+        var overlayMaps1 = {
+            "Passes": marks,
+            "All Tracks": tracks,
+            "Italy": italy,
+            "France": france,
+            "Austria": austria,
+            "Suisse": suisse,
+            "Germany": germany
+        };
+        var layerControl = L.control.layers(baseMaps, overlayMaps1).addTo(map);
+
         //layer button with maps and tracks, add new tracks here
         var baseMap = {
             'Tracks': osm,
         }
-        var overlayMaps = {
+        var overlayMaps2 = {
             'Passo di Valcava': gValcava,
             'Col de l\'Iséran': gIseran,
             'Passo di Zambla': gZambla,
             'Selvino': gSelvino,
             'Passo di Ganda': gGanda
         }
-        var layerControl2 = L.control.layers(baseMap, overlayMaps).addTo(map);
+        var layerControl2 = L.control.layers(baseMap, overlayMaps2).addTo(map);
+
+        
+        
+        
+        
+        
+        
 
     </script>
 </body>
