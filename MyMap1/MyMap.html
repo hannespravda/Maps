@@ -5,30 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
-    
-    <!-- add geoJSON files renamed to .js files here -->
-    <script src = "passi.js"></script>
-    <script src = "Tracks/Valcava.js"></script>
-    <script src = "Tracks/Iseran.js"></script>
-    <script src = "Tracks/Zambla.js"></script>
-    <script src = "Tracks/Selvino.js"></script>
-    <script src = "Tracks/Ganda.js"></script>
-    <script src = "Tracks/Brianza.js"></script>
-    <script src = "Tracks/Ghisallo.js"></script>
-    <script src = "Tracks/Sormano.js"></script>
-    <script src = "Tracks/Valbrona.js"></script>
-    <script src = "Tracks/Madonnina.js"></script>
-    <script src = "Tracks/Primo.js"></script>
-    <script src = "Tracks/Montevecchia.js"></script>
-    <script src = "Tracks/Miragolo.js"></script>
-    <script src = "Tracks/Salmezza.js"></script>
-    <script src = "Tracks/Nespello.js"></script>
-
-
 
     <!-- search box -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
@@ -48,10 +27,48 @@
     <link rel="stylesheet" href="leaflet-search-master\dist\leaflet-search.src.css"/>
     <script src="leaflet-search-master\dist\leaflet-search.src.js"></script>
 
-
+    <!-- style -->
     <style>
         #map {position: absolute; top: 0; bottom: 0; left: 0; right: 0}
     </style>
+
+    <!--------------------- add geoJSON files renamed to .js files here -------------------------------------->
+    <!-------------------------------------------------------------------------------------------------------->
+    <script src = "passi.js"></script>
+    <script src = "Tracks/Valcava.js"></script>
+    <script src = "Tracks/Iseran.js"></script>
+    <script src = "Tracks/Zambla.js"></script>
+    <script src = "Tracks/Selvino.js"></script>
+    <script src = "Tracks/Ganda.js"></script>
+    <script src = "Tracks/Brianza.js"></script>
+    <script src = "Tracks/Ghisallo.js"></script>
+    <script src = "Tracks/Sormano.js"></script>
+    <script src = "Tracks/Valbrona.js"></script>
+    <script src = "Tracks/Madonnina.js"></script>
+    <script src = "Tracks/Primo.js"></script>
+    <script src = "Tracks/Montevecchia.js"></script>
+    <script src = "Tracks/Miragolo.js"></script>
+    <script src = "Tracks/Salmezza.js"></script>
+    <script src = "Tracks/Nespello.js"></script>
+    <script src = "Tracks/Culmine.js"></script>
+    <script src = "Tracks/Agueglio.js"></script>
+    <script src = "Tracks/Narro.js"></script>
+    <script src = "Tracks/Valvarrone.js"></script>
+    <script src = "Tracks/Marco.js"></script>
+    <script src = "Tracks/Berbenno.js"></script>
+    <script src = "Tracks/Fuipiano.js"></script>
+    <script src = "Tracks/Bura.js"></script>
+    <script src = "Tracks/Antonio.js"></script>
+    <script src = "Tracks/Balisio.js"></script>
+    <script src = "Tracks/Splugen.js"></script>
+    <script src = "Tracks/Bernardino.js"></script>
+    <script src = "Tracks/Maloja.js"></script>
+    <script src = "Tracks/Julier.js"></script>
+    <script src = "Tracks/Albula.js"></script>
+    <script src = "Tracks/Bernina.js"></script>
+    <script src = "Tracks/Vivione.js"></script>
+    <!-------------------------------------------------------------------------------------------------------->
+    <!-------------------------------------------------------------------------------------------------------->
 </head>
 <body>
     <div id = "map"></div>
@@ -79,24 +96,13 @@
         var osm = L.tileLayer('https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=5oOhPnaZPwb4EiDFpWyW', {
             attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
         }).addTo(map);
-
         //add other maps
         var satellite = L.tileLayer('https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key=5oOhPnaZPwb4EiDFpWyW', {
             attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
         });
-
-        var streets = L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=5oOhPnaZPwb4EiDFpWyW', {
-            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-        });
-
-        var outdoor = L.tileLayer('https://api.maptiler.com/maps/outdoor-v2/{z}/{x}/{y}.png?key=5oOhPnaZPwb4EiDFpWyW', {
-            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-        });
-
         var topo = L.tileLayer('https://api.maptiler.com/maps/topo-v2/{z}/{x}/{y}.png?key=5oOhPnaZPwb4EiDFpWyW', {
             attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
         });
-
 
         //variables
         var geoJSONArray = [];
@@ -107,6 +113,9 @@
         var geoDE = [];
         var geoAT = [];
         var geoCH = [];
+        var geoPass = [];
+        var geoClimb = [];
+        var geoSack = [];
         var selected = [];
         var id;
 
@@ -134,7 +143,7 @@
                     }
                 });
                 layer.on('click', function (e) {
-                    id = feature.properties.idd
+                    id = feature.properties.idd;
                     this.openPopup;
                     // Add a listener for the checkbox change event
                     document.getElementById('colorCheckbox').addEventListener('change', function (event) {
@@ -178,7 +187,7 @@
         var overlayMaps2 = {};
         var layerControl2 = L.control.layers(null, overlayMaps2,{ position: 'bottomright' }).addTo(map);
         
-/////////add new tracks here/////////////////////////////////////////////////////////////////////////////////
+/////////add new tracks here///////////////////////////////////////////////////////////////////////////////////
         var gValcava = L.geoJSON(Valcava, {
             style: TrackStyle,
             onEachFeature: onEachFeature
@@ -187,6 +196,115 @@
         geoJSONArray[idValcava] = gValcava;
         geoJSONs.push(gValcava);
         layerControl2.addOverlay(gValcava, "Passo Valcava");
+
+        var gJulier = L.geoJSON(Julier, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idJulier = Julier.features[0].properties.idd;
+        geoJSONArray[idJulier] = gJulier;
+        geoJSONs.push(gJulier);
+        layerControl2.addOverlay(gJulier, "Julierpass");
+
+        var gBernina = L.geoJSON(Bernina, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idBernina = Bernina.features[0].properties.idd;
+        geoJSONArray[idBernina] = gBernina;
+        geoJSONs.push(gBernina);
+        layerControl2.addOverlay(gBernina, "Berninapass, Passo del Bernina");
+
+        var gVivione = L.geoJSON(Vivione, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idVivione = Vivione.features[0].properties.idd;
+        geoJSONArray[idVivione] = gVivione;
+        geoJSONs.push(gVivione);
+        layerControl2.addOverlay(gVivione, "Passo del Vivione");
+
+        var gAlbula = L.geoJSON(Albula, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idAlbula = Albula.features[0].properties.idd;
+        geoJSONArray[idAlbula] = gAlbula;
+        geoJSONs.push(gAlbula);
+        layerControl2.addOverlay(gAlbula, "Albulapass");
+
+        var gMaloja = L.geoJSON(Maloja, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idMaloja = Maloja.features[0].properties.idd;
+        geoJSONArray[idMaloja] = gMaloja;
+        geoJSONs.push(gMaloja);
+        layerControl2.addOverlay(gMaloja, "Malojapass");
+
+        var gBernardino = L.geoJSON(Bernardino, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idBernardino = Bernardino.features[0].properties.idd;
+        geoJSONArray[idBernardino] = gBernardino;
+        geoJSONs.push(gBernardino);
+        layerControl2.addOverlay(gBernardino, "San-Bernardino-Pass");
+
+        var gSplugen = L.geoJSON(Splugen, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idSplugen = Splugen.features[0].properties.idd;
+        geoJSONArray[idSplugen] = gSplugen;
+        geoJSONs.push(gSplugen);
+        layerControl2.addOverlay(gSplugen, "Passo dello Spluga");
+
+        var gBalisio = L.geoJSON(Balisio, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idBalisio = Balisio.features[0].properties.idd;
+        geoJSONArray[idBalisio] = gBalisio;
+        geoJSONs.push(gBalisio);
+        layerControl2.addOverlay(gBalisio, "Colle Balisio");
+
+        var gBura = L.geoJSON(Bura, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idBura = Bura.features[0].properties.idd;
+        geoJSONArray[idBura] = gBura;
+        geoJSONs.push(gBura);
+        layerControl2.addOverlay(gBura, "Passo Forcella di Bura");
+
+        var gAntonio = L.geoJSON(Antonio, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idAntonio = Antonio.features[0].properties.idd;
+        geoJSONArray[idAntonio] = gAntonio;
+        geoJSONs.push(gAntonio);
+        layerControl2.addOverlay(gAntonio, "Sant'Antonio Abbandonato");
+
+
+        var gFuipiano = L.geoJSON(Fuipiano, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idFuipiano = Fuipiano.features[0].properties.idd;
+        geoJSONArray[idFuipiano] = gFuipiano;
+        geoJSONs.push(gFuipiano);
+        layerControl2.addOverlay(gFuipiano, "Fuipiano");
+
+        var gBerbenno = L.geoJSON(Berbenno, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idBerbenno = Berbenno.features[0].properties.idd;
+        geoJSONArray[idBerbenno] = gBerbenno;
+        geoJSONs.push(gBerbenno);
+        layerControl2.addOverlay(gBerbenno, "Berbenno");
 
         var gMiragolo = L.geoJSON(Miragolo, {
             style: TrackStyle,
@@ -197,6 +315,34 @@
         geoJSONs.push(gMiragolo);
         layerControl2.addOverlay(gMiragolo, "Miragolo San Salvatore");
 
+        var gValvarrone = L.geoJSON(Valvarrone, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idValvarrone = Valvarrone.features[0].properties.idd;
+        geoJSONArray[idValvarrone] = gValvarrone;
+        geoJSONs.push(gValvarrone);
+        layerControl2.addOverlay(gValvarrone, "Valvarrone");
+
+        var gMarco = L.geoJSON(Marco, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idMarco = Marco.features[0].properties.idd;
+        geoJSONArray[idMarco] = gMarco;
+        geoJSONs.push(gMarco);
+        layerControl2.addOverlay(gMarco, "Passo San Marco");
+
+
+        var gCulmine = L.geoJSON(Culmine, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idCulmine = Culmine.features[0].properties.idd;
+        geoJSONArray[idCulmine] = gCulmine;
+        geoJSONs.push(gCulmine);
+        layerControl2.addOverlay(gCulmine, "Passo Culmine di San Pietro");
+
         var gNespello = L.geoJSON(Nespello, {
             style: TrackStyle,
             onEachFeature: onEachFeature
@@ -205,6 +351,24 @@
         geoJSONArray[idNespello] = gNespello;
         geoJSONs.push(gNespello);
         layerControl2.addOverlay(gNespello, "Forcella di Nespello");
+
+        var gAgueglio = L.geoJSON(Agueglio, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idAgueglio = Agueglio.features[0].properties.idd;
+        geoJSONArray[idAgueglio] = gAgueglio;
+        geoJSONs.push(gAgueglio);
+        layerControl2.addOverlay(gAgueglio, "Passo Agueglio");
+
+        var gNarro = L.geoJSON(Narro, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idNarro = Narro.features[0].properties.idd;
+        geoJSONArray[idNarro] = gNarro;
+        geoJSONs.push(gNarro);
+        layerControl2.addOverlay(gNarro, "Narro");
 
         var gSalmezza = L.geoJSON(Salmezza, {
             style: TrackStyle,
@@ -314,6 +478,7 @@
         geoJSONArray[idBrianza] = gBrianza;
         geoJSONs.push(gBrianza);
         layerControl2.addOverlay(gBrianza, "Colle di Brianza");
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         //function to highlight tracks on map
         function updateGeoJSONLayerColor() {
@@ -330,6 +495,7 @@
         
             features.forEach(function (featureLayer) {
                 const country = featureLayer.feature.properties.country;
+                const category = featureLayer.feature.properties.category;
                 if (country === 'IT') {
                     geoIT.push(featureLayer);
                 } else if (country === 'FR') {
@@ -341,14 +507,21 @@
                 } else if (country === 'CH') {
                     geoCH.push(featureLayer);
                 }
+                if (category === 'Pass') {
+                    geoPass.push(featureLayer);
+                } else if (category === 'Climb') {
+                    geoClimb.push(featureLayer);
+                } else if (category === 'Sack') {
+                    geoSack.push(featureLayer);
+                } 
             });
         });
         marks.push(marker);
         marks.forEach(function (layer) {
             const features = layer.getLayers();
-        
             features.forEach(function (featureLayer) {
                 const country = featureLayer.feature.properties.country;
+                const category = featureLayer.feature.properties.category;
                 if (country === 'IT') {
                     geoIT.push(featureLayer);
                 } else if (country === 'FR') {
@@ -360,6 +533,13 @@
                 } else if (country === 'CH') {
                     geoCH.push(featureLayer);
                 }
+                if (category === 'Pass') {
+                    geoPass.push(featureLayer);
+                } else if (category === 'Climb') {
+                    geoClimb.push(featureLayer);
+                } else if (category === 'Sack') {
+                    geoSack.push(featureLayer);
+                } 
             });
         });
         var tracks = L.layerGroup(geoJSONs);
@@ -369,21 +549,25 @@
         var austria = L.layerGroup(geoAT);
         var germany = L.layerGroup(geoDE);
         var suisse = L.layerGroup(geoCH);
+        var pass = L.layerGroup(geoPass);
+        var climb = L.layerGroup(geoClimb);
+        var sack = L.layerGroup(geoSack);
         var baseMaps = {
             "Standard": osm,
             "Satellite": satellite,
-            "Streets": streets,
-            "Outdoor": outdoor,
             "Topo": topo
         };
         var overlayMaps1 = {
-            "Passes": marks,
+            "All Markers": marks,
             "All Tracks": tracks,
             "Italy": italy,
             "France": france,
             "Austria": austria,
             "Suisse": suisse,
-            "Germany": germany
+            "Germany": germany,
+            "Pass": pass,
+            "Climb": climb,
+            "Sackgasse": sack
         };
         var layerControl = L.control.layers(baseMaps, overlayMaps1,{ position: 'topright' }).addTo(map);
     </script>

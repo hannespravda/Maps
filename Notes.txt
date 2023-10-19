@@ -31,13 +31,21 @@ ID
 3		Selvino
 4		Ganda
 
+komootgpx -m hannes.pravida@outlook.com -p Hannes99 -a -o C:\Users\hanne\Hannes\Projekte\MyMap1\Komoot -e
 
-var gNespello = L.geoJSON(Nespello, {
+var gVivione = L.geoJSON(Vivione, {
             style: TrackStyle,
             onEachFeature: onEachFeature
         });
-        var idNespello = Nespello.features[0].properties.idd;
-        geoJSONArray[idNespello] = gNespello;
-        geoJSONs.push(gNespello);
-        layerControl2.addOverlay(gNespello, "Forcella di Nespello");
+        var idVivione = Vivione.features[0].properties.idd;
+        geoJSONArray[idVivione] = gVivione;
+        geoJSONs.push(gVivione);
+        layerControl2.addOverlay(gVivione, "Vivionepass, Passo del Vivione");
 
+ "idd": "13",
+        "name": "Südauffahrt",
+        "length": "20.8 km",
+        "elevation": "1900 hm",
+		"category":"Pass",
+		"country":"IT",
+        "link": "",
