@@ -6,8 +6,8 @@ var Splugen = {
         "properties": {
           "idd": "38",
           "name": "Südauffahrt",
-          "length": "30.4 km",
-          "elevation": "1850 hm",
+          "length": "30.4",
+          "elevation": "1850",
           "category":"Pass",
           "country":"IT",
           "link": "https://www.quaeldich.de/paesse/spluegenpass/profile/suedrampe-von-chiavenna/",
@@ -5217,8 +5217,8 @@ var Splugen = {
         "properties": {
           "idd": "38",
           "name": "Nordrampe",
-          "length": "8.95 km",
-          "elevation": "670 hm",
+          "length": "8.95",
+          "elevation": "670",
           "category":"Pass",
           "country":"IT",
           "link": "https://www.quaeldich.de/paesse/spluegenpass/profile/nordrampe-von-spluegen/",

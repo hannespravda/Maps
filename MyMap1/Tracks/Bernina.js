@@ -6,8 +6,8 @@ var Bernina = {
         "properties": {
           "idd": "19",
           "name": "Südauffahrt",
-          "length": "33.3 km",
-          "elevation": "1930 hm",
+          "length": "33.3",
+          "elevation": "1930",
           "category":"Pass",
           "country":"CH",
           "link": "https://www.quaeldich.de/paesse/berninapass/profile/suedrampe-von-tirano/",
@@ -5073,8 +5073,8 @@ var Bernina = {
         "properties": {
           "idd": "19",
           "name": "Nordrampe",
-          "length": "17.8 km",
-          "elevation": "610 hm",
+          "length": "17.8",
+          "elevation": "610",
           "category":"Pass",
           "country":"CH",
           "link": "https://www.quaeldich.de/paesse/berninapass/profile/nordwestrampe-von-punt-muragl/",

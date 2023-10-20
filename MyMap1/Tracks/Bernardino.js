@@ -6,8 +6,8 @@ var Bernardino = {
         "properties": {
           "idd": "46",
           "name": "Südauffahrt",
-          "length": "20.8 km",
-          "elevation": "1900 hm",
+          "length": "20.8",
+          "elevation": "1900",
           "category":"Pass",
           "country":"CH",
           "link": "https://www.quaeldich.de/paesse/spluegenpass/profile/suedrampe-von-chiavenna/",
@@ -7305,8 +7305,8 @@ var Bernardino = {
         "properties": {
           "idd": "46",
           "name": "Nordauffahrt",
-          "length": "45.1 km",
-          "elevation": "1590 hm",
+          "length": "45.1",
+          "elevation": "1590",
           "category":"Pass",
           "country":"CH",
           "link": "https://www.quaeldich.de/paesse/san-bernardino-pass/profile/nordostauffahrt-von-hinterrhein/",

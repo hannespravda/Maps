@@ -67,6 +67,36 @@
     <script src = "Tracks/Albula.js"></script>
     <script src = "Tracks/Bernina.js"></script>
     <script src = "Tracks/Vivione.js"></script>
+    <script src = "Tracks/Aprica.js"></script>
+    <script src = "Tracks/Crocedomini.js"></script>
+    <script src = "Tracks/Eira.js"></script>
+    <script src = "Tracks/Forcora.js"></script>
+    <script src = "Tracks/Foscagno.js"></script>
+    <script src = "Tracks/Furka.js"></script>
+    <script src = "Tracks/Gavia.js"></script>
+    <script src = "Tracks/Gottardo.js"></script>
+    <script src = "Tracks/GranBernard.js"></script>
+    <script src = "Tracks/Grimsel.js"></script>
+    <script src = "Tracks/Guspessa.js"></script>
+    <script src = "Tracks/Livigno.js"></script>
+    <script src = "Tracks/Lukmanier.js"></script>
+    <script src = "Tracks/Maniva.js"></script>
+    <script src = "Tracks/Marzio.js"></script>
+    <script src = "Tracks/Montecampione.js"></script>
+    <script src = "Tracks/Mortirolo.js"></script>
+    <script src = "Tracks/Neggia.js"></script>
+    <script src = "Tracks/Nufenen.js"></script>
+    <script src = "Tracks/Oberalp.js"></script>
+    <script src = "Tracks/Ofen.js"></script>
+    <script src = "Tracks/Presolana.js"></script>
+    <script src = "Tracks/Simplon.js"></script>
+    <script src = "Tracks/Stelvio.js"></script>
+    <script src = "Tracks/Susten.js"></script>
+    <script src = "Tracks/Tedesco.js"></script>
+    <script src = "Tracks/Tonale.js"></script>
+    <script src = "Tracks/Trivigno.js"></script>
+    <script src = "Tracks/Umbrail.js"></script>
+    <script src = "Tracks/Zeno.js"></script>
     <!-------------------------------------------------------------------------------------------------------->
     <!-------------------------------------------------------------------------------------------------------->
 </head>
@@ -133,11 +163,11 @@
                 layer.bindPopup('<p style="line-height: 1; margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></div><div style="background-color: lightgray; padding: 1px;">' + feature.properties.category + '<span style="float: right;">' + feature.properties.height + ' m</span></div><div style="margin-top: 1px;">' + popupContent + '</div>');
                 layer.on('mouseover', function (e) {
                     id = feature.properties.idd;
-                    geoJSONArray[id].setStyle({ color: 'red' ,weight:'2'});
+                    geoJSONArray[id].setStyle({ color: 'red' ,weight:'3'});
                 });
                 layer.on('mouseout', function (e) {
                     if (selected[id]) {
-                        geoJSONArray[id].setStyle({ color: 'red',weight:'2' }); // Change color
+                        geoJSONArray[id].setStyle({ color: 'red',weight:'3' }); // Change color
                     } else {
                         geoJSONArray[id].setStyle({ color: 'pink',weight:'1' }); // Restore the old color
                     }
@@ -153,9 +183,9 @@
                 }); 
             }});
 
-        //cluster representation
-        markers.addLayer(marker);
-        map.addLayer(markers);
+        //cluster representation, turned off for identification issues
+        /*markers.addLayer(marker);
+        map.addLayer(markers);*/
 
         //marker search
         const searchControl = new L.Control.Search({
@@ -170,8 +200,11 @@
         //Track sytle and feature functions
         function onEachFeature(feature, layer) {
             layer.bindPopup(function (layer) {
-                return '<p style="margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p> (' + feature.properties.length + ', ' + feature.properties.elevation + ')<p style="margin-top: 5px;">';
+                return '<p style="margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p> (' + feature.properties.length + ' km' +', ' + feature.properties.elevation + ' hm' + ')<p style="margin-top: 5px;">';
             });
+            /*layer.on('mouseover', function (e) {
+                this.setStyle({ color: 'green', weight: 5 });
+            });*/
             layer.on('click', function (e) {
                 this.setStyle({ color: 'green', weight: 5 });
             });
@@ -196,6 +229,267 @@
         geoJSONArray[idValcava] = gValcava;
         geoJSONs.push(gValcava);
         layerControl2.addOverlay(gValcava, "Passo Valcava");
+
+        var gZeno = L.geoJSON(Zeno, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idZeno = Zeno.features[0].properties.idd;
+        geoJSONArray[idZeno] = gZeno;
+        geoJSONs.push(gZeno);
+        layerControl2.addOverlay(gZeno, "Colle di San Zeno");
+
+        var gUmbrail = L.geoJSON(Umbrail, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idUmbrail = Umbrail.features[0].properties.idd;
+        geoJSONArray[idUmbrail] = gUmbrail;
+        geoJSONs.push(gUmbrail);
+        layerControl2.addOverlay(gUmbrail, "Umbrailpass");
+
+        var gTrivigno = L.geoJSON(Trivigno, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idTrivigno = Trivigno.features[0].properties.idd;
+        geoJSONArray[idTrivigno] = gTrivigno;
+        geoJSONs.push(gTrivigno);
+        layerControl2.addOverlay(gTrivigno, "Passo di Trivigno");
+
+        var gMortirolo = L.geoJSON(Mortirolo, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idMortirolo = Mortirolo.features[0].properties.idd;
+        geoJSONArray[idMortirolo] = gMortirolo;
+        geoJSONs.push(gMortirolo);
+        layerControl2.addOverlay(gMortirolo, "Passo del Mortirolo");
+
+        var gSimplon = L.geoJSON(Simplon, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idSimplon = Simplon.features[0].properties.idd;
+        geoJSONArray[idSimplon] = gSimplon;
+        geoJSONs.push(gSimplon);
+        layerControl2.addOverlay(gSimplon, "Simplonpass");
+
+        var gPresolana = L.geoJSON(Presolana, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idPresolana = Presolana.features[0].properties.idd;
+        geoJSONArray[idPresolana] = gPresolana;
+        geoJSONs.push(gPresolana);
+        layerControl2.addOverlay(gPresolana, "Passo della Presolana");
+
+        var gNeggia = L.geoJSON(Neggia, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idNeggia = Neggia.features[0].properties.idd;
+        geoJSONArray[idNeggia] = gNeggia;
+        geoJSONs.push(gNeggia);
+        layerControl2.addOverlay(gNeggia, "Alpe di Neggia");
+
+        var gNufenen = L.geoJSON(Nufenen, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idNufenen = Nufenen.features[0].properties.idd;
+        geoJSONArray[idNufenen] = gNufenen;
+        geoJSONs.push(gNufenen);
+        layerControl2.addOverlay(gNufenen, "Nufenenpass");
+
+        var gTedesco = L.geoJSON(Tedesco, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idTedesco = Tedesco.features[0].properties.idd;
+        geoJSONArray[idTedesco] = gTedesco;
+        geoJSONs.push(gTedesco);
+        layerControl2.addOverlay(gTedesco, "Alpe del Tedesco");
+
+        var gTonale = L.geoJSON(Tonale, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idTonale = Tonale.features[0].properties.idd;
+        geoJSONArray[idTonale] = gTonale;
+        geoJSONs.push(gTonale);
+        layerControl2.addOverlay(gTonale, "Passo del Tonale");
+
+        var gMontecampione = L.geoJSON(Montecampione, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idMontecampione = Montecampione.features[0].properties.idd;
+        geoJSONArray[idMontecampione] = gMontecampione;
+        geoJSONs.push(gMontecampione);
+        layerControl2.addOverlay(gMontecampione, "Pian di Montecampione");
+
+        var gOfen = L.geoJSON(Ofen, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idOfen = Ofen.features[0].properties.idd;
+        geoJSONArray[idOfen] = gOfen;
+        geoJSONs.push(gOfen);
+        layerControl2.addOverlay(gOfen, "Ofenpass, Pass dal Fuorn");
+
+        var gStelvio = L.geoJSON(Stelvio, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idStelvio = Stelvio.features[0].properties.idd;
+        geoJSONArray[idStelvio] = gStelvio;
+        geoJSONs.push(gStelvio);
+        layerControl2.addOverlay(gStelvio, "Passo dello Stelvio, Stilfser Joch");
+
+        var gOberalp = L.geoJSON(Oberalp, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idOberalp = Oberalp.features[0].properties.idd;
+        geoJSONArray[idOberalp] = gOberalp;
+        geoJSONs.push(gOberalp);
+        layerControl2.addOverlay(gOberalp, "Oberalppass");
+
+        var gManiva = L.geoJSON(Maniva, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idManiva = Maniva.features[0].properties.idd;
+        geoJSONArray[idManiva] = gManiva;
+        geoJSONs.push(gManiva);
+        layerControl2.addOverlay(gManiva, "Giogo del Maniva");
+
+        var gMarzio = L.geoJSON(Marzio, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idMarzio = Marzio.features[0].properties.idd;
+        geoJSONArray[idMarzio] = gMarzio;
+        geoJSONs.push(gMarzio);
+        layerControl2.addOverlay(gMarzio, "Forcorella di Marzio");
+
+        var gGrimsel = L.geoJSON(Grimsel, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idGrimsel = Grimsel.features[0].properties.idd;
+        geoJSONArray[idGrimsel] = gGrimsel;
+        geoJSONs.push(gGrimsel);
+        layerControl2.addOverlay(gGrimsel, "Grimselpass");
+
+        var gLukmanier = L.geoJSON(Lukmanier, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idLukmanier = Lukmanier.features[0].properties.idd;
+        geoJSONArray[idLukmanier] = gLukmanier;
+        geoJSONs.push(gLukmanier);
+        layerControl2.addOverlay(gLukmanier, "Lukmanierpass");
+
+        var gLivigno = L.geoJSON(Livigno, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idLivigno = Livigno.features[0].properties.idd;
+        geoJSONArray[idLivigno] = gLivigno;
+        geoJSONs.push(gLivigno);
+        layerControl2.addOverlay(gLivigno, "Forcola di Livigno");
+
+        var gGuspessa = L.geoJSON(Guspessa, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idGuspessa = Guspessa.features[0].properties.idd;
+        geoJSONArray[idGuspessa] = gGuspessa;
+        geoJSONs.push(gGuspessa);
+        layerControl2.addOverlay(gGuspessa, "Passo di Guspessa");
+
+        var gEira = L.geoJSON(Eira, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idEira = Eira.features[0].properties.idd;
+        geoJSONArray[idEira] = gEira;
+        geoJSONs.push(gEira);
+        layerControl2.addOverlay(gEira, "Passo d'Eira");
+
+        var gGottardo = L.geoJSON(Gottardo, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idGottardo = Gottardo.features[0].properties.idd;
+        geoJSONArray[idGottardo] = gGottardo;
+        geoJSONs.push(gGottardo);
+        layerControl2.addOverlay(gGottardo, "St. Gotthardpass");
+
+        var gGranBernard = L.geoJSON(GranBernard, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idGranBernard = GranBernard.features[0].properties.idd;
+        geoJSONArray[idGranBernard] = gGranBernard;
+        geoJSONs.push(gGranBernard);
+        layerControl2.addOverlay(gGranBernard, "Col du Grand Saint Bernard");
+
+        var gGavia = L.geoJSON(Gavia, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idGavia = Gavia.features[0].properties.idd;
+        geoJSONArray[idGavia] = gGavia;
+        geoJSONs.push(gGavia);
+        layerControl2.addOverlay(gGavia, "Passo di Gavia");
+
+        var gForcora = L.geoJSON(Forcora, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idForcora = Forcora.features[0].properties.idd;
+        geoJSONArray[idForcora] = gForcora;
+        geoJSONs.push(gForcora);
+        layerControl2.addOverlay(gForcora, "Passo Forcora");
+
+        var gFurka = L.geoJSON(Furka, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idFurka = Furka.features[0].properties.idd;
+        geoJSONArray[idFurka] = gFurka;
+        geoJSONs.push(gFurka);
+        layerControl2.addOverlay(gFurka, "Furkapass");
+
+        var gFoscagno = L.geoJSON(Foscagno, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idFoscagno = Foscagno.features[0].properties.idd;
+        geoJSONArray[idFoscagno] = gFoscagno;
+        geoJSONs.push(gFoscagno);
+        layerControl2.addOverlay(gFoscagno, "Passo di Foscagno");
+
+        var gCrocedomini = L.geoJSON(Crocedomini, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idCrocedomini = Crocedomini.features[0].properties.idd;
+        geoJSONArray[idCrocedomini] = gCrocedomini;
+        geoJSONs.push(gCrocedomini);
+        layerControl2.addOverlay(gCrocedomini, "Passo di Crocedomini");
+
+        var gAprica = L.geoJSON(Aprica, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idAprica = Aprica.features[0].properties.idd;
+        geoJSONArray[idAprica] = gAprica;
+        geoJSONs.push(gAprica);
+        layerControl2.addOverlay(gAprica, "Passo dell'Aprica");
 
         var gJulier = L.geoJSON(Julier, {
             style: TrackStyle,
@@ -478,12 +772,21 @@
         geoJSONArray[idBrianza] = gBrianza;
         geoJSONs.push(gBrianza);
         layerControl2.addOverlay(gBrianza, "Colle di Brianza");
+
+        var gSusten = L.geoJSON(Susten, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idSusten = Susten.features[0].properties.idd;
+        geoJSONArray[idSusten] = gSusten;
+        geoJSONs.push(gSusten);
+        layerControl2.addOverlay(gSusten, "Sustenpass");
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         //function to highlight tracks on map
         function updateGeoJSONLayerColor() {
             if (selected[id]) {
-                geoJSONArray[id].setStyle({ color: 'red',weight:'2' }); // Change color
+                geoJSONArray[id].setStyle({ color: 'red',weight:'3' }); // Change color
             } else {
                 geoJSONArray[id].setStyle({ color: 'pink',weight:'1' }); // Restore the old color
             }

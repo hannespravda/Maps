@@ -33,19 +33,21 @@ ID
 
 komootgpx -m hannes.pravida@outlook.com -p Hannes99 -a -o C:\Users\hanne\Hannes\Projekte\MyMap1\Komoot -e
 
-var gVivione = L.geoJSON(Vivione, {
+
+
+var gZeno = L.geoJSON(Zeno, {
             style: TrackStyle,
             onEachFeature: onEachFeature
         });
-        var idVivione = Vivione.features[0].properties.idd;
-        geoJSONArray[idVivione] = gVivione;
-        geoJSONs.push(gVivione);
-        layerControl2.addOverlay(gVivione, "Vivionepass, Passo del Vivione");
+        var idZeno = Zeno.features[0].properties.idd;
+        geoJSONArray[idZeno] = gZeno;
+        geoJSONs.push(gZeno);
+        layerControl2.addOverlay(gZeno, "Colle di San Zeno");
 
- "idd": "13",
-        "name": "Südauffahrt",
-        "length": "20.8 km",
-        "elevation": "1900 hm",
-		"category":"Pass",
+"idd": "683",
+		"name": "Südauffahrt",
+		"length": " km",
+		"elevation": " hm",
+		"category":"Climb",
 		"country":"IT",
-        "link": "",
+		"link": "",

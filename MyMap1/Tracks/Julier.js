@@ -6,8 +6,8 @@ var Julier = {
         "properties": {
           "idd": "25",
           "name": "Nordauffahrt",
-          "length": "35.9 km",
-          "elevation": "1530 hm",
+          "length": "35.9",
+          "elevation": "1530",
           "category":"Pass",
           "country":"CH",
           "link": "https://www.quaeldich.de/paesse/julierpass/profile/nordwestrampe-von-tiefencastel/",
@@ -5049,8 +5049,8 @@ var Julier = {
         "properties": {
           "idd": "25",
           "name": "Südrampe",
-          "length": "7.1 km",
-          "elevation": "470 hm",
+          "length": "7.1",
+          "elevation": "470",
           "category":"Pass",
           "country":"CH",
           "link": "https://www.quaeldich.de/paesse/julierpass/profile/suedrampe-von-silvaplana/",

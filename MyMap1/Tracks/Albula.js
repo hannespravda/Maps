@@ -6,8 +6,8 @@ var Albula = {
         "properties": {
           "idd": "22",
           "name": "Südrampe",
-          "length": "9.1 km",
-          "elevation": "640 hm",
+          "length": "9.1",
+          "elevation": "640",
           "category":"Pass",
           "country":"CH",
           "link": "https://www.quaeldich.de/paesse/albulapass/profile/ostanfahrt-von-la-punt/",
@@ -1203,8 +1203,8 @@ var Albula = {
         "properties": {
           "idd": "22",
           "name": "Nordauffahrt",
-          "length": "30.3 km",
-          "elevation": "1500 hm",
+          "length": "30.3",
+          "elevation": "1500",
           "category":"Pass",
           "country":"CH",
           "link": "https://www.quaeldich.de/paesse/albulapass/profile/westanfahrt-von-filisur/",

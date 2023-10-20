@@ -6,8 +6,8 @@ var Maloja = {
         "properties": {
           "idd": "80",
           "name": "Italienische Auffahrt",
-          "length": "31.5 km",
-          "elevation": "1500 hm",
+          "length": "31.5",
+          "elevation": "1500",
           "category":"Pass",
           "country":"CH",
           "link": "https://www.quaeldich.de/paesse/malojapass/profile/westrampe-von-chiavenna-i/",
@@ -4809,8 +4809,8 @@ var Maloja = {
         "properties": {
           "idd": "80",
           "name": "Zufahrt von der Schweiz",
-          "length": "20.8 km",
-          "elevation": "150 hm",
+          "length": "20.8",
+          "elevation": "150",
           "category":"Pass",
           "country":"CH",
           "link": "https://www.quaeldich.de/paesse/malojapass/",
