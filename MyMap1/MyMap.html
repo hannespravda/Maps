@@ -155,9 +155,39 @@
             showCoverageOnHover: false,
             zoomToBoundsOnClick: true
         });
+
+        //custom icons
+        var yellowIcon = L.icon({
+            iconUrl: 'Images/gelb.png',
+            iconSize: [16, 16], // Set the size of the icon
+            iconAnchor: [8, 16],
+            popupAnchor:  [0, -16]
+        });
+        var redIcon = L.icon({
+            iconUrl: 'Images/red.png',
+            iconSize: [16, 16], // Set the size of the icon
+            iconAnchor: [8, 16], 
+            popupAnchor:  [0, -16]
+        });
+        var blueIcon = L.icon({
+            iconUrl: 'Images/blau.png',
+            iconSize: [16, 16], // Set the size of the icon
+            iconAnchor: [8, 16], 
+            popupAnchor:  [0, -16]
+        });
         
         //marker passes
         var marker = L.geoJSON(passi, {
+            pointToLayer: function (feature, latlng) {
+                // Create the marker with the custom icon
+                if (feature.properties.category == 'Pass'){
+                    return L.marker(latlng, {icon: blueIcon}).bindTooltip(feature.properties.name + ' (' + feature.properties.height + ' m)')
+                } else if (feature.properties.category == 'Climb'){
+                    return L.marker(latlng, {icon: yellowIcon}).bindTooltip(feature.properties.name + ' (' + feature.properties.height + ' m)')
+                } else if (feature.properties.category == 'Sackgasse'){
+                    return L.marker(latlng, {icon: redIcon}).bindTooltip(feature.properties.name + ' (' + feature.properties.height + ' m)')
+                }
+            },
             onEachFeature: function(feature, layer){
                 var popupContent = "<div><input type='checkbox' id='colorCheckbox' /> Show routes </div>";
                 layer.bindPopup('<p style="line-height: 1; margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></div><div style="background-color: lightgray; padding: 1px;">' + feature.properties.category + '<span style="float: right;">' + feature.properties.height + ' m</span></div><div style="margin-top: 1px;">' + popupContent + '</div>');
@@ -181,8 +211,9 @@
                         updateGeoJSONLayerColor();
                     });
                 }); 
-            }});
-
+            }
+        });
+        
         //cluster representation, turned off for identification issues
         /*markers.addLayer(marker);
         map.addLayer(markers);*/
@@ -814,7 +845,7 @@
                     geoPass.push(featureLayer);
                 } else if (category === 'Climb') {
                     geoClimb.push(featureLayer);
-                } else if (category === 'Sack') {
+                } else if (category === 'Sackgasse') {
                     geoSack.push(featureLayer);
                 } 
             });
@@ -840,7 +871,7 @@
                     geoPass.push(featureLayer);
                 } else if (category === 'Climb') {
                     geoClimb.push(featureLayer);
-                } else if (category === 'Sack') {
+                } else if (category === 'Sackgasse') {
                     geoSack.push(featureLayer);
                 } 
             });

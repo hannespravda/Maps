@@ -1,35 +1,15 @@
-idd
-height
-name
-category
-country
-link
-
-idd
-name
-length
-elevation
-start
-link
-country
+Ideen:
+	Strava Account verknüpfen, Aktivitäten auslesen, Start/End von Segmenten auslesen, befahrene Pässe darstellen
+	Komoot touren, die pass enthalten anzeigen
+	vector karte
+	link in tracks zu passenden trava segment
+	filter for regions
+	komoot karten design
+	Klickleiste
 	
-Vorgehen
-1	Create gpx track https://brouter.de/brouter-web/#map=7/45.058/9.507/osm-mapnik-german_style&profile=fastbike
-2	import all gpx routes, add track info, export geojson https://geojson.io/#new&map=2/0/20
-1	Add GeoJSON file zu Tracks und umbenennen in .js
-2	Add .js file in header
-3	Add neuer Track Block (copy vorherigen)
-4	Add Track in Layers
-4	setze var vor .js file
-5	bearbeite zugehörigen Marker in passi
-6	update ID liste hier
-	
-ID
-0		Valbrona
-1		Iseran
-2		Zambla
-3		Selvino
-4		Ganda
+Bugs
+	crocedomini
+	mortirolo links zu auffahrten checken
 
 komootgpx -m hannes.pravida@outlook.com -p Hannes99 -a -o C:\Users\hanne\Hannes\Projekte\MyMap1\Komoot -e
 
