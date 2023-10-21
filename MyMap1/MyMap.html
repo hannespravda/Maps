@@ -101,7 +101,7 @@
     <!-------------------------------------------------------------------------------------------------------->
 </head>
 <body>
-    <div id = "map"></div>
+    <div id = "map"></div>  
     <script>
         //center coordinates at start
         var map = L.map('map', {
@@ -147,6 +147,9 @@
         var geoClimb = [];
         var geoSack = [];
         var selected = [];
+        var selectedTrack = [];
+        var idTrack1;
+        var idTrack2;
         var id;
 
         //cluster
@@ -189,26 +192,67 @@
                 }
             },
             onEachFeature: function(feature, layer){
-                var popupContent = "<div><input type='checkbox' id='colorCheckbox' /> Show routes </div>";
+                var popupContent = "<div><input type='checkbox' id='MarkerCheckbox' /> Show routes </div>";
                 layer.bindPopup('<p style="line-height: 1; margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></div><div style="background-color: lightgray; padding: 1px;">' + feature.properties.category + '<span style="float: right;">' + feature.properties.height + ' m</span></div><div style="margin-top: 1px;">' + popupContent + '</div>');
                 layer.on('mouseover', function (e) {
-                    id = feature.properties.idd;
-                    geoJSONArray[id].setStyle({ color: 'red' ,weight:'3'});
+                    if (feature.properties.category == 'Pass'){
+                        id = feature.properties.idd;
+                        geoJSONArray[id].setStyle({ color: 'blue' ,weight:'3'});
+                    } else if (feature.properties.category == 'Climb'){
+                        id = feature.properties.idd;
+                        geoJSONArray[id].setStyle({ color: 'orange' ,weight:'3'});
+                    } else if (feature.properties.category == 'Sackgasse'){
+                        id = feature.properties.idd;
+                        geoJSONArray[id].setStyle({ color: 'red' ,weight:'3'});
+                    }
                 });
                 layer.on('mouseout', function (e) {
-                    if (selected[id]) {
-                        geoJSONArray[id].setStyle({ color: 'red',weight:'3' }); // Change color
-                    } else {
-                        geoJSONArray[id].setStyle({ color: 'pink',weight:'1' }); // Restore the old color
+                    if (feature.properties.category == 'Pass'){
+                        if (selected[id]) {
+                            geoJSONArray[id].setStyle({ color: 'blue',weight:'3' }); // Change color
+                        } else {
+                            geoJSONArray[id].setStyle({ color: 'lightblue',weight:'1' }); // Restore the old color
+                        }
+                    } else if (feature.properties.category == 'Climb'){
+                        if (selected[id]) {
+                            geoJSONArray[id].setStyle({ color: 'orange',weight:'3' }); // Change color
+                        } else {
+                            geoJSONArray[id].setStyle({ color: 'yellow',weight:'1' }); // Restore the old color
+                        }
+                    } else if (feature.properties.category == 'Sackgasse'){
+                        if (selected[id]) {
+                            geoJSONArray[id].setStyle({ color: 'red',weight:'3' }); // Change color
+                        } else {
+                            geoJSONArray[id].setStyle({ color: 'pink',weight:'1' }); // Restore the old color
+                        }
                     }
                 });
                 layer.on('click', function (e) {
                     id = feature.properties.idd;
                     this.openPopup;
                     // Add a listener for the checkbox change event
-                    document.getElementById('colorCheckbox').addEventListener('change', function (event) {
+                    document.getElementById('MarkerCheckbox').addEventListener('change', function (event) {
                         selected[id] = event.target.checked;
-                        updateGeoJSONLayerColor();
+                        //updateGeoJSONLayerColor();
+                        if (feature.properties.category == 'Pass'){
+                            if (selected[id]) {
+                                geoJSONArray[id].setStyle({ color: 'blue',weight:'3' }); // Change color
+                            } else {
+                                geoJSONArray[id].setStyle({ color: 'lightblue',weight:'1' }); // Restore the old color
+                            } 
+                        } else if (feature.properties.category == 'Climb'){
+                            if (selected[id]) {
+                                geoJSONArray[id].setStyle({ color: 'orange',weight:'3' }); // Change color
+                            } else {
+                                geoJSONArray[id].setStyle({ color: 'yellow',weight:'1' }); // Restore the old color
+                            }
+                        } else if (feature.properties.category == 'Sackgasse'){
+                            if (selected[id]) {
+                                geoJSONArray[id].setStyle({ color: 'red',weight:'3' }); // Change color
+                            } else {
+                                geoJSONArray[id].setStyle({ color: 'pink',weight:'1' }); // Restore the old color
+                            }
+                        }
                     });
                 }); 
             }
@@ -218,33 +262,51 @@
         /*markers.addLayer(marker);
         map.addLayer(markers);*/
 
-        //marker search
-        const searchControl = new L.Control.Search({
-            layer: marker,
-            propertyName: 'name',
-            initial: false,
-            casesensitive: 	false,
-            zoom: 14
-        });
-        map.addControl(searchControl);
-
         //Track sytle and feature functions
         function onEachFeature(feature, layer) {
             layer.bindPopup(function (layer) {
                 return '<p style="margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p> (' + feature.properties.length + ' km' +', ' + feature.properties.elevation + ' hm' + ')<p style="margin-top: 5px;">';
             });
-            /*layer.on('mouseover', function (e) {
-                this.setStyle({ color: 'green', weight: 5 });
-            });*/
-            layer.on('click', function (e) {
-                this.setStyle({ color: 'green', weight: 5 });
+            layer.bindTooltip(feature.properties.name + " (" + feature.properties.elevation + ' hm)');
+            layer.on('mouseover', function (e) {
+                if (feature.properties.category == 'Climb'){
+                    this.setStyle({ color: 'orange', weight: 3 });
+                } else if (feature.properties.category == 'Pass'){
+                    this.setStyle({ color: 'blue', weight: 3 });
+                } else if (feature.properties.category == 'Sackgasse'){
+                    this.setStyle({ color: 'red', weight: 3 });
+                }
             });
-            map.on('click', function (e) {
-                updateGeoJSONLayerColor();
+            layer.on('mouseout', function (e) {
+                if (feature.properties.category == 'Pass'){
+                    if (selected[id]) {
+                        this.setStyle({ color: 'blue',weight:'3' }); // Change color
+                    } else {
+                        this.setStyle({ color: 'lightblue',weight:'1' }); // Restore the old color
+                    } 
+                } else if (feature.properties.category == 'Climb'){
+                    if (selected[id]) {
+                        this.setStyle({ color: 'orange',weight:'3' }); // Change color
+                    } else {
+                        this.setStyle({ color: 'yellow',weight:'1' }); // Restore the old color
+                    }
+                } else if (feature.properties.category == 'Sackgasse'){
+                    if (selected[id]) {
+                        this.setStyle({ color: 'red',weight:'3' }); // Change color
+                    } else {
+                        this.setStyle({ color: 'pink',weight:'1' }); // Restore the old color
+                    }
+                }
             });
         }
         function TrackStyle(feature) {
-            return { color: 'pink', weight: "1" };
+            if (feature.properties.category == 'Climb') {
+                return { color: 'yellow', weight: "1" };
+            } else if (feature.properties.category == 'Pass') {
+                return { color: 'lightblue', weight: "1" };
+            } else if (feature.properties.category == 'Sackgasse') {
+                return { color: 'pink', weight: "1" };
+            }  
         }
 
         //layer button with maps and tracks, add new tracks here
@@ -815,13 +877,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         //function to highlight tracks on map
-        function updateGeoJSONLayerColor() {
+        /*function updateGeoJSONLayerColor() {
             if (selected[id]) {
                 geoJSONArray[id].setStyle({ color: 'red',weight:'3' }); // Change color
             } else {
                 geoJSONArray[id].setStyle({ color: 'pink',weight:'1' }); // Restore the old color
             }
-        }
+        }*/
+            
 
         //layer button 1 for base layers
         geoJSONArray.forEach(function (layer) {
@@ -876,8 +939,8 @@
                 } 
             });
         });
+        var markk = L.layerGroup(marks);
         var tracks = L.layerGroup(geoJSONs);
-        var marks = L.layerGroup([marker,markers]);
         var italy = L.layerGroup(geoIT);
         var france = L.layerGroup(geoFR);
         var austria = L.layerGroup(geoAT);
@@ -886,14 +949,14 @@
         var pass = L.layerGroup(geoPass);
         var climb = L.layerGroup(geoClimb);
         var sack = L.layerGroup(geoSack);
+        var mark = L.layerGroup([markk, tracks]);
         var baseMaps = {
             "Standard": osm,
             "Satellite": satellite,
             "Topo": topo
         };
         var overlayMaps1 = {
-            "All Markers": marks,
-            "All Tracks": tracks,
+            "All": mark,
             "Italy": italy,
             "France": france,
             "Austria": austria,
@@ -903,7 +966,193 @@
             "Climb": climb,
             "Sackgasse": sack
         };
-        var layerControl = L.control.layers(baseMaps, overlayMaps1,{ position: 'topright' }).addTo(map);
+        var layerControl = L.control.layers(baseMaps, overlayMaps1,{position: 'topright'}).addTo(map);
+
+        //layer control search master
+        var searchControlMarkers;
+        var searchControlItaly;
+        var searchControlFrance;
+        var searchControlSuisse;
+        var searchControlAustria;
+        var searchControlGermany;
+        var MarkersSelected = false;
+        var ItalySelected = false;
+        var FranceSelected = false;
+        var SuisseSelected = false;
+        var AustriaSelected = false;
+        var GermanySelected = false;
+
+        var labels = layerControl.getContainer().querySelectorAll('label');
+        labels.forEach(function (label) {
+            var text = label.textContent.trim();
+            if (text === 'All') {
+                var markersCheckbox = label.querySelector('input[type="checkbox"]');
+                if (markersCheckbox) {
+                    markersCheckbox.addEventListener('click', function (e) {
+                        MarkersSelected = e.target.checked;
+                        markerscontrol();
+                    });
+                }
+            } else if (text === 'Italy') {
+                var italyCheckbox = label.querySelector('input[type="checkbox"]');
+                if (italyCheckbox) {
+                    italyCheckbox.addEventListener('click', function (e) {
+                        ItalySelected = e.target.checked;
+                        if (!MarkersSelected){
+                            italycontrol();
+                        }
+                    });
+                }
+            } else if (text === 'France') {
+                var franceCheckbox = label.querySelector('input[type="checkbox"]');
+                if (franceCheckbox) {
+                    franceCheckbox.addEventListener('click', function (e) {
+                        FranceSelected = e.target.checked;
+                        if (!MarkersSelected){
+                            francecontrol();
+                        }
+                    });
+                }
+            } else if (text === 'Suisse') {
+                var suisseCheckbox = label.querySelector('input[type="checkbox"]');
+                if (suisseCheckbox) {
+                    suisseCheckbox.addEventListener('click', function (e) {
+                        SuisseSelected = e.target.checked;
+                        if (!MarkersSelected){
+                            suissecontrol();
+                        }
+                    });
+                }
+            } else if (text === 'Austria') {
+                var austriaCheckbox = label.querySelector('input[type="checkbox"]');
+                if (austriaCheckbox) {
+                    austriaCheckbox.addEventListener('click', function (e) {
+                        AustriaSelected = e.target.checked;
+                        if (!MarkersSelected){
+                            austriacontrol();
+                        }
+                    });
+                }
+            } else if (text === 'Germany') {
+                var germanyCheckbox = label.querySelector('input[type="checkbox"]');
+                if (germanyCheckbox) {
+                    germanyCheckbox.addEventListener('click', function (e) {
+                        GermanySelected = e.target.checked;
+                        if (!MarkersSelected){
+                            germanycontrol();
+                        }
+                    });
+                }
+            } 
+        });
+        function italycontrol() {
+            if (ItalySelected){
+                console.log('Italy');
+                searchControlItaly = new L.Control.Search({
+                    layer: italy,
+                    propertyName: 'name',
+                    initial: false,
+                    casesensitive: 	false,
+                    zoom: 14,
+                    hideMarkerOnCollapse: true,
+                    autoCollapse: false,
+                    autoCollapseTime: 1
+                });
+                map.addControl(searchControlItaly);
+            } else {
+                map.removeControl(searchControlItaly);
+            }
+        }
+        function francecontrol() {
+            if (FranceSelected){
+                console.log('France');
+                searchControlFrance = new L.Control.Search({
+                    layer: france,
+                    propertyName: 'name',
+                    initial: false,
+                    casesensitive: 	false,
+                    zoom: 14,
+                    hideMarkerOnCollapse: true,
+                    autoCollapse: false,
+                    autoCollapseTime: 1
+                });
+                map.addControl(searchControlFrance);
+            } else {
+                map.removeControl(searchControlFrance);
+            }
+        }
+        function suissecontrol() {
+            if (SuisseSelected){
+                console.log('Suisse');
+                searchControlSuisse = new L.Control.Search({
+                    layer: suisse,
+                    propertyName: 'name',
+                    initial: false,
+                    casesensitive: 	false,
+                    zoom: 14,
+                    hideMarkerOnCollapse: true,
+                    autoCollapse: false,
+                    autoCollapseTime: 1
+                });
+                map.addControl(searchControlSuisse);
+            } else {
+                map.removeControl(searchControlSuisse);
+            }
+        }
+        function austriacontrol() {
+            if (AustriaSelected){
+                console.log('Austria');
+                searchControlAustria = new L.Control.Search({
+                    layer: austria,
+                    propertyName: 'name',
+                    initial: false,
+                    casesensitive: 	false,
+                    zoom: 14,
+                    hideMarkerOnCollapse: true,
+                    autoCollapse: false,
+                    autoCollapseTime: 1
+                });
+                map.addControl(searchControlAustria);
+            } else {
+                map.removeControl(searchControlAustria);
+            }
+        }
+        function germanycontrol() {
+            if (GermanySelected){
+                console.log('Germany');
+                searchControlGermany = new L.Control.Search({
+                    layer: germany,
+                    propertyName: 'name',
+                    initial: false,
+                    casesensitive: 	false,
+                    zoom: 14,
+                    hideMarkerOnCollapse: true,
+                    autoCollapse: false,
+                    autoCollapseTime: 1
+                });
+                map.addControl(searchControlGermany);
+            } else {
+                map.removeControl(searchControlGermany);
+            }
+        }
+        function markerscontrol() {
+            if (MarkersSelected){
+                console.log('Markers');
+                searchControlMarkers = new L.Control.Search({
+                    layer: mark,
+                    propertyName: 'name',
+                    initial: false,
+                    casesensitive: 	false,
+                    zoom: 14,
+                    hideMarkerOnCollapse: true,
+                    autoCollapse: false,
+                    autoCollapseTime: 1
+                });
+                map.addControl(searchControlMarkers);
+            } else {
+                map.removeControl(searchControlMarkers);
+            }
+        }
     </script>
 </body>
 </html>
