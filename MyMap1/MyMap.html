@@ -30,6 +30,65 @@
     <!-- style -->
     <style>
         #map {position: absolute; top: 0; bottom: 0; left: 0; right: 0}
+
+        #checkbox-container {
+            position: absolute;
+            top: 15px;
+            left: 82%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            padding: 5px; /* Add padding to create space around the text */
+            text-align: center; /* Center the text horizontally */
+            width: 200px;
+        }
+        
+        #search-container {
+            position: absolute;
+            top: 50px;
+            left: 82%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            text-align: center;
+            display: flex;
+            align-items: center; /* Vertically center the content */
+            padding: 3px; /* Add padding to create space around the text */
+            width: 200px; /* Set the width to match the checkbox container */
+            height: 25px;
+        }
+        
+        #search-input {
+            flex: 1;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 5px;
+            width: 100%; /* Set the width to fill the available space */
+        }
+        
+        #search-button {
+            background-color: transparent;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+        
+        .search-icon {
+            font-size: 16px;
+            color: #007bff;
+        }
+        
+        
+        
     </style>
 
     <!--------------------- add geoJSON files renamed to .js files here -------------------------------------->
@@ -102,6 +161,23 @@
 </head>
 <body>
     <div id = "map"></div>  
+    
+    <div id="checkbox-container">
+        <div id="filter-bar">
+            <label for="passCheckbox">Pass</label>
+            <input type="checkbox" id="passCheckbox">
+            <label for="climbCheckbox">Climb</label>
+            <input type="checkbox" id="climbCheckbox">
+            <label for="sackgasseCheckbox">Sackgasse</label>
+            <input type="checkbox" id="climbCheckbox">
+        </div>
+    </div>
+
+    <div id="search-container">
+        <input type="text" id="search-input" placeholder="Search...">
+        <button id="search-button" class="search-icon">&#128269;</button>
+    </div>
+
     <script>
         //center coordinates at start
         var map = L.map('map', {
@@ -109,7 +185,7 @@
         }).setView([45.464664, 9.188540],13);
 
         //search box
-        L.Control.geocoder().addTo(map);
+        //L.Control.geocoder().addTo(map);
 
         //scale
         L.control.scale({
@@ -151,6 +227,7 @@
         var idTrack1;
         var idTrack2;
         var id;
+        var markerStates = [];
 
         //cluster
         var markers = L.markerClusterGroup({
@@ -177,6 +254,12 @@
             iconSize: [16, 16], // Set the size of the icon
             iconAnchor: [8, 16], 
             popupAnchor:  [0, -16]
+        });
+        var searchIcon = L.icon({
+            iconUrl: 'Images/Empty.png',
+            iconSize: [0, 0], // Set the size of the icon
+            iconAnchor: [0, 0], 
+            popupAnchor:  [0, 0]
         });
         
         //marker passes
@@ -230,9 +313,11 @@
                 layer.on('click', function (e) {
                     id = feature.properties.idd;
                     this.openPopup;
+                    document.getElementById('MarkerCheckbox').checked = markerStates[id];
                     // Add a listener for the checkbox change event
                     document.getElementById('MarkerCheckbox').addEventListener('change', function (event) {
                         selected[id] = event.target.checked;
+                        markerStates[id] = event.target.checked; // Store the state in markerStates
                         //updateGeoJSONLayerColor();
                         if (feature.properties.category == 'Pass'){
                             if (selected[id]) {
@@ -261,6 +346,27 @@
         //cluster representation, turned off for identification issues
         /*markers.addLayer(marker);
         map.addLayer(markers);*/
+
+         //search master
+         var searchElements = L.geoJSON(passi, {
+            pointToLayer: function (feature, latlng) {
+                return L.marker(latlng, { icon: searchIcon});
+            }
+        });
+        var searchArray = [];
+        searchArray.push(searchElements);
+        var search = L.layerGroup(searchArray);
+        searchControl = new L.Control.Search({
+            layer: search,
+            propertyName: 'name',
+            initial: false,
+            casesensitive: 	false,
+            zoom: 14,
+            hideMarkerOnCollapse: true,
+            autoCollapse: false,
+            autoCollapseTime: 1
+        });
+        map.addControl(searchControl);
 
         //Track sytle and feature functions
         function onEachFeature(feature, layer) {
@@ -309,7 +415,7 @@
             }  
         }
 
-        //layer button with maps and tracks, add new tracks here
+        //layer button with maps and tracks
         var overlayMaps2 = {};
         var layerControl2 = L.control.layers(null, overlayMaps2,{ position: 'bottomright' }).addTo(map);
         
@@ -875,16 +981,6 @@
         geoJSONs.push(gSusten);
         layerControl2.addOverlay(gSusten, "Sustenpass");
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
-        //function to highlight tracks on map
-        /*function updateGeoJSONLayerColor() {
-            if (selected[id]) {
-                geoJSONArray[id].setStyle({ color: 'red',weight:'3' }); // Change color
-            } else {
-                geoJSONArray[id].setStyle({ color: 'pink',weight:'1' }); // Restore the old color
-            }
-        }*/
-            
 
         //layer button 1 for base layers
         geoJSONArray.forEach(function (layer) {
@@ -968,191 +1064,191 @@
         };
         var layerControl = L.control.layers(baseMaps, overlayMaps1,{position: 'topright'}).addTo(map);
 
-        //layer control search master
-        var searchControlMarkers;
-        var searchControlItaly;
-        var searchControlFrance;
-        var searchControlSuisse;
-        var searchControlAustria;
-        var searchControlGermany;
+        var layerControlElement = document.querySelector('.leaflet-control-layers');
+        console.log(layerControlElement.id);
+
+        //layer control button selection
         var MarkersSelected = false;
         var ItalySelected = false;
         var FranceSelected = false;
         var SuisseSelected = false;
         var AustriaSelected = false;
         var GermanySelected = false;
+        var PassSelected = false;
+        var ClimbSelected = false;
+        var SackSelected = false;
+        var markersCheckbox;
+        var italyCheckbox;
+        var suisseCheckbox;
+        var franceCheckbox;
+        var austriaCheckbox;
+        var germanyCheckbox;
+        var passCheckbox;
+        var climbCheckbox;
+        var sackCheckbox;        
 
         var labels = layerControl.getContainer().querySelectorAll('label');
         labels.forEach(function (label) {
             var text = label.textContent.trim();
             if (text === 'All') {
-                var markersCheckbox = label.querySelector('input[type="checkbox"]');
+                markersCheckbox = label.querySelector('input[type="checkbox"]');
                 if (markersCheckbox) {
                     markersCheckbox.addEventListener('click', function (e) {
                         MarkersSelected = e.target.checked;
-                        markerscontrol();
+
+                        if (MarkersSelected){
+                            console.log(searchArray);
+                            if (ItalySelected){
+                                italyCheckbox.click();
+                            }
+                            if (FranceSelected){
+                                franceCheckbox.click();
+                            }
+                            if (SuisseSelected){
+                                suisseCheckbox.click();
+                            }
+                            if (AustriaSelected){
+                                austriaCheckbox.click();
+                            }
+                            if (GermanySelected){
+                                germanyCheckbox.click();
+                            }
+                            if (PassSelected){
+                                passCheckbox.click();
+                            }
+                            if (ClimbSelected){
+                                climbCheckbox.click();
+                            }
+                            if (SackSelected){
+                                sackCheckbox.click();
+                            }
+                            markersCheckbox.click();
+                            markersCheckbox.click();
+                        }
                     });
                 }
             } else if (text === 'Italy') {
-                var italyCheckbox = label.querySelector('input[type="checkbox"]');
+                italyCheckbox = label.querySelector('input[type="checkbox"]');
                 if (italyCheckbox) {
                     italyCheckbox.addEventListener('click', function (e) {
                         ItalySelected = e.target.checked;
-                        if (!MarkersSelected){
-                            italycontrol();
+
+                        if (ItalySelected){
+                            if (MarkersSelected){
+                                markersCheckbox.click();
+                                italyCheckbox.click();
+                                italyCheckbox.click();
+                            }
                         }
                     });
                 }
             } else if (text === 'France') {
-                var franceCheckbox = label.querySelector('input[type="checkbox"]');
+                franceCheckbox = label.querySelector('input[type="checkbox"]');
                 if (franceCheckbox) {
                     franceCheckbox.addEventListener('click', function (e) {
                         FranceSelected = e.target.checked;
-                        if (!MarkersSelected){
-                            francecontrol();
+                        
+                        if (FranceSelected){
+                            if (MarkersSelected){
+                                markersCheckbox.click();
+                                franceCheckbox.click();
+                                franceCheckbox.click();
+                            }
                         }
                     });
                 }
             } else if (text === 'Suisse') {
-                var suisseCheckbox = label.querySelector('input[type="checkbox"]');
+                suisseCheckbox = label.querySelector('input[type="checkbox"]');
                 if (suisseCheckbox) {
                     suisseCheckbox.addEventListener('click', function (e) {
                         SuisseSelected = e.target.checked;
-                        if (!MarkersSelected){
-                            suissecontrol();
+                        
+                        if (SuisseSelected){
+                            if (MarkersSelected){
+                                markersCheckbox.click();
+                                suisseCheckbox.click();
+                                suisseCheckbox.click();
+                            }
                         }
                     });
                 }
             } else if (text === 'Austria') {
-                var austriaCheckbox = label.querySelector('input[type="checkbox"]');
+                austriaCheckbox = label.querySelector('input[type="checkbox"]');
                 if (austriaCheckbox) {
                     austriaCheckbox.addEventListener('click', function (e) {
                         AustriaSelected = e.target.checked;
-                        if (!MarkersSelected){
-                            austriacontrol();
+                        
+                        if (AustriaSelected){
+                            if (MarkersSelected){
+                                markersCheckbox.click();
+                                austriaCheckbox.click();
+                                austriaCheckbox.click();
+                            }
                         }
                     });
                 }
             } else if (text === 'Germany') {
-                var germanyCheckbox = label.querySelector('input[type="checkbox"]');
+                germanyCheckbox = label.querySelector('input[type="checkbox"]');
                 if (germanyCheckbox) {
                     germanyCheckbox.addEventListener('click', function (e) {
                         GermanySelected = e.target.checked;
-                        if (!MarkersSelected){
-                            germanycontrol();
+                        
+                        if (GermanySelected){
+                            if (MarkersSelected){
+                                markersCheckbox.click();
+                                germanyCheckbox.click();
+                                germanyCheckbox.click();
+                            }
                         }
                     });
                 }
-            } 
+            } else if (text === 'Pass') {
+                passCheckbox = label.querySelector('input[type="checkbox"]');
+                if (passCheckbox) {
+                    passCheckbox.addEventListener('click', function (e) {
+                        PassSelected = e.target.checked;
+                        
+                        if (PassSelected){
+                            if (MarkersSelected){
+                                markersCheckbox.click();
+                                passCheckbox.click();
+                                passCheckbox.click();
+                            }
+                        }
+                    });
+                }
+            } else if (text === 'Climb') {
+                climbCheckbox = label.querySelector('input[type="checkbox"]');
+                if (climbCheckbox) {
+                    climbCheckbox.addEventListener('click', function (e) {
+                        ClimbSelected = e.target.checked;
+                        
+                        if (ClimbSelected){
+                            if (MarkersSelected){
+                                markersCheckbox.click();
+                                climbCheckbox.click();
+                                climbCheckbox.click();
+                            }
+                        }
+                    });
+                }
+            } else if (text === 'Sackgasse') {
+                sackCheckbox = label.querySelector('input[type="checkbox"]');
+                if (sackCheckbox) {
+                    sackCheckbox.addEventListener('click', function (e) {
+                        SackSelected = e.target.checked;
+                        
+                        if (SackSelected){
+                            if (MarkersSelected){
+                                markersCheckbox.click();
+                                sackCheckbox.click();
+                                sackCheckbox.click();
+                            }
+                        }
+                    });
+                }
+            }
         });
-        function italycontrol() {
-            if (ItalySelected){
-                console.log('Italy');
-                searchControlItaly = new L.Control.Search({
-                    layer: italy,
-                    propertyName: 'name',
-                    initial: false,
-                    casesensitive: 	false,
-                    zoom: 14,
-                    hideMarkerOnCollapse: true,
-                    autoCollapse: false,
-                    autoCollapseTime: 1
-                });
-                map.addControl(searchControlItaly);
-            } else {
-                map.removeControl(searchControlItaly);
-            }
-        }
-        function francecontrol() {
-            if (FranceSelected){
-                console.log('France');
-                searchControlFrance = new L.Control.Search({
-                    layer: france,
-                    propertyName: 'name',
-                    initial: false,
-                    casesensitive: 	false,
-                    zoom: 14,
-                    hideMarkerOnCollapse: true,
-                    autoCollapse: false,
-                    autoCollapseTime: 1
-                });
-                map.addControl(searchControlFrance);
-            } else {
-                map.removeControl(searchControlFrance);
-            }
-        }
-        function suissecontrol() {
-            if (SuisseSelected){
-                console.log('Suisse');
-                searchControlSuisse = new L.Control.Search({
-                    layer: suisse,
-                    propertyName: 'name',
-                    initial: false,
-                    casesensitive: 	false,
-                    zoom: 14,
-                    hideMarkerOnCollapse: true,
-                    autoCollapse: false,
-                    autoCollapseTime: 1
-                });
-                map.addControl(searchControlSuisse);
-            } else {
-                map.removeControl(searchControlSuisse);
-            }
-        }
-        function austriacontrol() {
-            if (AustriaSelected){
-                console.log('Austria');
-                searchControlAustria = new L.Control.Search({
-                    layer: austria,
-                    propertyName: 'name',
-                    initial: false,
-                    casesensitive: 	false,
-                    zoom: 14,
-                    hideMarkerOnCollapse: true,
-                    autoCollapse: false,
-                    autoCollapseTime: 1
-                });
-                map.addControl(searchControlAustria);
-            } else {
-                map.removeControl(searchControlAustria);
-            }
-        }
-        function germanycontrol() {
-            if (GermanySelected){
-                console.log('Germany');
-                searchControlGermany = new L.Control.Search({
-                    layer: germany,
-                    propertyName: 'name',
-                    initial: false,
-                    casesensitive: 	false,
-                    zoom: 14,
-                    hideMarkerOnCollapse: true,
-                    autoCollapse: false,
-                    autoCollapseTime: 1
-                });
-                map.addControl(searchControlGermany);
-            } else {
-                map.removeControl(searchControlGermany);
-            }
-        }
-        function markerscontrol() {
-            if (MarkersSelected){
-                console.log('Markers');
-                searchControlMarkers = new L.Control.Search({
-                    layer: mark,
-                    propertyName: 'name',
-                    initial: false,
-                    casesensitive: 	false,
-                    zoom: 14,
-                    hideMarkerOnCollapse: true,
-                    autoCollapse: false,
-                    autoCollapseTime: 1
-                });
-                map.addControl(searchControlMarkers);
-            } else {
-                map.removeControl(searchControlMarkers);
-            }
-        }
     </script>
 </body>
 </html>

@@ -1,17 +1,17 @@
 Ideen:
 	Strava Account verknüpfen, Aktivitäten auslesen, Start/End von Segmenten auslesen, befahrene Pässe darstellen
 	Komoot touren, die pass enthalten anzeigen
-	vector karte
 	link in tracks zu passenden trava segment
-	filter for regions
+	vector karte
 	komoot karten design
-	Klickleiste
+	filter for regions
 	Click on Track and Map
+	Länder und Passfilter --> klickleiste
+	search per css
 	
 Bugs
 	crocedomini
 	mortirolo links zu auffahrten checken
-	Pässe werden am Anfang angezeigt
 
 komootgpx -m hannes.pravida@outlook.com -p Hannes99 -a -o C:\Users\hanne\Hannes\Projekte\MyMap1\Komoot -e
 
