@@ -169,7 +169,7 @@
             <label for="climbCheckbox">Climb</label>
             <input type="checkbox" id="climbCheckbox">
             <label for="sackgasseCheckbox">Sackgasse</label>
-            <input type="checkbox" id="climbCheckbox">
+            <input type="checkbox" id="sackgasseCheckbox">
         </div>
     </div>
 
@@ -228,6 +228,25 @@
         var idTrack2;
         var id;
         var markerStates = [];
+
+        //checkbox bar
+        // Get references to the checkboxes
+        var passCheckbox = false;
+        var climbCheckbox = false;
+        var sackgasseCheckbox = false;
+
+        // Add event listeners to the checkboxes
+        document.getElementById('passCheckbox').addEventListener('change', function (event) {
+            passCheckbox = event.target.checked;
+        });
+
+        document.getElementById('climbCheckbox').addEventListener('change', function (event) {
+            climbCheckbox = event.target.checked;
+        });
+
+        document.getElementById('sackgasseCheckbox').addEventListener('change', function (event) {
+            sackgasseCheckbox = event.target.checked;
+        });
 
         //cluster
         var markers = L.markerClusterGroup({
@@ -981,91 +1000,118 @@
         geoJSONs.push(gSusten);
         layerControl2.addOverlay(gSusten, "Sustenpass");
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        //layer button 1 for base layers
-        geoJSONArray.forEach(function (layer) {
-            const features = layer.getLayers();
+        //
+        // Your array of GeoJSON objects
+        var geoJSONData = geoJSONArray;
+        var filtered;
+        var selectedCategories = [];
         
-            features.forEach(function (featureLayer) {
-                const country = featureLayer.feature.properties.country;
-                const category = featureLayer.feature.properties.category;
-                if (country === 'IT') {
-                    geoIT.push(featureLayer);
-                } else if (country === 'FR') {
-                    geoFR.push(featureLayer);
-                } else if (country === 'DE') {
-                    geoDE.push(featureLayer);
-                } else if (country === 'AT') {
-                    geoAT.push(featureLayer); 
-                } else if (country === 'CH') {
-                    geoCH.push(featureLayer);
-                }
-                if (category === 'Pass') {
-                    geoPass.push(featureLayer);
-                } else if (category === 'Climb') {
-                    geoClimb.push(featureLayer);
-                } else if (category === 'Sackgasse') {
-                    geoSack.push(featureLayer);
-                } 
-            });
-        });
-        marks.push(marker);
-        marks.forEach(function (layer) {
-            const features = layer.getLayers();
-            features.forEach(function (featureLayer) {
-                const country = featureLayer.feature.properties.country;
-                const category = featureLayer.feature.properties.category;
-                if (country === 'IT') {
-                    geoIT.push(featureLayer);
-                } else if (country === 'FR') {
-                    geoFR.push(featureLayer);
-                } else if (country === 'DE') {
-                    geoDE.push(featureLayer);
-                } else if (country === 'AT') {
-                    geoAT.push(featureLayer); 
-                } else if (country === 'CH') {
-                    geoCH.push(featureLayer);
-                }
-                if (category === 'Pass') {
-                    geoPass.push(featureLayer);
-                } else if (category === 'Climb') {
-                    geoClimb.push(featureLayer);
-                } else if (category === 'Sackgasse') {
-                    geoSack.push(featureLayer);
-                } 
-            });
-        });
-        var markk = L.layerGroup(marks);
-        var tracks = L.layerGroup(geoJSONs);
-        var italy = L.layerGroup(geoIT);
-        var france = L.layerGroup(geoFR);
-        var austria = L.layerGroup(geoAT);
-        var germany = L.layerGroup(geoDE);
-        var suisse = L.layerGroup(geoCH);
-        var pass = L.layerGroup(geoPass);
-        var climb = L.layerGroup(geoClimb);
-        var sack = L.layerGroup(geoSack);
-        var mark = L.layerGroup([markk, tracks]);
+        
+        var markk = L.layerGroup([]);;
+        var tracks= L.layerGroup([]);;
+        var mark= L.layerGroup([]);;
+        var italy = L.layerGroup([]);
+        var france = L.layerGroup([]);
+        var austria = L.layerGroup([]);
+        var germany = L.layerGroup([]);
+        var suisse = L.layerGroup([]);
+        
         var baseMaps = {
             "Standard": osm,
             "Satellite": satellite,
             "Topo": topo
         };
-        var overlayMaps1 = {
-            "All": mark,
-            "Italy": italy,
-            "France": france,
-            "Austria": austria,
-            "Suisse": suisse,
-            "Germany": germany,
-            "Pass": pass,
-            "Climb": climb,
-            "Sackgasse": sack
-        };
-        var layerControl = L.control.layers(baseMaps, overlayMaps1,{position: 'topright'}).addTo(map);
+        var layerControl = L.control.layers(baseMaps, null,{position: 'topright'}).addTo(map);
 
-        var layerControlElement = document.querySelector('.leaflet-control-layers');
-        console.log(layerControlElement.id);
+        // Function to filter GeoJSON objects based on selected categories
+        function filterGeoJSONObjects() {
+            geoIT = [];
+            geoFR = [];
+            geoDE = [];
+            geoAT = [];
+            geoCH = [];
+            selectedCategories[0] = null;
+            selectedCategories[1] = null;
+            selectedCategories[2] = null;
+
+            if (passCheckbox) {
+                selectedCategories[0] = "Pass";
+            }
+            if (climbCheckbox) {
+                selectedCategories[1] = "Climb";
+            }
+            if (sackgasseCheckbox) {
+                selectedCategories[2] = "Sackgasse";
+            }
+
+            marks.push(marker);
+            marks.forEach(function (layer) {
+                const features = layer.getLayers();
+                features.forEach(function (featureLayer) {
+                    const country = featureLayer.feature.properties.country;
+                    const category = featureLayer.feature.properties.category;
+                    if (country === 'IT'&& (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
+                        geoIT.push(featureLayer);
+                    } else if (country === 'FR' && (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
+                        geoFR.push(featureLayer);
+                    } else if (country === 'DE' && (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
+                        geoDE.push(featureLayer)
+                    } else if (country === 'AT' && (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
+                        geoAT.push(featureLayer)
+                    } else if (country === 'CH' && (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
+                        geoCH.push(featureLayer);
+                    }
+                }); 
+            });
+
+            geoJSONArray.forEach(function (layer) {
+                const features = layer.getLayers();
+                features.forEach(function (featureLayer) {
+                    const country = featureLayer.feature.properties.country;
+                    const category = featureLayer.feature.properties.category;
+                    if (country === 'IT'&& (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
+                        geoIT.push(featureLayer);
+                    } else if (country === 'FR' && (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
+                        geoFR.push(featureLayer);
+                    } else if (country === 'DE' && (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
+                        geoDE.push(featureLayer)
+                    } else if (country === 'AT' && (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
+                        geoAT.push(featureLayer)
+                    } else if (country === 'CH' && (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
+                        geoCH.push(featureLayer);
+                    }
+                });
+            });
+
+            layerControl.removeLayer(markk);
+            layerControl.removeLayer(tracks);
+            layerControl.removeLayer(mark);
+            layerControl.removeLayer(italy);
+            layerControl.removeLayer(france);
+            layerControl.removeLayer(austria);
+            layerControl.removeLayer(germany);
+            layerControl.removeLayer(suisse);
+
+            markk = L.layerGroup(marks);
+            tracks = L.layerGroup(geoJSONs);
+            mark = L.layerGroup([markk, tracks]);
+            italy = L.layerGroup(geoIT);
+            france = L.layerGroup(geoFR);
+            austria = L.layerGroup(geoAT);
+            germany = L.layerGroup(geoDE);
+            suisse = L.layerGroup(geoCH);
+            
+            layerControl.addOverlay(mark, "All");
+            layerControl.addOverlay(italy, "Italy");
+            layerControl.addOverlay(france, "France");
+            layerControl.addOverlay(austria, "Austria");
+            layerControl.addOverlay(germany, "Germany");
+            layerControl.addOverlay(suisse, "Suisse");
+        };
+        // Add event listeners to the checkboxes
+        document.getElementById('passCheckbox').addEventListener('change', filterGeoJSONObjects);
+        document.getElementById('climbCheckbox').addEventListener('change', filterGeoJSONObjects);
+        document.getElementById('sackgasseCheckbox').addEventListener('change', filterGeoJSONObjects);
 
         //layer control button selection
         var MarkersSelected = false;
