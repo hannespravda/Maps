@@ -173,9 +173,9 @@
         </div>
     </div>
 
-    <div id="search-container">
+    <!--<div id="search-container">
         <input type="text" id="search-input" placeholder="Search...">
-        <button id="search-button" class="search-icon">&#128269;</button>
+        <button id="search-button" class="search-icon">&#128269;</button>-->
     </div>
 
     <script>
@@ -228,9 +228,23 @@
         var idTrack2;
         var id;
         var markerStates = [];
+        var MarkersSelected = false;
+        var ItalySelected = false;
+        var FranceSelected = false;
+        var SuisseSelected = false;
+        var AustriaSelected = false;
+        var GermanySelected = false;
+        var PassSelected = false;
+        var ClimbSelected = false;
+        var SackSelected = false;
+        var markersCheckbox;
+        var italyCheckbox;
+        var suisseCheckbox;
+        var franceCheckbox;
+        var austriaCheckbox;
+        var germanyCheckbox;
 
         //checkbox bar
-        // Get references to the checkboxes
         var passCheckbox = false;
         var climbCheckbox = false;
         var sackgasseCheckbox = false;
@@ -246,13 +260,6 @@
 
         document.getElementById('sackgasseCheckbox').addEventListener('change', function (event) {
             sackgasseCheckbox = event.target.checked;
-        });
-
-        //cluster
-        var markers = L.markerClusterGroup({
-            spiderfyOnMaxZoom: true,
-            showCoverageOnHover: false,
-            zoomToBoundsOnClick: true
         });
 
         //custom icons
@@ -363,7 +370,12 @@
         });
         
         //cluster representation, turned off for identification issues
-        /*markers.addLayer(marker);
+        /*var markers = L.markerClusterGroup({
+            spiderfyOnMaxZoom: true,
+            showCoverageOnHover: false,
+            zoomToBoundsOnClick: true
+        });
+        markers.addLayer(marker);
         map.addLayer(markers);*/
 
          //search master
@@ -1000,28 +1012,48 @@
         geoJSONs.push(gSusten);
         layerControl2.addOverlay(gSusten, "Sustenpass");
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //
-        // Your array of GeoJSON objects
         var geoJSONData = geoJSONArray;
-        var filtered;
         var selectedCategories = [];
+
+        var markerPass = [];
+        var markerClimb = [];
+        var markerSack = [];
+        var geoPass = [];
+        var geoClimb = [];
+        var geoSack = [];
         
-        
-        var markk = L.layerGroup([]);;
-        var tracks= L.layerGroup([]);;
-        var mark= L.layerGroup([]);;
+        var pass1 = L.layerGroup([]);
+        var pass2 = L.layerGroup([]);
+        var climb1 = L.layerGroup([]);
+        var climb2 = L.layerGroup([]);
+        var sack1 = L.layerGroup([]);
+        var sack2 = L.layerGroup([]);
+
+        var all= L.layerGroup([]);;
         var italy = L.layerGroup([]);
         var france = L.layerGroup([]);
         var austria = L.layerGroup([]);
         var germany = L.layerGroup([]);
         var suisse = L.layerGroup([]);
-        
+
+        var text;
+
         var baseMaps = {
             "Standard": osm,
             "Satellite": satellite,
             "Topo": topo
         };
-        var layerControl = L.control.layers(baseMaps, null,{position: 'topright'}).addTo(map);
+        var overlayMaps1= {
+            "All": all,
+            "Italy": italy,
+            "Suisse": suisse,
+            "France": france,
+            "Austria": austria,
+            "Germany": germany
+        };
+        var layerControl = L.control.layers(baseMaps, overlayMaps1,{position: 'topright'}).addTo(map);
+
+        filterGeoJSONObjects();
 
         // Function to filter GeoJSON objects based on selected categories
         function filterGeoJSONObjects() {
@@ -1030,6 +1062,12 @@
             geoDE = [];
             geoAT = [];
             geoCH = [];
+            markerPass = [];
+            markerClimb = [];
+            markerSack = [];
+            geoPass = [];
+            geoClimb = [];
+            geoSack = [];
             selectedCategories[0] = null;
             selectedCategories[1] = null;
             selectedCategories[2] = null;
@@ -1060,7 +1098,14 @@
                         geoAT.push(featureLayer)
                     } else if (country === 'CH' && (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
                         geoCH.push(featureLayer);
-                    }
+                    };
+                    if (category === 'Pass' && (category == selectedCategories[0] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))){
+                        markerPass.push(featureLayer)
+                    } else if (category === 'Climb' && (category == selectedCategories[1] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))){
+                        markerClimb.push(featureLayer)
+                    } else if (category === 'Sackgasse' && (category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))){
+                        markerSack.push(featureLayer)
+                    };
                 }); 
             });
 
@@ -1080,221 +1125,224 @@
                     } else if (country === 'CH' && (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
                         geoCH.push(featureLayer);
                     }
+                    if (category === 'Pass' && (category == selectedCategories[0] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))){
+                        geoPass.push(featureLayer)
+                    } else if (category === 'Climb' && (category == selectedCategories[1] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))){
+                        geoClimb.push(featureLayer)
+                    } else if (category === 'Sackgasse' && (category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))){
+                        geoSack.push(featureLayer)
+                    };
                 });
             });
 
-            layerControl.removeLayer(markk);
-            layerControl.removeLayer(tracks);
-            layerControl.removeLayer(mark);
+            layerControl.removeLayer(pass1);
+            layerControl.removeLayer(pass2);
+            layerControl.removeLayer(climb1);
+            layerControl.removeLayer(climb2);
+            layerControl.removeLayer(sack1);
+            layerControl.removeLayer(sack2);
+
+            layerControl.removeLayer(all);
             layerControl.removeLayer(italy);
+            layerControl.removeLayer(suisse);
             layerControl.removeLayer(france);
             layerControl.removeLayer(austria);
             layerControl.removeLayer(germany);
-            layerControl.removeLayer(suisse);
 
-            markk = L.layerGroup(marks);
-            tracks = L.layerGroup(geoJSONs);
-            mark = L.layerGroup([markk, tracks]);
+            pass1 = L.layerGroup(markerPass);
+            pass2 = L.layerGroup(geoPass);
+            climb1 = L.layerGroup(markerClimb);
+            climb2 = L.layerGroup(geoClimb);
+            sack1 = L.layerGroup(markerSack);
+            sack2 = L.layerGroup(geoSack);
+
+            all = L.layerGroup([pass1, pass2, climb1, climb2, sack1, sack2]);
             italy = L.layerGroup(geoIT);
+            suisse = L.layerGroup(geoCH);
             france = L.layerGroup(geoFR);
             austria = L.layerGroup(geoAT);
             germany = L.layerGroup(geoDE);
-            suisse = L.layerGroup(geoCH);
             
-            layerControl.addOverlay(mark, "All");
+            layerControl.addOverlay(all, "All");
             layerControl.addOverlay(italy, "Italy");
+            layerControl.addOverlay(suisse, "Suisse");
             layerControl.addOverlay(france, "France");
             layerControl.addOverlay(austria, "Austria");
             layerControl.addOverlay(germany, "Germany");
-            layerControl.addOverlay(suisse, "Suisse");
+
+            labels = 0;
+            labels = layerControl.getContainer().querySelectorAll('label');
+            clickevents();
         };
         // Add event listeners to the checkboxes
         document.getElementById('passCheckbox').addEventListener('change', filterGeoJSONObjects);
         document.getElementById('climbCheckbox').addEventListener('change', filterGeoJSONObjects);
         document.getElementById('sackgasseCheckbox').addEventListener('change', filterGeoJSONObjects);
 
+        
         //layer control button selection
-        var MarkersSelected = false;
-        var ItalySelected = false;
-        var FranceSelected = false;
-        var SuisseSelected = false;
-        var AustriaSelected = false;
-        var GermanySelected = false;
-        var PassSelected = false;
-        var ClimbSelected = false;
-        var SackSelected = false;
-        var markersCheckbox;
-        var italyCheckbox;
-        var suisseCheckbox;
-        var franceCheckbox;
-        var austriaCheckbox;
-        var germanyCheckbox;
-        var passCheckbox;
-        var climbCheckbox;
-        var sackCheckbox;        
+        function clickevents(){
+            labels.forEach(function (label) {
+                text = label.textContent.trim();
+                if (text === 'All') {
+                    markersCheckbox = label.querySelector('input[type="checkbox"]');
+                    if (markersCheckbox) {
+                        markersCheckbox.addEventListener('click', function (e) {
+                            MarkersSelected = e.target.checked;
+                            if (MarkersSelected){
+                                if (ItalySelected){
+                                    italyCheckbox.click();
+                                }
+                                if (FranceSelected){
+                                    franceCheckbox.click();
+                                }
+                                if (SuisseSelected){
+                                    suisseCheckbox.click();
+                                }
+                                if (AustriaSelected){
+                                    austriaCheckbox.click();
+                                }
+                                if (GermanySelected){
+                                    germanyCheckbox.click();
+                                }
+                                if (PassSelected){
+                                    passCheckbox.click();
+                                }
+                                if (ClimbSelected){
+                                    climbCheckbox.click();
+                                }
+                                if (SackSelected){
+                                    sackCheckbox.click();
+                                }
+                                markersCheckbox.click();
+                                markersCheckbox.click();
+                                
+                            }
+                        });
+                    }
+                } else if (text === 'Italy') {
+                    italyCheckbox = label.querySelector('input[type="checkbox"]');
+                    if (italyCheckbox) {
+                        italyCheckbox.addEventListener('click', function (e) {
+                            ItalySelected = e.target.checked;
 
-        var labels = layerControl.getContainer().querySelectorAll('label');
-        labels.forEach(function (label) {
-            var text = label.textContent.trim();
-            if (text === 'All') {
-                markersCheckbox = label.querySelector('input[type="checkbox"]');
-                if (markersCheckbox) {
-                    markersCheckbox.addEventListener('click', function (e) {
-                        MarkersSelected = e.target.checked;
-
-                        if (MarkersSelected){
-                            console.log(searchArray);
                             if (ItalySelected){
-                                italyCheckbox.click();
+                                if (MarkersSelected){
+                                    markersCheckbox.click();
+                                    italyCheckbox.click();
+                                    italyCheckbox.click();
+                                }
                             }
+                        });
+                    }
+                } else if (text === 'France') {
+                    franceCheckbox = label.querySelector('input[type="checkbox"]');
+                    if (franceCheckbox) {
+                        franceCheckbox.addEventListener('click', function (e) {
+                            FranceSelected = e.target.checked;
+                            
                             if (FranceSelected){
-                                franceCheckbox.click();
+                                if (MarkersSelected){
+                                    markersCheckbox.click();
+                                    franceCheckbox.click();
+                                    franceCheckbox.click();
+                                }
                             }
+                        });
+                    }
+                } else if (text === 'Suisse') {
+                    suisseCheckbox = label.querySelector('input[type="checkbox"]');
+                    if (suisseCheckbox) {
+                        suisseCheckbox.addEventListener('click', function (e) {
+                            SuisseSelected = e.target.checked;
+                            
                             if (SuisseSelected){
-                                suisseCheckbox.click();
+                                if (MarkersSelected){
+                                    markersCheckbox.click();
+                                    suisseCheckbox.click();
+                                    suisseCheckbox.click();
+                                }
                             }
+                        });
+                    }
+                } else if (text === 'Austria') {
+                    austriaCheckbox = label.querySelector('input[type="checkbox"]');
+                    if (austriaCheckbox) {
+                        austriaCheckbox.addEventListener('click', function (e) {
+                            AustriaSelected = e.target.checked;
+                            
                             if (AustriaSelected){
-                                austriaCheckbox.click();
+                                if (MarkersSelected){
+                                    markersCheckbox.click();
+                                    austriaCheckbox.click();
+                                    austriaCheckbox.click();
+                                }
                             }
+                        });
+                    }
+                } else if (text === 'Germany') {
+                    germanyCheckbox = label.querySelector('input[type="checkbox"]');
+                    if (germanyCheckbox) {
+                        germanyCheckbox.addEventListener('click', function (e) {
+                            GermanySelected = e.target.checked;
+                            
                             if (GermanySelected){
-                                germanyCheckbox.click();
+                                if (MarkersSelected){
+                                    markersCheckbox.click();
+                                    germanyCheckbox.click();
+                                    germanyCheckbox.click();
+                                }
                             }
+                        });
+                    }
+                } else if (text === 'Pass') {
+                    passCheckbox = label.querySelector('input[type="checkbox"]');
+                    if (passCheckbox) {
+                        passCheckbox.addEventListener('click', function (e) {
+                            PassSelected = e.target.checked;
+                            
                             if (PassSelected){
-                                passCheckbox.click();
+                                if (MarkersSelected){
+                                    markersCheckbox.click();
+                                    passCheckbox.click();
+                                    passCheckbox.click();
+                                }
                             }
+                        });
+                    }
+                } else if (text === 'Climb') {
+                    climbCheckbox = label.querySelector('input[type="checkbox"]');
+                    if (climbCheckbox) {
+                        climbCheckbox.addEventListener('click', function (e) {
+                            ClimbSelected = e.target.checked;
+                            
                             if (ClimbSelected){
-                                climbCheckbox.click();
+                                if (MarkersSelected){
+                                    markersCheckbox.click();
+                                    climbCheckbox.click();
+                                    climbCheckbox.click();
+                                }
                             }
+                        });
+                    }
+                } else if (text === 'Sackgasse') {
+                    sackCheckbox = label.querySelector('input[type="checkbox"]');
+                    if (sackCheckbox) {
+                        sackCheckbox.addEventListener('click', function (e) {
+                            SackSelected = e.target.checked;
+                            
                             if (SackSelected){
-                                sackCheckbox.click();
+                                if (MarkersSelected){
+                                    markersCheckbox.click();
+                                    sackCheckbox.click();
+                                    sackCheckbox.click();
+                                }
                             }
-                            markersCheckbox.click();
-                            markersCheckbox.click();
-                        }
-                    });
+                        });
+                    }
                 }
-            } else if (text === 'Italy') {
-                italyCheckbox = label.querySelector('input[type="checkbox"]');
-                if (italyCheckbox) {
-                    italyCheckbox.addEventListener('click', function (e) {
-                        ItalySelected = e.target.checked;
-
-                        if (ItalySelected){
-                            if (MarkersSelected){
-                                markersCheckbox.click();
-                                italyCheckbox.click();
-                                italyCheckbox.click();
-                            }
-                        }
-                    });
-                }
-            } else if (text === 'France') {
-                franceCheckbox = label.querySelector('input[type="checkbox"]');
-                if (franceCheckbox) {
-                    franceCheckbox.addEventListener('click', function (e) {
-                        FranceSelected = e.target.checked;
-                        
-                        if (FranceSelected){
-                            if (MarkersSelected){
-                                markersCheckbox.click();
-                                franceCheckbox.click();
-                                franceCheckbox.click();
-                            }
-                        }
-                    });
-                }
-            } else if (text === 'Suisse') {
-                suisseCheckbox = label.querySelector('input[type="checkbox"]');
-                if (suisseCheckbox) {
-                    suisseCheckbox.addEventListener('click', function (e) {
-                        SuisseSelected = e.target.checked;
-                        
-                        if (SuisseSelected){
-                            if (MarkersSelected){
-                                markersCheckbox.click();
-                                suisseCheckbox.click();
-                                suisseCheckbox.click();
-                            }
-                        }
-                    });
-                }
-            } else if (text === 'Austria') {
-                austriaCheckbox = label.querySelector('input[type="checkbox"]');
-                if (austriaCheckbox) {
-                    austriaCheckbox.addEventListener('click', function (e) {
-                        AustriaSelected = e.target.checked;
-                        
-                        if (AustriaSelected){
-                            if (MarkersSelected){
-                                markersCheckbox.click();
-                                austriaCheckbox.click();
-                                austriaCheckbox.click();
-                            }
-                        }
-                    });
-                }
-            } else if (text === 'Germany') {
-                germanyCheckbox = label.querySelector('input[type="checkbox"]');
-                if (germanyCheckbox) {
-                    germanyCheckbox.addEventListener('click', function (e) {
-                        GermanySelected = e.target.checked;
-                        
-                        if (GermanySelected){
-                            if (MarkersSelected){
-                                markersCheckbox.click();
-                                germanyCheckbox.click();
-                                germanyCheckbox.click();
-                            }
-                        }
-                    });
-                }
-            } else if (text === 'Pass') {
-                passCheckbox = label.querySelector('input[type="checkbox"]');
-                if (passCheckbox) {
-                    passCheckbox.addEventListener('click', function (e) {
-                        PassSelected = e.target.checked;
-                        
-                        if (PassSelected){
-                            if (MarkersSelected){
-                                markersCheckbox.click();
-                                passCheckbox.click();
-                                passCheckbox.click();
-                            }
-                        }
-                    });
-                }
-            } else if (text === 'Climb') {
-                climbCheckbox = label.querySelector('input[type="checkbox"]');
-                if (climbCheckbox) {
-                    climbCheckbox.addEventListener('click', function (e) {
-                        ClimbSelected = e.target.checked;
-                        
-                        if (ClimbSelected){
-                            if (MarkersSelected){
-                                markersCheckbox.click();
-                                climbCheckbox.click();
-                                climbCheckbox.click();
-                            }
-                        }
-                    });
-                }
-            } else if (text === 'Sackgasse') {
-                sackCheckbox = label.querySelector('input[type="checkbox"]');
-                if (sackCheckbox) {
-                    sackCheckbox.addEventListener('click', function (e) {
-                        SackSelected = e.target.checked;
-                        
-                        if (SackSelected){
-                            if (MarkersSelected){
-                                markersCheckbox.click();
-                                sackCheckbox.click();
-                                sackCheckbox.click();
-                            }
-                        }
-                    });
-                }
-            }
-        });
+            });
+        }   
     </script>
 </body>
 </html>
