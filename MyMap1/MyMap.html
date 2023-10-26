@@ -1072,6 +1072,20 @@
             selectedCategories[1] = null;
             selectedCategories[2] = null;
 
+            var markerClick = MarkersSelected;
+            var italyClick = ItalySelected;
+            var franceClick = FranceSelected;
+            var suisseClick = SuisseSelected;
+            var austriaClick = AustriaSelected;
+            var germanyClick = GermanySelected;
+
+            if (MarkersSelected){ markersCheckbox.click()};
+            if (ItalySelected){ italyCheckbox.click()};
+            if (FranceSelected){ franceCheckbox.click()};
+            if (SuisseSelected){ suisseCheckbox.click()};
+            if (AustriaSelected){ austriaCheckbox.click()};
+            if (GermanySelected){ germanyCheckbox.click()};
+
             if (passCheckbox) {
                 selectedCategories[0] = "Pass";
             }
@@ -1173,6 +1187,14 @@
             labels = 0;
             labels = layerControl.getContainer().querySelectorAll('label');
             clickevents();
+
+            if (markerClick){ markersCheckbox.click()};
+            if (italyClick){ italyCheckbox.click()};
+            if (franceClick){ franceCheckbox.click()};
+            if (suisseClick){ suisseCheckbox.click()};
+            if (austriaClick){ austriaCheckbox.click()};
+            if (germanyClick){ germanyCheckbox.click()};
+           
         };
         // Add event listeners to the checkboxes
         document.getElementById('passCheckbox').addEventListener('change', filterGeoJSONObjects);
