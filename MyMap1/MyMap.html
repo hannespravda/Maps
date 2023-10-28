@@ -9,10 +9,6 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-    <!-- search box -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-
     <!-- location-->
     <link rel="stylesheet" href="leaflet-locatecontrol-gh-pages\dist\L.Control.Locate.mapbox.min.css"/>
     <script src="leaflet-locatecontrol-gh-pages\dist\L.Control.Locate.min.js"></script>
@@ -23,7 +19,7 @@
     <script src="Leaflet.markercluster-1.4.1\dist\leaflet.markercluster-src.js"></script>
     <script src="Leaflet.markercluster-1.4.1\dist\leaflet.markercluster.js"></script>
     
-    <!-- marker search -->
+    <!-- search master -->
     <link rel="stylesheet" href="leaflet-search-master\dist\leaflet-search.src.css"/>
     <script src="leaflet-search-master\dist\leaflet-search.src.js"></script>
 
@@ -31,64 +27,107 @@
     <style>
         #map {position: absolute; top: 0; bottom: 0; left: 0; right: 0}
 
-        #checkbox-container {
+        #filter-toggle {
             position: absolute;
-            top: 15px;
-            left: 82%;
+            top: 10px; /* Adjust the top position as needed */
+            left: 97.3%; /* Adjust the left position as needed */
             transform: translateX(-50%);
             z-index: 1000;
             background-color: white;
+            color: rgb(126, 121, 121);
             border: 1px solid #ccc;
             border-radius: 5px;
             font-family: Helvetica, Arial, sans-serif;
             font-size: 12px;
             padding: 5px; /* Add padding to create space around the text */
             text-align: center; /* Center the text horizontally */
-            width: 200px;
+            width: 35px;
+            cursor: pointer;
         }
-        
-        #search-container {
+        #filter {
             position: absolute;
-            top: 50px;
-            left: 82%;
+            top: 10px; /* Adjust the top position as needed */
+            left: 87%; /* Adjust the left position as needed */
             transform: translateX(-50%);
             z-index: 1000;
             background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
             font-family: Helvetica, Arial, sans-serif;
             font-size: 12px;
-            text-align: center;
+            padding: 5px; /* Add padding to create space around the text */
+            text-align: center; /* Center the text horizontally */
+            width: 200px;
+          }
+        .filter-row {
             display: flex;
-            align-items: center; /* Vertically center the content */
-            padding: 3px; /* Add padding to create space around the text */
-            width: 200px; /* Set the width to match the checkbox container */
-            height: 25px;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
         }
-        
-        #search-input {
-            flex: 1;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-right: 5px;
-            width: 100%; /* Set the width to fill the available space */
+        .filter-input {
+            width: 50px;
+            text-align: center;
+            color: black;
         }
-        
-        #search-button {
-            background-color: transparent;
-            border: none;
-            padding: 5px;
+        .filter-row input:first-child {
+            width: 50px;
+            text-align: center;
+            color: black; /* Grey text */
+        }
+        .filter-input::placeholder {
+            color: grey; /* Placeholder text color */
+            font-size: 12px;
+        }
+        .separator-line {
+            border-top: 1px solid #ccc;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .height-label {
+            text-align: left;
+            width: 50px;
+        }
+        .elevation-label {
+            text-align: left;
+            width: 50px;
+        }
+        .length-label {
+            text-align: left;
+            width: 50px;
+        }
+        .min-height {
+            margin-left: 10px;
+        }
+        .min-elevation {
+            margin-left: 10px;
+        }
+        .min-length {
+            margin-left: 10px;
+        }
+        .leaflet-top.leaflet-right .leaflet-control {
+            top: 27px; /* Adjust the top position as needed */
+        }
+        .filter-row button {
+            /* Add styling to the buttons as needed */
+            padding: 0px 7px; /* Adjust padding to desired size */
+            background-color: white; /* Example background color */
+            color: lightblue; /* Text color */
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            border: none; /* Remove border */
             cursor: pointer;
         }
-        
-        .search-icon {
-            font-size: 16px;
-            color: #007bff;
+        #resetFilter {
+            width: 150px;
+            text-align: right;
+            color: rgb(179, 108, 108); /* Text color */
         }
-        
-        
-        
+        .filter-input[type="number"]::-webkit-inner-spin-button,
+        .filter-input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
     </style>
 
     <!--------------------- add geoJSON files renamed to .js files here -------------------------------------->
@@ -161,7 +200,8 @@
 </head>
 <body>
     <div id = "map"></div>  
-    
+
+    <!--
     <div id="checkbox-container">
         <div id="filter-bar">
             <label for="passCheckbox">Pass</label>
@@ -172,10 +212,39 @@
             <input type="checkbox" id="sackgasseCheckbox">
         </div>
     </div>
+    -->
 
-    <!--<div id="search-container">
-        <input type="text" id="search-input" placeholder="Search...">
-        <button id="search-button" class="search-icon">&#128269;</button>-->
+    <div id="filter-toggle">Filter</div>
+    <div id="filter" style="display: none;">
+    <div id="checkbox-container">
+        <div id="filter-bar">
+            <label for="passCheckbox">Pass</label>
+            <input type="checkbox" id="passCheckbox">
+            <label for="climbCheckbox">Climb</label>
+            <input type="checkbox" id="climbCheckbox">
+            <label for="sackgasseCheckbox">Sackgasse</label>
+            <input type="checkbox" id="sackgasseCheckbox">
+        </div>
+    </div>
+    <hr class="separator-line">
+    <div class="filter-row">
+        <label class="height-label">Height:</label>
+        <input type="number" id="minHeight" class="min-height filter-input" step="10" placeholder="min m">
+        <input type="number" id="maxHeight" class="max-height filter-input" step="10" placeholder="max m">
+    </div>
+    <div class="filter-row">
+        <label class="elevation-label">Elevation:</label>
+        <input type="number" id="minElevation" step="10" class="min-elevation filter-input" placeholder="min hm">
+        <input type="number" id="maxElevation" step="10" class="max-elevation filter-input" placeholder="max hm">
+    </div>
+    <div class="filter-row">
+        <label class="length-label">Length:</label>
+        <input type="number" id="minLength" step="10" class="min-length filter-input" placeholder="min km">
+        <input type="number" id="maxLength" step="10" class="max-length filter-input" placeholder="max km">
+    </div>
+    <div class="filter-row">
+        <button id="resetFilter">Reset</button>
+        <button id="applyFilter">Apply</button>
     </div>
 
     <script>
@@ -184,8 +253,42 @@
             minZoom: 2,
         }).setView([45.464664, 9.188540],13);
 
-        //search box
-        //L.Control.geocoder().addTo(map);
+        //filter
+        var filterToggle = document.getElementById("filter-toggle");
+        var filter = document.getElementById("filter");
+        var applyFilterButton = document.getElementById("applyFilter");
+        var resetFilterButton = document.getElementById("resetFilter");
+
+        filterToggle.addEventListener("click", function() {
+            if (filter.style.display === "none" || filter.style.display === "") {
+                filter.style.display = "block";
+            } else {
+                filter.style.display = "none";
+            }
+        });
+
+        resetFilterButton.addEventListener('click', function() {
+            document.getElementById('minHeight').value = '';
+            document.getElementById('maxHeight').value = '';
+            document.getElementById('minElevation').value = '';
+            document.getElementById('maxElevation').value = '';
+            document.getElementById('minLength').value = '';
+            document.getElementById('maxLength').value = '';
+            document.getElementById('passCheckbox').checked = false;
+            document.getElementById('climbCheckbox').checked = false;
+            document.getElementById('sackgasseCheckbox').checked = false;
+        });
+
+        applyFilterButton.addEventListener("click", function() {
+            var minHeight = document.getElementById("minHeight").value;
+            var maxHeight = document.getElementById("maxHeight").value;
+            var minElevation = document.getElementById("minElevation").value;
+            var maxElevation = document.getElementById("maxElevation").value;
+            var minLength = document.getElementById("minLength").value;
+            var maxLength = document.getElementById("maxLength").value;
+
+            // Implement your filtering logic here using minHeight, maxHeight, minElevation, and maxElevation
+        });
 
         //scale
         L.control.scale({
@@ -228,21 +331,6 @@
         var idTrack2;
         var id;
         var markerStates = [];
-        var MarkersSelected = false;
-        var ItalySelected = false;
-        var FranceSelected = false;
-        var SuisseSelected = false;
-        var AustriaSelected = false;
-        var GermanySelected = false;
-        var PassSelected = false;
-        var ClimbSelected = false;
-        var SackSelected = false;
-        var markersCheckbox;
-        var italyCheckbox;
-        var suisseCheckbox;
-        var franceCheckbox;
-        var austriaCheckbox;
-        var germanyCheckbox;
 
         //checkbox bar
         var passCheckbox = false;
@@ -378,8 +466,8 @@
         markers.addLayer(marker);
         map.addLayer(markers);*/
 
-         //search master
-         var searchElements = L.geoJSON(passi, {
+        //search master
+        var searchElements = L.geoJSON(passi, {
             pointToLayer: function (feature, latlng) {
                 return L.marker(latlng, { icon: searchIcon});
             }
@@ -451,6 +539,7 @@
         var layerControl2 = L.control.layers(null, overlayMaps2,{ position: 'bottomright' }).addTo(map);
         
 /////////add new tracks here///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////        
         var gValcava = L.geoJSON(Valcava, {
             style: TrackStyle,
             onEachFeature: onEachFeature
@@ -1012,6 +1101,23 @@
         geoJSONs.push(gSusten);
         layerControl2.addOverlay(gSusten, "Sustenpass");
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+        var MarkersSelected = false;
+        var ItalySelected = false;
+        var FranceSelected = false;
+        var SuisseSelected = false;
+        var AustriaSelected = false;
+        var GermanySelected = false;
+        var PassSelected = false;
+        var ClimbSelected = false;
+        var SackSelected = false;
+        var markersCheckbox;
+        var italyCheckbox;
+        var suisseCheckbox;
+        var franceCheckbox;
+        var austriaCheckbox;
+        var germanyCheckbox; 
+
         var geoJSONData = geoJSONArray;
         var selectedCategories = [];
 
