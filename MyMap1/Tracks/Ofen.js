@@ -1917,8 +1917,8 @@ var Ofen = {
         "properties": {
           "idd": "36",
           "name": "Westauffahrt",
-          "length": "930",
-          "elevation": "21.5",
+          "length": "21.5",
+          "elevation": "930",
           "category":"Pass",
           "country":"CH",
           "link": "https://www.quaeldich.de/paesse/ofenpass/profile/nordwestanfahrt-vom-punt-la-drossa/",

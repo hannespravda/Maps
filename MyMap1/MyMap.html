@@ -35,7 +35,7 @@
             z-index: 1000;
             background-color: white;
             color: rgb(126, 121, 121);
-            border: 1px solid #ccc;
+            border: 2px solid #ccc;
             border-radius: 5px;
             font-family: Helvetica, Arial, sans-serif;
             font-size: 12px;
@@ -43,6 +43,7 @@
             text-align: center; /* Center the text horizontally */
             width: 35px;
             cursor: pointer;
+            user-select: none;
         }
         #filter {
             position: absolute;
@@ -58,6 +59,7 @@
             padding: 5px; /* Add padding to create space around the text */
             text-align: center; /* Center the text horizontally */
             width: 200px;
+            user-select: none;
           }
         .filter-row {
             display: flex;
@@ -96,6 +98,10 @@
             text-align: left;
             width: 50px;
         }
+        .slope-label {
+            text-align: left;
+            width: 50px;
+        }
         .min-height {
             margin-left: 10px;
         }
@@ -105,8 +111,12 @@
         .min-length {
             margin-left: 10px;
         }
+        .min-slope {
+            margin-left: 10px;
+        }
         .leaflet-top.leaflet-right .leaflet-control {
-            top: 27px; /* Adjust the top position as needed */
+            top: 29px; /* Adjust the top position as needed */
+            user-select: none;
         }
         .filter-row button {
             /* Add styling to the buttons as needed */
@@ -117,16 +127,126 @@
             font-size: 12px;
             border: none; /* Remove border */
             cursor: pointer;
+            user-select: none;
         }
         #resetFilter {
             width: 150px;
             text-align: right;
             color: rgb(179, 108, 108); /* Text color */
+            user-select: none;
         }
         .filter-input[type="number"]::-webkit-inner-spin-button,
         .filter-input[type="number"]::-webkit-outer-spin-button {
             -webkit-appearance: none;
             margin: 0;
+        }
+        
+        #table-toggle {
+            position: absolute;
+            top: 170px; /* Adjust the top position as needed */
+            left: 2.1%; /* Adjust the left position as needed */
+            transform: translateX(-50%);
+            z-index: 1000;
+            background-color: white;
+            color: rgb(126, 121, 121);
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            padding: 5px; /* Add padding to create space around the text */
+            text-align: center; /* Center the text horizontally */
+            width: 20px;
+            cursor: pointer;
+            user-select: none;
+        }
+        #table-container {
+            position: absolute;
+            top: 170px;
+            left: 28%;
+            transform: translate(-50%);
+            z-index: 1000;
+            background-color: white;
+            color: rgb(126, 121, 121);
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            text-align: left;
+            max-width: 600px;
+            max-height: 397px; /* Set a fixed height */
+            overflow: auto; /* Hide overflow to prevent the table from extending beyond the fixed height */
+            display: none;
+            user-select: none;
+        }
+        #data-table th,
+        #data-table td {
+            padding: 8px; /* Adjust the padding to increase/decrease space between columns */
+        }
+        #data-table th:nth-child(1),
+        #data-table td:nth-child(1) {
+            width: 10px; /* Adjust the width for the first column */
+        }
+        #data-table th:nth-child(2),
+        #data-table td:nth-child(2) {
+            width: 300px; /* Adjust the width for the second column */
+        }
+        #data-table th:nth-child(3),
+        #data-table td:nth-child(3) {
+            width: 50px; /* Adjust the width for the third column */
+        }
+        #data-table th:nth-child(4),
+        #data-table td:nth-child(4) {
+            width: 80px; /* Adjust the width for the third column */
+        }
+        #data-table th:nth-child(5),
+        #data-table td:nth-child(5) {
+            width: 80px; /* Adjust the width for the third column */
+        }
+        .sort-container {
+            display: flex;
+            align-items: center;
+            padding: 10px; /* Add padding to create space around the text */
+        }
+        .sort-container label {
+            margin-right: 10px; /* Adjust margin as needed to separate label from the select box */
+        }
+        #toggle-sort-order {
+            margin-left: 5px; /* Adjust the value as needed */
+            background-color: white;
+            border: 0px solid #ccc;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            text-align: left;
+            cursor: pointer;
+            color: lightblue;
+            user-select: none;
+        }
+        #reset-checkboxes {
+            margin-left: -1px; /* Adjust the value as needed */
+            background-color: white;
+            color: rgb(179, 108, 108);
+            border: 0px solid #ccc;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            text-align: left;
+            cursor: pointer;
+            user-select: none;
+        }
+        .additional-info {
+            background-color: #f2f2f2; /* Grey background color */
+            padding: 1px; /* Add padding for spacing */
+            margin-left: 35px; /* Adjust as needed for spacing from the left margin */
+            margin-top: -15px;
+        }
+        .hidden {
+            display: none; /* Hide the additional info by default */
+        }
+        .show-more-button {
+            background-color: white; /* Set the background color */
+            color: lightblue; /* Set the text color */
+            border-radius: 0px; /* Add rounded corners */
+            cursor: pointer; /* Set cursor to pointer for interaction */
+            user-select: none;
         }
     </style>
 
@@ -201,50 +321,75 @@
 <body>
     <div id = "map"></div>  
 
-    <!--
-    <div id="checkbox-container">
-        <div id="filter-bar">
-            <label for="passCheckbox">Pass</label>
-            <input type="checkbox" id="passCheckbox">
-            <label for="climbCheckbox">Climb</label>
-            <input type="checkbox" id="climbCheckbox">
-            <label for="sackgasseCheckbox">Sackgasse</label>
-            <input type="checkbox" id="sackgasseCheckbox">
-        </div>
-    </div>
-    -->
-
     <div id="filter-toggle">Filter</div>
     <div id="filter" style="display: none;">
-    <div id="checkbox-container">
-        <div id="filter-bar">
-            <label for="passCheckbox">Pass</label>
-            <input type="checkbox" id="passCheckbox">
-            <label for="climbCheckbox">Climb</label>
-            <input type="checkbox" id="climbCheckbox">
-            <label for="sackgasseCheckbox">Sackgasse</label>
-            <input type="checkbox" id="sackgasseCheckbox">
+        <div id="checkbox-container">
+            <div id="filter-bar">
+                <label for="passCheckbox">Pass</label>
+                <input type="checkbox" id="passCheckbox">
+                <label for="climbCheckbox">Climb</label>
+                <input type="checkbox" id="climbCheckbox">
+                <label for="sackgasseCheckbox">Sackgasse</label>
+                <input type="checkbox" id="sackgasseCheckbox">
+            </div>
+        </div>
+        <hr class="separator-line">
+        <div class="filter-row">
+            <label class="height-label">Height:</label>
+            <input type="number" id="minHeight" class="min-height filter-input" step="10" placeholder="min m">
+            <input type="number" id="maxHeight" class="max-height filter-input" step="10" placeholder="max m">
+        </div>
+        <div class="filter-row">
+            <label class="elevation-label">Elevation:</label>
+            <input type="number" id="minElevation" step="10" class="min-elevation filter-input" placeholder="min hm">
+            <input type="number" id="maxElevation" step="10" class="max-elevation filter-input" placeholder="max hm">
+        </div>
+        <div class="filter-row">
+            <label class="length-label">Length:</label>
+            <input type="number" id="minLength" step="10" class="min-length filter-input" placeholder="min km">
+            <input type="number" id="maxLength" step="10" class="max-length filter-input" placeholder="max km">
+        </div>
+        <div class="filter-row">
+            <label class="slope-label">Slope:</label>
+            <input type="number" id="minSlope" step="10" class="min-slope filter-input" placeholder="min %">
+            <input type="number" id="maxSlope" step="10" class="max-slope filter-input" placeholder="max %">
+        </div>
+        <div class="filter-row">
+            <button id="resetFilter">Reset</button>
+            <button id="applyFilter">Apply</button>
         </div>
     </div>
-    <hr class="separator-line">
-    <div class="filter-row">
-        <label class="height-label">Height:</label>
-        <input type="number" id="minHeight" class="min-height filter-input" step="10" placeholder="min m">
-        <input type="number" id="maxHeight" class="max-height filter-input" step="10" placeholder="max m">
-    </div>
-    <div class="filter-row">
-        <label class="elevation-label">Elevation:</label>
-        <input type="number" id="minElevation" step="10" class="min-elevation filter-input" placeholder="min hm">
-        <input type="number" id="maxElevation" step="10" class="max-elevation filter-input" placeholder="max hm">
-    </div>
-    <div class="filter-row">
-        <label class="length-label">Length:</label>
-        <input type="number" id="minLength" step="10" class="min-length filter-input" placeholder="min km">
-        <input type="number" id="maxLength" step="10" class="max-length filter-input" placeholder="max km">
-    </div>
-    <div class="filter-row">
-        <button id="resetFilter">Reset</button>
-        <button id="applyFilter">Apply</button>
+
+    <div id="table-toggle">List</div>
+    <div id="table-container" style="display: none;">
+        <div class="sort-container">
+            <label for="sort-options">Sort by:</label>
+            <select id="sort-options">
+                <option value="empty"> </option>
+                <option value="alphabetical">Alphabetical</option>
+                <option value="country">Country</option>
+                <option value="height">Height</option>
+                <option value="length">Length</option>
+                <option value="elevation">Elevation</option>
+                <option value="slope">Slope</option>
+            </select>
+            <button id="toggle-sort-order" onclick="toggleSortOrder()">↑↓</button>
+            <button id="reset-checkboxes" onclick="resetCheckboxes()">clear</button>
+        </div>
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>Height</th>
+                    <th>Length</th>
+                    <th>Elevation</th>
+                    <th>Slope</th>
+                </tr>
+            </thead>
+            <tbody id="data-body"></tbody>
+        </table>
     </div>
 
     <script>
@@ -253,11 +398,295 @@
             minZoom: 2,
         }).setView([45.464664, 9.188540],13);
 
+        //table
+        var tableToggle = document.getElementById("table-toggle");
+        var table = document.getElementById("table-container");
+        const dataBody = document.getElementById("data-body");
+        const sortDropdown = document.getElementById("sort-options");
+        tableToggle.addEventListener("click", function() {
+            if (table.style.display === "none" || table.style.display === "") {
+                table.style.display = "block";
+            } else {
+                table.style.display = "none";
+            }
+        });
+        function toggleSortOrder() {
+            const table = document.getElementById("data-table");
+            const tbody = table.querySelector("tbody");
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+            rows.reverse();
+            while (tbody.firstChild) {
+                tbody.removeChild(tbody.firstChild);
+            }
+            rows.forEach((row) => tbody.appendChild(row));
+        }
+        function sortAlphabetically(columnIndex) {
+            const table = document.getElementById("data-table");
+            const tbody = table.querySelector("tbody");
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+            rows.sort((a, b) => {
+                const valueA = a.cells[columnIndex].textContent.trim();
+                const valueB = b.cells[columnIndex].textContent.trim();
+                return valueA.localeCompare(valueB);
+            });
+            while (tbody.firstChild) {
+                tbody.removeChild(tbody.firstChild);
+            }
+            rows.forEach((row) => tbody.appendChild(row));
+        }
+        function sortTableCountry() {
+            const table = document.getElementById("data-table");
+            const tbody = table.querySelector("tbody");
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+            rows.sort((a, b) => {
+                const countryA = a.cells[2].textContent.trim();
+                const countryB = b.cells[2].textContent.trim();
+                const nameA = a.cells[1].textContent.trim();
+                const nameB = b.cells[1].textContent.trim();
+                const countryComparison = countryA.localeCompare(countryB);
+                if (countryComparison === 0) {
+                    return nameA.localeCompare(nameB);
+                }
+                return countryComparison;
+            });
+            while (tbody.firstChild) {
+                tbody.removeChild(tbody.firstChild);
+            }
+            rows.forEach((row) => tbody.appendChild(row));
+        }
+        function sortNumeric(columnIndex) {
+            return function(a, b) {
+                const valueA = parseFloat(a.cells[columnIndex].textContent.trim());
+                const valueB = parseFloat(b.cells[columnIndex].textContent.trim());
+                return valueB - valueA;
+            };
+        }
+        function sortRandom() {
+            const table = document.getElementById("data-table");
+            const tbody = table.querySelector("tbody");
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+            rows.sort(() => Math.random() - 0.5);
+            while (tbody.firstChild) {
+                tbody.removeChild(tbody.firstChild);
+            }
+            rows.forEach((row) => tbody.appendChild(row));
+        }
+        sortDropdown.addEventListener("change", function() {
+            if (sortDropdown.value === "alphabetical") {
+                sortAlphabetically(1);
+            } else if (sortDropdown.value === "country") {
+                sortTableCountry();
+            } else if (sortDropdown.value === "height") {
+                const rows = Array.from(dataBody.querySelectorAll("tr"));
+                rows.sort(sortNumeric(3));
+                rows.forEach((row) => dataBody.appendChild(row));
+            } else if (sortDropdown.value === "length") {
+                const rows = Array.from(dataBody.querySelectorAll("tr"));
+                rows.sort(sortNumeric(4));
+                rows.forEach((row) => dataBody.appendChild(row));
+            } else if (sortDropdown.value === "elevation") {
+                const rows = Array.from(dataBody.querySelectorAll("tr"));
+                rows.sort(sortNumeric(5));
+                rows.forEach((row) => dataBody.appendChild(row));
+            } else if (sortDropdown.value === "slope") {
+                const rows = Array.from(dataBody.querySelectorAll("tr"));
+                rows.sort(sortNumeric(6));
+                rows.forEach((row) => dataBody.appendChild(row));
+            } else if (sortDropdown.value === "empty") {
+                sortRandom();
+            }
+        });
+
+        function createRow(idd, name, country, height, length, elevation, slope, additionalInfoArray) {
+            const tableRow = document.createElement("tr");
+
+            // Create a checkbox cell
+            const checkboxCell = document.createElement("td");
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.className = "checkbox99";
+            checkbox.addEventListener("click", function () {
+                checkboxCallback(idd, checkbox.checked);
+            });
+            checkboxCell.appendChild(checkbox);
+            tableRow.appendChild(checkboxCell);
+        
+            const nameCell = document.createElement("td");
+            nameCell.textContent = name;
+        
+            const showMoreButton = document.createElement("div");
+            showMoreButton.textContent = "show more";
+            showMoreButton.className = "show-more-button"; // Add the class to the div
+            showMoreButton.onclick = function () {
+                toggleAdditionalInfo(nameCell, additionalInfoArray);
+            };
+        
+            nameCell.appendChild(showMoreButton);
+            tableRow.appendChild(nameCell);
+        
+            const countryCell = document.createElement("td");
+            countryCell.textContent = country;
+            tableRow.appendChild(countryCell);
+        
+            const heightCell = document.createElement("td");
+            heightCell.textContent = height + ' m';
+            tableRow.appendChild(heightCell);
+        
+            const lengthCell = document.createElement("td");
+            lengthCell.textContent = length + ' km';
+            tableRow.appendChild(lengthCell);
+        
+            const elevationCell = document.createElement("td");
+            elevationCell.textContent = elevation + ' hm';
+            tableRow.appendChild(elevationCell);
+        
+            const slopeCell = document.createElement("td");
+            slopeCell.textContent = slope + ' %';
+            tableRow.appendChild(slopeCell);
+        
+            return tableRow;
+        }
+
+        function resetCheckboxes() {
+            const checkboxes = document.querySelectorAll(".checkbox99");
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = false;
+            });
+        };
+        
+        function toggleAdditionalInfo(container, additionalInfoArray) {
+            const row = container.closest("tr");
+            const newRow = row.cloneNode();
+            newRow.classList.add('additional-info-row');
+            const newCell = document.createElement("td");
+            newCell.colSpan = row.cells.length;
+            const newInfoContainer = document.createElement("div");
+            newInfoContainer.className = "additional-info";
+            additionalInfoArray.forEach(info => {
+                const infoParagraph = document.createElement("p");
+                infoParagraph.textContent = info;
+                newInfoContainer.appendChild(infoParagraph);
+            });
+            newCell.appendChild(newInfoContainer);
+            newRow.appendChild(newCell);
+            if (container.querySelector(".show-more-button").textContent === "show more") {
+                row.parentNode.insertBefore(newRow, row.nextSibling);
+                container.querySelector(".show-more-button").textContent = "show less"
+            } else if (container.querySelector(".show-more-button").textContent === "show less") {
+                const addedRow = row.parentNode.querySelector('.additional-info-row');
+                if (addedRow) {
+                    row.parentNode.removeChild(addedRow);
+                }
+                container.querySelector(".show-more-button").textContent = "show more";
+            }
+        }
+
+        function resetCheckboxes() {
+            const checkboxes = document.querySelectorAll(".checkbox99");
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.checked){
+                    checkbox.click();
+                }
+            });
+        };
+
+        
+
         //filter
         var filterToggle = document.getElementById("filter-toggle");
         var filter = document.getElementById("filter");
         var applyFilterButton = document.getElementById("applyFilter");
         var resetFilterButton = document.getElementById("resetFilter");
+        var applyFilter = false;
+        var FilterArray = [];
+
+        applyFilterButton.addEventListener("click", function() {
+            applyFilter = true;
+            filterToggle.style.color = "lightblue";
+            var minHeight = document.getElementById("minHeight").value;
+            var maxHeight = document.getElementById("maxHeight").value;
+            var minElevation = document.getElementById("minElevation").value;
+            var maxElevation = document.getElementById("maxElevation").value;
+            var minLength = document.getElementById("minLength").value;
+            var maxLength = document.getElementById("maxLength").value;
+            var minSlope = document.getElementById("minSlope").value;
+            var maxSlope = document.getElementById("maxSlope").value;
+            var passCheckbox = document.getElementById("passCheckbox").checked;
+            var climbCheckbox = document.getElementById("climbCheckbox").checked;
+            var sackgasseCheckbox = document.getElementById("sackgasseCheckbox").checked;
+            FilterArray[0] = passCheckbox;
+            FilterArray[1] = climbCheckbox;
+            FilterArray[2] = sackgasseCheckbox;
+            if (!minHeight){
+                FilterArray[3] = 0; 
+            } else {
+                FilterArray[3] = parseFloat(minHeight);
+            }
+            if (!maxHeight){
+                FilterArray[4] = 10000; 
+            } else {
+                FilterArray[4] = parseFloat(maxHeight);
+            }
+            if (!minElevation){
+                FilterArray[5] = 0; 
+            } else {
+                FilterArray[5] = parseFloat(minElevation);
+            }
+            if (!maxElevation){
+                FilterArray[6] = 10000; 
+            } else {
+                FilterArray[6] = parseFloat(maxElevation);
+            }
+            if (!minLength){
+                FilterArray[7] = 0; 
+            } else {
+                FilterArray[7] = parseFloat(minLength);
+            }
+            if (!maxLength){
+                FilterArray[8] = 10000; 
+            } else {
+                FilterArray[8] = parseFloat(maxLength);
+            }
+            if (!minSlope){
+                FilterArray[9] = 0; 
+            } else {
+                FilterArray[9] = parseFloat(minSlope);
+            }
+            if (!maxSlope){
+                FilterArray[10] = 10000; 
+            } else {
+                FilterArray[10] = parseFloat(maxSlope);
+            }
+            filter.style.display = "none";
+        });
+
+        resetFilterButton.addEventListener("click", function() {
+            applyFilter = false;
+            filterToggle.style.color = "grey";
+            document.getElementById('minHeight').value = '';
+            document.getElementById('maxHeight').value = '';
+            document.getElementById('minElevation').value = '';
+            document.getElementById('maxElevation').value = '';
+            document.getElementById('minLength').value = '';
+            document.getElementById('maxLength').value = '';
+            document.getElementById('minSlope').value = '';
+            document.getElementById('maxSlope').value = '';
+            document.getElementById('passCheckbox').checked = false;
+            document.getElementById('climbCheckbox').checked = false;
+            document.getElementById('sackgasseCheckbox').checked = false;
+            FilterArray[0] = false;
+            FilterArray[1] = false;
+            FilterArray[2] = false;
+            FilterArray[3] = 0;
+            FilterArray[4] = 10000;
+            FilterArray[5] = 0;
+            FilterArray[6] = 10000;
+            FilterArray[7] = 0;
+            FilterArray[8] = 10000;
+            FilterArray[9] = 0;
+            FilterArray[10] = 10000;
+            filter.style.display = "none";
+        });
 
         filterToggle.addEventListener("click", function() {
             if (filter.style.display === "none" || filter.style.display === "") {
@@ -266,29 +695,7 @@
                 filter.style.display = "none";
             }
         });
-
-        resetFilterButton.addEventListener('click', function() {
-            document.getElementById('minHeight').value = '';
-            document.getElementById('maxHeight').value = '';
-            document.getElementById('minElevation').value = '';
-            document.getElementById('maxElevation').value = '';
-            document.getElementById('minLength').value = '';
-            document.getElementById('maxLength').value = '';
-            document.getElementById('passCheckbox').checked = false;
-            document.getElementById('climbCheckbox').checked = false;
-            document.getElementById('sackgasseCheckbox').checked = false;
-        });
-
-        applyFilterButton.addEventListener("click", function() {
-            var minHeight = document.getElementById("minHeight").value;
-            var maxHeight = document.getElementById("maxHeight").value;
-            var minElevation = document.getElementById("minElevation").value;
-            var maxElevation = document.getElementById("maxElevation").value;
-            var minLength = document.getElementById("minLength").value;
-            var maxLength = document.getElementById("maxLength").value;
-
-            // Implement your filtering logic here using minHeight, maxHeight, minElevation, and maxElevation
-        });
+        resetFilterButton.click();
 
         //scale
         L.control.scale({
@@ -317,38 +724,11 @@
         var geoJSONArray = [];
         var geoJSONs = [];
         var marks = [];
-        var geoIT = [];
-        var geoFR = [];
-        var geoDE = [];
-        var geoAT = [];
-        var geoCH = [];
-        var geoPass = [];
-        var geoClimb = [];
-        var geoSack = [];
+        var markerTable = [];
+        var trackTable = [];
         var selected = [];
-        var selectedTrack = [];
-        var idTrack1;
-        var idTrack2;
         var id;
         var markerStates = [];
-
-        //checkbox bar
-        var passCheckbox = false;
-        var climbCheckbox = false;
-        var sackgasseCheckbox = false;
-
-        // Add event listeners to the checkboxes
-        document.getElementById('passCheckbox').addEventListener('change', function (event) {
-            passCheckbox = event.target.checked;
-        });
-
-        document.getElementById('climbCheckbox').addEventListener('change', function (event) {
-            climbCheckbox = event.target.checked;
-        });
-
-        document.getElementById('sackgasseCheckbox').addEventListener('change', function (event) {
-            sackgasseCheckbox = event.target.checked;
-        });
 
         //custom icons
         var yellowIcon = L.icon({
@@ -394,7 +774,7 @@
                 layer.on('mouseover', function (e) {
                     if (feature.properties.category == 'Pass'){
                         id = feature.properties.idd;
-                        geoJSONArray[id].setStyle({ color: 'blue' ,weight:'3'});
+                        geoJSONArray[id].setStyle({ color: 'darkblue' ,weight:'3'});
                     } else if (feature.properties.category == 'Climb'){
                         id = feature.properties.idd;
                         geoJSONArray[id].setStyle({ color: 'orange' ,weight:'3'});
@@ -406,9 +786,9 @@
                 layer.on('mouseout', function (e) {
                     if (feature.properties.category == 'Pass'){
                         if (selected[id]) {
-                            geoJSONArray[id].setStyle({ color: 'blue',weight:'3' }); // Change color
+                            geoJSONArray[id].setStyle({ color: 'darkblue',weight:'3' }); // Change color
                         } else {
-                            geoJSONArray[id].setStyle({ color: 'lightblue',weight:'1' }); // Restore the old color
+                            geoJSONArray[id].setStyle({ color: 'blue',weight:'1' }); // Restore the old color
                         }
                     } else if (feature.properties.category == 'Climb'){
                         if (selected[id]) {
@@ -435,9 +815,9 @@
                         //updateGeoJSONLayerColor();
                         if (feature.properties.category == 'Pass'){
                             if (selected[id]) {
-                                geoJSONArray[id].setStyle({ color: 'blue',weight:'3' }); // Change color
+                                geoJSONArray[id].setStyle({ color: 'darkblue',weight:'3' }); // Change color
                             } else {
-                                geoJSONArray[id].setStyle({ color: 'lightblue',weight:'1' }); // Restore the old color
+                                geoJSONArray[id].setStyle({ color: 'blue',weight:'1' }); // Restore the old color
                             } 
                         } else if (feature.properties.category == 'Climb'){
                             if (selected[id]) {
@@ -497,7 +877,7 @@
                 if (feature.properties.category == 'Climb'){
                     this.setStyle({ color: 'orange', weight: 3 });
                 } else if (feature.properties.category == 'Pass'){
-                    this.setStyle({ color: 'blue', weight: 3 });
+                    this.setStyle({ color: 'darkblue', weight: 3 });
                 } else if (feature.properties.category == 'Sackgasse'){
                     this.setStyle({ color: 'red', weight: 3 });
                 }
@@ -505,9 +885,9 @@
             layer.on('mouseout', function (e) {
                 if (feature.properties.category == 'Pass'){
                     if (selected[id]) {
-                        this.setStyle({ color: 'blue',weight:'3' }); // Change color
+                        this.setStyle({ color: 'darkblue',weight:'3' }); // Change color
                     } else {
-                        this.setStyle({ color: 'lightblue',weight:'1' }); // Restore the old color
+                        this.setStyle({ color: 'blue',weight:'1' }); // Restore the old color
                     } 
                 } else if (feature.properties.category == 'Climb'){
                     if (selected[id]) {
@@ -528,7 +908,7 @@
             if (feature.properties.category == 'Climb') {
                 return { color: 'yellow', weight: "1" };
             } else if (feature.properties.category == 'Pass') {
-                return { color: 'lightblue', weight: "1" };
+                return { color: 'blue', weight: "1" };
             } else if (feature.properties.category == 'Sackgasse') {
                 return { color: 'pink', weight: "1" };
             }  
@@ -1102,47 +1482,132 @@
         layerControl2.addOverlay(gSusten, "Sustenpass");
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+        //table data
+        var lengthArray = [];
+        var elevationArray = [];
+        var slopeArray = [];
+        var trackArray1 = [];
+        var trackArray2 = [];
+        var trackArray3 = [];
+        var trackArray4 = [];
+        var trackArray5 = [];
+        var addInfo = [];
+        var j = 0;
+        for (j=0; j<=685; j++){
+            lengthArray[j] = 0;
+            elevationArray[j] = 0;
+            slopeArray[j] = 0;
+        }
+        trackTable = geoJSONArray;
+        trackTable.forEach(function (layer) {
+            const features = layer.getLayers();
+            features.forEach(function (featureLayer) {
+                const idd = featureLayer.feature.properties.idd;
+                const length = featureLayer.feature.properties.length;
+                const elevation = featureLayer.feature.properties.elevation;
+                const name = featureLayer.feature.properties.name;
+                const slopeOrig = (elevation/(length*1000))*100;
+                const slope = slopeOrig.toFixed(1);
+                const id = featureLayer.feature.properties.id;
+
+                if (length >= lengthArray[idd]){lengthArray[idd] = length};
+                if (elevation >= elevationArray[idd]){elevationArray[idd] = elevation}; 
+                if (slope >= slopeArray[idd]){slopeArray[idd] = slope}; 
+            });
+        });
+        markerTable.push(marker);
+        markerTable.forEach(function (layer) {
+            const features = layer.getLayers();
+            features.forEach(function (featureLayer) {
+                const name = featureLayer.feature.properties.name;
+                const height = featureLayer.feature.properties.height;
+                const country = featureLayer.feature.properties.country;
+                const idd = featureLayer.feature.properties.idd;
+                const link = featureLayer.feature.properties.link;
+                var length = lengthArray[idd];
+                var elevation = elevationArray[idd];
+                var slope = slopeArray[idd];
+
+                addInfo = [];
+                if (lengthArray[idd] > 0.1){
+                    const layer = trackTable[idd];
+                    const numberOfFeatures = layer.getLayers().length;
+                    var j;
+                    for (j=0; j<=numberOfFeatures-1; j++){
+                        trackArray1[j] = geoJSONArray[idd].getLayers()[j].feature.properties.name;
+                        trackArray2[j] = geoJSONArray[idd].getLayers()[j].feature.properties.length;
+                        trackArray3[j] = geoJSONArray[idd].getLayers()[j].feature.properties.elevation;
+                        trackArray4[j] = ((geoJSONArray[idd].getLayers()[j].feature.properties.elevation/((geoJSONArray[idd].getLayers()[j].feature.properties.length)*1000))*100).toFixed(1);
+                        trackArray5[j] = geoJSONArray[idd].getLayers()[j].feature.properties.link;
+                        addInfo[j] = trackArray1[j] +  " (" + trackArray2[j] + ' km, ' + trackArray3[j] + ' hm, ' + trackArray4[j] + ' %)'
+                    }
+                    
+                } else {
+                    addInfo = ["Info 1", "Info 2", "Info 3"];
+                }
+ 
+                const tableRow = createRow(idd, name, country, height, length, elevation, slope, addInfo);
+
+                dataBody.appendChild(tableRow);
+            });
+        });
+
+        function checkboxCallback(idd, isChecked) {
+            if (isChecked) {
+                geoJSONArray[idd].addTo(map);
+                marker.eachLayer(function (layer) {
+                    const iddd = layer.feature.properties.idd;
+                    if (iddd === idd) {
+                        layer.addTo(map);
+                    }
+                });
+            } else {
+                map.removeLayer(geoJSONArray[idd]);
+                marker.eachLayer(function (layer) {
+                    const iddd = layer.feature.properties.idd;
+                    if (iddd === idd) {
+                        map.removeLayer(layer);
+                    }
+                });
+            }
+        }
+
+        // variables
         var MarkersSelected = false;
         var ItalySelected = false;
         var FranceSelected = false;
         var SuisseSelected = false;
         var AustriaSelected = false;
         var GermanySelected = false;
-        var PassSelected = false;
-        var ClimbSelected = false;
-        var SackSelected = false;
+        var text;
         var markersCheckbox;
         var italyCheckbox;
         var suisseCheckbox;
         var franceCheckbox;
         var austriaCheckbox;
-        var germanyCheckbox; 
-
-        var geoJSONData = geoJSONArray;
-        var selectedCategories = [];
-
-        var markerPass = [];
-        var markerClimb = [];
-        var markerSack = [];
-        var geoPass = [];
-        var geoClimb = [];
-        var geoSack = [];
+        var germanyCheckbox;
+        var geoIDArray = [];
+        var markerIDArray = [];
+        var allArray = [];
+        var italyArray = [];
+        var franceArray = [];
+        var suisseArray = [];
+        var austriaArray = [];
+        var germanyArray = [];
+        var iddArray = [];
         
-        var pass1 = L.layerGroup([]);
-        var pass2 = L.layerGroup([]);
-        var climb1 = L.layerGroup([]);
-        var climb2 = L.layerGroup([]);
-        var sack1 = L.layerGroup([]);
-        var sack2 = L.layerGroup([]);
+        var italy1 = L.layerGroup([]);
+        var france1 = L.layerGroup([]);
+        var suisse1 = L.layerGroup([]);
+        var austria1 = L.layerGroup([]);
+        var germany1 = L.layerGroup([]);
 
         var all= L.layerGroup([]);;
         var italy = L.layerGroup([]);
         var france = L.layerGroup([]);
+        var suisse = L.layerGroup([]);
         var austria = L.layerGroup([]);
         var germany = L.layerGroup([]);
-        var suisse = L.layerGroup([]);
-
-        var text;
 
         var baseMaps = {
             "Standard": osm,
@@ -1163,20 +1628,14 @@
 
         // Function to filter GeoJSON objects based on selected categories
         function filterGeoJSONObjects() {
-            geoIT = [];
-            geoFR = [];
-            geoDE = [];
-            geoAT = [];
-            geoCH = [];
-            markerPass = [];
-            markerClimb = [];
-            markerSack = [];
-            geoPass = [];
-            geoClimb = [];
-            geoSack = [];
-            selectedCategories[0] = null;
-            selectedCategories[1] = null;
-            selectedCategories[2] = null;
+            allArray = [];
+            italyArray = [];
+            franceArray = [];
+            suisseArray = [];
+            austriaArray = [];
+            germanyArray = [];
+            markerIDArray = [];
+            geoIDArray = [];
 
             var markerClick = MarkersSelected;
             var italyClick = ItalySelected;
@@ -1192,40 +1651,17 @@
             if (AustriaSelected){ austriaCheckbox.click()};
             if (GermanySelected){ germanyCheckbox.click()};
 
-            if (passCheckbox) {
-                selectedCategories[0] = "Pass";
-            }
-            if (climbCheckbox) {
-                selectedCategories[1] = "Climb";
-            }
-            if (sackgasseCheckbox) {
-                selectedCategories[2] = "Sackgasse";
-            }
-
             marks.push(marker);
             marks.forEach(function (layer) {
                 const features = layer.getLayers();
                 features.forEach(function (featureLayer) {
                     const country = featureLayer.feature.properties.country;
                     const category = featureLayer.feature.properties.category;
-                    if (country === 'IT'&& (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
-                        geoIT.push(featureLayer);
-                    } else if (country === 'FR' && (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
-                        geoFR.push(featureLayer);
-                    } else if (country === 'DE' && (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
-                        geoDE.push(featureLayer)
-                    } else if (country === 'AT' && (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
-                        geoAT.push(featureLayer)
-                    } else if (country === 'CH' && (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
-                        geoCH.push(featureLayer);
-                    };
-                    if (category === 'Pass' && (category == selectedCategories[0] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))){
-                        markerPass.push(featureLayer)
-                    } else if (category === 'Climb' && (category == selectedCategories[1] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))){
-                        markerClimb.push(featureLayer)
-                    } else if (category === 'Sackgasse' && (category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))){
-                        markerSack.push(featureLayer)
-                    };
+                    const height = featureLayer.feature.properties.height;
+                    const idd = featureLayer.feature.properties.idd;
+                    if((((category === 'Pass' && FilterArray[0]) || (category === 'Climb' && FilterArray[1]) || (category == 'Sackgasse' && FilterArray[2])) || (!FilterArray[0] && !FilterArray[1] && !FilterArray[2])) && height >= FilterArray[3] && height <= FilterArray[4]){
+                        markerIDArray[idd] = idd;
+                    }
                 }); 
             });
 
@@ -1234,33 +1670,75 @@
                 features.forEach(function (featureLayer) {
                     const country = featureLayer.feature.properties.country;
                     const category = featureLayer.feature.properties.category;
-                    if (country === 'IT'&& (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
-                        geoIT.push(featureLayer);
-                    } else if (country === 'FR' && (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
-                        geoFR.push(featureLayer);
-                    } else if (country === 'DE' && (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
-                        geoDE.push(featureLayer)
-                    } else if (country === 'AT' && (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
-                        geoAT.push(featureLayer)
-                    } else if (country === 'CH' && (category == selectedCategories[0] || category == selectedCategories[1] || category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))) {
-                        geoCH.push(featureLayer);
+                    const length = featureLayer.feature.properties.length;
+                    const elevation = featureLayer.feature.properties.elevation;
+                    const slope = (elevation/(length*1000))*100;
+                    const idd = featureLayer.feature.properties.idd;
+                    if((((category === 'Pass' && FilterArray[0]) || (category === 'Climb' && FilterArray[1]) || (category == 'Sackgasse' && FilterArray[2])) || (!FilterArray[0] && !FilterArray[1] && !FilterArray[2])) && length >= FilterArray[7] && length <= FilterArray[8] && elevation >= FilterArray[5] && elevation <= FilterArray[6] && slope >= FilterArray[9] && slope <= FilterArray[10]){
+                        geoIDArray[idd] = idd;
                     }
-                    if (category === 'Pass' && (category == selectedCategories[0] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))){
-                        geoPass.push(featureLayer)
-                    } else if (category === 'Climb' && (category == selectedCategories[1] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))){
-                        geoClimb.push(featureLayer)
-                    } else if (category === 'Sackgasse' && (category == selectedCategories[2] || (!selectedCategories[0]  && !selectedCategories[1] && !selectedCategories[2]))){
-                        geoSack.push(featureLayer)
-                    };
                 });
             });
 
-            layerControl.removeLayer(pass1);
-            layerControl.removeLayer(pass2);
-            layerControl.removeLayer(climb1);
-            layerControl.removeLayer(climb2);
-            layerControl.removeLayer(sack1);
-            layerControl.removeLayer(sack2);
+            iddArray = [];
+            var k = 683;
+            for (i=0; i<=k; i++){
+                if (geoIDArray[i] == i && markerIDArray[i] == i){
+                    iddArray[i] = i;
+                }
+            }
+
+            marks.forEach(function (layer) {
+                const features = layer.getLayers();
+                features.forEach(function (featureLayer) {
+                    const country = featureLayer.feature.properties.country;
+                    const idd = featureLayer.feature.properties.idd;
+                    if (iddArray[idd] == idd && country === 'IT'){
+                        italyArray.push(featureLayer);
+                    }
+                    else if (iddArray[idd] == idd && country === 'FR'){
+                        franceArray.push(featureLayer);
+                    }
+                    else if (iddArray[idd] == idd && country === 'CH'){
+                        suisseArray.push(featureLayer);
+                    }
+                    else if (iddArray[idd] == idd && country === 'AT'){
+                        austriaArray.push(featureLayer);
+                    }
+                    else if (iddArray[idd] == idd && country === 'DE'){
+                        germanyArray.push(featureLayer);
+                    }
+                }); 
+            });
+
+            geoJSONArray.forEach(function (layer) {
+                const features = layer.getLayers();
+                features.forEach(function (featureLayer) {
+                    const country = featureLayer.feature.properties.country;
+                    const idd = featureLayer.feature.properties.idd;
+                    if (iddArray[idd] == idd && country === 'IT'){
+                        italyArray.push(featureLayer);
+                    }
+                    else if (iddArray[idd] == idd && country === 'FR'){
+                        franceArray.push(featureLayer);
+                    }
+                    else if (iddArray[idd] == idd && country === 'CH'){
+                        suisseArray.push(featureLayer);
+                    }
+                    else if (iddArray[idd] == idd && country === 'AT'){
+                        austriaArray.push(featureLayer);
+                    }
+                    else if (iddArray[idd] == idd && country === 'DE'){
+                        germanyArray.push(featureLayer);
+                    }
+                });
+            });
+
+            layerControl.removeLayer(italy1);
+            layerControl.removeLayer(france1);
+            layerControl.removeLayer(suisse1);
+            layerControl.removeLayer(austria1);
+            layerControl.removeLayer(germany1);
 
             layerControl.removeLayer(all);
             layerControl.removeLayer(italy);
@@ -1269,19 +1747,18 @@
             layerControl.removeLayer(austria);
             layerControl.removeLayer(germany);
 
-            pass1 = L.layerGroup(markerPass);
-            pass2 = L.layerGroup(geoPass);
-            climb1 = L.layerGroup(markerClimb);
-            climb2 = L.layerGroup(geoClimb);
-            sack1 = L.layerGroup(markerSack);
-            sack2 = L.layerGroup(geoSack);
+            italy1 = L.layerGroup(italyArray);
+            france1 = L.layerGroup(franceArray);
+            suisse1 = L.layerGroup(suisseArray);
+            austria1 = L.layerGroup(austriaArray);
+            germany1 = L.layerGroup(germanyArray);
 
-            all = L.layerGroup([pass1, pass2, climb1, climb2, sack1, sack2]);
-            italy = L.layerGroup(geoIT);
-            suisse = L.layerGroup(geoCH);
-            france = L.layerGroup(geoFR);
-            austria = L.layerGroup(geoAT);
-            germany = L.layerGroup(geoDE);
+            all = L.layerGroup([italy1, france1, suisse1, austria1, germany1]);
+            italy = L.layerGroup(italyArray);
+            france = L.layerGroup(franceArray);
+            suisse = L.layerGroup(suisseArray);
+            austria = L.layerGroup(austriaArray);
+            germany = L.layerGroup(germanyArray);
             
             layerControl.addOverlay(all, "All");
             layerControl.addOverlay(italy, "Italy");
@@ -1300,13 +1777,11 @@
             if (suisseClick){ suisseCheckbox.click()};
             if (austriaClick){ austriaCheckbox.click()};
             if (germanyClick){ germanyCheckbox.click()};
-           
         };
-        // Add event listeners to the checkboxes
-        document.getElementById('passCheckbox').addEventListener('change', filterGeoJSONObjects);
-        document.getElementById('climbCheckbox').addEventListener('change', filterGeoJSONObjects);
-        document.getElementById('sackgasseCheckbox').addEventListener('change', filterGeoJSONObjects);
 
+        // Add event listeners to the checkboxes
+        document.getElementById('applyFilter').addEventListener('click', filterGeoJSONObjects);
+        document.getElementById('resetFilter').addEventListener('click', filterGeoJSONObjects);
         
         //layer control button selection
         function clickevents(){
@@ -1333,18 +1808,8 @@
                                 if (GermanySelected){
                                     germanyCheckbox.click();
                                 }
-                                if (PassSelected){
-                                    passCheckbox.click();
-                                }
-                                if (ClimbSelected){
-                                    climbCheckbox.click();
-                                }
-                                if (SackSelected){
-                                    sackCheckbox.click();
-                                }
                                 markersCheckbox.click();
                                 markersCheckbox.click();
-                                
                             }
                         });
                     }
@@ -1353,7 +1818,6 @@
                     if (italyCheckbox) {
                         italyCheckbox.addEventListener('click', function (e) {
                             ItalySelected = e.target.checked;
-
                             if (ItalySelected){
                                 if (MarkersSelected){
                                     markersCheckbox.click();
@@ -1367,8 +1831,7 @@
                     franceCheckbox = label.querySelector('input[type="checkbox"]');
                     if (franceCheckbox) {
                         franceCheckbox.addEventListener('click', function (e) {
-                            FranceSelected = e.target.checked;
-                            
+                            FranceSelected = e.target.checked; 
                             if (FranceSelected){
                                 if (MarkersSelected){
                                     markersCheckbox.click();
@@ -1383,7 +1846,6 @@
                     if (suisseCheckbox) {
                         suisseCheckbox.addEventListener('click', function (e) {
                             SuisseSelected = e.target.checked;
-                            
                             if (SuisseSelected){
                                 if (MarkersSelected){
                                     markersCheckbox.click();
@@ -1398,7 +1860,6 @@
                     if (austriaCheckbox) {
                         austriaCheckbox.addEventListener('click', function (e) {
                             AustriaSelected = e.target.checked;
-                            
                             if (AustriaSelected){
                                 if (MarkersSelected){
                                     markersCheckbox.click();
@@ -1413,57 +1874,11 @@
                     if (germanyCheckbox) {
                         germanyCheckbox.addEventListener('click', function (e) {
                             GermanySelected = e.target.checked;
-                            
                             if (GermanySelected){
                                 if (MarkersSelected){
                                     markersCheckbox.click();
                                     germanyCheckbox.click();
                                     germanyCheckbox.click();
-                                }
-                            }
-                        });
-                    }
-                } else if (text === 'Pass') {
-                    passCheckbox = label.querySelector('input[type="checkbox"]');
-                    if (passCheckbox) {
-                        passCheckbox.addEventListener('click', function (e) {
-                            PassSelected = e.target.checked;
-                            
-                            if (PassSelected){
-                                if (MarkersSelected){
-                                    markersCheckbox.click();
-                                    passCheckbox.click();
-                                    passCheckbox.click();
-                                }
-                            }
-                        });
-                    }
-                } else if (text === 'Climb') {
-                    climbCheckbox = label.querySelector('input[type="checkbox"]');
-                    if (climbCheckbox) {
-                        climbCheckbox.addEventListener('click', function (e) {
-                            ClimbSelected = e.target.checked;
-                            
-                            if (ClimbSelected){
-                                if (MarkersSelected){
-                                    markersCheckbox.click();
-                                    climbCheckbox.click();
-                                    climbCheckbox.click();
-                                }
-                            }
-                        });
-                    }
-                } else if (text === 'Sackgasse') {
-                    sackCheckbox = label.querySelector('input[type="checkbox"]');
-                    if (sackCheckbox) {
-                        sackCheckbox.addEventListener('click', function (e) {
-                            SackSelected = e.target.checked;
-                            
-                            if (SackSelected){
-                                if (MarkersSelected){
-                                    markersCheckbox.click();
-                                    sackCheckbox.click();
-                                    sackCheckbox.click();
                                 }
                             }
                         });

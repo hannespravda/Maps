@@ -6,7 +6,7 @@ var Zeno = {
         "properties": {
           "idd": "683",
           "name": "Ostauffahrt",
-          "length": "13.9 km",
+          "length": "13.9",
           "elevation": "930",
           "category":"Climb",
           "country":"IT",
@@ -2661,7 +2661,7 @@ var Zeno = {
         "properties": {
           "idd": "683",
           "name": "Westauffahrt",
-          "length": "16.1 km",
+          "length": "16.1",
           "elevation": "1200",
           "category":"Climb",
           "country":"IT",

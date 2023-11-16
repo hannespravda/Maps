@@ -6,7 +6,7 @@ var Vivione = {
         "properties": {
           "idd": "79",
           "name": "Nordauffahrt",
-          "length": "19.9 km",
+          "length": "19.9",
           "elevation": "1290",
           "category":"Pass",
           "country":"IT",
@@ -3345,7 +3345,7 @@ var Vivione = {
         "properties": {
           "idd": "79",
           "name": "Südauffahrt",
-          "length": "21.1 km",
+          "length": "21.1",
           "elevation": "1160",
           "category":"Pass",
           "country":"IT",
