@@ -78,7 +78,7 @@
             color: black; /* Grey text */
         }
         .filter-input::placeholder {
-            color: grey; /* Placeholder text color */
+            color: rgb(126, 121, 121); /* Placeholder text color */
             font-size: 12px;
         }
         .separator-line {
@@ -232,6 +232,17 @@
             cursor: pointer;
             user-select: none;
         }
+        #filter-table {
+            margin-left: -1px; /* Adjust the value as needed */
+            background-color: white;
+            color: rgb(126, 121, 121);
+            border: 0px solid #ccc;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            text-align: left;
+            cursor: pointer;
+            user-select: none;
+        }
         .additional-info {
             background-color: #f2f2f2; /* Grey background color */
             padding: 1px; /* Add padding for spacing */
@@ -247,6 +258,99 @@
             border-radius: 0px; /* Add rounded corners */
             cursor: pointer; /* Set cursor to pointer for interaction */
             user-select: none;
+        }
+
+        #filter2 {
+            position: absolute;
+            top: 160px; /* Adjust the top position as needed */
+            left: 425px; /* Adjust the left position as needed */
+            transform: translateX(-50%);
+            z-index: 1000;
+            background-color: white;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            padding: 5px; /* Add padding to create space around the text */
+            text-align: center; /* Center the text horizontally */
+            width: 200px;
+            user-select: none;
+          }
+        .filter2-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .filter2-input {
+            width: 50px;
+            text-align: center;
+            color: black;
+        }
+        .filter2-row input:first-child {
+            width: 50px;
+            text-align: center;
+            color: black; /* Grey text */
+        }
+        .filter2-input::placeholder {
+            color: rgb(126, 121, 121); /* Placeholder text color */
+            font-size: 12px;
+        }
+        .separator-line2 {
+            border-top: 1px solid #ccc;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .filter2-row button {
+            /* Add styling to the buttons as needed */
+            padding: 0px 7px; /* Adjust padding to desired size */
+            background-color: white; /* Example background color */
+            color: lightblue; /* Text color */
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            border: none; /* Remove border */
+            cursor: pointer;
+            user-select: none;
+        }
+        #resetFilter2 {
+            width: 150px;
+            text-align: right;
+            color: rgb(179, 108, 108); /* Text color */
+            user-select: none;
+        }
+        .filter2-input[type="number"]::-webkit-inner-spin-button,
+        .filter2-input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .height-label2 {
+            text-align: left;
+            width: 50px;
+        }
+        .elevation-label2 {
+            text-align: left;
+            width: 50px;
+        }
+        .length-label2 {
+            text-align: left;
+            width: 50px;
+        }
+        .slope-label2 {
+            text-align: left;
+            width: 50px;
+        }
+        .min-height2 {
+            margin-left: 10px;
+        }
+        .min-elevation2{
+            margin-left: 10px;
+        }
+        .min-length2 {
+            margin-left: 10px;
+        }
+        .min-slope2 {
+            margin-left: 10px;
         }
     </style>
 
@@ -319,7 +423,7 @@
     <!-------------------------------------------------------------------------------------------------------->
 </head>
 <body>
-    <div id = "map"></div>  
+    <div id = "map"></div> 
 
     <div id="filter-toggle">Filter</div>
     <div id="filter" style="display: none;">
@@ -375,6 +479,7 @@
             </select>
             <button id="toggle-sort-order" onclick="toggleSortOrder()">↑↓</button>
             <button id="reset-checkboxes" onclick="resetCheckboxes()">clear</button>
+            <button id="filter-table" onclick="tableFilterToggle()">Filter</button>
         </div>
         <table id="data-table">
             <thead>
@@ -390,6 +495,44 @@
             </thead>
             <tbody id="data-body"></tbody>
         </table>
+    </div>
+
+    <div id="filter2" style="display: none;">
+        <div id="checkbox-container2">
+            <div id="filter2-bar">
+                <label for="passCheckbox2">Pass</label>
+                <input type="checkbox" id="passCheckbox2">
+                <label for="climbCheckbox2">Climb</label>
+                <input type="checkbox" id="climbCheckbox2">
+                <label for="sackgasseCheckbox2">Sackgasse</label>
+                <input type="checkbox" id="sackgasseCheckbox2">
+            </div>
+        </div>
+        <hr class="separator-line2">
+        <div class="filter2-row">
+            <label class="height-label2">Height:</label>
+            <input type="number" id="minHeight2" class="min-height2 filter2-input" step="10" placeholder="min m">
+            <input type="number" id="maxHeight2" class="max-height2 filter2-input" step="10" placeholder="max m">
+        </div>
+        <div class="filter2-row">
+            <label class="elevation-label2">Elevation:</label>
+            <input type="number" id="minElevation2" step="10" class="min-elevation2 filter2-input" placeholder="min hm">
+            <input type="number" id="maxElevation2" step="10" class="max-elevation2 filter2-input" placeholder="max hm">
+        </div>
+        <div class="filter2-row">
+            <label class="length-label2">Length:</label>
+            <input type="number" id="minLength2" step="10" class="min-length2 filter2-input" placeholder="min km">
+            <input type="number" id="maxLength2" step="10" class="max-length2 filter2-input" placeholder="max km">
+        </div>
+        <div class="filter2-row">
+            <label class="slope-label2">Slope:</label>
+            <input type="number" id="minSlope2" step="10" class="min-slope2 filter2-input" placeholder="min %">
+            <input type="number" id="maxSlope2" step="10" class="max-slope2 filter2-input" placeholder="max %">
+        </div>
+        <div class="filter2-row">
+            <button id="resetFilter2">Reset</button>
+            <button id="applyFilter2">Apply</button>
+        </div>
     </div>
 
     <script>
@@ -497,7 +640,7 @@
             }
         });
 
-        function createRow(idd, name, country, height, length, elevation, slope, additionalInfoArray) {
+        function createRow(idd, name, country, height, length, elevation, slope, additionalInfoArray, link) {
             const tableRow = document.createElement("tr");
 
             // Create a checkbox cell
@@ -512,11 +655,17 @@
             tableRow.appendChild(checkboxCell);
         
             const nameCell = document.createElement("td");
-            nameCell.textContent = name;
+            const nameLink = document.createElement("a");
+            nameLink.href = link;
+            nameLink.target = "_blank";
+            nameLink.textContent = name;
+            nameLink.style.textDecoration = "underline";
+            nameLink.style.color = "inherit";
+            nameCell.appendChild(nameLink);
         
             const showMoreButton = document.createElement("div");
             showMoreButton.textContent = "show more";
-            showMoreButton.className = "show-more-button"; // Add the class to the div
+            showMoreButton.className = "show-more-button";
             showMoreButton.onclick = function () {
                 toggleAdditionalInfo(nameCell, additionalInfoArray);
             };
@@ -546,13 +695,6 @@
         
             return tableRow;
         }
-
-        function resetCheckboxes() {
-            const checkboxes = document.querySelectorAll(".checkbox99");
-            checkboxes.forEach(function (checkbox) {
-                checkbox.checked = false;
-            });
-        };
         
         function toggleAdditionalInfo(container, additionalInfoArray) {
             const row = container.closest("tr");
@@ -562,11 +704,25 @@
             newCell.colSpan = row.cells.length;
             const newInfoContainer = document.createElement("div");
             newInfoContainer.className = "additional-info";
+
             additionalInfoArray.forEach(info => {
-                const infoParagraph = document.createElement("p");
-                infoParagraph.textContent = info;
-                newInfoContainer.appendChild(infoParagraph);
+                const linkElement = document.createElement("a");
+                linkElement.href = info[0];  // Assuming the link is the first part
+                linkElement.target = "_blank";
+                linkElement.textContent = info[1];  // Assuming the name is the second part
+                linkElement.style.textDecoration = "underline";
+                linkElement.style.color = "inherit"; // Inherit the color from the parent element
+                
+                const paragraph = document.createElement("p");
+                paragraph.appendChild(linkElement);
+
+                const additionalText = document.createElement("span");
+                additionalText.textContent = info[2];
+                paragraph.appendChild(additionalText);
+
+                newInfoContainer.appendChild(paragraph);
             });
+
             newCell.appendChild(newInfoContainer);
             newRow.appendChild(newCell);
             if (container.querySelector(".show-more-button").textContent === "show more") {
@@ -590,7 +746,111 @@
             });
         };
 
-        
+        //filter2//////////////////////////////////////////////////////////////////////////////////////
+        var filter2 = document.getElementById("filter2");
+        var filterButton2 = document.getElementById('filter-table');
+        var applyFilterButton2 = document.getElementById("applyFilter2");
+        var resetFilterButton2 = document.getElementById("resetFilter2");
+        var applyFilter2 = false;
+        var FilterArray2 = [];
+
+        applyFilterButton2.addEventListener("click", function() {
+            applyFilter2 = true;
+            filterButton2.style.color = "lightblue";
+            var minHeight2 = document.getElementById("minHeight2").value;
+            var maxHeight2 = document.getElementById("maxHeight2").value;
+            var minElevation2 = document.getElementById("minElevation2").value;
+            var maxElevation2 = document.getElementById("maxElevation2").value;
+            var minLength2 = document.getElementById("minLength2").value;
+            var maxLength2 = document.getElementById("maxLength2").value;
+            var minSlope2 = document.getElementById("minSlope2").value;
+            var maxSlope2 = document.getElementById("maxSlope2").value;
+            var passCheckbox2 = document.getElementById("passCheckbox2").checked;
+            var climbCheckbox2 = document.getElementById("climbCheckbox2").checked;
+            var sackgasseCheckbox2 = document.getElementById("sackgasseCheckbox2").checked;
+            FilterArray2[0] = passCheckbox2;
+            FilterArray2[1] = climbCheckbox2;
+            FilterArray2[2] = sackgasseCheckbox2;
+            if (!minHeight2){
+                FilterArray2[3] = 0; 
+            } else {
+                FilterArray2[3] = parseFloat(minHeight2);
+            }
+            if (!maxHeight2){
+                FilterArray2[4] = 10000; 
+            } else {
+                FilterArray2[4] = parseFloat(maxHeight2);
+            }
+            if (!minElevation2){
+                FilterArray2[5] = 0; 
+            } else {
+                FilterArray2[5] = parseFloat(minElevation2);
+            }
+            if (!maxElevation2){
+                FilterArray2[6] = 10000; 
+            } else {
+                FilterArray2[6] = parseFloat(maxElevation2);
+            }
+            if (!minLength2){
+                FilterArray2[7] = 0; 
+            } else {
+                FilterArray2[7] = parseFloat(minLength2);
+            }
+            if (!maxLength2){
+                FilterArray2[8] = 10000; 
+            } else {
+                FilterArray2[8] = parseFloat(maxLength2);
+            }
+            if (!minSlope2){
+                FilterArray2[9] = 0; 
+            } else {
+                FilterArray2[9] = parseFloat(minSlope2);
+            }
+            if (!maxSlope2){
+                FilterArray2[10] = 10000; 
+            } else {
+                FilterArray2[10] = parseFloat(maxSlope2);
+            }
+            filter2.style.display = "none";
+        });
+
+        resetFilterButton2.addEventListener("click", function() {
+            applyFilter2 = false;
+            filterButton2.style.color = 'rgb(126, 121, 121)';
+            document.getElementById('minHeight2').value = '';
+            document.getElementById('maxHeight2').value = '';
+            document.getElementById('minElevation2').value = '';
+            document.getElementById('maxElevation2').value = '';
+            document.getElementById('minLength2').value = '';
+            document.getElementById('maxLength2').value = '';
+            document.getElementById('minSlope2').value = '';
+            document.getElementById('maxSlope2').value = '';
+            document.getElementById('passCheckbox2').checked = false;
+            document.getElementById('climbCheckbox2').checked = false;
+            document.getElementById('sackgasseCheckbox2').checked = false;
+            FilterArray2[0] = false;
+            FilterArray2[1] = false;
+            FilterArray2[2] = false;
+            FilterArray2[3] = 0;
+            FilterArray2[4] = 10000;
+            FilterArray2[5] = 0;
+            FilterArray2[6] = 10000;
+            FilterArray2[7] = 0;
+            FilterArray2[8] = 10000;
+            FilterArray2[9] = 0;
+            FilterArray2[10] = 10000;
+            filter2.style.display = "none";
+        });
+
+        function tableFilterToggle(){
+            if (filter2.style.display === "none" || filter2.style.display === "") {
+                filter2.style.display = "block";
+            } else {
+                filter2.style.display = "none";
+            }
+        };
+        resetFilterButton2.click();
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
         //filter
         var filterToggle = document.getElementById("filter-toggle");
@@ -662,7 +922,7 @@
 
         resetFilterButton.addEventListener("click", function() {
             applyFilter = false;
-            filterToggle.style.color = "grey";
+            filterToggle.style.color = 'rgb(126, 121, 121)';
             document.getElementById('minHeight').value = '';
             document.getElementById('maxHeight').value = '';
             document.getElementById('minElevation').value = '';
@@ -696,6 +956,7 @@
             }
         });
         resetFilterButton.click();
+////////////////////////////////////////////////////////////////////////////////////
 
         //scale
         L.control.scale({
@@ -1492,6 +1753,9 @@
         var trackArray4 = [];
         var trackArray5 = [];
         var addInfo = [];
+        var temp = [];
+        var numberOfFeatures = 0;
+        var numberOfElements = 0;
         var j = 0;
         for (j=0; j<=685; j++){
             lengthArray[j] = 0;
@@ -1523,15 +1787,20 @@
                 const height = featureLayer.feature.properties.height;
                 const country = featureLayer.feature.properties.country;
                 const idd = featureLayer.feature.properties.idd;
-                const link = featureLayer.feature.properties.link;
+                var link = featureLayer.feature.properties.link;
                 var length = lengthArray[idd];
                 var elevation = elevationArray[idd];
                 var slope = slopeArray[idd];
 
+                if (idd > numberOfElements-1){
+                    numberOfElements = idd;
+                }
+                
                 addInfo = [];
+                temp = [];
                 if (lengthArray[idd] > 0.1){
                     const layer = trackTable[idd];
-                    const numberOfFeatures = layer.getLayers().length;
+                    numberOfFeatures = layer.getLayers().length;
                     var j;
                     for (j=0; j<=numberOfFeatures-1; j++){
                         trackArray1[j] = geoJSONArray[idd].getLayers()[j].feature.properties.name;
@@ -1539,15 +1808,25 @@
                         trackArray3[j] = geoJSONArray[idd].getLayers()[j].feature.properties.elevation;
                         trackArray4[j] = ((geoJSONArray[idd].getLayers()[j].feature.properties.elevation/((geoJSONArray[idd].getLayers()[j].feature.properties.length)*1000))*100).toFixed(1);
                         trackArray5[j] = geoJSONArray[idd].getLayers()[j].feature.properties.link;
-                        addInfo[j] = trackArray1[j] +  " (" + trackArray2[j] + ' km, ' + trackArray3[j] + ' hm, ' + trackArray4[j] + ' %)'
-                    }
-                    
-                } else {
-                    addInfo = ["Info 1", "Info 2", "Info 3"];
-                }
- 
-                const tableRow = createRow(idd, name, country, height, length, elevation, slope, addInfo);
 
+                        temp = [];
+                        temp[0] = trackArray5[j];
+                        temp[1] = trackArray1[j];
+                        temp[2] = " (" + trackArray2[j] + ' km, ' + trackArray3[j] + ' hm, ' + trackArray4[j] + ' %)'
+                        addInfo[j] = temp;
+                    }
+                } else {
+                    var h = 0;
+                    for(h=0; h<=0; h++){
+                        temp = [];
+                        temp[0] = 'https://www.quaeldich.de/';
+                        temp[1] = 'click here';
+                        temp[2] = " for more information until we add the track to the map";
+                        addInfo[h] = temp;
+                    }
+                    link = 'https://www.quaeldich.de/';
+                }
+                const tableRow = createRow(idd, name, country, height, length, elevation, slope, addInfo, link);
                 dataBody.appendChild(tableRow);
             });
         });
@@ -1562,6 +1841,15 @@
                     }
                 });
             } else {
+                var layerCheckboxes = document.querySelectorAll('.leaflet-control-layers-selector');
+                var k = 0;
+                var layerArray = [];
+                for(k=3;k<=8;k++){
+                    if (layerCheckboxes[k].checked){
+                        layerCheckboxes[k].click();
+                        layerArray[k] = true;
+                    }
+                }
                 map.removeLayer(geoJSONArray[idd]);
                 marker.eachLayer(function (layer) {
                     const iddd = layer.feature.properties.idd;
@@ -1569,10 +1857,15 @@
                         map.removeLayer(layer);
                     }
                 });
+                for(k=3;k<=8;k++){
+                    if (layerArray[k]){
+                        layerCheckboxes[k].click();
+                    }
+                }
             }
         }
 
-        // variables
+        // Filter Variables
         var MarkersSelected = false;
         var ItalySelected = false;
         var FranceSelected = false;
@@ -1624,6 +1917,23 @@
         };
         var layerControl = L.control.layers(baseMaps, overlayMaps1,{position: 'topright'}).addTo(map);
 
+        layerControl.getContainer().addEventListener('change', function (event) {
+            const tableCheckboxes1 = document.querySelectorAll('.checkbox99');
+            var i = 0;
+            var tableArray1 = [];
+            for (i=0;i<=numberOfElements-2;i++){
+                if(tableCheckboxes1[i].checked){
+                    tableCheckboxes1[i].click();
+                    tableArray1[i] = true;
+                }
+            }
+            for (i=0;i<=numberOfElements-2;i++){
+                if(tableArray1[i]){
+                    tableCheckboxes1[i].click();
+                }
+            }
+        });
+
         filterGeoJSONObjects();
 
         // Function to filter GeoJSON objects based on selected categories
@@ -1636,6 +1946,16 @@
             germanyArray = [];
             markerIDArray = [];
             geoIDArray = [];
+
+            const tableCheckboxes = document.querySelectorAll('.checkbox99');
+            var i = 0;
+            var tableArray = [];
+            for (i=0;i<=numberOfElements-2;i++){
+                if(tableCheckboxes[i].checked){
+                    tableCheckboxes[i].click();
+                    tableArray[i] = true;
+                }
+            }
 
             var markerClick = MarkersSelected;
             var italyClick = ItalySelected;
@@ -1777,6 +2097,12 @@
             if (suisseClick){ suisseCheckbox.click()};
             if (austriaClick){ austriaCheckbox.click()};
             if (germanyClick){ germanyCheckbox.click()};
+
+            for (i=0;i<=numberOfElements-2;i++){
+                if(tableArray[i]){
+                    tableCheckboxes[i].click();
+                }
+            }
         };
 
         // Add event listeners to the checkboxes
