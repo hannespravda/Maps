@@ -185,15 +185,15 @@
         }
         #data-table th:nth-child(1),
         #data-table td:nth-child(1) {
-            width: 10px; /* Adjust the width for the first column */
+            width: 1px; /* Adjust the width for the first column */
         }
         #data-table th:nth-child(2),
         #data-table td:nth-child(2) {
-            width: 276px; /* Adjust the width for the second column */
+            width: 1px; /* Adjust the width for the first column */
         }
         #data-table th:nth-child(3),
         #data-table td:nth-child(3) {
-            width: 50px; /* Adjust the width for the third column */
+            width: 276px; /* Adjust the width for the second column */
         }
         #data-table th:nth-child(4),
         #data-table td:nth-child(4) {
@@ -209,6 +209,10 @@
         }
         #data-table th:nth-child(7),
         #data-table td:nth-child(7) {
+            width: 50px; /* Adjust the width for the third column */
+        }
+        #data-table th:nth-child(8),
+        #data-table td:nth-child(8) {
             width: 50px; /* Adjust the width for the third column */
         }
         .sort-container {
@@ -571,6 +575,7 @@
             <thead>
                 <tr>
                     <th></th>
+                    <th></th>
                     <th>Name</th>
                     <th>Country</th>
                     <th>Height</th>
@@ -631,6 +636,7 @@
     </div>
 
     <script>
+        //localStorage.clear();
         //center coordinates at start
         var map = L.map('map', {
             minZoom: 2,
@@ -678,10 +684,10 @@
             const tbody = table.querySelector("tbody");
             const rows = Array.from(tbody.querySelectorAll("tr"));
             rows.sort((a, b) => {
-                const countryA = a.cells[2].textContent.trim();
-                const countryB = b.cells[2].textContent.trim();
-                const nameA = a.cells[1].textContent.trim();
-                const nameB = b.cells[1].textContent.trim();
+                const countryA = a.cells[3].textContent.trim();
+                const countryB = b.cells[3].textContent.trim();
+                const nameA = a.cells[2].textContent.trim();
+                const nameB = b.cells[2].textContent.trim();
                 const countryComparison = countryA.localeCompare(countryB);
                 if (countryComparison === 0) {
                     return nameA.localeCompare(nameB);
@@ -712,24 +718,24 @@
         }
         sortDropdown.addEventListener("change", function() {
             if (sortDropdown.value === "alphabetical") {
-                sortAlphabetically(1);
+                sortAlphabetically(2);
             } else if (sortDropdown.value === "country") {
                 sortTableCountry();
             } else if (sortDropdown.value === "height") {
                 const rows = Array.from(dataBody.querySelectorAll("tr"));
-                rows.sort(sortNumeric(3));
+                rows.sort(sortNumeric(4));
                 rows.forEach((row) => dataBody.appendChild(row));
             } else if (sortDropdown.value === "length") {
                 const rows = Array.from(dataBody.querySelectorAll("tr"));
-                rows.sort(sortNumeric(4));
+                rows.sort(sortNumeric(5));
                 rows.forEach((row) => dataBody.appendChild(row));
             } else if (sortDropdown.value === "elevation") {
                 const rows = Array.from(dataBody.querySelectorAll("tr"));
-                rows.sort(sortNumeric(5));
+                rows.sort(sortNumeric(6));
                 rows.forEach((row) => dataBody.appendChild(row));
             } else if (sortDropdown.value === "slope") {
                 const rows = Array.from(dataBody.querySelectorAll("tr"));
-                rows.sort(sortNumeric(6));
+                rows.sort(sortNumeric(7));
                 rows.forEach((row) => dataBody.appendChild(row));
             } else if (sortDropdown.value === "empty") {
                 sortRandom();
@@ -749,6 +755,17 @@
             });
             checkboxCell.appendChild(checkbox);
             tableRow.appendChild(checkboxCell);
+
+            // Create a cell for the checkbox image
+            const pngCell = document.createElement('td');
+            const pngImage = document.createElement('img');
+            const tickedImagePath = localStorage.getItem(`TickedCheckboxState${idd}`) ? 'Images/ticked.png' : 'Images/Empty.png';
+            pngImage.src = tickedImagePath;
+            pngImage.width = 10; // Set the width of the image
+            pngImage.height = 10; // Set the height of the image
+            pngCell.appendChild(pngImage);
+            tableRow.appendChild(pngCell);
+
         
             const nameCell = document.createElement("td");
             const nameLink = document.createElement("a");
@@ -1016,6 +1033,7 @@
             FilterArray2[15] = false;
             FilterArray2[16] = false;
             filter2.style.display = "none";
+            document.getElementById("sort-options").value = "empty";
         });
 
         function tableFilterToggle(){
@@ -1164,9 +1182,12 @@
         var marks = [];
         var markerTable = [];
         var trackTable = [];
-        var selected = [];
-        var id;
         var markerStates = [];
+        var markerStatesArray = [];
+        var ix = 0;
+        var latlngArray = [];
+        var icons = [];
+        var iconTemp = 0;
 
         //custom icons
         var yellowIcon = L.icon({
@@ -1176,7 +1197,7 @@
             popupAnchor:  [0, -16]
         });
         var redIcon = L.icon({
-            iconUrl: 'Images/red.png',
+            iconUrl: 'Images/rot.png',
             iconSize: [16, 16], // Set the size of the icon
             iconAnchor: [8, 16], 
             popupAnchor:  [0, -16]
@@ -1193,85 +1214,170 @@
             iconAnchor: [0, 0], 
             popupAnchor:  [0, 0]
         });
-        
+        var yellowTicked = L.icon({
+            iconUrl: 'Images/gelbTicked.png',
+            iconSize: [16, 16], // Set the size of the icon
+            iconAnchor: [8, 16],
+            popupAnchor:  [0, -16]
+        });
+        var redTicked = L.icon({
+            iconUrl: 'Images/rotTicked.png',
+            iconSize: [16, 16], // Set the size of the icon
+            iconAnchor: [8, 16], 
+            popupAnchor:  [0, -16]
+        });
+        var blueTicked = L.icon({
+            iconUrl: 'Images/blauTicked.png',
+            iconSize: [16, 16], // Set the size of the icon
+            iconAnchor: [8, 16], 
+            popupAnchor:  [0, -16]
+        });
+
         //marker passes
         var marker = L.geoJSON(passi, {
             pointToLayer: function (feature, latlng) {
-                // Create the marker with the custom icon
-                if (feature.properties.category == 'Pass'){
-                    return L.marker(latlng, {icon: blueIcon}).bindTooltip(feature.properties.name + ' (' + feature.properties.height + ' m)')
-                } else if (feature.properties.category == 'Climb'){
-                    return L.marker(latlng, {icon: yellowIcon}).bindTooltip(feature.properties.name + ' (' + feature.properties.height + ' m)')
-                } else if (feature.properties.category == 'Sackgasse'){
-                    return L.marker(latlng, {icon: redIcon}).bindTooltip(feature.properties.name + ' (' + feature.properties.height + ' m)')
+                ix = feature.properties.idd;
+                latlngArray[ix] = latlng;
+                const storedValue = localStorage.getItem(`TickedCheckboxState${ix}`);
+                let icon;
+                if (storedValue && JSON.parse(storedValue)) {
+                    if (feature.properties.category == 'Pass') {
+                        icon = blueTicked;
+                    } else if (feature.properties.category == 'Climb') {
+                        icon = yellowTicked;
+                    } else if (feature.properties.category == 'Sackgasse') {
+                        icon = redTicked;
+                    }
+                } else {
+                    if (feature.properties.category == 'Pass') {
+                        icon = blueIcon;
+                    } else if (feature.properties.category == 'Climb') {
+                        icon = yellowIcon;
+                    } else if (feature.properties.category == 'Sackgasse') {
+                        icon = redIcon;
+                    }
                 }
+                iconTemp =  L.marker(latlng, { icon: icon }).bindTooltip(feature.properties.name + ' (' + feature.properties.height + ' m)');
+                icons[ix] = iconTemp;
+                return iconTemp;
             },
+
             onEachFeature: function(feature, layer){
-                var popupContent = "<div><input type='checkbox' id='MarkerCheckbox' /> Show routes </div>";
-                layer.bindPopup('<p style="line-height: 1; margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></div><div style="background-color: lightgray; padding: 1px;">' + feature.properties.category + '<span style="float: right;">' + feature.properties.height + ' m</span></div><div style="margin-top: 1px;">' + popupContent + '</div>');
+                ix = feature.properties.idd;
+                // Show routes checkboxes
+                const showRoutesCheckbox = document.createElement('input');
+                showRoutesCheckbox.type = 'checkbox';
+                showRoutesCheckbox.id = `MarkerCheckbox${ix}`;
+                const showRoutesLabel = document.createElement('label');
+                showRoutesLabel.htmlFor = `MarkerCheckbox${ix}`;
+                showRoutesLabel.textContent = 'Show routes';
+                // Mark as done checkboxes
+                const markAsTickedCheckbox = document.createElement('input');
+                markAsTickedCheckbox.type = 'checkbox';
+                markAsTickedCheckbox.id = `TickedCheckbox${ix}`;
+                const markAsTickedLabel = document.createElement('label');
+                markAsTickedLabel.htmlFor = `TickedCheckbox${ix}`;
+                markAsTickedLabel.textContent = 'Mark as done';
+                
+                layer.bindPopup('<div style="width: 120px;">' +
+                    '<p style="line-height: 1; margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p><div style="background-color: lightgray; padding: 1px;">' + feature.properties.category + '<span style="float: right;">' + feature.properties.height + ' m</span></div><div style="margin-top: 1px;">' +
+                    showRoutesCheckbox.outerHTML + showRoutesLabel.outerHTML +
+                    '<br>' +
+                    markAsTickedCheckbox.outerHTML + markAsTickedLabel.outerHTML +
+                    '</div>' + '</div>');
+        
                 layer.on('mouseover', function (e) {
+                    ix = feature.properties.idd;
                     if (feature.properties.category == 'Pass'){
-                        id = feature.properties.idd;
-                        geoJSONArray[id].setStyle({ color: 'darkblue' ,weight:'3'});
+                        geoJSONArray[ix].setStyle({ color: 'darkblue' ,weight:'3'});
                     } else if (feature.properties.category == 'Climb'){
-                        id = feature.properties.idd;
-                        geoJSONArray[id].setStyle({ color: 'orange' ,weight:'3'});
+                        geoJSONArray[ix].setStyle({ color: 'orange' ,weight:'3'});
                     } else if (feature.properties.category == 'Sackgasse'){
-                        id = feature.properties.idd;
-                        geoJSONArray[id].setStyle({ color: 'red' ,weight:'3'});
+                        geoJSONArray[ix].setStyle({ color: 'red' ,weight:'3'});
                     }
                 });
                 layer.on('mouseout', function (e) {
+                    ix = feature.properties.idd;
                     if (feature.properties.category == 'Pass'){
-                        if (selected[id]) {
-                            geoJSONArray[id].setStyle({ color: 'darkblue',weight:'3' }); // Change color
+                        if (markerStatesArray[ix]) {
+                            geoJSONArray[ix].setStyle({ color: 'darkblue',weight:'3' }); // Change color
                         } else {
-                            geoJSONArray[id].setStyle({ color: 'blue',weight:'1' }); // Restore the old color
+                            geoJSONArray[ix].setStyle({ color: 'rgb(30,144,255)',weight:'1' }); // Restore the old color
                         }
                     } else if (feature.properties.category == 'Climb'){
-                        if (selected[id]) {
-                            geoJSONArray[id].setStyle({ color: 'orange',weight:'3' }); // Change color
+                        if (markerStatesArray[ix]) {
+                            geoJSONArray[ix].setStyle({ color: 'orange',weight:'3' }); // Change color
                         } else {
-                            geoJSONArray[id].setStyle({ color: 'yellow',weight:'1' }); // Restore the old color
+                            geoJSONArray[ix].setStyle({ color: 'rgb(255,215,0)',weight:'1' }); // Restore the old color
                         }
                     } else if (feature.properties.category == 'Sackgasse'){
-                        if (selected[id]) {
-                            geoJSONArray[id].setStyle({ color: 'red',weight:'3' }); // Change color
+                        if (markerStatesArray[ix]) {
+                            geoJSONArray[ix].setStyle({ color: 'red',weight:'3' }); // Change color
                         } else {
-                            geoJSONArray[id].setStyle({ color: 'pink',weight:'1' }); // Restore the old color
+                            geoJSONArray[ix].setStyle({ color: 'rgb(255,99,71)',weight:'1' }); // Restore the old color
                         }
                     }
                 });
                 layer.on('click', function (e) {
-                    id = feature.properties.idd;
+                    ix = feature.properties.idd;
                     this.openPopup;
-                    document.getElementById('MarkerCheckbox').checked = markerStates[id];
-                    // Add a listener for the checkbox change event
-                    document.getElementById('MarkerCheckbox').addEventListener('change', function (event) {
-                        selected[id] = event.target.checked;
-                        markerStates[id] = event.target.checked; // Store the state in markerStates
-                        //updateGeoJSONLayerColor();
-                        if (feature.properties.category == 'Pass'){
-                            if (selected[id]) {
-                                geoJSONArray[id].setStyle({ color: 'darkblue',weight:'3' }); // Change color
-                            } else {
-                                geoJSONArray[id].setStyle({ color: 'blue',weight:'1' }); // Restore the old color
-                            } 
-                        } else if (feature.properties.category == 'Climb'){
-                            if (selected[id]) {
-                                geoJSONArray[id].setStyle({ color: 'orange',weight:'3' }); // Change color
-                            } else {
-                                geoJSONArray[id].setStyle({ color: 'yellow',weight:'1' }); // Restore the old color
+                    var markerCheckbox = document.getElementById(`MarkerCheckbox${ix}`);
+                    if (markerCheckbox) {
+                        markerCheckbox.checked = markerStates[ix];
+                        markerCheckbox.addEventListener('change', function (event) {
+                            markerStatesArray[ix] = event.target.checked;
+                            markerStates[ix] = event.target.checked; // Store the state in markerStates
+                            if (feature.properties.category == 'Pass') {
+                                if (markerStatesArray[ix]) {
+                                    geoJSONArray[ix].setStyle({ color: 'darkblue', weight: '3' }); // Change color
+                                } else {
+                                    geoJSONArray[ix].setStyle({ color: 'rgb(30,144,255)', weight: '1' }); // Restore the old color
+                                }
+                            } else if (feature.properties.category == 'Climb') {
+                                if (markerStatesArray[ix]) {
+                                    geoJSONArray[ix].setStyle({ color: 'orange',weight:'3' }); // Change color
+                                } else {
+                                    geoJSONArray[ix].setStyle({ color: 'rgb(255,215,0)',weight:'1' }); // Restore the old color
+                                }
+                            } else if (feature.properties.category == 'Sackgasse') {
+                                if (markerStatesArray[ix]) {
+                                    geoJSONArray[ix].setStyle({ color: 'red',weight:'3' }); // Change color
+                                } else {
+                                    geoJSONArray[ix].setStyle({ color: 'rgb(255,99,71)',weight:'1' }); // Restore the old color
+                                }
                             }
-                        } else if (feature.properties.category == 'Sackgasse'){
-                            if (selected[id]) {
-                                geoJSONArray[id].setStyle({ color: 'red',weight:'3' }); // Change color
+                        });
+                    }
+
+                    var tickedCheckbox = document.getElementById(`TickedCheckbox${ix}`);
+                    if (tickedCheckbox) {
+                        const storedValue = localStorage.getItem(`TickedCheckboxState${ix}`);
+                        tickedCheckbox.checked = JSON.parse(storedValue);
+                        tickedCheckbox.addEventListener('change', function () {
+                            localStorage.setItem(`TickedCheckboxState${ix}`, JSON.stringify(this.checked));
+                            let icon;
+                            if (this.checked) {
+                                if (feature.properties.category == 'Pass') {
+                                    icon = blueTicked;
+                                } else if (feature.properties.category == 'Climb') {
+                                    icon = yellowTicked;
+                                } else if (feature.properties.category == 'Sackgasse') {
+                                    icon = redTicked;
+                                }
                             } else {
-                                geoJSONArray[id].setStyle({ color: 'pink',weight:'1' }); // Restore the old color
+                                if (feature.properties.category == 'Pass') {
+                                    icon = blueIcon;
+                                } else if (feature.properties.category == 'Climb') {
+                                    icon = yellowIcon;
+                                } else if (feature.properties.category == 'Sackgasse') {
+                                    icon = redIcon;
+                                }
                             }
-                        }
-                    });
-                }); 
+                            icons[ix].setIcon(icon)
+                            resetFilterButton2.click();
+                        });
+                    }
+                });
             }
         });
         
@@ -1321,34 +1427,35 @@
                 }
             });
             layer.on('mouseout', function (e) {
+                ix = feature.properties.idd;
                 if (feature.properties.category == 'Pass'){
-                    if (selected[id]) {
+                    if (markerStatesArray[ix]) {
                         this.setStyle({ color: 'darkblue',weight:'3' }); // Change color
                     } else {
-                        this.setStyle({ color: 'blue',weight:'1' }); // Restore the old color
+                        this.setStyle({ color: 'rgb(30,144,255)',weight:'1' }); // Restore the old color
                     } 
                 } else if (feature.properties.category == 'Climb'){
-                    if (selected[id]) {
+                    if (markerStatesArray[ix]) {
                         this.setStyle({ color: 'orange',weight:'3' }); // Change color
                     } else {
-                        this.setStyle({ color: 'yellow',weight:'1' }); // Restore the old color
+                        this.setStyle({ color: 'rgb(255,215,0)',weight:'1' }); // Restore the old color
                     }
                 } else if (feature.properties.category == 'Sackgasse'){
-                    if (selected[id]) {
+                    if (markerStatesArray[ix]) {
                         this.setStyle({ color: 'red',weight:'3' }); // Change color
                     } else {
-                        this.setStyle({ color: 'pink',weight:'1' }); // Restore the old color
+                        this.setStyle({ color: 'rgb(255,99,71)',weight:'1' }); // Restore the old color
                     }
                 }
             });
         }
         function TrackStyle(feature) {
             if (feature.properties.category == 'Climb') {
-                return { color: 'yellow', weight: "1" };
+                return { color: 'rgb(255,215,0)', weight: "1" };
             } else if (feature.properties.category == 'Pass') {
-                return { color: 'blue', weight: "1" };
+                return { color: 'rgb(30,144,255)', weight: "1" };
             } else if (feature.properties.category == 'Sackgasse') {
-                return { color: 'pink', weight: "1" };
+                return { color: 'rgb(255,99,71)', weight: "1" };
             }  
         }
 

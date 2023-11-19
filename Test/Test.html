@@ -1,110 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test</title>
-
-  <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
-  <style>
-    #map {position: absolute; top: 0; bottom: 0; left: 0; right: 0}
-  </style>
-
-  <script src = "passi.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remember Checkbox State</title>
+    <style>
+        /* Add your checkbox styling here */
+    </style>
 </head>
 <body>
-  <div id = "map"></div> 
+    <label for="rememberCheckbox">Remember Me</label>
+    <input type="checkbox" id="rememberCheckbox">
 
-  <div id="country-checkboxes">
-    <label><input type="checkbox" class="country-checkbox" value="Italy"> Italy</label>
-    <label><input type="checkbox" class="country-checkbox" value="Suisse"> Suisse</label>
-    <!-- Add checkboxes for other countries -->
-  </div>
-  
-  <div id="category-checkboxes">
-    <label><input type="checkbox" class="category-checkbox" value="Pass"> Pass</label>
-    <label><input type="checkbox" class="category-checkbox" value="Climb"> Climb</label>
-    <!-- Add checkboxes for other categories -->
-  </div>
-  
-
-  <script>
-    var map = L.map('map', {
-      minZoom: 2,
-    }).setView([45.464664, 9.188540],13);
-
-    var osm = L.tileLayer('https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=5oOhPnaZPwb4EiDFpWyW', {
-      attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-    }).addTo(map);
-
-    var geoJSONLayer = L.geoJSON(passi);
-
-    var countryCheckboxes = document.querySelectorAll('.country-checkbox');
-    var categoryCheckboxes = document.querySelectorAll('.category-checkbox');
-
-    countryCheckboxes.forEach(function (checkbox) {
-      checkbox.addEventListener('change', function () {
-        var country = checkbox.value;
-        if (checkbox.checked) {
-          // Show markers for the selected country
-          geoJSONLayer.eachLayer(function (layer) {
-            if (layer.feature.properties.country === country) {
-              map.addLayer(layer);
-            }
-          });
-        } else {
-          // Hide markers for the deselected country
-          geoJSONLayer.eachLayer(function (layer) {
-            if (layer.feature.properties.country === country) {
-              map.removeLayer(layer);
-            }
-          });
+    <script>
+        // Check if there's a stored value and set the checkbox accordingly
+        const rememberCheckbox = document.getElementById('rememberCheckbox');
+        const storedValue = localStorage.getItem('rememberCheckboxState');
+        if (storedValue) {
+            rememberCheckbox.checked = JSON.parse(storedValue);
         }
-      });
-    });
 
-    categoryCheckboxes.forEach(function (checkbox) {
-      checkbox.addEventListener('change', function () {
-        var category = checkbox.value;
-        geoJSONLayer.eachLayer(function (layer) {
-          if (categoryCheckboxesAreAllUnchecked()) {
-            // Show markers if "All" categories are checked
-            map.addLayer(layer);
-          } else if (checkbox.checked) {
-            if (layer.feature.properties.category === category) {
-              // Show markers for the selected category
-              map.addLayer(layer);
-            }
-          } else {
-            if (layer.feature.properties.category === category) {
-              // Hide markers for the deselected category
-              map.removeLayer(layer);
-            }
-          }
+        // Add an event listener to save the checkbox state when it changes
+        rememberCheckbox.addEventListener('change', function () {
+            localStorage.setItem('rememberCheckboxState', this.checked);
         });
-      });
-    });
-
-    
-
-
-    function categoryCheckboxesAreAllUnchecked() {
-      return Array.from(categoryCheckboxes).every(function (checkbox) {
-        return !checkbox.checked;
-      });
-    }
-
-    function showAllMarkers() {
-      geoJSONLayer.eachLayer(function (layer) {
-        map.addLayer(layer);
-      });
-    }
-
-
-  </script>
-  
+    </script>
 </body>
 </html>
