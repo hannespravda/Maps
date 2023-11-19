@@ -5,30 +5,9 @@ Ideen:
 	komoot karten design
 	filter for regions
 	Click on Track and Map
+	Done Haken
 	
 Bugs
 	crocedomini
-	mortirolo links zu auffahrten checken
-	trivigno/ guspessa climb
-	super ghisallo sackgasse
 
 komootgpx -m hannes.pravida@outlook.com -p Hannes99 -a -o C:\Users\hanne\Hannes\Projekte\MyMap1\Komoot -e
-
-
-
-var gZeno = L.geoJSON(Zeno, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idZeno = Zeno.features[0].properties.idd;
-        geoJSONArray[idZeno] = gZeno;
-        geoJSONs.push(gZeno);
-        layerControl2.addOverlay(gZeno, "Colle di San Zeno");
-
-"idd": "683",
-		"name": "Südauffahrt",
-		"length": " km",
-		"elevation": " hm",
-		"category":"Climb",
-		"country":"IT",
-		"link": "",

@@ -8,7 +8,7 @@ var Forcora = {
           "name": "Nordauffahrt",
           "length": "2.4",
           "elevation": "260",
-          "category":"Pass",
+          "category":"Climb",
           "country":"IT",
           "link": "https://www.quaeldich.de/paesse/passo-forcora/profile/auffahrt-von-maccagno-ueber-armio/",
           "coordinateProperties": {
@@ -623,7 +623,7 @@ var Forcora = {
           "name": "Südauffahrt",
           "length": "9.7",
           "elevation": "720",
-          "category":"Pass",
+          "category":"Climb",
           "country":"IT",
           "link": "https://www.quaeldich.de/paesse/passo-forcora/profile/auffahrt-von-maccagno/",
           "coordinateProperties": {

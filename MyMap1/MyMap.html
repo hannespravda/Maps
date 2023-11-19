@@ -60,6 +60,7 @@
             text-align: center; /* Center the text horizontally */
             width: 200px;
             user-select: none;
+            color: rgb(126, 121, 121);
           }
         .filter-row {
             display: flex;
@@ -188,7 +189,7 @@
         }
         #data-table th:nth-child(2),
         #data-table td:nth-child(2) {
-            width: 300px; /* Adjust the width for the second column */
+            width: 276px; /* Adjust the width for the second column */
         }
         #data-table th:nth-child(3),
         #data-table td:nth-child(3) {
@@ -196,11 +197,19 @@
         }
         #data-table th:nth-child(4),
         #data-table td:nth-child(4) {
-            width: 80px; /* Adjust the width for the third column */
+            width: 50px; /* Adjust the width for the third column */
         }
         #data-table th:nth-child(5),
         #data-table td:nth-child(5) {
-            width: 80px; /* Adjust the width for the third column */
+            width: 50px; /* Adjust the width for the third column */
+        }
+        #data-table th:nth-child(6),
+        #data-table td:nth-child(6) {
+            width: 50px; /* Adjust the width for the third column */
+        }
+        #data-table th:nth-child(7),
+        #data-table td:nth-child(7) {
+            width: 50px; /* Adjust the width for the third column */
         }
         .sort-container {
             display: flex;
@@ -275,12 +284,14 @@
             text-align: center; /* Center the text horizontally */
             width: 220px;
             user-select: none;
+            color: rgb(126, 121, 121);
           }
         .filter2-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 10px;
+            color: rgb(126, 121, 121);
         }
         .filter2-input {
             width: 50px;
@@ -352,19 +363,25 @@
             margin-left: 10px;
         }
         .round-button {
-            width: 30px; /* Set the width */
-            height: 30px; /* Set the height */
+            width: 25px; /* Set the width */
+            height: 25px; /* Set the height */
             border-radius: 50%; /* Make it a circle */
             cursor: pointer; /* Add pointer cursor for better user experience */
             background-color: white;
             border: 2px solid lightblue;
             font-family: Helvetica, Arial, sans-serif;
-            font-size: 12px;
+            font-size: 9px;
             padding: 0px; /* Add padding to create space around the text */
             text-align: center; /* Center the text horizontally */
             color: rgb(126, 121, 121);
             margin-right: 5px;
-          }
+        }
+        input[type=checkbox] {
+            accent-color: lightblue;
+        }
+        input[type=radio] {
+            accent-color: rgb(126, 121, 121);
+        }
     </style>
 
     <!--------------------- add geoJSON files renamed to .js files here -------------------------------------->
@@ -432,6 +449,62 @@
     <script src = "Tracks/Trivigno.js"></script>
     <script src = "Tracks/Umbrail.js"></script>
     <script src = "Tracks/Zeno.js"></script>
+    <script src="Tracks/KitzHorn.js"></script>
+    <script src="Tracks/Nivolet.js"></script>
+    <script src="Tracks/Sudelfeld.js"></script>
+    <script src="Tracks/Lavaze.js"></script>
+    <script src="Tracks/Niger.js"></script>
+    <script src="Tracks/Karer.js"></script>
+    <script src="Tracks/Erbe.js"></script>
+    <script src="Tracks/Furcia.js"></script>
+    <script src="Tracks/TreCime.js"></script>
+    <script src="Tracks/TreCroci.js"></script>
+    <script src="Tracks/Sestriere.js"></script>
+    <script src="Tracks/Sampeyre.js"></script>
+    <script src="Tracks/Esischie.js"></script>
+    <script src="Tracks/Fauniera.js"></script>
+    <script src="Tracks/Pordoi.js"></script>
+    <script src="Tracks/Sella.js"></script>
+    <script src="Tracks/Gardena.js"></script>
+    <script src="Tracks/Campolongo.js"></script>
+    <script src="Tracks/Fedaia.js"></script>
+    <script src="Tracks/Valparola.js"></script>
+    <script src="Tracks/Falzarego.js"></script>
+    <script src="Tracks/Giau.js"></script>
+    <script src="Tracks/Duran.js"></script>
+    <script src="Tracks/Staulanza.js"></script>
+    <script src="Tracks/Pellegrino.js"></script>
+    <script src="Tracks/Manghen.js"></script>
+    <script src="Tracks/Brocon.js"></script>
+    <script src="Tracks/Gobbera.js"></script>
+    <script src="Tracks/Cereda.js"></script>
+    <script src="Tracks/Valles.js"></script>
+    <script src="Tracks/Klausen.js"></script>
+    <script src="Tracks/Rolle.js"></script>
+    <script src="Tracks/Scheidegg.js"></script>
+    <script src="Tracks/Moosalp.js"></script>
+    <script src="Tracks/CroixDeCoeur.js"></script>
+    <script src="Tracks/Fluela.js"></script>
+    <script src="Tracks/Finestre.js"></script>
+    <script src="Tracks/Lys.js"></script>
+    <script src="Tracks/BonetteCime.js"></script>
+    <script src="Tracks/Bonette.js"></script>
+    <script src="Tracks/Predil.js"></script>
+    <script src="Tracks/Nassfeld.js"></script>
+    <script src="Tracks/Ploecken.js"></script>
+    <script src="Tracks/Staller.js"></script>
+    <script src="Tracks/Brennero.js"></script>
+    <script src="Tracks/Timmelsjoch.js"></script>
+    <script src="Tracks/Valmara.js"></script>
+    <script src="Tracks/Tende.js"></script>
+    <script src="Tracks/Lombarde.js"></script>
+    <script src="Tracks/Larche.js"></script>
+    <script src="Tracks/Agnel.js"></script>
+    <script src="Tracks/Montgenevre.js"></script>
+    <script src="Tracks/Echelle.js"></script>
+    <script src="Tracks/MontCenis.js"></script>
+    <script src="Tracks/PetitBernard.js"></script>
+    <script src="Tracks/Reschen.js"></script>
     <!-------------------------------------------------------------------------------------------------------->
     <!-------------------------------------------------------------------------------------------------------->
 </head>
@@ -528,6 +601,7 @@
             <button id="CHbutton" class="round-button">CH</button>
             <button id="ATbutton" class="round-button">AT</button>
             <button id="DEbutton" class="round-button">DE</button>
+            <button id="SLObutton" class="round-button">SLO</button>
         </div>
         <hr class="separator-line2">
         <div class="filter2-row">
@@ -780,6 +854,7 @@
         var buttonCH = false;
         var buttonAT = false;
         var buttonDE = false;
+        var buttonSLO = false;
 
         var ITbutton = document.getElementById("ITbutton").addEventListener("click", function(){;
             if(buttonIT){
@@ -823,6 +898,15 @@
                 this.style.backgroundColor = "white";
             }else {
                 buttonDE = true;
+                this.style.backgroundColor = "lightblue";
+            }
+        });
+        var SLObutton = document.getElementById("SLObutton").addEventListener("click", function(){;
+            if(buttonSLO){
+                buttonSLO = false;
+                this.style.backgroundColor = "white";
+            }else {
+                buttonSLO = true;
                 this.style.backgroundColor = "lightblue";
             }
         });
@@ -890,6 +974,7 @@
             FilterArray2[13] = buttonCH;
             FilterArray2[14] = buttonAT;
             FilterArray2[15] = buttonDE;
+            FilterArray2[16] = buttonSLO;
             filter2.style.display = "none";
         });
 
@@ -912,6 +997,7 @@
             if(buttonCH){document.getElementById('CHbutton').click()};
             if(buttonAT){document.getElementById('ATbutton').click()};
             if(buttonDE){document.getElementById('DEbutton').click()};
+            if(buttonSLO){document.getElementById('SLObutton').click()};
             FilterArray2[0] = false;
             FilterArray2[1] = false;
             FilterArray2[2] = false;
@@ -928,6 +1014,7 @@
             FilterArray2[13] = false;
             FilterArray2[14] = false;
             FilterArray2[15] = false;
+            FilterArray2[16] = false;
             filter2.style.display = "none";
         });
 
@@ -1071,6 +1158,7 @@
         });
 
         //variables
+        const numberOfElements = passi.features[passi.features.length - 1].properties.idd;
         var geoJSONArray = [];
         var geoJSONs = [];
         var marks = [];
@@ -1266,7 +1354,7 @@
 
         //layer button with maps and tracks
         var overlayMaps2 = {};
-        var layerControl2 = L.control.layers(null, overlayMaps2,{ position: 'bottomright' }).addTo(map);
+        var layerControl2 = L.control.layers(null, overlayMaps2,{ position: 'bottomright' });
         
 /////////add new tracks here///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////        
@@ -1830,6 +1918,455 @@
         geoJSONArray[idSusten] = gSusten;
         geoJSONs.push(gSusten);
         layerControl2.addOverlay(gSusten, "Sustenpass");
+
+        var gKitzHorn = L.geoJSON(KitzHorn, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idKitzHorn = KitzHorn.features[0].properties.idd;
+        geoJSONArray[idKitzHorn] = gKitzHorn;
+        geoJSONs.push(gKitzHorn);
+
+        var gNivolet = L.geoJSON(Nivolet, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idNivolet = Nivolet.features[0].properties.idd;
+        geoJSONArray[idNivolet] = gNivolet;
+        geoJSONs.push(gNivolet);
+
+        var gSudelfeld = L.geoJSON(Sudelfeld, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idSudelfeld = Sudelfeld.features[0].properties.idd;
+        geoJSONArray[idSudelfeld] = gSudelfeld;
+        geoJSONs.push(gSudelfeld);
+
+        var gLavaze = L.geoJSON(Lavaze, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idLavaze = Lavaze.features[0].properties.idd;
+        geoJSONArray[idLavaze] = gLavaze;
+        geoJSONs.push(gLavaze);
+
+        var gNiger = L.geoJSON(Niger, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idNiger = Niger.features[0].properties.idd;
+        geoJSONArray[idNiger] = gNiger;
+        geoJSONs.push(gNiger);
+
+        var gKarer = L.geoJSON(Karer, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idKarer = Karer.features[0].properties.idd;
+        geoJSONArray[idKarer] = gKarer;
+        geoJSONs.push(gKarer);
+
+        var gErbe = L.geoJSON(Erbe, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idErbe = Erbe.features[0].properties.idd;
+        geoJSONArray[idErbe] = gErbe;
+        geoJSONs.push(gErbe);
+
+        var gFurcia = L.geoJSON(Furcia, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idFurcia = Furcia.features[0].properties.idd;
+        geoJSONArray[idFurcia] = gFurcia;
+        geoJSONs.push(gFurcia);
+
+        var gTreCime = L.geoJSON(TreCime, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idTreCime = TreCime.features[0].properties.idd;
+        geoJSONArray[idTreCime] = gTreCime;
+        geoJSONs.push(gTreCime);
+
+        var gTreCroci = L.geoJSON(TreCroci, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idTreCroci = TreCroci.features[0].properties.idd;
+        geoJSONArray[idTreCroci] = gTreCroci;
+        geoJSONs.push(gTreCroci);
+
+        var gSestriere = L.geoJSON(Sestriere, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idSestriere = Sestriere.features[0].properties.idd;
+        geoJSONArray[idSestriere] = gSestriere;
+        geoJSONs.push(gSestriere);
+
+        var gSampeyre = L.geoJSON(Sampeyre, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idSampeyre = Sampeyre.features[0].properties.idd;
+        geoJSONArray[idSampeyre] = gSampeyre;
+        geoJSONs.push(gSampeyre);
+
+        var gEsischie = L.geoJSON(Esischie, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idEsischie = Esischie.features[0].properties.idd;
+        geoJSONArray[idEsischie] = gEsischie;
+        geoJSONs.push(gEsischie);
+
+        var gFauniera = L.geoJSON(Fauniera, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idFauniera = Fauniera.features[0].properties.idd;
+        geoJSONArray[idFauniera] = gFauniera;
+        geoJSONs.push(gFauniera);
+
+        var gPordoi = L.geoJSON(Pordoi, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idPordoi = Pordoi.features[0].properties.idd;
+        geoJSONArray[idPordoi] = gPordoi;
+        geoJSONs.push(gPordoi);
+
+        var gSella = L.geoJSON(Sella, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idSella = Sella.features[0].properties.idd;
+        geoJSONArray[idSella] = gSella;
+        geoJSONs.push(gSella);
+
+
+        var gGardena = L.geoJSON(Gardena, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idGardena = Gardena.features[0].properties.idd;
+        geoJSONArray[idGardena] = gGardena;
+        geoJSONs.push(gGardena);
+
+        var gCampolongo = L.geoJSON(Campolongo, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idCampolongo = Campolongo.features[0].properties.idd;
+        geoJSONArray[idCampolongo] = gCampolongo;
+        geoJSONs.push(gCampolongo);
+
+        var gFedaia = L.geoJSON(Fedaia, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idFedaia = Fedaia.features[0].properties.idd;
+        geoJSONArray[idFedaia] = gFedaia;
+        geoJSONs.push(gFedaia);
+
+        var gValparola = L.geoJSON(Valparola, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idValparola = Valparola.features[0].properties.idd;
+        geoJSONArray[idValparola] = gValparola;
+        geoJSONs.push(gValparola);
+
+        var gFalzarego = L.geoJSON(Falzarego, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idFalzarego = Falzarego.features[0].properties.idd;
+        geoJSONArray[idFalzarego] = gFalzarego;
+        geoJSONs.push(gFalzarego);
+
+        var gGiau = L.geoJSON(Giau, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idGiau = Giau.features[0].properties.idd;
+        geoJSONArray[idGiau] = gGiau;
+        geoJSONs.push(gGiau);
+
+        var gDuran = L.geoJSON(Duran, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idDuran = Duran.features[0].properties.idd;
+        geoJSONArray[idDuran] = gDuran;
+        geoJSONs.push(gDuran);
+
+        var gStaulanza = L.geoJSON(Staulanza, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idStaulanza = Staulanza.features[0].properties.idd;
+        geoJSONArray[idStaulanza] = gStaulanza;
+        geoJSONs.push(gStaulanza);
+
+        var gPellegrino = L.geoJSON(Pellegrino, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idPellegrino = Pellegrino.features[0].properties.idd;
+        geoJSONArray[idPellegrino] = gPellegrino;
+        geoJSONs.push(gPellegrino);
+
+        var gManghen = L.geoJSON(Manghen, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idManghen = Manghen.features[0].properties.idd;
+        geoJSONArray[idManghen] = gManghen;
+        geoJSONs.push(gManghen);
+
+        var gBrocon = L.geoJSON(Brocon, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idBrocon = Brocon.features[0].properties.idd;
+        geoJSONArray[idBrocon] = gBrocon;
+        geoJSONs.push(gBrocon);
+
+        var gGobbera = L.geoJSON(Gobbera, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idGobbera = Gobbera.features[0].properties.idd;
+        geoJSONArray[idGobbera] = gGobbera;
+        geoJSONs.push(gGobbera);
+
+        var gCereda = L.geoJSON(Cereda, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idCereda = Cereda.features[0].properties.idd;
+        geoJSONArray[idCereda] = gCereda;
+        geoJSONs.push(gCereda);
+
+        var gValles = L.geoJSON(Valles, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idValles = Valles.features[0].properties.idd;
+        geoJSONArray[idValles] = gValles;
+        geoJSONs.push(gValles);
+
+        var gKlausen = L.geoJSON(Klausen, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idKlausen = Klausen.features[0].properties.idd;
+        geoJSONArray[idKlausen] = gKlausen;
+        geoJSONs.push(gKlausen);
+
+        var gRolle = L.geoJSON(Rolle, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idRolle = Rolle.features[0].properties.idd;
+        geoJSONArray[idRolle] = gRolle;
+        geoJSONs.push(gRolle);
+
+        var gScheidegg = L.geoJSON(Scheidegg, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idScheidegg = Scheidegg.features[0].properties.idd;
+        geoJSONArray[idScheidegg] = gScheidegg;
+        geoJSONs.push(gScheidegg);
+
+        var gMoosalp = L.geoJSON(Moosalp, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idMoosalp = Moosalp.features[0].properties.idd;
+        geoJSONArray[idMoosalp] = gMoosalp;
+        geoJSONs.push(gMoosalp);
+
+        var gCroixDeCoeur = L.geoJSON(CroixDeCoeur, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idCroixDeCoeur = CroixDeCoeur.features[0].properties.idd;
+        geoJSONArray[idCroixDeCoeur] = gCroixDeCoeur;
+        geoJSONs.push(gCroixDeCoeur);
+
+        var gFluela = L.geoJSON(Fluela, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idFluela = Fluela.features[0].properties.idd;
+        geoJSONArray[idFluela] = gFluela;
+        geoJSONs.push(gFluela);
+
+        var gFinestre = L.geoJSON(Finestre, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idFinestre = Finestre.features[0].properties.idd;
+        geoJSONArray[idFinestre] = gFinestre;
+        geoJSONs.push(gFinestre);
+
+        var gLys = L.geoJSON(Lys, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idLys = Lys.features[0].properties.idd;
+        geoJSONArray[idLys] = gLys;
+        geoJSONs.push(gLys);
+
+        var gBonetteCime = L.geoJSON(BonetteCime, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idBonetteCime = BonetteCime.features[0].properties.idd;
+        geoJSONArray[idBonetteCime] = gBonetteCime;
+        geoJSONs.push(gBonetteCime);
+
+        var gBonette = L.geoJSON(Bonette, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idBonette = Bonette.features[0].properties.idd;
+        geoJSONArray[idBonette] = gBonette;
+        geoJSONs.push(gBonette);
+
+        var gPredil = L.geoJSON(Predil, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idPredil = Predil.features[0].properties.idd;
+        geoJSONArray[idPredil] = gPredil;
+        geoJSONs.push(gPredil);
+
+        var gNassfeld = L.geoJSON(Nassfeld, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idNassfeld = Nassfeld.features[0].properties.idd;
+        geoJSONArray[idNassfeld] = gNassfeld;
+        geoJSONs.push(gNassfeld);
+
+        var gPloecken = L.geoJSON(Ploecken, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idPloecken = Ploecken.features[0].properties.idd;
+        geoJSONArray[idPloecken] = gPloecken;
+        geoJSONs.push(gPloecken);
+
+        var gStaller = L.geoJSON(Staller, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idStaller = Staller.features[0].properties.idd;
+        geoJSONArray[idStaller] = gStaller;
+        geoJSONs.push(gStaller);
+
+        var gBrennero = L.geoJSON(Brennero, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idBrennero = Brennero.features[0].properties.idd;
+        geoJSONArray[idBrennero] = gBrennero;
+        geoJSONs.push(gBrennero);
+
+        var gTimmelsjoch = L.geoJSON(Timmelsjoch, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idTimmelsjoch = Timmelsjoch.features[0].properties.idd;
+        geoJSONArray[idTimmelsjoch] = gTimmelsjoch;
+        geoJSONs.push(gTimmelsjoch);
+
+        var gValmara = L.geoJSON(Valmara, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idValmara = Valmara.features[0].properties.idd;
+        geoJSONArray[idValmara] = gValmara;
+        geoJSONs.push(gValmara);
+
+        var gTende = L.geoJSON(Tende, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idTende = Tende.features[0].properties.idd;
+        geoJSONArray[idTende] = gTende;
+        geoJSONs.push(gTende);
+
+        var gLombarde = L.geoJSON(Lombarde, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idLombarde = Lombarde.features[0].properties.idd;
+        geoJSONArray[idLombarde] = gLombarde;
+        geoJSONs.push(gLombarde);
+
+        var gLarche = L.geoJSON(Larche, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idLarche = Larche.features[0].properties.idd;
+        geoJSONArray[idLarche] = gLarche;
+        geoJSONs.push(gLarche);
+
+        var gAgnel = L.geoJSON(Agnel, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idAgnel = Agnel.features[0].properties.idd;
+        geoJSONArray[idAgnel] = gAgnel;
+        geoJSONs.push(gAgnel);
+
+        var gMontgenevre = L.geoJSON(Montgenevre, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idMontgenevre = Montgenevre.features[0].properties.idd;
+        geoJSONArray[idMontgenevre] = gMontgenevre;
+        geoJSONs.push(gMontgenevre);
+
+        var gEchelle = L.geoJSON(Echelle, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idEchelle = Echelle.features[0].properties.idd;
+        geoJSONArray[idEchelle] = gEchelle;
+        geoJSONs.push(gEchelle);
+
+        var gMontCenis = L.geoJSON(MontCenis, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idMontCenis = MontCenis.features[0].properties.idd;
+        geoJSONArray[idMontCenis] = gMontCenis;
+        geoJSONs.push(gMontCenis);
+
+        var gPetitBernard = L.geoJSON(PetitBernard, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idPetitBernard = PetitBernard.features[0].properties.idd;
+        geoJSONArray[idPetitBernard] = gPetitBernard;
+        geoJSONs.push(gPetitBernard);
+
+        var gReschen = L.geoJSON(Reschen, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idReschen = Reschen.features[0].properties.idd;
+        geoJSONArray[idReschen] = gReschen;
+        geoJSONs.push(gReschen);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////        
         //table data
@@ -1864,7 +2401,7 @@
             markerTable = [];
             trackTable = [];
 
-            for (j=0; j<=685; j++){
+            for (j=0; j<=numberOfElements; j++){
                 lengthArray[j] = 0;
                 elevationArray[j] = 0;
                 slopeArray[j] = 0;
@@ -1906,7 +2443,7 @@
                     var tracksOK = false;
                     var trackOK = [];
 
-                    if((((category === 'Pass' && FilterArray2[0]) || (category === 'Climb' && FilterArray2[1]) || (category == 'Sackgasse' && FilterArray2[2])) || (!FilterArray2[0] && !FilterArray2[1] && !FilterArray2[2])) && height >= FilterArray2[3] && height <= FilterArray2[4] && (((country === 'IT' && FilterArray2[11]) || (country === 'FR' && FilterArray2[12]) || (country == 'CH' && FilterArray2[13]) || (country == 'AT' && FilterArray2[14]) || (country == 'DE' && FilterArray2[15])) || (!FilterArray2[11] && !FilterArray2[12] && !FilterArray2[13] && !FilterArray2[14] && !FilterArray2[15]))){
+                    if((((category === 'Pass' && FilterArray2[0]) || (category === 'Climb' && FilterArray2[1]) || (category == 'Sackgasse' && FilterArray2[2])) || (!FilterArray2[0] && !FilterArray2[1] && !FilterArray2[2])) && height >= FilterArray2[3] && height <= FilterArray2[4] && (((country === 'IT' && FilterArray2[11]) || (country === 'FR' && FilterArray2[12]) || (country == 'CH' && FilterArray2[13]) || (country == 'AT' && FilterArray2[14]) || (country == 'DE' && FilterArray2[15]) || (country == 'SLO' && FilterArray2[16])) || (!FilterArray2[11] && !FilterArray2[12] && !FilterArray2[13] && !FilterArray2[14] && !FilterArray2[15] && !FilterArray2[16]))){
                         layerOK = true;
                     };
 
@@ -2004,6 +2541,7 @@
         var SuisseSelected = false;
         var AustriaSelected = false;
         var GermanySelected = false;
+        var SloveniaSelected = false;
         var text;
         var markersCheckbox;
         var italyCheckbox;
@@ -2011,6 +2549,7 @@
         var franceCheckbox;
         var austriaCheckbox;
         var germanyCheckbox;
+        var sloveniaCheckbox;
         var geoIDArray = [];
         var markerIDArray = [];
         var allArray = [];
@@ -2019,6 +2558,7 @@
         var suisseArray = [];
         var austriaArray = [];
         var germanyArray = [];
+        var sloveniaArray = [];
         var iddArray = [];
         
         var italy1 = L.layerGroup([]);
@@ -2026,6 +2566,7 @@
         var suisse1 = L.layerGroup([]);
         var austria1 = L.layerGroup([]);
         var germany1 = L.layerGroup([]);
+        var slovenia1 = L.layerGroup([]);
 
         var all= L.layerGroup([]);;
         var italy = L.layerGroup([]);
@@ -2033,6 +2574,7 @@
         var suisse = L.layerGroup([]);
         var austria = L.layerGroup([]);
         var germany = L.layerGroup([]);
+        var slovenia = L.layerGroup([]);
 
         var baseMaps = {
             "Standard": osm,
@@ -2045,7 +2587,8 @@
             "Suisse": suisse,
             "France": france,
             "Austria": austria,
-            "Germany": germany
+            "Germany": germany,
+            "Slovenia": slovenia
         };
         var layerControl = L.control.layers(baseMaps, overlayMaps1,{position: 'topright'}).addTo(map);
 
@@ -2079,6 +2622,7 @@
             suisseArray = [];
             austriaArray = [];
             germanyArray = [];
+            sloveniaArray = [];
             markerIDArray = [];
             geoIDArray = [];
 
@@ -2100,6 +2644,7 @@
             var suisseClick = SuisseSelected;
             var austriaClick = AustriaSelected;
             var germanyClick = GermanySelected;
+            var sloveniaClick = SloveniaSelected;
 
             if (MarkersSelected){ markersCheckbox.click()};
             if (ItalySelected){ italyCheckbox.click()};
@@ -2107,6 +2652,7 @@
             if (SuisseSelected){ suisseCheckbox.click()};
             if (AustriaSelected){ austriaCheckbox.click()};
             if (GermanySelected){ germanyCheckbox.click()};
+            if (SloveniaSelected){ sloveniaCheckbox.click()};
 
             marks.push(marker);
             marks.forEach(function (layer) {
@@ -2138,8 +2684,7 @@
             });
 
             iddArray = [];
-            var k = 683;
-            for (i=0; i<=k; i++){
+            for (var i=0; i<=numberOfElements; i++){
                 if (geoIDArray[i] == i && markerIDArray[i] == i){
                     iddArray[i] = i;
                 }
@@ -2165,6 +2710,9 @@
                     else if (iddArray[idd] == idd && country === 'DE'){
                         germanyArray.push(featureLayer);
                     }
+                    else if (iddArray[idd] == idd && country === 'SLO'){
+                        sloveniaArray.push(featureLayer);
+                    }
                 }); 
             });
 
@@ -2188,6 +2736,9 @@
                     else if (iddArray[idd] == idd && country === 'DE'){
                         germanyArray.push(featureLayer);
                     }
+                    else if (iddArray[idd] == idd && country === 'SLO'){
+                        sloveniaArray.push(featureLayer);
+                    }
                 });
             });
 
@@ -2196,6 +2747,7 @@
             layerControl.removeLayer(suisse1);
             layerControl.removeLayer(austria1);
             layerControl.removeLayer(germany1);
+            layerControl.removeLayer(slovenia1);
 
             layerControl.removeLayer(all);
             layerControl.removeLayer(italy);
@@ -2203,19 +2755,22 @@
             layerControl.removeLayer(france);
             layerControl.removeLayer(austria);
             layerControl.removeLayer(germany);
+            layerControl.removeLayer(slovenia);
 
             italy1 = L.layerGroup(italyArray);
             france1 = L.layerGroup(franceArray);
             suisse1 = L.layerGroup(suisseArray);
             austria1 = L.layerGroup(austriaArray);
             germany1 = L.layerGroup(germanyArray);
+            slovenia1 = L.layerGroup(sloveniaArray);
 
-            all = L.layerGroup([italy1, france1, suisse1, austria1, germany1]);
+            all = L.layerGroup([italy1, france1, suisse1, austria1, germany1, slovenia1]);
             italy = L.layerGroup(italyArray);
             france = L.layerGroup(franceArray);
             suisse = L.layerGroup(suisseArray);
             austria = L.layerGroup(austriaArray);
             germany = L.layerGroup(germanyArray);
+            slovenia = L.layerGroup(sloveniaArray);
             
             layerControl.addOverlay(all, "All");
             layerControl.addOverlay(italy, "Italy");
@@ -2223,6 +2778,7 @@
             layerControl.addOverlay(france, "France");
             layerControl.addOverlay(austria, "Austria");
             layerControl.addOverlay(germany, "Germany");
+            layerControl.addOverlay(slovenia, "Slovenia");
 
             labels = 0;
             labels = layerControl.getContainer().querySelectorAll('label');
@@ -2234,6 +2790,7 @@
             if (suisseClick){ suisseCheckbox.click()};
             if (austriaClick){ austriaCheckbox.click()};
             if (germanyClick){ germanyCheckbox.click()};
+            if (sloveniaClick){ sloveniaCheckbox.click()};
             
             for (var i=0;i<=tableLength-1;i++){
                 if(tableArray[i]){
@@ -2270,6 +2827,9 @@
                                 }
                                 if (GermanySelected){
                                     germanyCheckbox.click();
+                                }
+                                if (SloveniaSelected){
+                                    sloveniaCheckbox.click();
                                 }
                                 markersCheckbox.click();
                                 markersCheckbox.click();
@@ -2342,6 +2902,20 @@
                                     markersCheckbox.click();
                                     germanyCheckbox.click();
                                     germanyCheckbox.click();
+                                }
+                            }
+                        });
+                    }
+                } else if (text === 'Slovenia') {
+                    sloveniaCheckbox = label.querySelector('input[type="checkbox"]');
+                    if (sloveniaCheckbox) {
+                        sloveniaCheckbox.addEventListener('click', function (e) {
+                            SloveniaSelected = e.target.checked;
+                            if (SloveniaSelected){
+                                if (MarkersSelected){
+                                    markersCheckbox.click();
+                                    sloveniaCheckbox.click();
+                                    sloveniaCheckbox.click();
                                 }
                             }
                         });
