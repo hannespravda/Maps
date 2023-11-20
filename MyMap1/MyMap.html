@@ -259,7 +259,7 @@
         .additional-info {
             background-color: #f2f2f2; /* Grey background color */
             padding: 1px; /* Add padding for spacing */
-            margin-left: 35px; /* Adjust as needed for spacing from the left margin */
+            margin-left: 65px; /* Adjust as needed for spacing from the left margin */
             margin-top: -15px;
         }
         .hidden {
@@ -759,7 +759,8 @@
             // Create a cell for the checkbox image
             const pngCell = document.createElement('td');
             const pngImage = document.createElement('img');
-            const tickedImagePath = localStorage.getItem(`TickedCheckboxState${idd}`) ? 'Images/ticked.png' : 'Images/Empty.png';
+            const tickedValue = localStorage.getItem(`TickedCheckboxState${idd}`);
+            const tickedImagePath = tickedValue !== null && JSON.parse(tickedValue) ? 'Images/ticked.png' : 'Images/Empty.png';
             pngImage.src = tickedImagePath;
             pngImage.width = 10; // Set the width of the image
             pngImage.height = 10; // Set the height of the image
@@ -2720,6 +2721,7 @@
 
         filterGeoJSONObjects();
         fillTable();
+        //markersCheckbox.click();      //uncomment for user version
 
         // Function to filter GeoJSON objects based on selected categories
         function filterGeoJSONObjects() {
