@@ -18,10 +18,10 @@
     <link rel="stylesheet" href="Leaflet.markercluster-1.4.1\dist\MarkerCluster.Default.css"/>
     <script src="Leaflet.markercluster-1.4.1\dist\leaflet.markercluster-src.js"></script>
     <script src="Leaflet.markercluster-1.4.1\dist\leaflet.markercluster.js"></script>
-    
-    <!-- search master -->
-    <link rel="stylesheet" href="leaflet-search-master\dist\leaflet-search.src.css"/>
-    <script src="leaflet-search-master\dist\leaflet-search.src.js"></script>
+
+    <!-- geo search -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
     <!-- style -->
     <style>
@@ -34,16 +34,18 @@
             transform: translateX(-50%);
             z-index: 1000;
             background-color: white;
-            color: rgb(126, 121, 121);
-            border: 2px solid #ccc;
-            border-radius: 5px;
             font-family: Helvetica, Arial, sans-serif;
-            font-size: 12px;
             padding: 5px; /* Add padding to create space around the text */
             text-align: center; /* Center the text horizontally */
-            width: 35px;
+            width: 33px;
             cursor: pointer;
             user-select: none;
+            font-size: 0.75rem;
+            line-height: 1.5;
+            box-shadow: none;
+            border: 2px solid rgba(0,0,0,0.2);
+            background-clip: padding-box;
+            border-radius: 4px;
         }
         #filter {
             position: absolute;
@@ -116,7 +118,7 @@
             margin-left: 10px;
         }
         .leaflet-top.leaflet-right .leaflet-control {
-            top: 29px; /* Adjust the top position as needed */
+            top: 35px; /* Adjust the top position as needed */
             user-select: none;
         }
         .filter-row button {
@@ -141,24 +143,26 @@
             -webkit-appearance: none;
             margin: 0;
         }
-        
         #table-toggle {
             position: absolute;
-            top: 170px; /* Adjust the top position as needed */
+            top: 10px; /* Adjust the top position as needed */
             left: 2.1%; /* Adjust the left position as needed */
             transform: translateX(-50%);
             z-index: 1000;
             background-color: white;
             color: rgb(126, 121, 121);
-            border: 2px solid #ccc;
-            border-radius: 5px;
             font-family: Helvetica, Arial, sans-serif;
-            font-size: 12px;
+            font-size: 0.75rem;
+            line-height: 1.5;
             padding: 5px; /* Add padding to create space around the text */
             text-align: center; /* Center the text horizontally */
             width: 20px;
             cursor: pointer;
             user-select: none;
+            box-shadow: none;
+            border: 2px solid rgba(0,0,0,0.2);
+            background-clip: padding-box;
+            border-radius: 4px;
         }
         #table-container {
             position: absolute;
@@ -223,6 +227,18 @@
         .sort-container label {
             margin-right: 10px; /* Adjust margin as needed to separate label from the select box */
         }
+        #sort-options {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            border: 1px solid rgb(126, 121, 121);
+            color: rgb(126, 121, 121);
+            border-radius: 3px;
+            padding: 1px;
+        }
+        #sort-options:focus {
+            outline: 1px solid lightblue; /* Add an outline when in focus */
+            border-color: lightblue; /* Change border color when in focus */
+        }
         #toggle-sort-order {
             margin-left: 5px; /* Adjust the value as needed */
             background-color: white;
@@ -275,7 +291,7 @@
 
         #filter2 {
             position: absolute;
-            top: 20px; /* Adjust the top position as needed 160*/
+            top: 18px; /* Adjust the top position as needed 160*/
             left: 440px; /* Adjust the left position as needed */
             transform: translateX(-50%);
             z-index: 1000;
@@ -289,7 +305,7 @@
             width: 220px;
             user-select: none;
             color: rgb(126, 121, 121);
-          }
+        }
         .filter2-row {
             display: flex;
             align-items: center;
@@ -386,6 +402,48 @@
         input[type=radio] {
             accent-color: rgb(126, 121, 121);
         }
+        #search-container {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            left: 440px; /* Adjust the left position as needed 440*/
+            top: 7px; /* Adjust the top position as needed 160*/
+         }
+        #search-input {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            padding: 2px; /* Add padding to create space around the text */
+            flex: 1;
+            border: 1px solid rgb(126, 121, 121);
+            color: rgb(126, 121, 121);
+            border-radius: 5px;
+            width: 120px; /* Adjust the width, subtracting space for the clear button */
+        }
+        #search-input:focus {
+            outline: 2px solid lightblue;
+            border-color: lightblue;
+            color: rgb(126, 121, 121); /* Change text color when in focus */
+        }
+        #clear-search {
+            background-color: white; /* Red background */
+            color: rgb(126, 121, 121); /* White text */
+            border: none;
+            padding: 0px 0px;
+            cursor: pointer;
+            position: absolute;
+            left: 88%;          /* 111.5*/
+        }
+        #clear-search:hover {
+            color: rgb(179, 108, 108); /* Change text color to blue on hover */
+        }
+        path.leaflet-interactive:focus {
+            outline: 2px solid rgb(126, 121, 121);
+            border-radius: 5px
+        }
+        .leaflet-top.leaflet-left .leaflet-control {
+            top: 40px; /* Adjust the top position as needed */
+            user-select: none;
+        }       
     </style>
 
     <!--------------------- add geoJSON files renamed to .js files here -------------------------------------->
@@ -570,11 +628,16 @@
             <button id="toggle-sort-order" onclick="toggleSortOrder()">↑↓</button>
             <button id="reset-checkboxes" onclick="resetCheckboxes()">Clear</button>
             <button id="filter-table" onclick="tableFilterToggle()">Filter</button>
+            <div id="search-container">
+                <input type="text" id="search-input" list="suggestions" placeholder="Search..." oninput="searchTable()">
+                <button id="clear-search" onclick="clearSearch()">✕</button>
+                <datalist id="suggestions"></datalist>
+            </div>
         </div>
         <table id="data-table">
             <thead>
                 <tr>
-                    <th></th>
+                    <th>Show</th>
                     <th></th>
                     <th>Name</th>
                     <th>Country</th>
@@ -640,7 +703,26 @@
         //center coordinates at start
         var map = L.map('map', {
             minZoom: 2,
+            zoomControl: false
         }).setView([45.464664, 9.188540],13);
+        L.control.zoom({
+            position: 'bottomright'
+        }).addTo(map);
+
+        //geo search
+        var geocoder = L.Control.geocoder({
+            defaultMarkGeocode: false,
+            position: "topleft",
+        }).on('markgeocode', function(e) {
+                var bbox = e.geocode.bbox;
+                var poly = L.polygon([
+                    bbox.getSouthEast(),
+                    bbox.getNorthEast(),
+                    bbox.getNorthWest(),
+                    bbox.getSouthWest()
+                ]);
+                map.fitBounds(poly.getBounds());
+            }).addTo(map);
 
         //table
         var tableToggle = document.getElementById("table-toggle");
@@ -750,8 +832,13 @@
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             checkbox.className = "checkbox99";
+            const checkboxId = `checkbox${idd}`;
+            checkbox.setAttribute("id", checkboxId);
             checkbox.addEventListener("click", function () {
                 checkboxCallback(idd, checkbox.checked);
+                if (checkbox.checked){
+                    focusOnGeoJSONElement(idd, event.isTrusted);
+                }
             });
             checkboxCell.appendChild(checkbox);
             tableRow.appendChild(checkboxCell);
@@ -859,6 +946,58 @@
                 }
             });
         };
+
+        function searchTable() {
+            const input = document.getElementById("search-input").value.toLowerCase();
+            const rows = document.querySelectorAll("#data-table tbody tr");
+            const suggestions = [];
+
+            rows.forEach((row) => {
+                const nameCell = row.querySelector("td:nth-child(3)");
+                const name = nameCell.textContent.toLowerCase();
+                const nameUpper = nameCell.textContent;
+                const text = document.getElementById("search-input").value;
+                const nameWithoutShowMore = name.replace('show more', '');
+                const nameWithoutShowMoreUpper = nameUpper.replace('show more', '');
+                if (nameWithoutShowMore.includes(input)) {
+                    row.style.display = "";
+                    if (nameWithoutShowMore !== input && text.length >= 1){
+                        suggestions.push(nameWithoutShowMoreUpper);
+                    }
+                } else {
+                    row.style.display = "none";
+                }
+            });
+            updateSuggestions(suggestions);
+        }
+        function clearSearch() {
+            document.getElementById("search-input").value = "";
+            searchTable(); // Call the search function to show the full table
+            updateSuggestions([]); // Clear suggestions
+        }
+        function updateSuggestions(suggestions) {
+            const datalist = document.getElementById('suggestions');
+            datalist.innerHTML = ''; // Clear existing options
+
+            const limitedSuggestions = suggestions.slice(0, 5);
+
+            limitedSuggestions.forEach((suggestion) => {
+                const option = document.createElement('option');
+                option.value = suggestion;
+                datalist.appendChild(option);
+            });
+        }
+
+        function focusOnGeoJSONElement(idd, isExternalClick) {
+            const feature = passi.features.find(feature => feature.properties.idd === idd);
+            if (feature) {
+                const coordinates = feature.geometry.coordinates;
+                const latLng = L.latLng(coordinates[1], coordinates[0]);
+                if (isExternalClick) {
+                    map.setView(latLng, 12);
+                }
+            }
+        }
 
         //filter2//////////////////////////////////////////////////////////////////////////////////////
         var filter2 = document.getElementById("filter2");
@@ -1035,6 +1174,7 @@
             FilterArray2[16] = false;
             filter2.style.display = "none";
             document.getElementById("sort-options").value = "empty";
+            clearSearch();
         });
 
         function tableFilterToggle(){
@@ -1375,7 +1515,27 @@
                                 }
                             }
                             icons[ix].setIcon(icon)
+
+                            const checkboxes = document.getElementsByClassName('checkbox99');
+                            const checkboxValues = {};
+                            var checkbox99idd = 0;
+                            for (let i = 0; i < checkboxes.length; i++) {
+                                const checkbox = checkboxes[i];
+                                const checkbox99idd = checkbox.getAttribute('id').replace('checkbox', ''); // Extract idd from the checkbox id
+                                if (checkbox99idd !== null) {
+                                    checkboxValues[checkbox99idd] = checkbox.checked;
+                                }
+                            }
+
                             resetFilterButton2.click();
+                            
+                            for (let i = 0; i < checkboxes.length; i++) {
+                                if (checkboxValues[i]){
+                                    const checkboxId = `checkbox${i}`;
+                                    const checkboxToClick = document.getElementById(checkboxId);
+                                    checkboxToClick.click(); // Trigger a click on the checkbox
+                                }
+                            }
                         });
                     }
                 });
@@ -1391,33 +1551,13 @@
         markers.addLayer(marker);
         map.addLayer(markers);*/
 
-        //search master
-        var searchElements = L.geoJSON(passi, {
-            pointToLayer: function (feature, latlng) {
-                return L.marker(latlng, { icon: searchIcon});
-            }
-        });
-        var searchArray = [];
-        searchArray.push(searchElements);
-        var search = L.layerGroup(searchArray);
-        searchControl = new L.Control.Search({
-            layer: search,
-            propertyName: 'name',
-            initial: false,
-            casesensitive: 	false,
-            zoom: 14,
-            hideMarkerOnCollapse: true,
-            autoCollapse: false,
-            autoCollapseTime: 1
-        });
-        map.addControl(searchControl);
-
         //Track sytle and feature functions
         function onEachFeature(feature, layer) {
             layer.bindPopup(function (layer) {
                 return '<p style="margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p> (' + feature.properties.length + ' km' +', ' + feature.properties.elevation + ' hm' + ')<p style="margin-top: 5px;">';
             });
             layer.bindTooltip(feature.properties.name + " (" + feature.properties.elevation + ' hm)');
+            
             layer.on('mouseover', function (e) {
                 if (feature.properties.category == 'Climb'){
                     this.setStyle({ color: 'orange', weight: 3 });
@@ -2617,6 +2757,14 @@
                         layer.addTo(map);
                     }
                 });
+
+                /*const feature = passi.features.find(feature => feature.properties.idd === idd);
+                if (feature) {
+                    const coordinates = feature.geometry.coordinates;
+                    const latLng = L.latLng(coordinates[1], coordinates[0]);
+                    map.setView(latLng, 12);
+                }*/
+
             } else {
                 var layerCheckboxes = document.querySelectorAll('.leaflet-control-layers-selector');
                 var k = 0;
