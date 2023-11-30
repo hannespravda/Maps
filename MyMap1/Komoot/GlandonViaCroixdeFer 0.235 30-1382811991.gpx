@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" creator="Vanni Prada">
+  <metadata>
+    <name>GlandonViaCroixdeFer 0.235 30</name>
+    <desc>Distance: 0.234km, Estimated duration: 0.02h, Elevation up: 25.51199166464926m, Elevation down: 0.0m, Grade: easy</desc>
+    <author>
+      <name>Vanni Prada</name>
+      <link href="https://www.komoot.de/user/3800550376326">
+        <text>View Vanni Prada's Profile on Komoot</text>
+      </link>
+    </author>
+    <link href="https://www.komoot.de/tour/1382811991">
+      <text>View tour on Komoot</text>
+    </link>
+  </metadata>
+  <trk>
+    <name>GlandonViaCroixdeFer 0.235 30</name>
+    <desc>Distance: 0.234km, Estimated duration: 0.02h, Elevation up: 25.51199166464926m, Elevation down: 0.0m, Grade: easy</desc>
+    <link href="https://www.komoot.de/tour/1382811991">
+      <text>View tour on Komoot</text>
+    </link>
+    <trkseg>
+      <trkpt lat="45.238716" lon="6.177855">
+        <ele>1878.8</ele>
+        <time>2023-11-26T19:15:10.650000Z</time>
+      </trkpt>
+      <trkpt lat="45.238716" lon="6.177858">
+        <ele>1878.8</ele>
+        <time>2023-11-26T19:15:10.718000Z</time>
+      </trkpt>
+      <trkpt lat="45.238746" lon="6.177899">
+        <ele>1879.2</ele>
+        <time>2023-11-26T19:15:11.908000Z</time>
+      </trkpt>
+      <trkpt lat="45.238838" lon="6.177785">
+        <ele>1880.8</ele>
+        <time>2023-11-26T19:15:17.018000Z</time>
+      </trkpt>
+      <trkpt lat="45.238958" lon="6.177336">
+        <ele>1884.8</ele>
+        <time>2023-11-26T19:15:29.513000Z</time>
+      </trkpt>
+      <trkpt lat="45.238996" lon="6.177067">
+        <ele>1887.2</ele>
+        <time>2023-11-26T19:15:36.994000Z</time>
+      </trkpt>
+      <trkpt lat="45.238979" lon="6.176765">
+        <ele>1890.1</ele>
+        <time>2023-11-26T19:15:45.824000Z</time>
+      </trkpt>
+      <trkpt lat="45.238997" lon="6.176672">
+        <ele>1890.9</ele>
+        <time>2023-11-26T19:15:48.502000Z</time>
+      </trkpt>
+      <trkpt lat="45.239025" lon="6.176592">
+        <ele>1891.6</ele>
+        <time>2023-11-26T19:15:50.800000Z</time>
+      </trkpt>
+      <trkpt lat="45.239344" lon="6.176093">
+        <ele>1897.6</ele>
+        <time>2023-11-26T19:16:09.294000Z</time>
+      </trkpt>
+      <trkpt lat="45.239401" lon="6.17571">
+        <ele>1901.2</ele>
+        <time>2023-11-26T19:16:20.459000Z</time>
+      </trkpt>
+      <trkpt lat="45.239423" lon="6.175635">
+        <ele>1901.8</ele>
+        <time>2023-11-26T19:16:22.317000Z</time>
+      </trkpt>
+      <trkpt lat="45.239472" lon="6.17558">
+        <ele>1902.4</ele>
+        <time>2023-11-26T19:16:24.447000Z</time>
+      </trkpt>
+      <trkpt lat="45.239606" lon="6.175535">
+        <ele>1903.8</ele>
+        <time>2023-11-26T19:16:29.089000Z</time>
+      </trkpt>
+      <trkpt lat="45.239654" lon="6.17554">
+        <ele>1904.3</ele>
+        <time>2023-11-26T19:16:30.647000Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

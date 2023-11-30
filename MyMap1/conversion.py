@@ -76,7 +76,9 @@ geoJSONs.push(g{XX});
 #################################################################################################################
 output_directory = "GeoTracks/"
 gpx_files = [
-    "Komoot/KitzHorn 9.4 1160-1358757714.gpx"
+
+"Komoot/PenserJochSterzing 16.0 1270-1383079283.gpx",
+"Komoot/PenserJochBozen 47.2 2040-1383079061.gpx",
    
 ]
 
