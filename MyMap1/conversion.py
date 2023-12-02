@@ -1,6 +1,15 @@
 import gpxpy
 import geojson
 import os
+import re
+
+def extract_elevation_up(desc):
+    # Use regular expression to extract elevation up from the desc string
+    match = re.search(r'Elevation up: (\d+(\.\d+)?)m', desc)
+    if match:
+        return float(match.group(1))
+    else:
+        return None
 
 def gpx_to_geojson(gpx_file_paths, output_directory):
     features = []
@@ -9,8 +18,8 @@ def gpx_to_geojson(gpx_file_paths, output_directory):
         # Get input from the user for each track's properties
         idd = input("Enter idd for {}: ".format(gpx_file_path))
         name = input("Enter name for {}: ".format(gpx_file_path))
-        length = input("Enter length for {}: ".format(gpx_file_path))
-        elevation = input("Enter elevation for {}: ".format(gpx_file_path))
+        #length = input("Enter length for {}: ".format(gpx_file_path))
+        #elevation = input("Enter elevation for {}: ".format(gpx_file_path))
         category = input("Enter category for {}: ".format(gpx_file_path))
         country = input("Enter country for {}: ".format(gpx_file_path))
         link = input("Enter link for {}: ".format(gpx_file_path))
@@ -20,15 +29,20 @@ def gpx_to_geojson(gpx_file_paths, output_directory):
 
         for track in gpx.tracks:
             for segment in track.segments:
-                coordinates = [(point.longitude, point.latitude) for point in segment.points]
+                coordinates = [(point.longitude, point.latitude, point.elevation) for point in segment.points]
                 line_string = geojson.LineString(coordinates)
+                
+                distance = round(track.length_3d()/1000, 1)
+
+                # Extract elevation-up from desc
+                elevation_up = round(extract_elevation_up(track.description),0)
 
                 # Add properties to the GeoJSON feature
                 properties = {
                     "idd": idd,
                     "name": name,
-                    "length": length,
-                    "elevation": elevation,
+                    "length": distance,
+                    "elevation": elevation_up,
                     "category": category,
                     "country": country,
                     "link": link

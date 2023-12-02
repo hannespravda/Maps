@@ -1,29 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remember Checkbox State</title>
-    <style>
-        /* Add your checkbox styling here */
-    </style>
-</head>
-<body>
-    <label for="rememberCheckbox">Remember Me</label>
-    <input type="checkbox" id="rememberCheckbox">
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Test</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
 
-    <script>
-        // Check if there's a stored value and set the checkbox accordingly
-        const rememberCheckbox = document.getElementById('rememberCheckbox');
-        const storedValue = localStorage.getItem('rememberCheckboxState');
-        if (storedValue) {
-            rememberCheckbox.checked = JSON.parse(storedValue);
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        #map {
+            flex: 1;
+            height: 100%;
+        }
+    
+        #elevation-div {
+            height: 0;
+            font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+            overflow: hidden;
+            transition: height 0.3s ease; /* Use ease for a smoother transition */
         }
 
-        // Add an event listener to save the checkbox state when it changes
-        rememberCheckbox.addEventListener('change', function () {
-            localStorage.setItem('rememberCheckboxState', this.checked);
+        .elevation-toggle-icon {
+            display: none !important;  /* Hide the elevation toggle button */
+        }
+
+        #custom-close-button {
+            position: absolute;
+            top: 380px;
+            right: 10px;
+            cursor: pointer;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: rgb(255,255,255,0);
+            display: flex;
+            color: rgb(179, 108, 108); 
+        }
+
+        .elevation-detached.elevation-collapsed .elevation-summary {
+            display: none !important;
+        }
+
+        .elevation-detached.elevation-expanded .elevation-summary {
+            display: none !important;
+        }
+
+    </style>
+
+    <!-- leaflet-ui -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-ui@0.6.0/dist/leaflet-ui.js"></script>
+
+    <!-- leaflet-elevation -->
+    <link rel="stylesheet" href="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.css" />
+    <script src="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.js"></script>
+
+    <script src = "Tracks/Marco.js"></script>
+</head>
+<body>
+    <div id="map"></div>
+    <div id="custom-close-button" class="custom-close-button" onclick="closeElevationProfile()">✕</div>
+
+    <script>
+        // Full list options at "leaflet-elevation.js"
+        var elevation_options = {
+          // Default chart colors: theme lime-theme, magenta-theme, ...
+          theme: "lightblue-theme",
+          // Chart container outside/inside map container
+          detached: true,
+          // if (detached), the elevation chart container
+          elevationDiv: "#elevation-div",
+          // if (!detached) autohide chart profile on chart mouseleave
+          autohide: false,
+          // if (!detached) initial state of chart profile control
+          collapsed: true,
+          controlButton: false,
+          // if (!detached) control position on one of map corners
+          position: "topright",
+          // Toggle close icon visibility
+          closeBtn: true,
+          // Autoupdate map center on chart mouseover.
+          followMarker: true,
+          // Autoupdate map bounds on chart update.
+          autofitBounds: true,
+          // Chart distance/elevation units.
+          imperial: false,
+          // [Lat, Long] vs [Long, Lat] points. (leaflet default: [Lat, Long])
+          reverseCoords: false,
+          // Acceleration chart profile: true || "summary" || "disabled" || false
+          acceleration: false,
+          // Slope chart profile: true || "summary" || "disabled" || false
+          slope: false,
+          // Speed chart profile: true || "summary" || "disabled" || false
+          speed: false,
+          // Altitude chart profile: true || "summary" || "disabled" || false
+          altitude: true,
+          // Display time info: true || "summary" || false
+          time: false,
+          // Display distance info: true || "summary" || false
+          distance: true,
+          // Summary track info style: "inline" || "multiline" || false
+          summary: false,
+          // Download link: "link" || false || "modal"
+          downloadLink: false,
+          // Toggle chart ruler filter
+          ruler: false,
+          // Toggle chart legend filter
+          legend: false,
+          // Toggle "leaflet-almostover" integration
+          almostOver: true,
+          // Toggle "leaflet-distance-markers" integration
+          distanceMarkers: false,
+          // Toggle "leaflet-edgescale" integration
+          edgeScale: false,
+          // Toggle "leaflet-hotline" integration
+          hotline: true,
+          // Display track datetimes: true || false
+          timestamps: false,
+          // Display track waypoints: true || "markers" || "dots" || false
+          waypoints: false,
+          // Toggle custom waypoint icons: true || { associative array of <sym> tags } || false
+          wptIcons: {
+            '': L.divIcon({
+              className: 'elevation-waypoint-marker',
+              html: '<i class="elevation-waypoint-icon"></i>',
+              iconSize: [30, 30],
+              iconAnchor: [8, 30],
+            }),
+          },
+          // Toggle waypoint labels: true || "markers" || "dots" || false
+          wptLabels: false,
+          // Render chart profiles as Canvas or SVG Paths
+          preferCanvas: true,
+        };
+
+        
+      
+        var map = L.map('map', { mapTypeId: 'terrain', center: [41.4583, 12.7059], zoom: 5 });
+        var gMarco = L.geoJSON(Marco).addTo(map);
+
+        // Instantiate elevation control.
+        var controlElevation = L.control.elevation(elevation_options).addTo(map);
+        var closeButton = document.getElementById('custom-close-button');
+        closeButton.style.display = 'none';
+      
+        gMarco.on('click', function (event) {
+            controlElevation.clear();
+            controlElevation.addData(event.layer.feature);
+            document.querySelector('.elevation-toggle-icon').click();
+            var closeButton = document.getElementById('custom-close-button');
+            closeButton.style.display = 'block';
         });
-    </script>
+
+        function closeElevationProfile(){
+            document.querySelector('.elevation-toggle-icon').click();
+            var closeButton = document.getElementById('custom-close-button');
+            closeButton.style.display = 'none';
+        }
+      </script>
 </body>
 </html>

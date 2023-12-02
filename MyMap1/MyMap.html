@@ -17,9 +17,58 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
+    <!-- leaflet-elevation -->
+    <link rel="stylesheet" href="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.css" />
+    <script src="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.js"></script>
+
     <!-- style -->
     <style>
-        #map {position: absolute; top: 0; bottom: 0; left: 0; right: 0}
+        /*#map {position: absolute; top: 0; bottom: 0; left: 0; right: 0}*/
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        #map {
+            flex: 1;
+            height: 100%;
+        }
+    
+        #elevation-div {
+            height: 0;
+            font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+            overflow: hidden;
+            transition: height 0.3s ease; /* Use ease for a smoother transition */
+        }
+
+        .elevation-toggle-icon {
+            display: none !important;  /* Hide the elevation toggle button */
+        }
+
+        #custom-close-button {
+            position: absolute;
+            top: 380px;
+            right: 10px;
+            cursor: pointer;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: rgb(255,255,255,0);
+            display: flex;
+            color: rgb(179, 108, 108); 
+        }
+
+        .elevation-detached.elevation-collapsed .elevation-summary {
+            display: none !important;
+        }
+
+        .elevation-detached.elevation-expanded .elevation-summary {
+            display: none !important;
+        }
 
         #filter-toggle {
             position: absolute;
@@ -491,8 +540,38 @@
         .slider.round:before {
         border-radius: 50%;
         }
-    </style>
 
+        #climb-count {
+            position: absolute;
+            bottom: 16px; /* Adjust the distance from the bottom as needed */
+            right: 0px; /* Adjust the distance from the left as needed */
+            background-color: rgba(255, 255, 255, 0.7);;
+            color: rgb(126, 121, 121);
+            border: 0px solid #ccc;
+            border-radius: 1px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 8px;
+            z-index: 1000;
+            padding-right: 6px;
+            padding-left: 2px;
+        }
+
+        .elevation-toggle-icon {
+            background-color: rgb(255,255,255, 0);
+            right: 5px;
+            top: 5px;
+            height: var(--ele-toggle-size, 36px);
+            width: var(--ele-toggle-size, 36px);
+            cursor: pointer;
+            box-shadow: none;
+            border-radius: 5px;
+            display: inline-block;
+            position: var(--ele-toggle-pos, relative);
+        }
+        .elevation-control .background {
+            background-color: rgb(255,255,255, 0.5);
+        }
+    </style>
     <!--------------------- add geoJSON files renamed to .js files here -------------------------------------->
     <!-------------------------------------------------------------------------------------------------------->
     <script src = "passi.js"></script>
@@ -739,6 +818,8 @@
 <body>
     <div id = "map"></div> 
 
+    <div id="custom-close-button" class="custom-close-button" onclick="closeElevationProfile()">✕</div>
+
     <div id="filter-toggle">Filter</div>
     <div id="filter" style="display: none;">
         <div id="checkbox-container">
@@ -881,6 +962,105 @@
         L.control.zoom({
             position: 'bottomright'
         }).addTo(map);
+
+
+        // Full list options at "leaflet-elevation.js"
+        var elevation_options = {
+            // Default chart colors: theme lime-theme, magenta-theme, ...
+            theme: "lightblue-theme",
+            // Chart container outside/inside map container
+            detached: true,
+            // if (detached), the elevation chart container
+            elevationDiv: "#elevation-div",
+            // if (!detached) autohide chart profile on chart mouseleave
+            autohide: false,
+            // if (!detached) initial state of chart profile control
+            collapsed: true,
+            controlButton: false,
+            // if (!detached) control position on one of map corners
+            position: "topright",
+            // Toggle close icon visibility
+            closeBtn: true,
+            // Autoupdate map center on chart mouseover.
+            followMarker: true,
+            // Autoupdate map bounds on chart update.
+            autofitBounds: true,
+            // Chart distance/elevation units.
+            imperial: false,
+            // [Lat, Long] vs [Long, Lat] points. (leaflet default: [Lat, Long])
+            reverseCoords: false,
+            // Acceleration chart profile: true || "summary" || "disabled" || false
+            acceleration: false,
+            // Slope chart profile: true || "summary" || "disabled" || false
+            slope: false,
+            // Speed chart profile: true || "summary" || "disabled" || false
+            speed: false,
+            // Altitude chart profile: true || "summary" || "disabled" || false
+            altitude: true,
+            // Display time info: true || "summary" || false
+            time: false,
+            // Display distance info: true || "summary" || false
+            distance: true,
+            // Summary track info style: "inline" || "multiline" || false
+            summary: false,
+            // Download link: "link" || false || "modal"
+            downloadLink: false,
+            // Toggle chart ruler filter
+            ruler: false,
+            // Toggle chart legend filter
+            legend: false,
+            // Toggle "leaflet-almostover" integration
+            almostOver: true,
+            // Toggle "leaflet-distance-markers" integration
+            distanceMarkers: false,
+            // Toggle "leaflet-edgescale" integration
+            edgeScale: false,
+            // Toggle "leaflet-hotline" integration
+            hotline: true,
+            // Display track datetimes: true || false
+            timestamps: false,
+            // Display track waypoints: true || "markers" || "dots" || false
+            waypoints: false,
+            // Toggle custom waypoint icons: true || { associative array of <sym> tags } || false
+            wptIcons: {
+                '': L.divIcon({
+                className: 'elevation-waypoint-marker',
+                html: '<i class="elevation-waypoint-icon"></i>',
+                iconSize: [30, 30],
+                iconAnchor: [8, 30],
+                }),
+            },
+            // Toggle waypoint labels: true || "markers" || "dots" || false
+            wptLabels: false,
+            // Render chart profiles as Canvas or SVG Paths
+            preferCanvas: true,
+        };
+  
+        //var gMarco = L.geoJSON(Marco).addTo(map);
+
+        // Instantiate elevation control.
+        var controlElevation = L.control.elevation(elevation_options).addTo(map);
+        var closeButton = document.getElementById('custom-close-button');
+        closeButton.style.display = 'none';
+        
+        /*gMarco.on('click', function (event) {
+            controlElevation.clear();
+            controlElevation.addData(event.layer.feature);
+            document.querySelector('.elevation-toggle-icon').click();
+            var closeButton = document.getElementById('custom-close-button');
+            closeButton.style.display = 'block';
+        });*/
+
+        var isElevationExpanded = false;
+  
+        function closeElevationProfile(){
+            document.querySelector('.elevation-toggle-icon').click();
+            var closeButton = document.getElementById('custom-close-button');
+            closeButton.style.display = 'none';
+            isElevationExpanded = false;
+        }
+        
+
 
         //geo search
         var geocoder = L.Control.geocoder({
@@ -1480,6 +1660,13 @@
         resetFilterButton.click();
 ////////////////////////////////////////////////////////////////////////////////////
 
+        function countHttpOccurrences(passi) {
+            const passiString = JSON.stringify(passi);
+            const httpOccurrences = (passiString.match(/http/g) || []).length;
+            return httpOccurrences;
+        }
+        const numberOfHttpOccurrences = countHttpOccurrences(passi)-1;
+
         //scale
         L.control.scale({
             metric: true,
@@ -1493,14 +1680,14 @@
 
         //map at start
         var osm = L.tileLayer('https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=5oOhPnaZPwb4EiDFpWyW', {
-            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> | <a> '+ numberOfHttpOccurrences +' climbs inluded </a>'
         }).addTo(map);
         //add other maps
         var satellite = L.tileLayer('https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key=5oOhPnaZPwb4EiDFpWyW', {
-            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> | <a> '+ numberOfHttpOccurrences +' climbs inluded </a>'
         });
         var topo = L.tileLayer('https://api.maptiler.com/maps/topo-v2/{z}/{x}/{y}.png?key=5oOhPnaZPwb4EiDFpWyW', {
-            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> | <a> '+ numberOfHttpOccurrences +' climbs inluded </a>'
         });
 
         //variables
@@ -1735,6 +1922,17 @@
                 return '<p style="margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p> (' + feature.properties.length + ' km' +', ' + feature.properties.elevation + ' hm' + ')<p style="margin-top: 5px;">';
             });
             layer.bindTooltip(feature.properties.name + " (" + feature.properties.elevation + ' hm)');
+
+            layer.on('click', function (e) {
+                var closeButton = document.getElementById('custom-close-button');
+                controlElevation.clear();
+                controlElevation.addData(feature);
+                if (!isElevationExpanded) {
+                    document.querySelector('.elevation-toggle-icon').click();
+                    isElevationExpanded = true;
+                }
+                closeButton.style.display = 'block';  
+            });
             
             layer.on('mouseover', function (e) {
                 if (feature.properties.category == 'Climb'){
@@ -3748,6 +3946,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////        
         //table data
+        const numberOfClimbs = geoJSONs.length;
         var lengthArray = [];
         var elevationArray = [];
         var slopeArray = [];

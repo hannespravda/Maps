@@ -4,12 +4,16 @@ Ideen:
 	vector karte
 	komoot karten design
 	filter for regions
-	Click on Track and Map
-	search box behind X
+	profile auch zeigen in table by click <--> link zu quäldich noch notwendig?
+	
 	
 Bugs
-	crocedomini
 	Show routes checkboxes
-	Rovereto Pässe/ Climbs
+	search box behind X
+	checkboxes99 persistent after slider/ filter reset
+	kein zoom nach profile closing
+	emptyTracks
+	binpopup by track in profile verschieben
+
 
 komootgpx -m hannes.pravida@outlook.com -p Hannes99 -a -o C:\Users\hanne\Hannes\Projekte\MyMap1\Komoot -e
