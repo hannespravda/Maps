@@ -44,14 +44,22 @@
             overflow: hidden;
             transition: height 0.3s ease; /* Use ease for a smoother transition */
         }
-
         .elevation-toggle-icon {
             display: none !important;  /* Hide the elevation toggle button */
+        }
+        .elevation-detached.elevation-collapsed .elevation-summary {
+            display: none !important;
+        }
+        .elevation-detached.elevation-expanded .elevation-summary {
+            display: none !important;
+        }
+        .elevation-control .background {
+            background-color: rgb(255,255,255);
         }
 
         #custom-close-button {
             position: absolute;
-            top: 380px;
+            bottom: 200px;
             right: 10px;
             cursor: pointer;
             width: 15px;
@@ -60,14 +68,6 @@
             background-color: rgb(255,255,255,0);
             display: flex;
             color: rgb(179, 108, 108); 
-        }
-
-        .elevation-detached.elevation-collapsed .elevation-summary {
-            display: none !important;
-        }
-
-        .elevation-detached.elevation-expanded .elevation-summary {
-            display: none !important;
         }
 
         #filter-toggle {
@@ -556,21 +556,25 @@
             padding-left: 2px;
         }
 
-        .elevation-toggle-icon {
-            background-color: rgb(255,255,255, 0);
-            right: 5px;
-            top: 5px;
-            height: var(--ele-toggle-size, 36px);
-            width: var(--ele-toggle-size, 36px);
-            cursor: pointer;
-            box-shadow: none;
-            border-radius: 5px;
-            display: inline-block;
-            position: var(--ele-toggle-pos, relative);
-        }
-        .elevation-control .background {
-            background-color: rgb(255,255,255, 0.5);
-        }
+        .textbox-container {
+            position: absolute;
+            bottom: 176px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgb(255,255,255,0);
+            padding: 0px;
+            border: 0px solid #ccc;
+            z-index: 1000;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            width: 1200px;
+            max-width: 1200px;
+            color: rgb(126, 121, 121);
+            text-align: center;
+          }
+          .textbox-link {
+            color: lightblue;
+          }
     </style>
     <!--------------------- add geoJSON files renamed to .js files here -------------------------------------->
     <!-------------------------------------------------------------------------------------------------------->
@@ -812,6 +816,13 @@
     <script src="Tracks/Tiefenbachferner.js"></script>
     <script src="Tracks/Eisentalhöhe.js"></script>
     <script src="Tracks/PenserJoch.js"></script>
+    <script src="Tracks/Oschenik.js"></script>
+    <script src="Tracks/PlanDuLac.js"></script>
+    <script src="Tracks/Saisies.js"></script>
+    <script src="Tracks/ValThorens.js"></script>
+    <script src="Tracks/LacMoiry.js"></script>
+    <script src="Tracks/Cayolle.js"></script>
+    <script src="Tracks/Sanetsch.js"></script>
     <!-------------------------------------------------------------------------------------------------------->
     <!-------------------------------------------------------------------------------------------------------->
 </head>
@@ -951,9 +962,11 @@
             <button id="applyFilter2">Apply</button>
         </div>
     </div>
+    <div id="textbox" class="textbox-container" style="display: none;"></div>
 
     <script>
         //localStorage.clear();
+
         //center coordinates at start
         var map = L.map('map', {
             minZoom: 2,
@@ -963,8 +976,7 @@
             position: 'bottomright'
         }).addTo(map);
 
-
-        // Full list options at "leaflet-elevation.js"
+        //elevation profile
         var elevation_options = {
             // Default chart colors: theme lime-theme, magenta-theme, ...
             theme: "lightblue-theme",
@@ -1035,22 +1047,10 @@
             // Render chart profiles as Canvas or SVG Paths
             preferCanvas: true,
         };
-  
-        //var gMarco = L.geoJSON(Marco).addTo(map);
 
-        // Instantiate elevation control.
         var controlElevation = L.control.elevation(elevation_options).addTo(map);
         var closeButton = document.getElementById('custom-close-button');
         closeButton.style.display = 'none';
-        
-        /*gMarco.on('click', function (event) {
-            controlElevation.clear();
-            controlElevation.addData(event.layer.feature);
-            document.querySelector('.elevation-toggle-icon').click();
-            var closeButton = document.getElementById('custom-close-button');
-            closeButton.style.display = 'block';
-        });*/
-
         var isElevationExpanded = false;
   
         function closeElevationProfile(){
@@ -1058,10 +1058,11 @@
             var closeButton = document.getElementById('custom-close-button');
             closeButton.style.display = 'none';
             isElevationExpanded = false;
+
+            var textbox = document.querySelector('.textbox-content');
+            textbox.style.display = 'none';
         }
         
-
-
         //geo search
         var geocoder = L.Control.geocoder({
             defaultMarkGeocode: false,
@@ -1918,10 +1919,10 @@
 
         //Track sytle and feature functions
         function onEachFeature(feature, layer) {
-            layer.bindPopup(function (layer) {
+            /*layer.bindPopup(function (layer) {
                 return '<p style="margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p> (' + feature.properties.length + ' km' +', ' + feature.properties.elevation + ' hm' + ')<p style="margin-top: 5px;">';
-            });
-            layer.bindTooltip(feature.properties.name + " (" + feature.properties.elevation + ' hm)');
+            });*/
+            layer.bindTooltip(feature.properties.name + ' (' + feature.properties.length + ' km, ' + feature.properties.elevation + ' hm)');
 
             layer.on('click', function (e) {
                 var closeButton = document.getElementById('custom-close-button');
@@ -1931,7 +1932,13 @@
                     document.querySelector('.elevation-toggle-icon').click();
                     isElevationExpanded = true;
                 }
-                closeButton.style.display = 'block';  
+                closeButton.style.display = 'block';
+
+                const iddToSearch = feature.properties.idd;
+                const passName = getNameById(iddToSearch);
+                var textbox = document.getElementById('textbox');
+                textbox.innerHTML = `<p class="textbox-content"><span class="textbox-name">${passName}</span> - <a class="textbox-link" href="${feature.properties.link}" target="_blank">${feature.properties.name}</a> - <span class="textbox-info">${feature.properties.length} km, ${feature.properties.elevation} hm</span></p>`;
+                textbox.style.display = 'block';
             });
             
             layer.on('mouseover', function (e) {
@@ -1974,7 +1981,16 @@
             } else if (feature.properties.category == 'Sackgasse') {
                 return { color: 'rgb(255,99,71)', weight: "1" };
             }  
-        }
+        };
+
+        function getNameById(idd) {
+            const foundPass = passi.features.find(feature => String(feature.properties.idd) === String(idd));
+            if (foundPass && foundPass.properties) {
+                return foundPass.properties.name;
+            } else {
+                return 'Unknown Pass'; // or some default value
+            }
+        };
 
         //layer button with maps and tracks
         var overlayMaps2 = {};
@@ -3943,6 +3959,62 @@
         var idPenserJoch = PenserJoch.features[0].properties.idd;
         geoJSONArray[idPenserJoch] = gPenserJoch;
         geoJSONs.push(gPenserJoch);
+
+        var gOschenik = L.geoJSON(Oschenik, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idOschenik = Oschenik.features[0].properties.idd;
+        geoJSONArray[idOschenik] = gOschenik;
+        geoJSONs.push(gOschenik);
+        
+        var gPlanDuLac = L.geoJSON(PlanDuLac, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idPlanDuLac = PlanDuLac.features[0].properties.idd;
+        geoJSONArray[idPlanDuLac] = gPlanDuLac;
+        geoJSONs.push(gPlanDuLac);
+        
+        var gSaisies = L.geoJSON(Saisies, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idSaisies = Saisies.features[0].properties.idd;
+        geoJSONArray[idSaisies] = gSaisies;
+        geoJSONs.push(gSaisies);
+        
+        var gValThorens = L.geoJSON(ValThorens, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idValThorens = ValThorens.features[0].properties.idd;
+        geoJSONArray[idValThorens] = gValThorens;
+        geoJSONs.push(gValThorens);
+
+        var gLacMoiry = L.geoJSON(LacMoiry, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idLacMoiry = LacMoiry.features[0].properties.idd;
+        geoJSONArray[idLacMoiry] = gLacMoiry;
+        geoJSONs.push(gLacMoiry);
+        
+        var gCayolle = L.geoJSON(Cayolle, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idCayolle = Cayolle.features[0].properties.idd;
+        geoJSONArray[idCayolle] = gCayolle;
+        geoJSONs.push(gCayolle);
+        
+        var gSanetsch = L.geoJSON(Sanetsch, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idSanetsch = Sanetsch.features[0].properties.idd;
+        geoJSONArray[idSanetsch] = gSanetsch;
+        geoJSONs.push(gSanetsch);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////        
         //table data
