@@ -956,6 +956,28 @@
     <script src="Tracks/Granon.js"></script>
     <script src="Tracks/Moutiere.js"></script>
     <script src="Tracks/Oberaarsee.js"></script>
+    <script src="Tracks/EttalerSattel.js"></script>
+    <script src="Tracks/Griessenpass.js"></script>
+    <script src="Tracks/CroceSalven.js"></script>
+    <script src="Tracks/Passaboche.js"></script>
+    <script src="Tracks/SanFermo.js"></script>
+    <script src="Tracks/MariaEck.js"></script>
+    <script src="Tracks/Maserer.js"></script>
+    <script src="Tracks/Niklasreuth.js"></script>
+    <script src="Tracks/Rossmettlen.js"></script>
+    <script src="Tracks/ValBavona.js"></script>
+    <script src="Tracks/Generoso.js"></script>
+    <script src="Tracks/ValMuggio.js"></script>
+    <script src="Tracks/AlpeGiumelloComo.js"></script>
+    <script src="Tracks/Schäftlarn.js"></script>
+    <script src="Tracks/Ludwigshöhe.js"></script>
+    <script src="Tracks/Aufkirchen.js"></script>
+    <script src="Tracks/Leutstetten.js"></script>
+    <script src="Tracks/HochbergChiemgau.js"></script>
+    <script src="Tracks/BichlPass.js"></script>
+    <script src="Tracks/Riedl.js"></script>
+    <script src="Tracks/Eibsee.js"></script>
+    <script src="Tracks/Kesselberg.js"></script>
     <!-------------------------------------------------------------------------------------------------------->
     <!-------------------------------------------------------------------------------------------------------->
 </head>
@@ -5228,6 +5250,182 @@
         var idOberaarsee = Oberaarsee.features[0].properties.idd;
         geoJSONArray[idOberaarsee] = gOberaarsee;
         geoJSONs.push(gOberaarsee);
+
+        var gEttalerSattel = L.geoJSON(EttalerSattel, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idEttalerSattel = EttalerSattel.features[0].properties.idd;
+        geoJSONArray[idEttalerSattel] = gEttalerSattel;
+        geoJSONs.push(gEttalerSattel);
+
+        var gGriessenpass = L.geoJSON(Griessenpass, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idGriessenpass = Griessenpass.features[0].properties.idd;
+        geoJSONArray[idGriessenpass] = gGriessenpass;
+        geoJSONs.push(gGriessenpass);
+
+        var gCroceSalven = L.geoJSON(CroceSalven, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idCroceSalven = CroceSalven.features[0].properties.idd;
+        geoJSONArray[idCroceSalven] = gCroceSalven;
+        geoJSONs.push(gCroceSalven);
+
+        var gPassaboche = L.geoJSON(Passaboche, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idPassaboche = Passaboche.features[0].properties.idd;
+        geoJSONArray[idPassaboche] = gPassaboche;
+        geoJSONs.push(gPassaboche);
+
+        var gSanFermo = L.geoJSON(SanFermo, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idSanFermo = SanFermo.features[0].properties.idd;
+        geoJSONArray[idSanFermo] = gSanFermo;
+        geoJSONs.push(gSanFermo);
+
+        var gMariaEck = L.geoJSON(MariaEck, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idMariaEck = MariaEck.features[0].properties.idd;
+        geoJSONArray[idMariaEck] = gMariaEck;
+        geoJSONs.push(gMariaEck);
+
+        var gMaserer = L.geoJSON(Maserer, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idMaserer = Maserer.features[0].properties.idd;
+        geoJSONArray[idMaserer] = gMaserer;
+        geoJSONs.push(gMaserer);
+
+        var gNiklasreuth = L.geoJSON(Niklasreuth, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idNiklasreuth = Niklasreuth.features[0].properties.idd;
+        geoJSONArray[idNiklasreuth] = gNiklasreuth;
+        geoJSONs.push(gNiklasreuth);
+
+        var gRossmettlen = L.geoJSON(Rossmettlen, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idRossmettlen = Rossmettlen.features[0].properties.idd;
+        geoJSONArray[idRossmettlen] = gRossmettlen;
+        geoJSONs.push(gRossmettlen);
+
+        var gValBavona = L.geoJSON(ValBavona, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idValBavona = ValBavona.features[0].properties.idd;
+        geoJSONArray[idValBavona] = gValBavona;
+        geoJSONs.push(gValBavona);
+
+        var gGeneroso = L.geoJSON(Generoso, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idGeneroso = Generoso.features[0].properties.idd;
+        geoJSONArray[idGeneroso] = gGeneroso;
+        geoJSONs.push(gGeneroso);
+
+        var gValMuggio = L.geoJSON(ValMuggio, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idValMuggio = ValMuggio.features[0].properties.idd;
+        geoJSONArray[idValMuggio] = gValMuggio;
+        geoJSONs.push(gValMuggio);
+
+        var gAlpeGiumelloComo = L.geoJSON(AlpeGiumelloComo, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idAlpeGiumelloComo = AlpeGiumelloComo.features[0].properties.idd;
+        geoJSONArray[idAlpeGiumelloComo] = gAlpeGiumelloComo;
+        geoJSONs.push(gAlpeGiumelloComo);
+
+        var gSchäftlarn = L.geoJSON(Schäftlarn, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idSchäftlarn = Schäftlarn.features[0].properties.idd;
+        geoJSONArray[idSchäftlarn] = gSchäftlarn;
+        geoJSONs.push(gSchäftlarn);
+
+        var gLudwigshöhe = L.geoJSON(Ludwigshöhe, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idLudwigshöhe = Ludwigshöhe.features[0].properties.idd;
+        geoJSONArray[idLudwigshöhe] = gLudwigshöhe;
+        geoJSONs.push(gLudwigshöhe);
+
+        var gAufkirchen = L.geoJSON(Aufkirchen, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idAufkirchen = Aufkirchen.features[0].properties.idd;
+        geoJSONArray[idAufkirchen] = gAufkirchen;
+        geoJSONs.push(gAufkirchen);
+
+        var gLeutstetten = L.geoJSON(Leutstetten, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idLeutstetten = Leutstetten.features[0].properties.idd;
+        geoJSONArray[idLeutstetten] = gLeutstetten;
+        geoJSONs.push(gLeutstetten);
+
+        var gHochbergChiemgau = L.geoJSON(HochbergChiemgau, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idHochbergChiemgau = HochbergChiemgau.features[0].properties.idd;
+        geoJSONArray[idHochbergChiemgau] = gHochbergChiemgau;
+        geoJSONs.push(gHochbergChiemgau);
+
+        var gBichlPass = L.geoJSON(BichlPass, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idBichlPass = BichlPass.features[0].properties.idd;
+        geoJSONArray[idBichlPass] = gBichlPass;
+        geoJSONs.push(gBichlPass);
+
+        var gRiedl = L.geoJSON(Riedl, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idRiedl = Riedl.features[0].properties.idd;
+        geoJSONArray[idRiedl] = gRiedl;
+        geoJSONs.push(gRiedl);
+
+        var gEibsee = L.geoJSON(Eibsee, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idEibsee = Eibsee.features[0].properties.idd;
+        geoJSONArray[idEibsee] = gEibsee;
+        geoJSONs.push(gEibsee);
+
+        var gKesselberg = L.geoJSON(Kesselberg, {
+            style: TrackStyle,
+            onEachFeature: onEachFeature
+        });
+        var idKesselberg = Kesselberg.features[0].properties.idd;
+        geoJSONArray[idKesselberg] = gKesselberg;
+        geoJSONs.push(gKesselberg);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////        
         //table data

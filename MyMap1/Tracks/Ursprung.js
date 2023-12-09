@@ -118,7 +118,7 @@ var Ursprung = {
         "name": "Nordauffahrt von Bayerischzell",
         "length": "6.55",
         "elevation": "80",
-        "category": "Pass",
+        "category": "Climb",
         "country": "DE",
         "link": "https://mycols.app/col/ursprungpass"
       }
@@ -571,7 +571,7 @@ var Ursprung = {
         "name": "Südauffahrt von Kufstein",
         "length": "17.8",
         "elevation": "620",
-        "category": "Pass",
+        "category": "Climb",
         "country": "DE",
         "link": "https://mycols.app/col/ursprungpass"
       }

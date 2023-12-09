@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" creator="Vanni Prada">
+  <metadata>
+    <name>LudwigshöheKleineRampe</name>
+    <desc>Distance: 0.221km, Estimated duration: 0.01h, Elevation up: 6.50922240737475m, Elevation down: 0.0m, Grade: easy</desc>
+    <author>
+      <name>Vanni Prada</name>
+      <link href="https://www.komoot.de/user/3800550376326">
+        <text>View Vanni Prada's Profile on Komoot</text>
+      </link>
+    </author>
+    <link href="https://www.komoot.de/tour/1389171628">
+      <text>View tour on Komoot</text>
+    </link>
+  </metadata>
+  <trk>
+    <name>LudwigshöheKleineRampe</name>
+    <desc>Distance: 0.221km, Estimated duration: 0.01h, Elevation up: 6.50922240737475m, Elevation down: 0.0m, Grade: easy</desc>
+    <link href="https://www.komoot.de/tour/1389171628">
+      <text>View tour on Komoot</text>
+    </link>
+    <trkseg>
+      <trkpt lat="47.969542" lon="11.515633">
+        <ele>678.7</ele>
+        <time>2023-12-09T11:21:17.405000Z</time>
+      </trkpt>
+      <trkpt lat="47.969346" lon="11.515344">
+        <ele>679.8</ele>
+        <time>2023-12-09T11:21:22.400000Z</time>
+      </trkpt>
+      <trkpt lat="47.969217" lon="11.515233">
+        <ele>680.3</ele>
+        <time>2023-12-09T11:21:24.926000Z</time>
+      </trkpt>
+      <trkpt lat="47.969011" lon="11.515166">
+        <ele>681</ele>
+        <time>2023-12-09T11:21:28.493000Z</time>
+      </trkpt>
+      <trkpt lat="47.968924" lon="11.515138">
+        <ele>681.3</ele>
+        <time>2023-12-09T11:21:30.045000Z</time>
+      </trkpt>
+      <trkpt lat="47.968581" lon="11.515004">
+        <ele>682.5</ele>
+        <time>2023-12-09T11:21:36.062000Z</time>
+      </trkpt>
+      <trkpt lat="47.967922" lon="11.514618">
+        <ele>684.9</ele>
+        <time>2023-12-09T11:21:48.064000Z</time>
+      </trkpt>
+      <trkpt lat="47.967788" lon="11.514529">
+        <ele>685.1</ele>
+        <time>2023-12-09T11:21:50.011000Z</time>
+      </trkpt>
+      <trkpt lat="47.967771" lon="11.514517">
+        <ele>685.2</ele>
+        <time>2023-12-09T11:21:50.254000Z</time>
+      </trkpt>
+      <trkpt lat="47.967736" lon="11.514488">
+        <ele>685.2</ele>
+        <time>2023-12-09T11:21:50.761000Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>
