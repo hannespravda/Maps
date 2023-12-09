@@ -95,8 +95,9 @@
             transform: translateX(-50%);
             z-index: 1000;
             background-color: white;
-            border: 2px solid #ccc;
-            border-radius: 10px;
+            border: 2px solid rgba(0,0,0,0.2);
+            background-clip: padding-box;
+            border-radius: 4px;
             font-family: Helvetica, Arial, sans-serif;
             font-size: 12px;
             padding: 5px; /* Add padding to create space around the text */
@@ -213,8 +214,9 @@
             z-index: 1000;
             background-color: white;
             color: rgb(126, 121, 121);
-            border: 2px solid #ccc;
-            border-radius: 10px;
+            border: 2px solid rgba(0,0,0,0.2);
+            background-clip: padding-box;
+            border-radius: 4px;
             font-family: Helvetica, Arial, sans-serif;
             font-size: 12px;
             text-align: left;
@@ -348,8 +350,9 @@
             transform: translateX(-50%);
             z-index: 1000;
             background-color: white;
-            border: 2px solid #ccc;
-            border-radius: 10px;
+            border: 2px solid rgba(0,0,0,0.2);
+            background-clip: padding-box;
+            border-radius: 4px;
             font-family: Helvetica, Arial, sans-serif;
             font-size: 12px;
             padding: 5px; /* Add padding to create space around the text */
@@ -999,6 +1002,15 @@
             </div>
         </div>
         <hr class="separator-line">
+        <div id="button-container3">
+            <button id="ITbutton1" class="round-button">IT</button>
+            <button id="FRbutton1" class="round-button">FR</button>
+            <button id="CHbutton1" class="round-button">CH</button>
+            <button id="ATbutton1" class="round-button">AT</button>
+            <button id="DEbutton1" class="round-button">DE</button>
+            <button id="SLObutton1" class="round-button">SLO</button>
+        </div>
+        <hr class="separator-line">
         <div class="filter-row">
             <label class="height-label">Height:</label>
             <input type="number" id="minHeight" class="min-height filter-input" step="10" placeholder="min m">
@@ -1020,6 +1032,12 @@
             <input type="number" id="maxSlope" step="10" class="max-slope filter-input" placeholder="max %">
         </div>
         <div class="filter-row">
+            <div class="container">
+                <label class="switch" for="switchslider1">
+                  <input type="checkbox" id="switchslider1" />
+                  <div class="slider round"></div>
+                </label>
+            </div>
             <button id="resetFilter">Reset</button>
             <button id="applyFilter">Apply</button>
         </div>
@@ -1710,13 +1728,79 @@
         resetFilterButton2.click();
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-        //filter
+        //Filter1
+        var slider1 = false;
         var filterToggle = document.getElementById("filter-toggle");
         var filter = document.getElementById("filter");
         var applyFilterButton = document.getElementById("applyFilter");
         var resetFilterButton = document.getElementById("resetFilter");
+        const switchSlider1 = document.getElementById("switchslider1");
+        switchSlider1.addEventListener("change", function() {
+            slider1 = switchSlider1.checked;
+        });
         var applyFilter = false;
         var FilterArray = [];
+        var buttonIT1 = false;
+        var buttonFR1 = false;
+        var buttonCH1 = false;
+        var buttonAT1 = false;
+        var buttonDE1 = false;
+        var buttonSLO1 = false;
+
+        var ITbutton1 = document.getElementById("ITbutton1").addEventListener("click", function(){;
+            if(buttonIT1){
+                buttonIT1 = false;
+                this.style.backgroundColor = "white";
+            }else {
+                buttonIT1 = true;
+                this.style.backgroundColor = "lightblue";
+            }
+        });
+        var FRbutton1 = document.getElementById("FRbutton1").addEventListener("click", function(){;
+            if(buttonFR1){
+                buttonFR1 = false;
+                this.style.backgroundColor = "white";
+            }else {
+                buttonFR1 = true;
+                this.style.backgroundColor = "lightblue";
+            }
+        });
+        var CHbutton1 = document.getElementById("CHbutton1").addEventListener("click", function(){;
+            if(buttonCH1){
+                buttonCH1 = false;
+                this.style.backgroundColor = "white";
+            }else {
+                buttonCH1 = true;
+                this.style.backgroundColor = "lightblue";
+            }
+        });
+        var ATbutton1 = document.getElementById("ATbutton1").addEventListener("click", function(){;
+            if(buttonAT1){
+                buttonAT1 = false;
+                this.style.backgroundColor = "white";
+            }else {
+                buttonAT1 = true;
+                this.style.backgroundColor = "lightblue";
+            }
+        });
+        var DEbutton1 = document.getElementById("DEbutton1").addEventListener("click", function(){;
+            if(buttonDE1){
+                buttonDE1 = false;
+                this.style.backgroundColor = "white";
+            }else {
+                buttonDE1 = true;
+                this.style.backgroundColor = "lightblue";
+            }
+        });
+        var SLObutton1 = document.getElementById("SLObutton1").addEventListener("click", function(){;
+            if(buttonSLO1){
+                buttonSLO1 = false;
+                this.style.backgroundColor = "white";
+            }else {
+                buttonSLO1= true;
+                this.style.backgroundColor = "lightblue";
+            }
+        });
 
         applyFilterButton.addEventListener("click", function() {
             applyFilter = true;
@@ -1775,6 +1859,12 @@
             } else {
                 FilterArray[10] = parseFloat(maxSlope);
             }
+            FilterArray[11] = buttonIT1;
+            FilterArray[12] = buttonFR1;
+            FilterArray[13] = buttonCH1;
+            FilterArray[14] = buttonAT1;
+            FilterArray[15] = buttonDE1;
+            FilterArray[16] = buttonSLO1;
             filter.style.display = "none";
         });
 
@@ -1792,6 +1882,12 @@
             document.getElementById('passCheckbox').checked = false;
             document.getElementById('climbCheckbox').checked = false;
             document.getElementById('sackgasseCheckbox').checked = false;
+            if(buttonIT1){document.getElementById('ITbutton1').click()};
+            if(buttonFR1){document.getElementById('FRbutton1').click()};
+            if(buttonCH1){document.getElementById('CHbutton1').click()};
+            if(buttonAT1){document.getElementById('ATbutton1').click()};
+            if(buttonDE1){document.getElementById('DEbutton1').click()};
+            if(buttonSLO1){document.getElementById('SLObutton1').click()};
             FilterArray[0] = false;
             FilterArray[1] = false;
             FilterArray[2] = false;
@@ -1803,6 +1899,15 @@
             FilterArray[8] = 10000;
             FilterArray[9] = 0;
             FilterArray[10] = 10000;
+            FilterArray[11] = false;
+            FilterArray[12] = false;
+            FilterArray[13] = false;
+            FilterArray[14] = false;
+            FilterArray[15] = false;
+            FilterArray[16] = false;
+            if(switchSlider1.checked){
+                switchSlider1.click();
+            }
             filter.style.display = "none";
         });
 
@@ -1814,8 +1919,8 @@
             }
         });
         resetFilterButton.click();
-////////////////////////////////////////////////////////////////////////////////////
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+        //counter
         function countHttpOccurrences(passi) {
             const passiString = JSON.stringify(passi);
             const httpOccurrences = (passiString.match(/http/g) || []).length;
@@ -1904,7 +2009,7 @@
             popupAnchor:  [0, -16]
         });
 
-        //marker passes
+        //markers
         var marker = L.geoJSON(passi, {
             pointToLayer: function (feature, latlng) {
                 ix = feature.properties.idd;
@@ -1995,26 +2100,55 @@
                     var markerCheckbox = document.getElementById(`MarkerCheckbox${ix}`);
                     if (markerCheckbox) {
                         markerCheckbox.checked = markerStates[ix];
-                        markerCheckbox.addEventListener('change', function (event) {
+                        markerCheckbox.addEventListener('input', function (event) {
                             markerStatesArray[ix] = event.target.checked;
                             markerStates[ix] = event.target.checked; // Store the state in markerStates
                             if (feature.properties.category == 'Pass') {
                                 if (markerStatesArray[ix]) {
-                                    geoJSONArray[ix].setStyle({ color: 'darkblue', weight: '3' }); // Change color
+                                    if (tracksCheckbox.checked){
+                                        geoJSONArray[ix].setStyle({ color: 'darkblue', weight: '3' });
+                                    } else {
+                                        if (geoJSONArray[ix]){
+                                            map.removeLayer(geoJSONArray[ix]);
+                                        }
+                                        geoJSONArray[ix].setStyle({ color: 'darkblue', weight: '3' }).addTo(map); // Change color
+                                    }
                                 } else {
-                                    geoJSONArray[ix].setStyle({ color: 'rgb(30,144,255)', weight: '1' }); // Restore the old color
+                                    if (tracksCheckbox.checked){
+                                        geoJSONArray[ix].setStyle({ color: 'rgb(30,144,255)', weight: '1' });
+                                    } else {
+                                        if (geoJSONArray[ix]){
+                                            map.removeLayer(geoJSONArray[ix]);
+                                        }
+                                    }
                                 }
                             } else if (feature.properties.category == 'Climb') {
                                 if (markerStatesArray[ix]) {
-                                    geoJSONArray[ix].setStyle({ color: 'orange',weight:'3' }); // Change color
+                                    if (tracksCheckbox.checked){
+                                        geoJSONArray[ix].setStyle({ color: 'orange', weight: '3' });
+                                    } else {
+                                        geoJSONArray[ix].setStyle({ color: 'orange', weight: '3' }).addTo(map); // Change color
+                                    }
                                 } else {
-                                    geoJSONArray[ix].setStyle({ color: 'rgb(255,215,0)',weight:'1' }); // Restore the old color
+                                    if (tracksCheckbox.checked){
+                                        geoJSONArray[ix].setStyle({ color: 'rgb(255,215,0)', weight: '1' });
+                                    } else {
+                                        map.removeLayer(geoJSONArray[ix]);
+                                    }
                                 }
                             } else if (feature.properties.category == 'Sackgasse') {
                                 if (markerStatesArray[ix]) {
-                                    geoJSONArray[ix].setStyle({ color: 'red',weight:'3' }); // Change color
+                                    if (tracksCheckbox.checked){
+                                        geoJSONArray[ix].setStyle({ color: 'red', weight: '3' });
+                                    } else {
+                                        geoJSONArray[ix].setStyle({ color: 'red', weight: '3' }).addTo(map); // Change color
+                                    }
                                 } else {
-                                    geoJSONArray[ix].setStyle({ color: 'rgb(255,99,71)',weight:'1' }); // Restore the old color
+                                    if (tracksCheckbox.checked){
+                                        geoJSONArray[ix].setStyle({ color: 'rgb(255,99,71)', weight: '1' });
+                                    } else {
+                                        map.removeLayer(geoJSONArray[ix]);
+                                    }
                                 }
                             }
                         });
@@ -2074,11 +2208,7 @@
 
         //Track sytle and feature functions
         function onEachFeature(feature, layer) {
-            /*layer.bindPopup(function (layer) {
-                return '<p style="margin-bottom: 5px;"><a href="' + feature.properties.link + '" target="_blank">' + feature.properties.name + '</a></p> (' + feature.properties.length + ' km' +', ' + feature.properties.elevation + ' hm' + ')<p style="margin-top: 5px;">';
-            });*/
             layer.bindTooltip(feature.properties.name + ' (' + feature.properties.length + ' km, ' + feature.properties.elevation + ' hm)');
-
             layer.on('click', function (e) {
                 var closeButton = document.getElementById('custom-close-button');
                 controlElevation.clear();
@@ -2128,6 +2258,7 @@
                 }
             });
         }
+
         function TrackStyle(feature) {
             if (feature.properties.category == 'Climb') {
                 return { color: 'rgb(255,215,0)', weight: "1" };
@@ -2145,3287 +2276,420 @@
             } else {
                 return 'Unknown Pass'; // or some default value
             }
-        };
-
-        //layer button with maps and tracks
-        var overlayMaps2 = {};
-        var layerControl2 = L.control.layers(null, overlayMaps2,{ position: 'bottomright' });
-        
+        };        
 /////////add new tracks here///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////        
-        var gValcava = L.geoJSON(Valcava, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idValcava = Valcava.features[0].properties.idd;
-        geoJSONArray[idValcava] = gValcava;
-        geoJSONs.push(gValcava);
-        layerControl2.addOverlay(gValcava, "Passo Valcava");
-
-        var gZeno = L.geoJSON(Zeno, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idZeno = Zeno.features[0].properties.idd;
-        geoJSONArray[idZeno] = gZeno;
-        geoJSONs.push(gZeno);
-        layerControl2.addOverlay(gZeno, "Colle di San Zeno");
-
-        var gUmbrail = L.geoJSON(Umbrail, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idUmbrail = Umbrail.features[0].properties.idd;
-        geoJSONArray[idUmbrail] = gUmbrail;
-        geoJSONs.push(gUmbrail);
-        layerControl2.addOverlay(gUmbrail, "Umbrailpass");
-
-        var gTrivigno = L.geoJSON(Trivigno, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTrivigno = Trivigno.features[0].properties.idd;
-        geoJSONArray[idTrivigno] = gTrivigno;
-        geoJSONs.push(gTrivigno);
-        layerControl2.addOverlay(gTrivigno, "Passo di Trivigno");
-
-        var gMortirolo = L.geoJSON(Mortirolo, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMortirolo = Mortirolo.features[0].properties.idd;
-        geoJSONArray[idMortirolo] = gMortirolo;
-        geoJSONs.push(gMortirolo);
-        layerControl2.addOverlay(gMortirolo, "Passo del Mortirolo");
-
-        var gSimplon = L.geoJSON(Simplon, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSimplon = Simplon.features[0].properties.idd;
-        geoJSONArray[idSimplon] = gSimplon;
-        geoJSONs.push(gSimplon);
-        layerControl2.addOverlay(gSimplon, "Simplonpass");
-
-        var gPresolana = L.geoJSON(Presolana, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPresolana = Presolana.features[0].properties.idd;
-        geoJSONArray[idPresolana] = gPresolana;
-        geoJSONs.push(gPresolana);
-        layerControl2.addOverlay(gPresolana, "Passo della Presolana");
-
-        var gNeggia = L.geoJSON(Neggia, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idNeggia = Neggia.features[0].properties.idd;
-        geoJSONArray[idNeggia] = gNeggia;
-        geoJSONs.push(gNeggia);
-        layerControl2.addOverlay(gNeggia, "Alpe di Neggia");
-
-        var gNufenen = L.geoJSON(Nufenen, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idNufenen = Nufenen.features[0].properties.idd;
-        geoJSONArray[idNufenen] = gNufenen;
-        geoJSONs.push(gNufenen);
-        layerControl2.addOverlay(gNufenen, "Nufenenpass");
-
-        var gTedesco = L.geoJSON(Tedesco, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTedesco = Tedesco.features[0].properties.idd;
-        geoJSONArray[idTedesco] = gTedesco;
-        geoJSONs.push(gTedesco);
-        layerControl2.addOverlay(gTedesco, "Alpe del Tedesco");
-
-        var gTonale = L.geoJSON(Tonale, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTonale = Tonale.features[0].properties.idd;
-        geoJSONArray[idTonale] = gTonale;
-        geoJSONs.push(gTonale);
-        layerControl2.addOverlay(gTonale, "Passo del Tonale");
-
-        var gMontecampione = L.geoJSON(Montecampione, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMontecampione = Montecampione.features[0].properties.idd;
-        geoJSONArray[idMontecampione] = gMontecampione;
-        geoJSONs.push(gMontecampione);
-        layerControl2.addOverlay(gMontecampione, "Pian di Montecampione");
-
-        var gOfen = L.geoJSON(Ofen, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idOfen = Ofen.features[0].properties.idd;
-        geoJSONArray[idOfen] = gOfen;
-        geoJSONs.push(gOfen);
-        layerControl2.addOverlay(gOfen, "Ofenpass, Pass dal Fuorn");
-
-        var gStelvio = L.geoJSON(Stelvio, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idStelvio = Stelvio.features[0].properties.idd;
-        geoJSONArray[idStelvio] = gStelvio;
-        geoJSONs.push(gStelvio);
-        layerControl2.addOverlay(gStelvio, "Passo dello Stelvio, Stilfser Joch");
-
-        var gOberalp = L.geoJSON(Oberalp, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idOberalp = Oberalp.features[0].properties.idd;
-        geoJSONArray[idOberalp] = gOberalp;
-        geoJSONs.push(gOberalp);
-        layerControl2.addOverlay(gOberalp, "Oberalppass");
-
-        var gManiva = L.geoJSON(Maniva, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idManiva = Maniva.features[0].properties.idd;
-        geoJSONArray[idManiva] = gManiva;
-        geoJSONs.push(gManiva);
-        layerControl2.addOverlay(gManiva, "Giogo del Maniva");
-
-        var gMarzio = L.geoJSON(Marzio, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMarzio = Marzio.features[0].properties.idd;
-        geoJSONArray[idMarzio] = gMarzio;
-        geoJSONs.push(gMarzio);
-        layerControl2.addOverlay(gMarzio, "Forcorella di Marzio");
-
-        var gGrimsel = L.geoJSON(Grimsel, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGrimsel = Grimsel.features[0].properties.idd;
-        geoJSONArray[idGrimsel] = gGrimsel;
-        geoJSONs.push(gGrimsel);
-        layerControl2.addOverlay(gGrimsel, "Grimselpass");
-
-        var gLukmanier = L.geoJSON(Lukmanier, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLukmanier = Lukmanier.features[0].properties.idd;
-        geoJSONArray[idLukmanier] = gLukmanier;
-        geoJSONs.push(gLukmanier);
-        layerControl2.addOverlay(gLukmanier, "Lukmanierpass");
-
-        var gLivigno = L.geoJSON(Livigno, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLivigno = Livigno.features[0].properties.idd;
-        geoJSONArray[idLivigno] = gLivigno;
-        geoJSONs.push(gLivigno);
-        layerControl2.addOverlay(gLivigno, "Forcola di Livigno");
-
-        var gGuspessa = L.geoJSON(Guspessa, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGuspessa = Guspessa.features[0].properties.idd;
-        geoJSONArray[idGuspessa] = gGuspessa;
-        geoJSONs.push(gGuspessa);
-        layerControl2.addOverlay(gGuspessa, "Passo di Guspessa");
-
-        var gEira = L.geoJSON(Eira, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idEira = Eira.features[0].properties.idd;
-        geoJSONArray[idEira] = gEira;
-        geoJSONs.push(gEira);
-        layerControl2.addOverlay(gEira, "Passo d'Eira");
-
-        var gGottardo = L.geoJSON(Gottardo, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGottardo = Gottardo.features[0].properties.idd;
-        geoJSONArray[idGottardo] = gGottardo;
-        geoJSONs.push(gGottardo);
-        layerControl2.addOverlay(gGottardo, "St. Gotthardpass");
-
-        var gGranBernard = L.geoJSON(GranBernard, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGranBernard = GranBernard.features[0].properties.idd;
-        geoJSONArray[idGranBernard] = gGranBernard;
-        geoJSONs.push(gGranBernard);
-        layerControl2.addOverlay(gGranBernard, "Col du Grand Saint Bernard");
-
-        var gGavia = L.geoJSON(Gavia, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGavia = Gavia.features[0].properties.idd;
-        geoJSONArray[idGavia] = gGavia;
-        geoJSONs.push(gGavia);
-        layerControl2.addOverlay(gGavia, "Passo di Gavia");
-
-        var gForcora = L.geoJSON(Forcora, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idForcora = Forcora.features[0].properties.idd;
-        geoJSONArray[idForcora] = gForcora;
-        geoJSONs.push(gForcora);
-        layerControl2.addOverlay(gForcora, "Passo Forcora");
-
-        var gFurka = L.geoJSON(Furka, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFurka = Furka.features[0].properties.idd;
-        geoJSONArray[idFurka] = gFurka;
-        geoJSONs.push(gFurka);
-        layerControl2.addOverlay(gFurka, "Furkapass");
-
-        var gFoscagno = L.geoJSON(Foscagno, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFoscagno = Foscagno.features[0].properties.idd;
-        geoJSONArray[idFoscagno] = gFoscagno;
-        geoJSONs.push(gFoscagno);
-        layerControl2.addOverlay(gFoscagno, "Passo di Foscagno");
-
-        var gCrocedomini = L.geoJSON(Crocedomini, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idCrocedomini = Crocedomini.features[0].properties.idd;
-        geoJSONArray[idCrocedomini] = gCrocedomini;
-        geoJSONs.push(gCrocedomini);
-        layerControl2.addOverlay(gCrocedomini, "Passo di Crocedomini");
-
-        var gAprica = L.geoJSON(Aprica, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idAprica = Aprica.features[0].properties.idd;
-        geoJSONArray[idAprica] = gAprica;
-        geoJSONs.push(gAprica);
-        layerControl2.addOverlay(gAprica, "Passo dell'Aprica");
-
-        var gJulier = L.geoJSON(Julier, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idJulier = Julier.features[0].properties.idd;
-        geoJSONArray[idJulier] = gJulier;
-        geoJSONs.push(gJulier);
-        layerControl2.addOverlay(gJulier, "Julierpass");
-
-        var gBernina = L.geoJSON(Bernina, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBernina = Bernina.features[0].properties.idd;
-        geoJSONArray[idBernina] = gBernina;
-        geoJSONs.push(gBernina);
-        layerControl2.addOverlay(gBernina, "Berninapass, Passo del Bernina");
-
-        var gVivione = L.geoJSON(Vivione, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idVivione = Vivione.features[0].properties.idd;
-        geoJSONArray[idVivione] = gVivione;
-        geoJSONs.push(gVivione);
-        layerControl2.addOverlay(gVivione, "Passo del Vivione");
-
-        var gAlbula = L.geoJSON(Albula, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idAlbula = Albula.features[0].properties.idd;
-        geoJSONArray[idAlbula] = gAlbula;
-        geoJSONs.push(gAlbula);
-        layerControl2.addOverlay(gAlbula, "Albulapass");
-
-        var gMaloja = L.geoJSON(Maloja, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMaloja = Maloja.features[0].properties.idd;
-        geoJSONArray[idMaloja] = gMaloja;
-        geoJSONs.push(gMaloja);
-        layerControl2.addOverlay(gMaloja, "Malojapass");
-
-        var gBernardino = L.geoJSON(Bernardino, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBernardino = Bernardino.features[0].properties.idd;
-        geoJSONArray[idBernardino] = gBernardino;
-        geoJSONs.push(gBernardino);
-        layerControl2.addOverlay(gBernardino, "San-Bernardino-Pass");
-
-        var gSplugen = L.geoJSON(Splugen, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSplugen = Splugen.features[0].properties.idd;
-        geoJSONArray[idSplugen] = gSplugen;
-        geoJSONs.push(gSplugen);
-        layerControl2.addOverlay(gSplugen, "Passo dello Spluga");
-
-        var gBalisio = L.geoJSON(Balisio, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBalisio = Balisio.features[0].properties.idd;
-        geoJSONArray[idBalisio] = gBalisio;
-        geoJSONs.push(gBalisio);
-        layerControl2.addOverlay(gBalisio, "Colle Balisio");
-
-        var gBura = L.geoJSON(Bura, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBura = Bura.features[0].properties.idd;
-        geoJSONArray[idBura] = gBura;
-        geoJSONs.push(gBura);
-        layerControl2.addOverlay(gBura, "Passo Forcella di Bura");
-
-        var gAntonio = L.geoJSON(Antonio, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idAntonio = Antonio.features[0].properties.idd;
-        geoJSONArray[idAntonio] = gAntonio;
-        geoJSONs.push(gAntonio);
-        layerControl2.addOverlay(gAntonio, "Sant'Antonio Abbandonato");
-
-
-        var gFuipiano = L.geoJSON(Fuipiano, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFuipiano = Fuipiano.features[0].properties.idd;
-        geoJSONArray[idFuipiano] = gFuipiano;
-        geoJSONs.push(gFuipiano);
-        layerControl2.addOverlay(gFuipiano, "Fuipiano");
-
-        var gBerbenno = L.geoJSON(Berbenno, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBerbenno = Berbenno.features[0].properties.idd;
-        geoJSONArray[idBerbenno] = gBerbenno;
-        geoJSONs.push(gBerbenno);
-        layerControl2.addOverlay(gBerbenno, "Berbenno");
-
-        var gMiragolo = L.geoJSON(Miragolo, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMiragolo = Miragolo.features[0].properties.idd;
-        geoJSONArray[idMiragolo] = gMiragolo;
-        geoJSONs.push(gMiragolo);
-        layerControl2.addOverlay(gMiragolo, "Miragolo San Salvatore");
-
-        var gValvarrone = L.geoJSON(Valvarrone, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idValvarrone = Valvarrone.features[0].properties.idd;
-        geoJSONArray[idValvarrone] = gValvarrone;
-        geoJSONs.push(gValvarrone);
-        layerControl2.addOverlay(gValvarrone, "Valvarrone");
-
-        var gMarco = L.geoJSON(Marco, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMarco = Marco.features[0].properties.idd;
-        geoJSONArray[idMarco] = gMarco;
-        geoJSONs.push(gMarco);
-        layerControl2.addOverlay(gMarco, "Passo San Marco");
-
-
-        var gCulmine = L.geoJSON(Culmine, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idCulmine = Culmine.features[0].properties.idd;
-        geoJSONArray[idCulmine] = gCulmine;
-        geoJSONs.push(gCulmine);
-        layerControl2.addOverlay(gCulmine, "Passo Culmine di San Pietro");
-
-        var gNespello = L.geoJSON(Nespello, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idNespello = Nespello.features[0].properties.idd;
-        geoJSONArray[idNespello] = gNespello;
-        geoJSONs.push(gNespello);
-        layerControl2.addOverlay(gNespello, "Forcella di Nespello");
-
-        var gAgueglio = L.geoJSON(Agueglio, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idAgueglio = Agueglio.features[0].properties.idd;
-        geoJSONArray[idAgueglio] = gAgueglio;
-        geoJSONs.push(gAgueglio);
-        layerControl2.addOverlay(gAgueglio, "Passo Agueglio");
-
-        var gNarro = L.geoJSON(Narro, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idNarro = Narro.features[0].properties.idd;
-        geoJSONArray[idNarro] = gNarro;
-        geoJSONs.push(gNarro);
-        layerControl2.addOverlay(gNarro, "Narro");
-
-        var gSalmezza = L.geoJSON(Salmezza, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSalmezza = Salmezza.features[0].properties.idd;
-        geoJSONArray[idSalmezza] = gSalmezza;
-        geoJSONs.push(gSalmezza);
-        layerControl2.addOverlay(gSalmezza, "Valico di Salmezza");
-
-
-        var gMontevecchia = L.geoJSON(Montevecchia, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMontevecchia = Montevecchia.features[0].properties.idd;
-        geoJSONArray[idMontevecchia] = gMontevecchia;
-        geoJSONs.push(gMontevecchia);
-        layerControl2.addOverlay(gMontevecchia, "Montevecchia");
-
-        var gPrimo = L.geoJSON(Primo, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPrimo = Primo.features[0].properties.idd;
-        geoJSONArray[idPrimo] = gPrimo;
-        geoJSONs.push(gPrimo);
-        layerControl2.addOverlay(gPrimo, "Monte San Primo");
-
-        var gSormano = L.geoJSON(Sormano, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSormano = Sormano.features[0].properties.idd;
-        geoJSONArray[idSormano] = gSormano;
-        geoJSONs.push(gSormano);
-        layerControl2.addOverlay(gSormano, "Colma di Sormano");
-
-        var gMadonnina = L.geoJSON(Madonnina, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMadonnina = Madonnina.features[0].properties.idd;
-        geoJSONArray[idMadonnina] = gMadonnina;
-        geoJSONs.push(gMadonnina);
-        layerControl2.addOverlay(gMadonnina, "Colle della Madonnina");
-
-        var gValbrona = L.geoJSON(Valbrona, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idValbrona = Valbrona.features[0].properties.idd;
-        geoJSONArray[idValbrona] = gValbrona;
-        geoJSONs.push(gValbrona);
-        layerControl2.addOverlay(gValbrona, "Sella di Valbrona");
-
-        var gGhisallo = L.geoJSON(Ghisallo, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGhisallo = Ghisallo.features[0].properties.idd;
-        geoJSONArray[idGhisallo] = gGhisallo;
-        geoJSONs.push(gGhisallo);
-        layerControl2.addOverlay(gGhisallo, "Madonna del Ghisallo");
-
-        var gIseran = L.geoJSON(Iseran, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idIseran = Iseran.features[0].properties.idd;
-        geoJSONArray[idIseran] = gIseran;
-        geoJSONs.push(gIseran);
-        layerControl2.addOverlay(gIseran, "Col d\'Iseran");
-
-        var gZambla = L.geoJSON(Zambla, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idZambla = Zambla.features[0].properties.idd;
-        geoJSONArray[idZambla] = gZambla;
-        geoJSONs.push(gZambla);
-        layerControl2.addOverlay(gZambla, "Passo di Zambla");
-
-        var gSelvino = L.geoJSON(Selvino, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSelvino = Selvino.features[0].properties.idd;
-        geoJSONArray[idSelvino] = gSelvino;
-        geoJSONs.push(gSelvino);
-        layerControl2.addOverlay(gSelvino, "Selvino");
-
-        var gGanda = L.geoJSON(Ganda, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGanda = Ganda.features[0].properties.idd;
-        geoJSONArray[idGanda] = gGanda;
-        geoJSONs.push(gGanda);
-        layerControl2.addOverlay(gGanda, "Passo di Ganda");
-
-        var gBrianza = L.geoJSON(Brianza, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBrianza = Brianza.features[0].properties.idd;
-        geoJSONArray[idBrianza] = gBrianza;
-        geoJSONs.push(gBrianza);
-        layerControl2.addOverlay(gBrianza, "Colle di Brianza");
-
-        var gSusten = L.geoJSON(Susten, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSusten = Susten.features[0].properties.idd;
-        geoJSONArray[idSusten] = gSusten;
-        geoJSONs.push(gSusten);
-        layerControl2.addOverlay(gSusten, "Sustenpass");
-
-        var gKitzHorn = L.geoJSON(KitzHorn, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idKitzHorn = KitzHorn.features[0].properties.idd;
-        geoJSONArray[idKitzHorn] = gKitzHorn;
-        geoJSONs.push(gKitzHorn);
-
-        var gNivolet = L.geoJSON(Nivolet, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idNivolet = Nivolet.features[0].properties.idd;
-        geoJSONArray[idNivolet] = gNivolet;
-        geoJSONs.push(gNivolet);
-
-        var gSudelfeld = L.geoJSON(Sudelfeld, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSudelfeld = Sudelfeld.features[0].properties.idd;
-        geoJSONArray[idSudelfeld] = gSudelfeld;
-        geoJSONs.push(gSudelfeld);
-
-        var gLavaze = L.geoJSON(Lavaze, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLavaze = Lavaze.features[0].properties.idd;
-        geoJSONArray[idLavaze] = gLavaze;
-        geoJSONs.push(gLavaze);
-
-        var gNiger = L.geoJSON(Niger, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idNiger = Niger.features[0].properties.idd;
-        geoJSONArray[idNiger] = gNiger;
-        geoJSONs.push(gNiger);
-
-        var gKarer = L.geoJSON(Karer, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idKarer = Karer.features[0].properties.idd;
-        geoJSONArray[idKarer] = gKarer;
-        geoJSONs.push(gKarer);
-
-        var gErbe = L.geoJSON(Erbe, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idErbe = Erbe.features[0].properties.idd;
-        geoJSONArray[idErbe] = gErbe;
-        geoJSONs.push(gErbe);
-
-        var gFurcia = L.geoJSON(Furcia, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFurcia = Furcia.features[0].properties.idd;
-        geoJSONArray[idFurcia] = gFurcia;
-        geoJSONs.push(gFurcia);
-
-        var gTreCime = L.geoJSON(TreCime, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTreCime = TreCime.features[0].properties.idd;
-        geoJSONArray[idTreCime] = gTreCime;
-        geoJSONs.push(gTreCime);
-
-        var gTreCroci = L.geoJSON(TreCroci, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTreCroci = TreCroci.features[0].properties.idd;
-        geoJSONArray[idTreCroci] = gTreCroci;
-        geoJSONs.push(gTreCroci);
-
-        var gSestriere = L.geoJSON(Sestriere, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSestriere = Sestriere.features[0].properties.idd;
-        geoJSONArray[idSestriere] = gSestriere;
-        geoJSONs.push(gSestriere);
-
-        var gSampeyre = L.geoJSON(Sampeyre, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSampeyre = Sampeyre.features[0].properties.idd;
-        geoJSONArray[idSampeyre] = gSampeyre;
-        geoJSONs.push(gSampeyre);
-
-        var gEsischie = L.geoJSON(Esischie, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idEsischie = Esischie.features[0].properties.idd;
-        geoJSONArray[idEsischie] = gEsischie;
-        geoJSONs.push(gEsischie);
-
-        var gFauniera = L.geoJSON(Fauniera, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFauniera = Fauniera.features[0].properties.idd;
-        geoJSONArray[idFauniera] = gFauniera;
-        geoJSONs.push(gFauniera);
-
-        var gPordoi = L.geoJSON(Pordoi, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPordoi = Pordoi.features[0].properties.idd;
-        geoJSONArray[idPordoi] = gPordoi;
-        geoJSONs.push(gPordoi);
-
-        var gSella = L.geoJSON(Sella, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSella = Sella.features[0].properties.idd;
-        geoJSONArray[idSella] = gSella;
-        geoJSONs.push(gSella);
-
-
-        var gGardena = L.geoJSON(Gardena, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGardena = Gardena.features[0].properties.idd;
-        geoJSONArray[idGardena] = gGardena;
-        geoJSONs.push(gGardena);
-
-        var gCampolongo = L.geoJSON(Campolongo, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idCampolongo = Campolongo.features[0].properties.idd;
-        geoJSONArray[idCampolongo] = gCampolongo;
-        geoJSONs.push(gCampolongo);
-
-        var gFedaia = L.geoJSON(Fedaia, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFedaia = Fedaia.features[0].properties.idd;
-        geoJSONArray[idFedaia] = gFedaia;
-        geoJSONs.push(gFedaia);
-
-        var gValparola = L.geoJSON(Valparola, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idValparola = Valparola.features[0].properties.idd;
-        geoJSONArray[idValparola] = gValparola;
-        geoJSONs.push(gValparola);
-
-        var gFalzarego = L.geoJSON(Falzarego, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFalzarego = Falzarego.features[0].properties.idd;
-        geoJSONArray[idFalzarego] = gFalzarego;
-        geoJSONs.push(gFalzarego);
-
-        var gGiau = L.geoJSON(Giau, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGiau = Giau.features[0].properties.idd;
-        geoJSONArray[idGiau] = gGiau;
-        geoJSONs.push(gGiau);
-
-        var gDuran = L.geoJSON(Duran, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idDuran = Duran.features[0].properties.idd;
-        geoJSONArray[idDuran] = gDuran;
-        geoJSONs.push(gDuran);
-
-        var gStaulanza = L.geoJSON(Staulanza, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idStaulanza = Staulanza.features[0].properties.idd;
-        geoJSONArray[idStaulanza] = gStaulanza;
-        geoJSONs.push(gStaulanza);
-
-        var gPellegrino = L.geoJSON(Pellegrino, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPellegrino = Pellegrino.features[0].properties.idd;
-        geoJSONArray[idPellegrino] = gPellegrino;
-        geoJSONs.push(gPellegrino);
-
-        var gManghen = L.geoJSON(Manghen, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idManghen = Manghen.features[0].properties.idd;
-        geoJSONArray[idManghen] = gManghen;
-        geoJSONs.push(gManghen);
-
-        var gBrocon = L.geoJSON(Brocon, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBrocon = Brocon.features[0].properties.idd;
-        geoJSONArray[idBrocon] = gBrocon;
-        geoJSONs.push(gBrocon);
-
-        var gGobbera = L.geoJSON(Gobbera, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGobbera = Gobbera.features[0].properties.idd;
-        geoJSONArray[idGobbera] = gGobbera;
-        geoJSONs.push(gGobbera);
-
-        var gCereda = L.geoJSON(Cereda, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idCereda = Cereda.features[0].properties.idd;
-        geoJSONArray[idCereda] = gCereda;
-        geoJSONs.push(gCereda);
-
-        var gValles = L.geoJSON(Valles, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idValles = Valles.features[0].properties.idd;
-        geoJSONArray[idValles] = gValles;
-        geoJSONs.push(gValles);
-
-        var gKlausen = L.geoJSON(Klausen, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idKlausen = Klausen.features[0].properties.idd;
-        geoJSONArray[idKlausen] = gKlausen;
-        geoJSONs.push(gKlausen);
-
-        var gRolle = L.geoJSON(Rolle, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idRolle = Rolle.features[0].properties.idd;
-        geoJSONArray[idRolle] = gRolle;
-        geoJSONs.push(gRolle);
-
-        var gScheidegg = L.geoJSON(Scheidegg, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idScheidegg = Scheidegg.features[0].properties.idd;
-        geoJSONArray[idScheidegg] = gScheidegg;
-        geoJSONs.push(gScheidegg);
-
-        var gMoosalp = L.geoJSON(Moosalp, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMoosalp = Moosalp.features[0].properties.idd;
-        geoJSONArray[idMoosalp] = gMoosalp;
-        geoJSONs.push(gMoosalp);
-
-        var gCroixDeCoeur = L.geoJSON(CroixDeCoeur, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idCroixDeCoeur = CroixDeCoeur.features[0].properties.idd;
-        geoJSONArray[idCroixDeCoeur] = gCroixDeCoeur;
-        geoJSONs.push(gCroixDeCoeur);
-
-        var gFluela = L.geoJSON(Fluela, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFluela = Fluela.features[0].properties.idd;
-        geoJSONArray[idFluela] = gFluela;
-        geoJSONs.push(gFluela);
-
-        var gFinestre = L.geoJSON(Finestre, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFinestre = Finestre.features[0].properties.idd;
-        geoJSONArray[idFinestre] = gFinestre;
-        geoJSONs.push(gFinestre);
-
-        var gLys = L.geoJSON(Lys, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLys = Lys.features[0].properties.idd;
-        geoJSONArray[idLys] = gLys;
-        geoJSONs.push(gLys);
-
-        var gBonetteCime = L.geoJSON(BonetteCime, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBonetteCime = BonetteCime.features[0].properties.idd;
-        geoJSONArray[idBonetteCime] = gBonetteCime;
-        geoJSONs.push(gBonetteCime);
-
-        var gBonette = L.geoJSON(Bonette, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBonette = Bonette.features[0].properties.idd;
-        geoJSONArray[idBonette] = gBonette;
-        geoJSONs.push(gBonette);
-
-        var gPredil = L.geoJSON(Predil, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPredil = Predil.features[0].properties.idd;
-        geoJSONArray[idPredil] = gPredil;
-        geoJSONs.push(gPredil);
-
-        var gNassfeld = L.geoJSON(Nassfeld, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idNassfeld = Nassfeld.features[0].properties.idd;
-        geoJSONArray[idNassfeld] = gNassfeld;
-        geoJSONs.push(gNassfeld);
-
-        var gPloecken = L.geoJSON(Ploecken, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPloecken = Ploecken.features[0].properties.idd;
-        geoJSONArray[idPloecken] = gPloecken;
-        geoJSONs.push(gPloecken);
-
-        var gStaller = L.geoJSON(Staller, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idStaller = Staller.features[0].properties.idd;
-        geoJSONArray[idStaller] = gStaller;
-        geoJSONs.push(gStaller);
-
-        var gBrennero = L.geoJSON(Brennero, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBrennero = Brennero.features[0].properties.idd;
-        geoJSONArray[idBrennero] = gBrennero;
-        geoJSONs.push(gBrennero);
-
-        var gTimmelsjoch = L.geoJSON(Timmelsjoch, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTimmelsjoch = Timmelsjoch.features[0].properties.idd;
-        geoJSONArray[idTimmelsjoch] = gTimmelsjoch;
-        geoJSONs.push(gTimmelsjoch);
-
-        var gValmara = L.geoJSON(Valmara, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idValmara = Valmara.features[0].properties.idd;
-        geoJSONArray[idValmara] = gValmara;
-        geoJSONs.push(gValmara);
-
-        var gTende = L.geoJSON(Tende, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTende = Tende.features[0].properties.idd;
-        geoJSONArray[idTende] = gTende;
-        geoJSONs.push(gTende);
-
-        var gLombarde = L.geoJSON(Lombarde, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLombarde = Lombarde.features[0].properties.idd;
-        geoJSONArray[idLombarde] = gLombarde;
-        geoJSONs.push(gLombarde);
-
-        var gLarche = L.geoJSON(Larche, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLarche = Larche.features[0].properties.idd;
-        geoJSONArray[idLarche] = gLarche;
-        geoJSONs.push(gLarche);
-
-        var gAgnel = L.geoJSON(Agnel, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idAgnel = Agnel.features[0].properties.idd;
-        geoJSONArray[idAgnel] = gAgnel;
-        geoJSONs.push(gAgnel);
-
-        var gMontgenevre = L.geoJSON(Montgenevre, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMontgenevre = Montgenevre.features[0].properties.idd;
-        geoJSONArray[idMontgenevre] = gMontgenevre;
-        geoJSONs.push(gMontgenevre);
-
-        var gEchelle = L.geoJSON(Echelle, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idEchelle = Echelle.features[0].properties.idd;
-        geoJSONArray[idEchelle] = gEchelle;
-        geoJSONs.push(gEchelle);
-
-        var gMontCenis = L.geoJSON(MontCenis, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMontCenis = MontCenis.features[0].properties.idd;
-        geoJSONArray[idMontCenis] = gMontCenis;
-        geoJSONs.push(gMontCenis);
-
-        var gPetitBernard = L.geoJSON(PetitBernard, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPetitBernard = PetitBernard.features[0].properties.idd;
-        geoJSONArray[idPetitBernard] = gPetitBernard;
-        geoJSONs.push(gPetitBernard);
-
-        var gReschen = L.geoJSON(Reschen, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idReschen = Reschen.features[0].properties.idd;
-        geoJSONArray[idReschen] = gReschen;
-        geoJSONs.push(gReschen);
-        
-        var gAvena = L.geoJSON(Avena, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idAvena = Avena.features[0].properties.idd;
-        geoJSONArray[idAvena] = gAvena;
-        geoJSONs.push(gAvena);
-
-        var gSanBarbara = L.geoJSON(SanBarbara, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSanBarbara = SanBarbara.features[0].properties.idd;
-        geoJSONArray[idSanBarbara] = gSanBarbara;
-        geoJSONs.push(gSanBarbara);
-
-        var gSantaBarbara = L.geoJSON(SantaBarbara, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSantaBarbara = SantaBarbara.features[0].properties.idd;
-        geoJSONArray[idSantaBarbara] = gSantaBarbara;
-        geoJSONs.push(gSantaBarbara);
-
-        var gBoldo = L.geoJSON(Boldo, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBoldo = Boldo.features[0].properties.idd;
-        geoJSONArray[idBoldo] = gBoldo;
-        geoJSONs.push(gBoldo);
-
-        var gBorcola = L.geoJSON(Borcola, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBorcola = Borcola.features[0].properties.idd;
-        geoJSONArray[idBorcola] = gBorcola;
-        geoJSONs.push(gBorcola);
-
-        var gBordala = L.geoJSON(Bordala, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBordala = Bordala.features[0].properties.idd;
-        geoJSONArray[idBordala] = gBordala;
-        geoJSONs.push(gBordala);
-
-        var gBrandenberg = L.geoJSON(Brandenberg, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBrandenberg = Brandenberg.features[0].properties.idd;
-        geoJSONArray[idBrandenberg] = gBrandenberg;
-        geoJSONs.push(gBrandenberg);
-
-        var gCoe = L.geoJSON(Coe, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idCoe = Coe.features[0].properties.idd;
-        geoJSONArray[idCoe] = gCoe;
-        geoJSONs.push(gCoe);
-
-        var gAune = L.geoJSON(Aune, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idAune = Aune.features[0].properties.idd;
-        geoJSONArray[idAune] = gAune;
-        geoJSONs.push(gAune);
-
-        var gDuft = L.geoJSON(Duft, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idDuft = Duft.features[0].properties.idd;
-        geoJSONArray[idDuft] = gDuft;
-        geoJSONs.push(gDuft);
-
-        var gFittanze = L.geoJSON(Fittanze, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFittanze = Fittanze.features[0].properties.idd;
-        geoJSONArray[idFittanze] = gFittanze;
-        geoJSONs.push(gFittanze);
-
-        var gFugazze = L.geoJSON(Fugazze, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFugazze = Fugazze.features[0].properties.idd;
-        geoJSONArray[idFugazze] = gFugazze;
-        geoJSONs.push(gFugazze);
-
-        var gGerlos = L.geoJSON(Gerlos, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGerlos = Gerlos.features[0].properties.idd;
-        geoJSONArray[idGerlos] = gGerlos;
-        geoJSONs.push(gGerlos);
-
-        var gGlaubenbielen = L.geoJSON(Glaubenbielen, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGlaubenbielen = Glaubenbielen.features[0].properties.idd;
-        geoJSONArray[idGlaubenbielen] = gGlaubenbielen;
-        geoJSONs.push(gGlaubenbielen);
-
-        var gGrappa = L.geoJSON(Grappa, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGrappa = Grappa.features[0].properties.idd;
-        geoJSONArray[idGrappa] = gGrappa;
-        geoJSONs.push(gGrappa);
-
-        var gGlockner = L.geoJSON(Glockner, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGlockner = Glockner.features[0].properties.idd;
-        geoJSONArray[idGlockner] = gGlockner;
-        geoJSONs.push(gGlockner);
-
-        var gEdelweiss = L.geoJSON(Edelweiss, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idEdelweiss = Edelweiss.features[0].properties.idd;
-        geoJSONArray[idEdelweiss] = gEdelweiss;
-        geoJSONs.push(gEdelweiss);
-
-        var gKaiserFranzJosef = L.geoJSON(KaiserFranzJosef, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idKaiserFranzJosef = KaiserFranzJosef.features[0].properties.idd;
-        geoJSONArray[idKaiserFranzJosef] = gKaiserFranzJosef;
-        geoJSONs.push(gKaiserFranzJosef);
-
-        var gJaufen = L.geoJSON(Jaufen, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idJaufen = Jaufen.features[0].properties.idd;
-        geoJSONArray[idJaufen] = gJaufen;
-        geoJSONs.push(gJaufen);
-
-        var gKerschbaumer = L.geoJSON(Kerschbaumer, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idKerschbaumer = Kerschbaumer.features[0].properties.idd;
-        geoJSONArray[idKerschbaumer] = gKerschbaumer;
-        geoJSONs.push(gKerschbaumer);
-
-        var gNiederndorfer = L.geoJSON(Niederndorfer, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idNiederndorfer = Niederndorfer.features[0].properties.idd;
-        geoJSONArray[idNiederndorfer] = gNiederndorfer;
-        geoJSONs.push(gNiederndorfer);
-
-        var gThurn = L.geoJSON(Thurn, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idThurn = Thurn.features[0].properties.idd;
-        geoJSONArray[idThurn] = gThurn;
-        geoJSONs.push(gThurn);
-
-        var gPragel = L.geoJSON(Pragel, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPragel = Pragel.features[0].properties.idd;
-        geoJSONArray[idPragel] = gPragel;
-        geoJSONs.push(gPragel);
-
-        var gRoncola = L.geoJSON(Roncola, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idRoncola = Roncola.features[0].properties.idd;
-        geoJSONArray[idRoncola] = gRoncola;
-        geoJSONs.push(gRoncola);
-
-        var gRossfeld = L.geoJSON(Rossfeld, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idRossfeld = Rossfeld.features[0].properties.idd;
-        geoJSONArray[idRossfeld] = gRossfeld;
-        geoJSONs.push(gRossfeld);
-
-        var gSamerberg = L.geoJSON(Samerberg, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSamerberg = Samerberg.features[0].properties.idd;
-        geoJSONArray[idSamerberg] = gSamerberg;
-        geoJSONs.push(gSamerberg);
-
-        var gSoelk = L.geoJSON(Soelk, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSoelk = Soelk.features[0].properties.idd;
-        geoJSONArray[idSoelk] = gSoelk;
-        geoJSONs.push(gSoelk);
-
-        var gSommo = L.geoJSON(Sommo, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSommo = Sommo.features[0].properties.idd;
-        geoJSONArray[idSommo] = gSommo;
-        geoJSONs.push(gSommo);
-
-        var gSpitzing = L.geoJSON(Spitzing, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSpitzing = Spitzing.features[0].properties.idd;
-        geoJSONArray[idSpitzing] = gSpitzing;
-        geoJSONs.push(gSpitzing);
-
-        var gToerwang = L.geoJSON(Toerwang, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idToerwang = Toerwang.features[0].properties.idd;
-        geoJSONArray[idToerwang] = gToerwang;
-        geoJSONs.push(gToerwang);
-
-        var gUrsprung = L.geoJSON(Ursprung, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idUrsprung = Ursprung.features[0].properties.idd;
-        geoJSONArray[idUrsprung] = gUrsprung;
-        geoJSONs.push(gUrsprung);
-
-        var gWolfgang = L.geoJSON(Wolfgang, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idWolfgang = Wolfgang.features[0].properties.idd;
-        geoJSONArray[idWolfgang] = gWolfgang;
-        geoJSONs.push(gWolfgang);
-
-        var gXomo = L.geoJSON(Xomo, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idXomo = Xomo.features[0].properties.idd;
-        geoJSONArray[idXomo] = gXomo;
-        geoJSONs.push(gXomo);
-
-        var gXon = L.geoJSON(Xon, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idXon = Xon.features[0].properties.idd;
-        geoJSONArray[idXon] = gXon;
-        geoJSONs.push(gXon);
-
-        var gZoncolan = L.geoJSON(Zoncolan, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idZoncolan = Zoncolan.features[0].properties.idd;
-        geoJSONArray[idZoncolan] = gZoncolan;
-        geoJSONs.push(gZoncolan);
-
-        var gZovo = L.geoJSON(Zovo, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idZovo = Zovo.features[0].properties.idd;
-        geoJSONArray[idZovo] = gZovo;
-        geoJSONs.push(gZovo);
-
-        var gSchiestlscharte = L.geoJSON(Schiestlscharte, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSchiestlscharte = Schiestlscharte.features[0].properties.idd;
-        geoJSONArray[idSchiestlscharte] = gSchiestlscharte;
-        geoJSONs.push(gSchiestlscharte);
-
-        var gKühtai = L.geoJSON(Kühtai, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idKühtai = Kühtai.features[0].properties.idd;
-        geoJSONArray[idKühtai] = gKühtai;
-        geoJSONs.push(gKühtai);
-
-        var gDientner = L.geoJSON(Dientner, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idDientner = Dientner.features[0].properties.idd;
-        geoJSONArray[idDientner] = gDientner;
-        geoJSONs.push(gDientner);
-
-        var gHirschbichl = L.geoJSON(Hirschbichl, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idHirschbichl = Hirschbichl.features[0].properties.idd;
-        geoJSONArray[idHirschbichl] = gHirschbichl;
-        geoJSONs.push(gHirschbichl);
-
-        var gCampoCarloMagno = L.geoJSON(CampoCarloMagno, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idCampoCarloMagno = CampoCarloMagno.features[0].properties.idd;
-        geoJSONArray[idCampoCarloMagno] = gCampoCarloMagno;
-        geoJSONs.push(gCampoCarloMagno);
-
-        var gTorriFraele = L.geoJSON(TorriFraele, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTorriFraele = TorriFraele.features[0].properties.idd;
-        geoJSONArray[idTorriFraele] = gTorriFraele;
-        geoJSONs.push(gTorriFraele);
-
-        var gVezzena = L.geoJSON(Vezzena, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idVezzena = Vezzena.features[0].properties.idd;
-        geoJSONArray[idVezzena] = gVezzena;
-        geoJSONs.push(gVezzena);
-
-        var gÄcherli = L.geoJSON(Ächerli, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idÄcherli = Ächerli.features[0].properties.idd;
-        geoJSONArray[idÄcherli] = gÄcherli;
-        geoJSONs.push(gÄcherli);
-
-        var gBieler = L.geoJSON(Bieler, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBieler = Bieler.features[0].properties.idd;
-        geoJSONArray[idBieler] = gBieler;
-        geoJSONs.push(gBieler);
-
-        var gLein = L.geoJSON(Lein, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLein = Lein.features[0].properties.idd;
-        geoJSONArray[idLein] = gLein;
-        geoJSONs.push(gLein);
-
-        var gPlanches = L.geoJSON(Planches, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPlanches = Planches.features[0].properties.idd;
-        geoJSONArray[idPlanches] = gPlanches;
-        geoJSONs.push(gPlanches);
-
-        var gIbergeregg = L.geoJSON(Ibergeregg, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idIbergeregg = Ibergeregg.features[0].properties.idd;
-        geoJSONArray[idIbergeregg] = gIbergeregg;
-        geoJSONs.push(gIbergeregg);
-
-        var gChampex = L.geoJSON(Champex, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idChampex = Champex.features[0].properties.idd;
-        geoJSONArray[idChampex] = gChampex;
-        geoJSONs.push(gChampex);
-
-        var gGlaubenberg = L.geoJSON(Glaubenberg, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGlaubenberg = Glaubenberg.features[0].properties.idd;
-        geoJSONArray[idGlaubenberg] = gGlaubenberg;
-        geoJSONs.push(gGlaubenberg);
-
-        var gPillon = L.geoJSON(Pillon, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPillon = Pillon.features[0].properties.idd;
-        geoJSONArray[idPillon] = gPillon;
-        geoJSONs.push(gPillon);
-
-        var gMendola = L.geoJSON(Mendola, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMendola = Mendola.features[0].properties.idd;
-        geoJSONArray[idMendola] = gMendola;
-        geoJSONs.push(gMendola);
-
-        var gGampen = L.geoJSON(Gampen, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGampen = Gampen.features[0].properties.idd;
-        geoJSONArray[idGampen] = gGampen;
-        geoJSONs.push(gGampen);
-
-        var gSattelegg = L.geoJSON(Sattelegg, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSattelegg = Sattelegg.features[0].properties.idd;
-        geoJSONArray[idSattelegg] = gSattelegg;
-        geoJSONs.push(gSattelegg);
-
-        var gColDeLaCroix = L.geoJSON(ColDeLaCroix, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idColDeLaCroix = ColDeLaCroix.features[0].properties.idd;
-        geoJSONArray[idColDeLaCroix] = gColDeLaCroix;
-        geoJSONs.push(gColDeLaCroix);
-
-        var gMontets = L.geoJSON(Montets, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMontets = Montets.features[0].properties.idd;
-        geoJSONArray[idMontets] = gMontets;
-        geoJSONs.push(gMontets);
-
-        var gJaun = L.geoJSON(Jaun, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idJaun = Jaun.features[0].properties.idd;
-        geoJSONArray[idJaun] = gJaun;
-        geoJSONs.push(gJaun);
-
-        var gRiedberg = L.geoJSON(Riedberg, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idRiedberg = Riedberg.features[0].properties.idd;
-        geoJSONArray[idRiedberg] = gRiedberg;
-        geoJSONs.push(gRiedberg);
-
-        var gOberjoch = L.geoJSON(Oberjoch, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idOberjoch = Oberjoch.features[0].properties.idd;
-        geoJSONArray[idOberjoch] = gOberjoch;
-        geoJSONs.push(gOberjoch);
-
-        var gAmmerSattel = L.geoJSON(AmmerSattel, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idAmmerSattel = AmmerSattel.features[0].properties.idd;
-        geoJSONArray[idAmmerSattel] = gAmmerSattel;
-        geoJSONs.push(gAmmerSattel);
-
-        var gFlexen = L.geoJSON(Flexen, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFlexen = Flexen.features[0].properties.idd;
-        geoJSONArray[idFlexen] = gFlexen;
-        geoJSONs.push(gFlexen);
-
-        var gFurkajoch = L.geoJSON(Furkajoch, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFurkajoch = Furkajoch.features[0].properties.idd;
-        geoJSONArray[idFurkajoch] = gFurkajoch;
-        geoJSONs.push(gFurkajoch);
-
-        var gHochtannberg = L.geoJSON(Hochtannberg, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idHochtannberg = Hochtannberg.features[0].properties.idd;
-        geoJSONArray[idHochtannberg] = gHochtannberg;
-        geoJSONs.push(gHochtannberg);
-
-        var gFaschinajoch = L.geoJSON(Faschinajoch, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFaschinajoch = Faschinajoch.features[0].properties.idd;
-        geoJSONArray[idFaschinajoch] = gFaschinajoch;
-        geoJSONs.push(gFaschinajoch);
-
-        var gLosenpass = L.geoJSON(Losenpass, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLosenpass = Losenpass.features[0].properties.idd;
-        geoJSONArray[idLosenpass] = gLosenpass;
-        geoJSONs.push(gLosenpass);
-
-        var gBuchener = L.geoJSON(Buchener, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBuchener = Buchener.features[0].properties.idd;
-        geoJSONArray[idBuchener] = gBuchener;
-        geoJSONs.push(gBuchener);
-
-        var gHahntennjoch = L.geoJSON(Hahntennjoch, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idHahntennjoch = Hahntennjoch.features[0].properties.idd;
-        geoJSONArray[idHahntennjoch] = gHahntennjoch;
-        geoJSONs.push(gHahntennjoch);
-
-        var gFernpass = L.geoJSON(Fernpass, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFernpass = Fernpass.features[0].properties.idd;
-        geoJSONArray[idFernpass] = gFernpass;
-        geoJSONs.push(gFernpass);
-
-        var gIselsberg = L.geoJSON(Iselsberg, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idIselsberg = Iselsberg.features[0].properties.idd;
-        geoJSONArray[idIselsberg] = gIselsberg;
-        geoJSONs.push(gIselsberg);
-
-        var gSeefeld = L.geoJSON(Seefeld, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSeefeld = Seefeld.features[0].properties.idd;
-        geoJSONArray[idSeefeld] = gSeefeld;
-        geoJSONs.push(gSeefeld);
-
-        var gArlberg = L.geoJSON(Arlberg, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idArlberg = Arlberg.features[0].properties.idd;
-        geoJSONArray[idArlberg] = gArlberg;
-        geoJSONs.push(gArlberg);
-
-        var gGaichtpass = L.geoJSON(Gaichtpass, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGaichtpass = Gaichtpass.features[0].properties.idd;
-        geoJSONArray[idGaichtpass] = gGaichtpass;
-        geoJSONs.push(gGaichtpass);
-
-        var gLienbachsattel = L.geoJSON(Lienbachsattel, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLienbachsattel = Lienbachsattel.features[0].properties.idd;
-        geoJSONArray[idLienbachsattel] = gLienbachsattel;
-        geoJSONs.push(gLienbachsattel);
-
-        var gGschütt = L.geoJSON(Gschütt, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGschütt = Gschütt.features[0].properties.idd;
-        geoJSONArray[idGschütt] = gGschütt;
-        geoJSONs.push(gGschütt);
-
-        var gWalleralm = L.geoJSON(Walleralm, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idWalleralm = Walleralm.features[0].properties.idd;
-        geoJSONArray[idWalleralm] = gWalleralm;
-        geoJSONs.push(gWalleralm);
-
-        var gFeldbergpass = L.geoJSON(Feldbergpass, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFeldbergpass = Feldbergpass.features[0].properties.idd;
-        geoJSONArray[idFeldbergpass] = gFeldbergpass;
-        geoJSONs.push(gFeldbergpass);
-
-        var gKandel = L.geoJSON(Kandel, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idKandel = Kandel.features[0].properties.idd;
-        geoJSONArray[idKandel] = gKandel;
-        geoJSONs.push(gKandel);
-
-        var gSchauinsland = L.geoJSON(Schauinsland, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSchauinsland = Schauinsland.features[0].properties.idd;
-        geoJSONArray[idSchauinsland] = gSchauinsland;
-        geoJSONs.push(gSchauinsland);
-
-        var gRinken = L.geoJSON(Rinken, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idRinken = Rinken.features[0].properties.idd;
-        geoJSONArray[idRinken] = gRinken;
-        geoJSONs.push(gRinken);
-
-        var gHohtann = L.geoJSON(Hohtann, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idHohtann = Hohtann.features[0].properties.idd;
-        geoJSONArray[idHohtann] = gHohtann;
-        geoJSONs.push(gHohtann);
-
-        var gDürreck = L.geoJSON(Dürreck, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idDürreck = Dürreck.features[0].properties.idd;
-        geoJSONArray[idDürreck] = gDürreck;
-        geoJSONs.push(gDürreck);
-
-        var gGrän = L.geoJSON(Grän, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGrän = Grän.features[0].properties.idd;
-        geoJSONArray[idGrän] = gGrän;
-        geoJSONs.push(gGrän);
-
-        var gÄulemerKreuz = L.geoJSON(ÄulemerKreuz, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idÄulemerKreuz = ÄulemerKreuz.features[0].properties.idd;
-        geoJSONArray[idÄulemerKreuz] = gÄulemerKreuz;
-        geoJSONs.push(gÄulemerKreuz);
-
-        var gNotschrei = L.geoJSON(Notschrei, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idNotschrei = Notschrei.features[0].properties.idd;
-        geoJSONArray[idNotschrei] = gNotschrei;
-        geoJSONs.push(gNotschrei);
-
-        var gRohrmoos = L.geoJSON(Rohrmoos, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idRohrmoos = Rohrmoos.features[0].properties.idd;
-        geoJSONArray[idRohrmoos] = gRohrmoos;
-        geoJSONs.push(gRohrmoos);
-
-        var gEllegg = L.geoJSON(Ellegg, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idEllegg = Ellegg.features[0].properties.idd;
-        geoJSONArray[idEllegg] = gEllegg;
-        geoJSONs.push(gEllegg);
-
-        var gWidiwanderEck = L.geoJSON(WidiwanderEck, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idWidiwanderEck = WidiwanderEck.features[0].properties.idd;
-        geoJSONArray[idWidiwanderEck] = gWidiwanderEck;
-        geoJSONs.push(gWidiwanderEck);
-
-        var gKreuzweg = L.geoJSON(Kreuzweg, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idKreuzweg = Kreuzweg.features[0].properties.idd;
-        geoJSONArray[idKreuzweg] = gKreuzweg;
-        geoJSONs.push(gKreuzweg);
-
-        var gWeissenbachsattel = L.geoJSON(Weissenbachsattel, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idWeissenbachsattel = Weissenbachsattel.features[0].properties.idd;
-        geoJSONArray[idWeissenbachsattel] = gWeissenbachsattel;
-        geoJSONs.push(gWeissenbachsattel);
-
-        var gFürsatzhöhe = L.geoJSON(Fürsatzhöhe, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFürsatzhöhe = Fürsatzhöhe.features[0].properties.idd;
-        geoJSONArray[idFürsatzhöhe] = gFürsatzhöhe;
-        geoJSONs.push(gFürsatzhöhe);
-
-        var gRotesKreuz = L.geoJSON(RotesKreuz, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idRotesKreuz = RotesKreuz.features[0].properties.idd;
-        geoJSONArray[idRotesKreuz] = gRotesKreuz;
-        geoJSONs.push(gRotesKreuz);
-
-        var gDresselbach = L.geoJSON(Dresselbach, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idDresselbach = Dresselbach.features[0].properties.idd;
-        geoJSONArray[idDresselbach] = gDresselbach;
-        geoJSONs.push(gDresselbach);
-
-        var gAchenpass = L.geoJSON(Achenpass, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idAchenpass = Achenpass.features[0].properties.idd;
-        geoJSONArray[idAchenpass] = gAchenpass;
-        geoJSONs.push(gAchenpass);
-
-        var gHochschwarzeck = L.geoJSON(Hochschwarzeck, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idHochschwarzeck = Hochschwarzeck.features[0].properties.idd;
-        geoJSONArray[idHochschwarzeck] = gHochschwarzeck;
-        geoJSONs.push(gHochschwarzeck);
-
-        var gIrschenberg = L.geoJSON(Irschenberg, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idIrschenberg = Irschenberg.features[0].properties.idd;
-        geoJSONArray[idIrschenberg] = gIrschenberg;
-        geoJSONs.push(gIrschenberg);
-
-        var gErlerBerg = L.geoJSON(ErlerBerg, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idErlerBerg = ErlerBerg.features[0].properties.idd;
-        geoJSONArray[idErlerBerg] = gErlerBerg;
-        geoJSONs.push(gErlerBerg);
-
-        var gGalibier = L.geoJSON(Galibier, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGalibier = Galibier.features[0].properties.idd;
-        geoJSONArray[idGalibier] = gGalibier;
-        geoJSONs.push(gGalibier);
-
-        var gTelegraphe = L.geoJSON(Telegraphe, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTelegraphe = Telegraphe.features[0].properties.idd;
-        geoJSONArray[idTelegraphe] = gTelegraphe;
-        geoJSONs.push(gTelegraphe);
-
-        var gIzoard = L.geoJSON(Izoard, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idIzoard = Izoard.features[0].properties.idd;
-        geoJSONArray[idIzoard] = gIzoard;
-        geoJSONs.push(gIzoard);
-
-        var gLoze = L.geoJSON(Loze, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLoze = Loze.features[0].properties.idd;
-        geoJSONArray[idLoze] = gLoze;
-        geoJSONs.push(gLoze);
-
-        var gAllos = L.geoJSON(Allos, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idAllos = Allos.features[0].properties.idd;
-        geoJSONArray[idAllos] = gAllos;
-        geoJSONs.push(gAllos);
-
-        var gChamps = L.geoJSON(Champs, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idChamps = Champs.features[0].properties.idd;
-        geoJSONArray[idChamps] = gChamps;
-        geoJSONs.push(gChamps);
-
-        var gVars = L.geoJSON(Vars, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idVars = Vars.features[0].properties.idd;
-        geoJSONArray[idVars] = gVars;
-        geoJSONs.push(gVars);
-
-        var gCroixDeFer = L.geoJSON(CroixDeFer, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idCroixDeFer = CroixDeFer.features[0].properties.idd;
-        geoJSONArray[idCroixDeFer] = gCroixDeFer;
-        geoJSONs.push(gCroixDeFer);
-
-        var gGlandon = L.geoJSON(Glandon, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGlandon = Glandon.features[0].properties.idd;
-        geoJSONArray[idGlandon] = gGlandon;
-        geoJSONs.push(gGlandon);
-
-        var gLautaret = L.geoJSON(Lautaret, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLautaret = Lautaret.features[0].properties.idd;
-        geoJSONArray[idLautaret] = gLautaret;
-        geoJSONs.push(gLautaret);
-
-        var gTurini = L.geoJSON(Turini, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTurini = Turini.features[0].properties.idd;
-        geoJSONArray[idTurini] = gTurini;
-        geoJSONs.push(gTurini);
-
-        var gHuez = L.geoJSON(Huez, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idHuez = Huez.features[0].properties.idd;
-        geoJSONArray[idHuez] = gHuez;
-        geoJSONs.push(gHuez);
-
-        var gSarenne = L.geoJSON(Sarenne, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSarenne = Sarenne.features[0].properties.idd;
-        geoJSONArray[idSarenne] = gSarenne;
-        geoJSONs.push(gSarenne);
-
-        var gMadeleine = L.geoJSON(Madeleine, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMadeleine = Madeleine.features[0].properties.idd;
-        geoJSONArray[idMadeleine] = gMadeleine;
-        geoJSONs.push(gMadeleine);
-
-        var gRoselend = L.geoJSON(Roselend, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idRoselend = Roselend.features[0].properties.idd;
-        geoJSONArray[idRoselend] = gRoselend;
-        geoJSONs.push(gRoselend);
-
-        var gVentoux = L.geoJSON(Ventoux, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idVentoux = Ventoux.features[0].properties.idd;
-        geoJSONArray[idVentoux] = gVentoux;
-        geoJSONs.push(gVentoux);
-
-        var gJouxVerte = L.geoJSON(JouxVerte, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idJouxVerte = JouxVerte.features[0].properties.idd;
-        geoJSONArray[idJouxVerte] = gJouxVerte;
-        geoJSONs.push(gJouxVerte);
-
-        var gPre = L.geoJSON(Pre, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPre = Pre.features[0].properties.idd;
-        geoJSONArray[idPre] = gPre;
-        geoJSONs.push(gPre);
-
-        var gKaunertal = L.geoJSON(Kaunertal, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idKaunertal = Kaunertal.features[0].properties.idd;
-        geoJSONArray[idKaunertal] = gKaunertal;
-        geoJSONs.push(gKaunertal);
-
-        var gRettenbachferner = L.geoJSON(Rettenbachferner, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idRettenbachferner = Rettenbachferner.features[0].properties.idd;
-        geoJSONArray[idRettenbachferner] = gRettenbachferner;
-        geoJSONs.push(gRettenbachferner);
-
-        var gTiefenbachferner = L.geoJSON(Tiefenbachferner, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTiefenbachferner = Tiefenbachferner.features[0].properties.idd;
-        geoJSONArray[idTiefenbachferner] = gTiefenbachferner;
-        geoJSONs.push(gTiefenbachferner);
-
-        var gEisentalhöhe = L.geoJSON(Eisentalhöhe, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idEisentalhöhe = Eisentalhöhe.features[0].properties.idd;
-        geoJSONArray[idEisentalhöhe] = gEisentalhöhe;
-        geoJSONs.push(gEisentalhöhe);
-
-        var gPenserJoch = L.geoJSON(PenserJoch, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPenserJoch = PenserJoch.features[0].properties.idd;
-        geoJSONArray[idPenserJoch] = gPenserJoch;
-        geoJSONs.push(gPenserJoch);
-
-        var gOschenik = L.geoJSON(Oschenik, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idOschenik = Oschenik.features[0].properties.idd;
-        geoJSONArray[idOschenik] = gOschenik;
-        geoJSONs.push(gOschenik);
-        
-        var gPlanDuLac = L.geoJSON(PlanDuLac, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPlanDuLac = PlanDuLac.features[0].properties.idd;
-        geoJSONArray[idPlanDuLac] = gPlanDuLac;
-        geoJSONs.push(gPlanDuLac);
-        
-        var gSaisies = L.geoJSON(Saisies, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSaisies = Saisies.features[0].properties.idd;
-        geoJSONArray[idSaisies] = gSaisies;
-        geoJSONs.push(gSaisies);
-        
-        var gValThorens = L.geoJSON(ValThorens, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idValThorens = ValThorens.features[0].properties.idd;
-        geoJSONArray[idValThorens] = gValThorens;
-        geoJSONs.push(gValThorens);
-
-        var gLacMoiry = L.geoJSON(LacMoiry, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLacMoiry = LacMoiry.features[0].properties.idd;
-        geoJSONArray[idLacMoiry] = gLacMoiry;
-        geoJSONs.push(gLacMoiry);
-        
-        var gCayolle = L.geoJSON(Cayolle, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idCayolle = Cayolle.features[0].properties.idd;
-        geoJSONArray[idCayolle] = gCayolle;
-        geoJSONs.push(gCayolle);
-        
-        var gSanetsch = L.geoJSON(Sanetsch, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSanetsch = Sanetsch.features[0].properties.idd;
-        geoJSONArray[idSanetsch] = gSanetsch;
-        geoJSONs.push(gSanetsch);
-
-        var gFinstertalerStausee = L.geoJSON(FinstertalerStausee, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFinstertalerStausee = FinstertalerStausee.features[0].properties.idd;
-        geoJSONArray[idFinstertalerStausee] = gFinstertalerStausee;
-        geoJSONs.push(gFinstertalerStausee);
-        
-        var gTougnete = L.geoJSON(Tougnete, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTougnete = Tougnete.features[0].properties.idd;
-        geoJSONArray[idTougnete] = gTougnete;
-        geoJSONs.push(gTougnete);
-        
-        var gNaret = L.geoJSON(Naret, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idNaret = Naret.features[0].properties.idd;
-        geoJSONArray[idNaret] = gNaret;
-        geoJSONs.push(gNaret);
-        
-        var gLacDuSaut = L.geoJSON(LacDuSaut, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLacDuSaut = LacDuSaut.features[0].properties.idd;
-        geoJSONArray[idLacDuSaut] = gLacDuSaut;
-        geoJSONs.push(gLacDuSaut);
-        
-        var gAlpeGalm = L.geoJSON(AlpeGalm, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idAlpeGalm = AlpeGalm.features[0].properties.idd;
-        geoJSONArray[idAlpeGalm] = gAlpeGalm;
-        geoJSONs.push(gAlpeGalm);
-        
-        var gMännlichen = L.geoJSON(Männlichen, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMännlichen = Männlichen.features[0].properties.idd;
-        geoJSONArray[idMännlichen] = gMännlichen;
-        geoJSONs.push(gMännlichen);
-        
-        var gTäsch = L.geoJSON(Täsch, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTäsch = Täsch.features[0].properties.idd;
-        geoJSONArray[idTäsch] = gTäsch;
-        geoJSONs.push(gTäsch);
-        
-        var gFeselalp = L.geoJSON(Feselalp, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFeselalp = Feselalp.features[0].properties.idd;
-        geoJSONArray[idFeselalp] = gFeselalp;
-        geoJSONs.push(gFeselalp);
-        
-        var gRifugioForni = L.geoJSON(RifugioForni, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idRifugioForni = RifugioForni.features[0].properties.idd;
-        geoJSONArray[idRifugioForni] = gRifugioForni;
-        geoJSONs.push(gRifugioForni);
-        
-        var gMattmark = L.geoJSON(Mattmark, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMattmark = Mattmark.features[0].properties.idd;
-        geoJSONArray[idMattmark] = gMattmark;
-        geoJSONs.push(gMattmark);
-        
-        var gGrandeDixence = L.geoJSON(GrandeDixence, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGrandeDixence = GrandeDixence.features[0].properties.idd;
-        geoJSONArray[idGrandeDixence] = gGrandeDixence;
-        geoJSONs.push(gGrandeDixence);
-        
-        var gRifugioCinqueTorri = L.geoJSON(RifugioCinqueTorri, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idRifugioCinqueTorri = RifugioCinqueTorri.features[0].properties.idd;
-        geoJSONArray[idRifugioCinqueTorri] = gRifugioCinqueTorri;
-        geoJSONs.push(gRifugioCinqueTorri);
-        
-        var gTignes = L.geoJSON(Tignes, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTignes = Tignes.features[0].properties.idd;
-        geoJSONArray[idTignes] = gTignes;
-        geoJSONs.push(gTignes);
-        
-        var gBerghausNagens = L.geoJSON(BerghausNagens, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBerghausNagens = BerghausNagens.features[0].properties.idd;
-        geoJSONArray[idBerghausNagens] = gBerghausNagens;
-        geoJSONs.push(gBerghausNagens);
-        
-        var gJuf = L.geoJSON(Juf, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idJuf = Juf.features[0].properties.idd;
-        geoJSONArray[idJuf] = gJuf;
-        geoJSONs.push(gJuf);
-        
-        var gLesArcs = L.geoJSON(LesArcs, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLesArcs = LesArcs.features[0].properties.idd;
-        geoJSONArray[idLesArcs] = gLesArcs;
-        geoJSONs.push(gLesArcs);
-        
-        var gBelpiano = L.geoJSON(Belpiano, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBelpiano = Belpiano.features[0].properties.idd;
-        geoJSONArray[idBelpiano] = gBelpiano;
-        geoJSONs.push(gBelpiano);
-        
-        var gSpeikkogel = L.geoJSON(Speikkogel, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSpeikkogel = Speikkogel.features[0].properties.idd;
-        geoJSONArray[idSpeikkogel] = gSpeikkogel;
-        geoJSONs.push(gSpeikkogel);
-        
-        var gArolla = L.geoJSON(Arolla, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idArolla = Arolla.features[0].properties.idd;
-        geoJSONArray[idArolla] = gArolla;
-        geoJSONs.push(gArolla);
-        
-        var gColSabot = L.geoJSON(ColSabot, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idColSabot = ColSabot.features[0].properties.idd;
-        geoJSONArray[idColSabot] = gColSabot;
-        geoJSONs.push(gColSabot);
-        
-        var gHochsölden = L.geoJSON(Hochsölden, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idHochsölden = Hochsölden.features[0].properties.idd;
-        geoJSONArray[idHochsölden] = gHochsölden;
-        geoJSONs.push(gHochsölden);
-        
-        var gMartelltal = L.geoJSON(Martelltal, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMartelltal = Martelltal.features[0].properties.idd;
-        geoJSONArray[idMartelltal] = gMartelltal;
-        geoJSONs.push(gMartelltal);
-        
-        var gTauernmoosStausee = L.geoJSON(TauernmoosStausee, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTauernmoosStausee = TauernmoosStausee.features[0].properties.idd;
-        geoJSONArray[idTauernmoosStausee] = gTauernmoosStausee;
-        geoJSONs.push(gTauernmoosStausee);
-        
-        var gCollePreit = L.geoJSON(CollePreit, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idCollePreit = CollePreit.features[0].properties.idd;
-        geoJSONArray[idCollePreit] = gCollePreit;
-        geoJSONs.push(gCollePreit);
-        
-        var gLaPlagne = L.geoJSON(LaPlagne, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLaPlagne = LaPlagne.features[0].properties.idd;
-        geoJSONArray[idLaPlagne] = gLaPlagne;
-        geoJSONs.push(gLaPlagne);
-        
-        var gThyon = L.geoJSON(Thyon, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idThyon = Thyon.features[0].properties.idd;
-        geoJSONArray[idThyon] = gThyon;
-        geoJSONs.push(gThyon);
-        
-        var gColleSanCarlo = L.geoJSON(ColleSanCarlo, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idColleSanCarlo = ColleSanCarlo.features[0].properties.idd;
-        geoJSONArray[idColleSanCarlo] = gColleSanCarlo;
-        geoJSONs.push(gColleSanCarlo);
-        
-        var gMangrt = L.geoJSON(Mangrt, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMangrt = Mangrt.features[0].properties.idd;
-        geoJSONArray[idMangrt] = gMangrt;
-        geoJSONs.push(gMangrt);
-        
-        var gBettmeralp = L.geoJSON(Bettmeralp, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBettmeralp = Bettmeralp.features[0].properties.idd;
-        geoJSONArray[idBettmeralp] = gBettmeralp;
-        geoJSONs.push(gBettmeralp);
-        
-        var gLesFonts = L.geoJSON(LesFonts, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLesFonts = LesFonts.features[0].properties.idd;
-        geoJSONArray[idLesFonts] = gLesFonts;
-        geoJSONs.push(gLesFonts);
-        
-        var gPartnun = L.geoJSON(Partnun, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPartnun = Partnun.features[0].properties.idd;
-        geoJSONArray[idPartnun] = gPartnun;
-        geoJSONs.push(gPartnun);
-        
-        var gAlpeGera = L.geoJSON(AlpeGera, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idAlpeGera = AlpeGera.features[0].properties.idd;
-        geoJSONArray[idAlpeGera] = gAlpeGera;
-        geoJSONs.push(gAlpeGera);
-        
-        var gSaintVeran = L.geoJSON(SaintVeran, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSaintVeran = SaintVeran.features[0].properties.idd;
-        geoJSONArray[idSaintVeran] = gSaintVeran;
-        geoJSONs.push(gSaintVeran);
-        
-        var gCheneil = L.geoJSON(Cheneil, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idCheneil = Cheneil.features[0].properties.idd;
-        geoJSONArray[idCheneil] = gCheneil;
-        geoJSONs.push(gCheneil);
-        
-        var gPianRe = L.geoJSON(PianRe, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPianRe = PianRe.features[0].properties.idd;
-        geoJSONArray[idPianRe] = gPianRe;
-        geoJSONs.push(gPianRe);
-        
-        var gValleeClaree = L.geoJSON(ValleeClaree, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idValleeClaree = ValleeClaree.features[0].properties.idd;
-        geoJSONArray[idValleeClaree] = gValleeClaree;
-        geoJSONs.push(gValleeClaree);
-        
-        var gDischmatal = L.geoJSON(Dischmatal, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idDischmatal = Dischmatal.features[0].properties.idd;
-        geoJSONArray[idDischmatal] = gDischmatal;
-        geoJSONs.push(gDischmatal);
-        
-        var gSchnalstal = L.geoJSON(Schnalstal, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSchnalstal = Schnalstal.features[0].properties.idd;
-        geoJSONArray[idSchnalstal] = gSchnalstal;
-        geoJSONs.push(gSchnalstal);
-        
-        var gVenterTal = L.geoJSON(VenterTal, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idVenterTal = VenterTal.features[0].properties.idd;
-        geoJSONArray[idVenterTal] = gVenterTal;
-        geoJSONs.push(gVenterTal);
-        
-        var gCervinia = L.geoJSON(Cervinia, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idCervinia = Cervinia.features[0].properties.idd;
-        geoJSONArray[idCervinia] = gCervinia;
-        geoJSONs.push(gCervinia);
-        
-        var gRiedbergZillertal = L.geoJSON(RiedbergZillertal, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idRiedbergZillertal = RiedbergZillertal.features[0].properties.idd;
-        geoJSONArray[idRiedbergZillertal] = gRiedbergZillertal;
-        geoJSONs.push(gRiedbergZillertal);
-        
-        var gMelchbodenZillertal = L.geoJSON(MelchbodenZillertal, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMelchbodenZillertal = MelchbodenZillertal.features[0].properties.idd;
-        geoJSONArray[idMelchbodenZillertal] = gMelchbodenZillertal;
-        geoJSONs.push(gMelchbodenZillertal);
-        
-        var gHintertux = L.geoJSON(Hintertux, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idHintertux = Hintertux.features[0].properties.idd;
-        geoJSONArray[idHintertux] = gHintertux;
-        geoJSONs.push(gHintertux);
-        
-        var gDurone = L.geoJSON(Durone, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idDurone = Durone.features[0].properties.idd;
-        geoJSONArray[idDurone] = gDurone;
-        geoJSONs.push(gDurone);
-        
-        var gHochfügen = L.geoJSON(Hochfügen, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idHochfügen = Hochfügen.features[0].properties.idd;
-        geoJSONArray[idHochfügen] = gHochfügen;
-        geoJSONs.push(gHochfügen);
-        
-        var gZillergrund = L.geoJSON(Zillergrund, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idZillergrund = Zillergrund.features[0].properties.idd;
-        geoJSONArray[idZillergrund] = gZillergrund;
-        geoJSONs.push(gZillergrund);
-        
-        var gBallino = L.geoJSON(Ballino, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBallino = Ballino.features[0].properties.idd;
-        geoJSONArray[idBallino] = gBallino;
-        geoJSONs.push(gBallino);
-        
-        var gReiterjoch = L.geoJSON(Reiterjoch, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idReiterjoch = Reiterjoch.features[0].properties.idd;
-        geoJSONArray[idReiterjoch] = gReiterjoch;
-        geoJSONs.push(gReiterjoch);
-        
-        var gLagoMoulin = L.geoJSON(LagoMoulin, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLagoMoulin = LagoMoulin.features[0].properties.idd;
-        geoJSONArray[idLagoMoulin] = gLagoMoulin;
-        geoJSONs.push(gLagoMoulin);
-        
-        var gPlatzwiesen = L.geoJSON(Platzwiesen, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPlatzwiesen = Platzwiesen.features[0].properties.idd;
-        geoJSONArray[idPlatzwiesen] = gPlatzwiesen;
-        geoJSONs.push(gPlatzwiesen);
-        
-        var gHochstein = L.geoJSON(Hochstein, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idHochstein = Hochstein.features[0].properties.idd;
-        geoJSONArray[idHochstein] = gHochstein;
-        geoJSONs.push(gHochstein);
-        
-        var gColJoly = L.geoJSON(ColJoly, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idColJoly = ColJoly.features[0].properties.idd;
-        geoJSONArray[idColJoly] = gColJoly;
-        geoJSONs.push(gColJoly);
-        
-        var gJochgrimm = L.geoJSON(Jochgrimm, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idJochgrimm = Jochgrimm.features[0].properties.idd;
-        geoJSONArray[idJochgrimm] = gJochgrimm;
-        geoJSONs.push(gJochgrimm);
-        
-        var gAval = L.geoJSON(Aval, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idAval = Aval.features[0].properties.idd;
-        geoJSONArray[idAval] = gAval;
-        geoJSONs.push(gAval);
-        
-        var gZevrail = L.geoJSON(Zevrail, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idZevrail = Zevrail.features[0].properties.idd;
-        geoJSONArray[idZevrail] = gZevrail;
-        geoJSONs.push(gZevrail);
-        
-        var gMauvoisin = L.geoJSON(Mauvoisin, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMauvoisin = Mauvoisin.features[0].properties.idd;
-        geoJSONArray[idMauvoisin] = gMauvoisin;
-        geoJSONs.push(gMauvoisin);
-        
-        var gValMare = L.geoJSON(ValMare, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idValMare = ValMare.features[0].properties.idd;
-        geoJSONArray[idValMare] = gValMare;
-        geoJSONs.push(gValMare);
-        
-        var gZermatt = L.geoJSON(Zermatt, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idZermatt = Zermatt.features[0].properties.idd;
-        geoJSONArray[idZermatt] = gZermatt;
-        geoJSONs.push(gZermatt);
-        
-        var gForclaz = L.geoJSON(Forclaz, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idForclaz = Forclaz.features[0].properties.idd;
-        geoJSONArray[idForclaz] = gForclaz;
-        geoJSONs.push(gForclaz);
-        
-        var gGueulaz = L.geoJSON(Gueulaz, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGueulaz = Gueulaz.features[0].properties.idd;
-        geoJSONArray[idGueulaz] = gGueulaz;
-        geoJSONs.push(gGueulaz);
-        
-        var gGiw = L.geoJSON(Giw, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGiw = Giw.features[0].properties.idd;
-        geoJSONArray[idGiw] = gGiw;
-        geoJSONs.push(gGiw);
-        
-        var gLaiDaNalps = L.geoJSON(LaiDaNalps, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLaiDaNalps = LaiDaNalps.features[0].properties.idd;
-        geoJSONArray[idLaiDaNalps] = gLaiDaNalps;
-        geoJSONs.push(gLaiDaNalps);
-        
-        var gValSavarenche = L.geoJSON(ValSavarenche, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idValSavarenche = ValSavarenche.features[0].properties.idd;
-        geoJSONArray[idValSavarenche] = gValSavarenche;
-        geoJSONs.push(gValSavarenche);
-        
-        var gBormio = L.geoJSON(Bormio, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBormio = Bormio.features[0].properties.idd;
-        geoJSONArray[idBormio] = gBormio;
-        geoJSONs.push(gBormio);
-        
-        var gSafiental = L.geoJSON(Safiental, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSafiental = Safiental.features[0].properties.idd;
-        geoJSONArray[idSafiental] = gSafiental;
-        geoJSONs.push(gSafiental);
-        
-        var gBisanne = L.geoJSON(Bisanne, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBisanne = Bisanne.features[0].properties.idd;
-        geoJSONArray[idBisanne] = gBisanne;
-        geoJSONs.push(gBisanne);
-        
-        var gGardeccia = L.geoJSON(Gardeccia, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGardeccia = Gardeccia.features[0].properties.idd;
-        geoJSONArray[idGardeccia] = gGardeccia;
-        geoJSONs.push(gGardeccia);
-        
-        var gLue = L.geoJSON(Lue, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLue = Lue.features[0].properties.idd;
-        geoJSONArray[idLue] = gLue;
-        geoJSONs.push(gLue);
-        
-        var gSilz = L.geoJSON(Silz, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSilz = Silz.features[0].properties.idd;
-        geoJSONArray[idSilz] = gSilz;
-        geoJSONs.push(gSilz);
-        
-        var gSertigtal = L.geoJSON(Sertigtal, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSertigtal = Sertigtal.features[0].properties.idd;
-        geoJSONArray[idSertigtal] = gSertigtal;
-        geoJSONs.push(gSertigtal);
-        
-        var gStallwieshof = L.geoJSON(Stallwieshof, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idStallwieshof = Stallwieshof.features[0].properties.idd;
-        geoJSONArray[idStallwieshof] = gStallwieshof;
-        geoJSONs.push(gStallwieshof);
-        
-        var gLucknerHaus = L.geoJSON(LucknerHaus, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLucknerHaus = LucknerHaus.features[0].properties.idd;
-        geoJSONArray[idLucknerHaus] = gLucknerHaus;
-        geoJSONs.push(gLucknerHaus);
-        
-        var gLagoTeleccio = L.geoJSON(LagoTeleccio, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLagoTeleccio = LagoTeleccio.features[0].properties.idd;
-        geoJSONArray[idLagoTeleccio] = gLagoTeleccio;
-        geoJSONs.push(gLagoTeleccio);
-        
-        var gLuesens = L.geoJSON(Luesens, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLuesens = Luesens.features[0].properties.idd;
-        geoJSONArray[idLuesens] = gLuesens;
-        geoJSONs.push(gLuesens);
-        
-        var gPraxmar = L.geoJSON(Praxmar, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPraxmar = Praxmar.features[0].properties.idd;
-        geoJSONArray[idPraxmar] = gPraxmar;
-        geoJSONs.push(gPraxmar);
-        
-        var gKoelnbreinsperre = L.geoJSON(Koelnbreinsperre, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idKoelnbreinsperre = Koelnbreinsperre.features[0].properties.idd;
-        geoJSONArray[idKoelnbreinsperre] = gKoelnbreinsperre;
-        geoJSONs.push(gKoelnbreinsperre);
-        
-        var gLangtaufenerTal = L.geoJSON(LangtaufenerTal, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLangtaufenerTal = LangtaufenerTal.features[0].properties.idd;
-        geoJSONArray[idLangtaufenerTal] = gLangtaufenerTal;
-        geoJSONs.push(gLangtaufenerTal);
-        
-        var gUbaye = L.geoJSON(Ubaye, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idUbaye = Ubaye.features[0].properties.idd;
-        geoJSONArray[idUbaye] = gUbaye;
-        geoJSONs.push(gUbaye);
-        
-        var gMadoneFenestre = L.geoJSON(MadoneFenestre, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMadoneFenestre = MadoneFenestre.features[0].properties.idd;
-        geoJSONArray[idMadoneFenestre] = gMadoneFenestre;
-        geoJSONs.push(gMadoneFenestre);
-        
-        var gTannalp = L.geoJSON(Tannalp, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTannalp = Tannalp.features[0].properties.idd;
-        geoJSONArray[idTannalp] = gTannalp;
-        geoJSONs.push(gTannalp);
-        
-        var gSulden = L.geoJSON(Sulden, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSulden = Sulden.features[0].properties.idd;
-        geoJSONArray[idSulden] = gSulden;
-        geoJSONs.push(gSulden);
-        
-        var gCraistas = L.geoJSON(Craistas, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idCraistas = Craistas.features[0].properties.idd;
-        geoJSONArray[idCraistas] = gCraistas;
-        geoJSONs.push(gCraistas);
-        
-        var gFouillouse = L.geoJSON(Fouillouse, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFouillouse = Fouillouse.features[0].properties.idd;
-        geoJSONArray[idFouillouse] = gFouillouse;
-        geoJSONs.push(gFouillouse);
-        
-        var gSeiserAlm = L.geoJSON(SeiserAlm, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSeiserAlm = SeiserAlm.features[0].properties.idd;
-        geoJSONArray[idSeiserAlm] = gSeiserAlm;
-        geoJSONs.push(gSeiserAlm);
-        
-        var gCiampigotto = L.geoJSON(Ciampigotto, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idCiampigotto = Ciampigotto.features[0].properties.idd;
-        geoJSONArray[idCiampigotto] = gCiampigotto;
-        geoJSONs.push(gCiampigotto);
-        
-        var gLussari = L.geoJSON(Lussari, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLussari = Lussari.features[0].properties.idd;
-        geoJSONArray[idLussari] = gLussari;
-        geoJSONs.push(gLussari);
-        
-        var gSchoenfeldsattel = L.geoJSON(Schoenfeldsattel, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSchoenfeldsattel = Schoenfeldsattel.features[0].properties.idd;
-        geoJSONArray[idSchoenfeldsattel] = gSchoenfeldsattel;
-        geoJSONs.push(gSchoenfeldsattel);
-        
-        var gPassoPura = L.geoJSON(PassoPura, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPassoPura = PassoPura.features[0].properties.idd;
-        geoJSONArray[idPassoPura] = gPassoPura;
-        geoJSONs.push(gPassoPura);
-        
-        var gTurrach = L.geoJSON(Turrach, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTurrach = Turrach.features[0].properties.idd;
-        geoJSONArray[idTurrach] = gTurrach;
-        geoJSONs.push(gTurrach);
-        
-        var gCompet = L.geoJSON(Compet, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idCompet = Compet.features[0].properties.idd;
-        geoJSONArray[idCompet] = gCompet;
-        geoJSONs.push(gCompet);
-        
-        var gFerretAosta = L.geoJSON(FerretAosta, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFerretAosta = FerretAosta.features[0].properties.idd;
-        geoJSONArray[idFerretAosta] = gFerretAosta;
-        geoJSONs.push(gFerretAosta);
-        
-        var gKienerAlm = L.geoJSON(KienerAlm, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idKienerAlm = KienerAlm.features[0].properties.idd;
-        geoJSONArray[idKienerAlm] = gKienerAlm;
-        geoJSONs.push(gKienerAlm);
-        
-        var gPanarotta = L.geoJSON(Panarotta, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPanarotta = Panarotta.features[0].properties.idd;
-        geoJSONArray[idPanarotta] = gPanarotta;
-        geoJSONs.push(gPanarotta);
-        
-        var gSignalDeLure = L.geoJSON(SignalDeLure, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSignalDeLure = SignalDeLure.features[0].properties.idd;
-        geoJSONArray[idSignalDeLure] = gSignalDeLure;
-        geoJSONs.push(gSignalDeLure);
-        
-        var gObertauern = L.geoJSON(Obertauern, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idObertauern = Obertauern.features[0].properties.idd;
-        geoJSONArray[idObertauern] = gObertauern;
-        geoJSONs.push(gObertauern);
-        
-        var gVillach = L.geoJSON(Villach, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idVillach = Villach.features[0].properties.idd;
-        geoJSONArray[idVillach] = gVillach;
-        geoJSONs.push(gVillach);
-        
-        var gZumis = L.geoJSON(Zumis, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idZumis = Zumis.features[0].properties.idd;
-        geoJSONArray[idZumis] = gZumis;
-        geoJSONs.push(gZumis);
-        
-        var gCastrin = L.geoJSON(Castrin, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idCastrin = Castrin.features[0].properties.idd;
-        geoJSONArray[idCastrin] = gCastrin;
-        geoJSONs.push(gCastrin);
-        
-        var gChamrousse = L.geoJSON(Chamrousse, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idChamrousse = Chamrousse.features[0].properties.idd;
-        geoJSONArray[idChamrousse] = gChamrousse;
-        geoJSONs.push(gChamrousse);
-        
-        var gChatillon = L.geoJSON(Chatillon, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idChatillon = Chatillon.features[0].properties.idd;
-        geoJSONArray[idChatillon] = gChatillon;
-        geoJSONs.push(gChatillon);
-        
-        var gJouxPlane = L.geoJSON(JouxPlane, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idJouxPlane = JouxPlane.features[0].properties.idd;
-        geoJSONArray[idJouxPlane] = gJouxPlane;
-        geoJSONs.push(gJouxPlane);
-        
-        var gAlpeTeglio = L.geoJSON(AlpeTeglio, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idAlpeTeglio = AlpeTeglio.features[0].properties.idd;
-        geoJSONArray[idAlpeTeglio] = gAlpeTeglio;
-        geoJSONs.push(gAlpeTeglio);
-        
-        var gTremalzo = L.geoJSON(Tremalzo, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTremalzo = Tremalzo.features[0].properties.idd;
-        geoJSONArray[idTremalzo] = gTremalzo;
-        geoJSONs.push(gTremalzo);
-        
-        var gAyas = L.geoJSON(Ayas, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idAyas = Ayas.features[0].properties.idd;
-        geoJSONArray[idAyas] = gAyas;
-        geoJSONs.push(gAyas);
-        
-        var gCouillole = L.geoJSON(Couillole, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idCouillole = Couillole.features[0].properties.idd;
-        geoJSONArray[idCouillole] = gCouillole;
-        geoJSONs.push(gCouillole);
-        
-        var gValberg = L.geoJSON(Valberg, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idValberg = Valberg.features[0].properties.idd;
-        geoJSONArray[idValberg] = gValberg;
-        geoJSONs.push(gValberg);
-        
-        var gGuarda = L.geoJSON(Guarda, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGuarda = Guarda.features[0].properties.idd;
-        geoJSONArray[idGuarda] = gGuarda;
-        geoJSONs.push(gGuarda);
-        
-        var gWeinebene = L.geoJSON(Weinebene, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idWeinebene = Weinebene.features[0].properties.idd;
-        geoJSONArray[idWeinebene] = gWeinebene;
-        geoJSONs.push(gWeinebene);
-        
-        var gColNoyer = L.geoJSON(ColNoyer, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idColNoyer = ColNoyer.features[0].properties.idd;
-        geoJSONArray[idColNoyer] = gColNoyer;
-        geoJSONs.push(gColNoyer);
-        
-        var gPanthaleon = L.geoJSON(Panthaleon, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPanthaleon = Panthaleon.features[0].properties.idd;
-        geoJSONArray[idPanthaleon] = gPanthaleon;
-        geoJSONs.push(gPanthaleon);
-        
-        var gPierreMoelle = L.geoJSON(PierreMoelle, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPierreMoelle = PierreMoelle.features[0].properties.idd;
-        geoJSONArray[idPierreMoelle] = gPierreMoelle;
-        geoJSONs.push(gPierreMoelle);
-        
-        var gBondone = L.geoJSON(Bondone, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBondone = Bondone.features[0].properties.idd;
-        geoJSONArray[idBondone] = gBondone;
-        geoJSONs.push(gBondone);
-        
-        var gDeuxAlpes = L.geoJSON(DeuxAlpes, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idDeuxAlpes = DeuxAlpes.features[0].properties.idd;
-        geoJSONArray[idDeuxAlpes] = gDeuxAlpes;
-        geoJSONs.push(gDeuxAlpes);
-        
-        var gFtan = L.geoJSON(Ftan, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idFtan = Ftan.features[0].properties.idd;
-        geoJSONArray[idFtan] = gFtan;
-        geoJSONs.push(gFtan);
-        
-        var gKlippitz = L.geoJSON(Klippitz, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idKlippitz = Klippitz.features[0].properties.idd;
-        geoJSONArray[idKlippitz] = gKlippitz;
-        geoJSONs.push(gKlippitz);
-        
-        var gColDeJouxAosta = L.geoJSON(ColDeJouxAosta, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idColDeJouxAosta = ColDeJouxAosta.features[0].properties.idd;
-        geoJSONArray[idColDeJouxAosta] = gColDeJouxAosta;
-        geoJSONs.push(gColDeJouxAosta);
-        
-        var gKatschberg = L.geoJSON(Katschberg, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idKatschberg = Katschberg.features[0].properties.idd;
-        geoJSONArray[idKatschberg] = gKatschberg;
-        geoJSONs.push(gKatschberg);
-        
-        var gMollard = L.geoJSON(Mollard, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMollard = Mollard.features[0].properties.idd;
-        geoJSONArray[idMollard] = gMollard;
-        geoJSONs.push(gMollard);
-        
-        var gKreuzbergComelico = L.geoJSON(KreuzbergComelico, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idKreuzbergComelico = KreuzbergComelico.features[0].properties.idd;
-        geoJSONArray[idKreuzbergComelico] = gKreuzbergComelico;
-        geoJSONs.push(gKreuzbergComelico);
-        
-        var gMittelbergJaun = L.geoJSON(MittelbergJaun, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMittelbergJaun = MittelbergJaun.features[0].properties.idd;
-        geoJSONArray[idMittelbergJaun] = gMittelbergJaun;
-        geoJSONs.push(gMittelbergJaun);
-        
-        var gPlateauMoliere = L.geoJSON(PlateauMoliere, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPlateauMoliere = PlateauMoliere.features[0].properties.idd;
-        geoJSONArray[idPlateauMoliere] = gPlateauMoliere;
-        geoJSONs.push(gPlateauMoliere);
-        
-        var gTzecore = L.geoJSON(Tzecore, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idTzecore = Tzecore.features[0].properties.idd;
-        geoJSONArray[idTzecore] = gTzecore;
-        geoJSONs.push(gTzecore);
-        
-        var gAlpeBernardo = L.geoJSON(AlpeBernardo, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idAlpeBernardo = AlpeBernardo.features[0].properties.idd;
-        geoJSONArray[idAlpeBernardo] = gAlpeBernardo;
-        geoJSONs.push(gAlpeBernardo);
-        
-        var gBaldo = L.geoJSON(Baldo, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBaldo = Baldo.features[0].properties.idd;
-        geoJSONArray[idBaldo] = gBaldo;
-        geoJSONs.push(gBaldo);
-        
-        var gColombiere = L.geoJSON(Colombiere, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idColombiere = Colombiere.features[0].properties.idd;
-        geoJSONArray[idColombiere] = gColombiere;
-        geoJSONs.push(gColombiere);
-        
-        var gPuyRichard = L.geoJSON(PuyRichard, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPuyRichard = PuyRichard.features[0].properties.idd;
-        geoJSONArray[idPuyRichard] = gPuyRichard;
-        geoJSONs.push(gPuyRichard);
-        
-        var gVrsic = L.geoJSON(Vrsic, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idVrsic = Vrsic.features[0].properties.idd;
-        geoJSONArray[idVrsic] = gVrsic;
-        geoJSONs.push(gVrsic);
-        
-        var gGurnigel = L.geoJSON(Gurnigel, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGurnigel = Gurnigel.features[0].properties.idd;
-        geoJSONArray[idGurnigel] = gGurnigel;
-        geoJSONs.push(gGurnigel);
-        
-        var gPanider = L.geoJSON(Panider, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPanider = Panider.features[0].properties.idd;
-        geoJSONArray[idPanider] = gPanider;
-        geoJSONs.push(gPanider);
-        
-        var gColettaSalse = L.geoJSON(ColettaSalse, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idColettaSalse = ColettaSalse.features[0].properties.idd;
-        geoJSONArray[idColettaSalse] = gColettaSalse;
-        geoJSONs.push(gColettaSalse);
-        
-        var gGrosssee = L.geoJSON(Grosssee, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGrosssee = Grosssee.features[0].properties.idd;
-        geoJSONArray[idGrosssee] = gGrosssee;
-        geoJSONs.push(gGrosssee);
-        
-        var gHochwurtenspeicher = L.geoJSON(Hochwurtenspeicher, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idHochwurtenspeicher = Hochwurtenspeicher.features[0].properties.idd;
-        geoJSONArray[idHochwurtenspeicher] = gHochwurtenspeicher;
-        geoJSONs.push(gHochwurtenspeicher);
-        
-        var gGranon = L.geoJSON(Granon, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGranon = Granon.features[0].properties.idd;
-        geoJSONArray[idGranon] = gGranon;
-        geoJSONs.push(gGranon);
-        
-        var gMoutiere = L.geoJSON(Moutiere, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMoutiere = Moutiere.features[0].properties.idd;
-        geoJSONArray[idMoutiere] = gMoutiere;
-        geoJSONs.push(gMoutiere);
-
-        var gOberaarsee = L.geoJSON(Oberaarsee, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idOberaarsee = Oberaarsee.features[0].properties.idd;
-        geoJSONArray[idOberaarsee] = gOberaarsee;
-        geoJSONs.push(gOberaarsee);
-
-        var gEttalerSattel = L.geoJSON(EttalerSattel, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idEttalerSattel = EttalerSattel.features[0].properties.idd;
-        geoJSONArray[idEttalerSattel] = gEttalerSattel;
-        geoJSONs.push(gEttalerSattel);
-
-        var gGriessenpass = L.geoJSON(Griessenpass, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGriessenpass = Griessenpass.features[0].properties.idd;
-        geoJSONArray[idGriessenpass] = gGriessenpass;
-        geoJSONs.push(gGriessenpass);
-
-        var gCroceSalven = L.geoJSON(CroceSalven, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idCroceSalven = CroceSalven.features[0].properties.idd;
-        geoJSONArray[idCroceSalven] = gCroceSalven;
-        geoJSONs.push(gCroceSalven);
-
-        var gPassaboche = L.geoJSON(Passaboche, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idPassaboche = Passaboche.features[0].properties.idd;
-        geoJSONArray[idPassaboche] = gPassaboche;
-        geoJSONs.push(gPassaboche);
-
-        var gSanFermo = L.geoJSON(SanFermo, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSanFermo = SanFermo.features[0].properties.idd;
-        geoJSONArray[idSanFermo] = gSanFermo;
-        geoJSONs.push(gSanFermo);
-
-        var gMariaEck = L.geoJSON(MariaEck, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMariaEck = MariaEck.features[0].properties.idd;
-        geoJSONArray[idMariaEck] = gMariaEck;
-        geoJSONs.push(gMariaEck);
-
-        var gMaserer = L.geoJSON(Maserer, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idMaserer = Maserer.features[0].properties.idd;
-        geoJSONArray[idMaserer] = gMaserer;
-        geoJSONs.push(gMaserer);
-
-        var gNiklasreuth = L.geoJSON(Niklasreuth, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idNiklasreuth = Niklasreuth.features[0].properties.idd;
-        geoJSONArray[idNiklasreuth] = gNiklasreuth;
-        geoJSONs.push(gNiklasreuth);
-
-        var gRossmettlen = L.geoJSON(Rossmettlen, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idRossmettlen = Rossmettlen.features[0].properties.idd;
-        geoJSONArray[idRossmettlen] = gRossmettlen;
-        geoJSONs.push(gRossmettlen);
-
-        var gValBavona = L.geoJSON(ValBavona, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idValBavona = ValBavona.features[0].properties.idd;
-        geoJSONArray[idValBavona] = gValBavona;
-        geoJSONs.push(gValBavona);
-
-        var gGeneroso = L.geoJSON(Generoso, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idGeneroso = Generoso.features[0].properties.idd;
-        geoJSONArray[idGeneroso] = gGeneroso;
-        geoJSONs.push(gGeneroso);
-
-        var gValMuggio = L.geoJSON(ValMuggio, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idValMuggio = ValMuggio.features[0].properties.idd;
-        geoJSONArray[idValMuggio] = gValMuggio;
-        geoJSONs.push(gValMuggio);
-
-        var gAlpeGiumelloComo = L.geoJSON(AlpeGiumelloComo, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idAlpeGiumelloComo = AlpeGiumelloComo.features[0].properties.idd;
-        geoJSONArray[idAlpeGiumelloComo] = gAlpeGiumelloComo;
-        geoJSONs.push(gAlpeGiumelloComo);
-
-        var gSchäftlarn = L.geoJSON(Schäftlarn, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idSchäftlarn = Schäftlarn.features[0].properties.idd;
-        geoJSONArray[idSchäftlarn] = gSchäftlarn;
-        geoJSONs.push(gSchäftlarn);
-
-        var gLudwigshöhe = L.geoJSON(Ludwigshöhe, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLudwigshöhe = Ludwigshöhe.features[0].properties.idd;
-        geoJSONArray[idLudwigshöhe] = gLudwigshöhe;
-        geoJSONs.push(gLudwigshöhe);
-
-        var gAufkirchen = L.geoJSON(Aufkirchen, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idAufkirchen = Aufkirchen.features[0].properties.idd;
-        geoJSONArray[idAufkirchen] = gAufkirchen;
-        geoJSONs.push(gAufkirchen);
-
-        var gLeutstetten = L.geoJSON(Leutstetten, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idLeutstetten = Leutstetten.features[0].properties.idd;
-        geoJSONArray[idLeutstetten] = gLeutstetten;
-        geoJSONs.push(gLeutstetten);
-
-        var gHochbergChiemgau = L.geoJSON(HochbergChiemgau, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idHochbergChiemgau = HochbergChiemgau.features[0].properties.idd;
-        geoJSONArray[idHochbergChiemgau] = gHochbergChiemgau;
-        geoJSONs.push(gHochbergChiemgau);
-
-        var gBichlPass = L.geoJSON(BichlPass, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idBichlPass = BichlPass.features[0].properties.idd;
-        geoJSONArray[idBichlPass] = gBichlPass;
-        geoJSONs.push(gBichlPass);
-
-        var gRiedl = L.geoJSON(Riedl, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idRiedl = Riedl.features[0].properties.idd;
-        geoJSONArray[idRiedl] = gRiedl;
-        geoJSONs.push(gRiedl);
-
-        var gEibsee = L.geoJSON(Eibsee, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idEibsee = Eibsee.features[0].properties.idd;
-        geoJSONArray[idEibsee] = gEibsee;
-        geoJSONs.push(gEibsee);
-
-        var gKesselberg = L.geoJSON(Kesselberg, {
-            style: TrackStyle,
-            onEachFeature: onEachFeature
-        });
-        var idKesselberg = Kesselberg.features[0].properties.idd;
-        geoJSONArray[idKesselberg] = gKesselberg;
-        geoJSONs.push(gKesselberg);
+        function addGeoJSONTrack(map, geoJSONs, geoJSONArray, trackData) {
+            var trackLayer = L.geoJSON(trackData, {
+                style: TrackStyle,
+                onEachFeature: onEachFeature
+            });
+            var trackId = trackData.features[0].properties.idd;
+            geoJSONArray[trackId] = trackLayer;
+            geoJSONs.push(trackLayer);
+        }
+        
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Achenpass);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Ächerli);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Agnel);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Agueglio);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Albula);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Allos);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, AlpeBernardo);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, AlpeGalm);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, AlpeGera);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, AlpeGiumelloComo);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, AlpeTeglio);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, AmmerSattel);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Antonio);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Aprica);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Arlberg);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Arolla);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Aufkirchen);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, ÄulemerKreuz);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Aune);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Aval);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Avena);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Ayas);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Baldo);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Balisio);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Ballino);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Belpiano);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Berbenno);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, BerghausNagens);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Bernardino);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Bernina);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Bettmeralp);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, BichlPass);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Bieler);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Bisanne);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Boldo);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Bondone);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Bonette);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, BonetteCime);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Borcola);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Bordala);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Bormio);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Brandenberg);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Brennero);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Brianza);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Brocon);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Buchener);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Bura);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, CampoCarloMagno);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Campolongo);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Castrin);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Cayolle);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Cereda);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Cervinia);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Champex);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Champs);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Chamrousse);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Chatillon);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Cheneil);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Ciampigotto);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Coe);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, ColDeJouxAosta);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, ColDeLaCroix);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, ColettaSalse);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, ColJoly);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, CollePreit);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, ColleSanCarlo);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, ColNoyer);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Colombiere);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, ColSabot);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Compet);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Couillole);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Craistas);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Crocedomini);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, CroceSalven);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, CroixDeCoeur);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, CroixDeFer);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Culmine);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, DeuxAlpes);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Dientner);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Dischmatal);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Dresselbach);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Duft);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Duran);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Durone);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Dürreck);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Echelle);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Edelweiss);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Eibsee);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Eira);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Eisentalhöhe);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Ellegg);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Erbe);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, ErlerBerg);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Esischie);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, EttalerSattel);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Falzarego);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Faschinajoch);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Fauniera);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Fedaia);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Feldbergpass);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Fernpass);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, FerretAosta);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Feselalp);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Finestre);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, FinstertalerStausee);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Fittanze);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Flexen);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Fluela);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Forclaz);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Forcora);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Foscagno);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Fouillouse);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Ftan);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Fugazze);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Fuipiano);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Furcia);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Furka);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Furkajoch);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Fürsatzhöhe);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Gaichtpass);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Galibier);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Gampen);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Ganda);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Gardeccia);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Gardena);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Gavia);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Generoso);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Gerlos);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Ghisallo);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Giau);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Giw);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Glandon);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Glaubenberg);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Glaubenbielen);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Glockner);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Gobbera);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Gottardo);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Grän);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, GranBernard);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, GrandeDixence);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Granon);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Grappa);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Griessenpass);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Grimsel);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Grosssee);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Gschütt);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Guarda);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Gueulaz);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Gurnigel);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Guspessa);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Hahntennjoch);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Hintertux);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Hirschbichl);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, HochbergChiemgau);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Hochfügen);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Hochschwarzeck);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Hochsölden);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Hochstein);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Hochtannberg);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Hochwurtenspeicher);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Hohtann);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Huez);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Ibergeregg);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Irschenberg);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Iselsberg);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Iseran);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Izoard);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Jaufen);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Jaun);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Jochgrimm);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, JouxPlane);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, JouxVerte);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Juf);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Julier);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, KaiserFranzJosef);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Kandel);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Karer);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Katschberg);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Kaunertal);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Kerschbaumer);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Kesselberg);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, KienerAlm);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, KitzHorn);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Klausen);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Klippitz);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Koelnbreinsperre);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, KreuzbergComelico);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Kreuzweg);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Kühtai);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, LacDuSaut);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, LacMoiry);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, LagoMoulin);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, LagoTeleccio);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, LaiDaNalps);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, LangtaufenerTal);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, LaPlagne);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Larche);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Lautaret);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Lavaze);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Lein);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, LesArcs);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, LesFonts);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Leutstetten);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Lienbachsattel);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Livigno);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Lombarde);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Losenpass);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Loze);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, LucknerHaus);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Ludwigshöhe);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Lue);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Luesens);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Lukmanier);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Lussari);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Lys);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Madeleine);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, MadoneFenestre);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Madonnina);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Maloja);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Manghen);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Mangrt);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Maniva);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Männlichen);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Marco);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, MariaEck);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Martelltal);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Marzio);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Maserer);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Mattmark);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Mauvoisin);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, MelchbodenZillertal);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Mendola);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Miragolo);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, MittelbergJaun);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Mollard);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, MontCenis);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Montecampione);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Montets);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Montevecchia);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Montgenevre);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Moosalp);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Mortirolo);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Moutiere);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Naret);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Narro);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Nassfeld);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Neggia);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Nespello);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Niederndorfer);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Niger);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Niklasreuth);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Nivolet);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Notschrei);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Nufenen);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Oberaarsee);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Oberalp);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Oberjoch);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Obertauern);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Ofen);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Oschenik);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Panarotta);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Panider);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Panthaleon);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Partnun);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Passaboche);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, PassoPura);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Pellegrino);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, PenserJoch);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, PetitBernard);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, PianRe);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, PierreMoelle);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Pillon);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Planches);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, PlanDuLac);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, PlateauMoliere);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Platzwiesen);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Ploecken);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Pordoi);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Pragel);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Praxmar);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Pré);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Predil);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Presolana);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Primo);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, PuyRichard);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Reiterjoch);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Reschen);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Rettenbachferner);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Riedberg);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, RiedbergZillertal);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Riedl);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, RifugioCinqueTorri);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, RifugioForni);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Rinken);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Rohrmoos);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Rolle);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Roncola);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Roselend);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Rossfeld);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Rossmettlen);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, RotesKreuz);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Safiental);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, SaintVeran);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Saisies);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Salmezza);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Samerberg);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Sampeyre);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, SanBarbara);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Sanetsch);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, SanFermo);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, SantaBarbara);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Sarenne);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Sattelegg);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Schäftlarn);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Schauinsland);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Scheidegg);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Schiestlscharte);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Schnalstal);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Schoenfeldsattel);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Seefeld);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, SeiserAlm);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Sella);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Selvino);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Sertigtal);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Sestriere);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, SignalDeLure);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Silz);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Simplon);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Soelk);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Sommo);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Sormano);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Speikkogel);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Spitzing);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Splugen);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Staller);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Stallwieshof);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Staulanza);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Stelvio);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Sudelfeld);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Sulden);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Susten);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Tannalp);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Täsch);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, TauernmoosStausee);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Tedesco);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Telegraphe);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Tende);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Thurn);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Thyon);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Tiefenbachferner);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Tignes);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Timmelsjoch);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Toerwang);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Tonale);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, TorriFraele);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Tougnete);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, TreCime);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, TreCroci);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Tremalzo);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Trivigno);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Turini);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Turrach);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Tzecore);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Ubaye);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Umbrail);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Ursprung);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, ValBavona);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Valberg);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Valbrona);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Valcava);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, ValleeClaree);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Valles);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Valmara);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, ValMare);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, ValMuggio);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Valparola);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, ValSavarenche);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, ValThorens);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Valvarrone);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Vars);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, VenterTal);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Ventoux);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Vezzena);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Villach);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Vivione);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Vrsic);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Walleralm);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Weinebene);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Weissenbachsattel);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, WidiwanderEck);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Wolfgang);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Xomo);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Xon);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Zambla);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Zeno);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Zermatt);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Zevrail);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Zillergrund);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Zoncolan);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Zovo);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Zumis);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////        
         //table data
@@ -5584,7 +2848,7 @@
                 var layerCheckboxes = document.querySelectorAll('.leaflet-control-layers-selector');
                 var k = 0;
                 var layerArray = [];
-                for(k=3;k<=8;k++){
+                for(k=0;k<=1;k++){
                     if (layerCheckboxes[k].checked){
                         layerCheckboxes[k].click();
                         layerArray[k] = true;
@@ -5597,7 +2861,7 @@
                         map.removeLayer(layer);
                     }
                 });
-                for(k=3;k<=8;k++){
+                for(k=0;k<=1;k++){
                     if (layerArray[k]){
                         layerCheckboxes[k].click();
                     }
@@ -5605,47 +2869,20 @@
             }
         }
 
-        // Filter Variables
+        // Filter
         var MarkersSelected = false;
-        var ItalySelected = false;
-        var FranceSelected = false;
-        var SuisseSelected = false;
-        var AustriaSelected = false;
-        var GermanySelected = false;
-        var SloveniaSelected = false;
+        var TracksSelected = false;
         var text;
         var markersCheckbox;
-        var italyCheckbox;
-        var suisseCheckbox;
-        var franceCheckbox;
-        var austriaCheckbox;
-        var germanyCheckbox;
-        var sloveniaCheckbox;
+        var tracksCheckbox;
         var geoIDArray = [];
         var markerIDArray = [];
         var allArray = [];
-        var italyArray = [];
-        var franceArray = [];
-        var suisseArray = [];
-        var austriaArray = [];
-        var germanyArray = [];
-        var sloveniaArray = [];
+        var tracksArray = [];
         var iddArray = [];
-        
-        var italy1 = L.layerGroup([]);
-        var france1 = L.layerGroup([]);
-        var suisse1 = L.layerGroup([]);
-        var austria1 = L.layerGroup([]);
-        var germany1 = L.layerGroup([]);
-        var slovenia1 = L.layerGroup([]);
 
         var all= L.layerGroup([]);;
-        var italy = L.layerGroup([]);
-        var france = L.layerGroup([]);
-        var suisse = L.layerGroup([]);
-        var austria = L.layerGroup([]);
-        var germany = L.layerGroup([]);
-        var slovenia = L.layerGroup([]);
+        var tracks = L.layerGroup([]);
 
         var baseMaps = {
             "Standard": osm,
@@ -5654,12 +2891,7 @@
         };
         var overlayMaps1= {
             "All": all,
-            "Italy": italy,
-            "Suisse": suisse,
-            "France": france,
-            "Austria": austria,
-            "Germany": germany,
-            "Slovenia": slovenia
+            "Tracks": tracks
         };
         var layerControl = L.control.layers(baseMaps, overlayMaps1,{position: 'topright'}).addTo(map);
 
@@ -5689,12 +2921,7 @@
         // Function to filter GeoJSON objects based on selected categories
         function filterGeoJSONObjects() {
             allArray = [];
-            italyArray = [];
-            franceArray = [];
-            suisseArray = [];
-            austriaArray = [];
-            germanyArray = [];
-            sloveniaArray = [];
+            tracksArray = [];
             markerIDArray = [];
             geoIDArray = [];
 
@@ -5710,21 +2937,11 @@
                 }
             }
 
-            var markerClick = MarkersSelected;
-            var italyClick = ItalySelected;
-            var franceClick = FranceSelected;
-            var suisseClick = SuisseSelected;
-            var austriaClick = AustriaSelected;
-            var germanyClick = GermanySelected;
-            var sloveniaClick = SloveniaSelected;
+            var markersClick = MarkersSelected;
+            var tracksClick = TracksSelected;
 
             if (MarkersSelected){ markersCheckbox.click()};
-            if (ItalySelected){ italyCheckbox.click()};
-            if (FranceSelected){ franceCheckbox.click()};
-            if (SuisseSelected){ suisseCheckbox.click()};
-            if (AustriaSelected){ austriaCheckbox.click()};
-            if (GermanySelected){ germanyCheckbox.click()};
-            if (SloveniaSelected){ sloveniaCheckbox.click()};
+            if (TracksSelected){ tracksCheckbox.click()};
 
             marks.push(marker);
             marks.forEach(function (layer) {
@@ -5734,8 +2951,17 @@
                     const category = featureLayer.feature.properties.category;
                     const height = featureLayer.feature.properties.height;
                     const idd = featureLayer.feature.properties.idd;
-                    if((((category === 'Pass' && FilterArray[0]) || (category === 'Climb' && FilterArray[1]) || (category == 'Sackgasse' && FilterArray[2])) || (!FilterArray[0] && !FilterArray[1] && !FilterArray[2])) && height >= FilterArray[3] && height <= FilterArray[4]){
-                        markerIDArray[idd] = idd;
+                    const layerDone = localStorage.getItem(`TickedCheckboxState${idd}`);
+                    if((((category === 'Pass' && FilterArray[0]) || (category === 'Climb' && FilterArray[1]) || (category == 'Sackgasse' && FilterArray[2])) || (!FilterArray[0] && !FilterArray[1] && !FilterArray[2])) && height >= FilterArray[3] && height <= FilterArray[4] && (((country === 'IT' && FilterArray[11]) || (country === 'FR' && FilterArray[12]) || (country == 'CH' && FilterArray[13]) || (country == 'AT' && FilterArray[14]) || (country == 'DE' && FilterArray[15]) || (country == 'SLO' && FilterArray[16])) || (!FilterArray[11] && !FilterArray[12] && !FilterArray[13] && !FilterArray[14] && !FilterArray[15] && !FilterArray[16]))){
+                        if(!slider1){
+                            markerIDArray[idd] = idd;
+                        } else {
+                            if((layerDone && JSON.parse(layerDone))) {
+                                markerIDArray[idd] = idd;
+                            } else {
+                                markerIDArray[idd] = null;
+                            }
+                        }
                     }
                 }); 
             });
@@ -5749,8 +2975,17 @@
                     const elevation = featureLayer.feature.properties.elevation;
                     const slope = (elevation/(length*1000))*100;
                     const idd = featureLayer.feature.properties.idd;
-                    if((((category === 'Pass' && FilterArray[0]) || (category === 'Climb' && FilterArray[1]) || (category == 'Sackgasse' && FilterArray[2])) || (!FilterArray[0] && !FilterArray[1] && !FilterArray[2])) && length >= FilterArray[7] && length <= FilterArray[8] && elevation >= FilterArray[5] && elevation <= FilterArray[6] && slope >= FilterArray[9] && slope <= FilterArray[10]){
-                        geoIDArray[idd] = idd;
+                    const layerDone = localStorage.getItem(`TickedCheckboxState${idd}`);
+                    if((((category === 'Pass' && FilterArray[0]) || (category === 'Climb' && FilterArray[1]) || (category == 'Sackgasse' && FilterArray[2])) || (!FilterArray[0] && !FilterArray[1] && !FilterArray[2])) && length >= FilterArray[7] && length <= FilterArray[8] && elevation >= FilterArray[5] && elevation <= FilterArray[6] && slope >= FilterArray[9] && slope <= FilterArray[10] && (((country === 'IT' && FilterArray[11]) || (country === 'FR' && FilterArray[12]) || (country == 'CH' && FilterArray[13]) || (country == 'AT' && FilterArray[14]) || (country == 'DE' && FilterArray[15]) || (country == 'SLO' && FilterArray[16])) || (!FilterArray[11] && !FilterArray[12] && !FilterArray[13] && !FilterArray[14] && !FilterArray[15] && !FilterArray[16]))){
+                        if(!slider1){
+                            geoIDArray[idd] = idd;
+                        } else {
+                            if((layerDone && JSON.parse(layerDone))) {
+                                geoIDArray[idd] = idd;
+                            } else {
+                                geoIDArray[idd] = null;
+                            }
+                        }
                     }
                 });
             });
@@ -5767,23 +3002,8 @@
                 features.forEach(function (featureLayer) {
                     const country = featureLayer.feature.properties.country;
                     const idd = featureLayer.feature.properties.idd;
-                    if (iddArray[idd] == idd && country === 'IT'){
-                        italyArray.push(featureLayer);
-                    }
-                    else if (iddArray[idd] == idd && country === 'FR'){
-                        franceArray.push(featureLayer);
-                    }
-                    else if (iddArray[idd] == idd && country === 'CH'){
-                        suisseArray.push(featureLayer);
-                    }
-                    else if (iddArray[idd] == idd && country === 'AT'){
-                        austriaArray.push(featureLayer);
-                    }
-                    else if (iddArray[idd] == idd && country === 'DE'){
-                        germanyArray.push(featureLayer);
-                    }
-                    else if (iddArray[idd] == idd && country === 'SLO'){
-                        sloveniaArray.push(featureLayer);
+                    if (iddArray[idd] == idd){
+                        allArray.push(featureLayer);
                     }
                 }); 
             });
@@ -5793,76 +3013,27 @@
                 features.forEach(function (featureLayer) {
                     const country = featureLayer.feature.properties.country;
                     const idd = featureLayer.feature.properties.idd;
-                    if (iddArray[idd] == idd && country === 'IT'){
-                        italyArray.push(featureLayer);
-                    }
-                    else if (iddArray[idd] == idd && country === 'FR'){
-                        franceArray.push(featureLayer);
-                    }
-                    else if (iddArray[idd] == idd && country === 'CH'){
-                        suisseArray.push(featureLayer);
-                    }
-                    else if (iddArray[idd] == idd && country === 'AT'){
-                        austriaArray.push(featureLayer);
-                    }
-                    else if (iddArray[idd] == idd && country === 'DE'){
-                        germanyArray.push(featureLayer);
-                    }
-                    else if (iddArray[idd] == idd && country === 'SLO'){
-                        sloveniaArray.push(featureLayer);
+                    if (iddArray[idd] == idd){
+                        tracksArray.push(featureLayer);
                     }
                 });
             });
 
-            layerControl.removeLayer(italy1);
-            layerControl.removeLayer(france1);
-            layerControl.removeLayer(suisse1);
-            layerControl.removeLayer(austria1);
-            layerControl.removeLayer(germany1);
-            layerControl.removeLayer(slovenia1);
-
             layerControl.removeLayer(all);
-            layerControl.removeLayer(italy);
-            layerControl.removeLayer(suisse);
-            layerControl.removeLayer(france);
-            layerControl.removeLayer(austria);
-            layerControl.removeLayer(germany);
-            layerControl.removeLayer(slovenia);
+            layerControl.removeLayer(tracks);
 
-            italy1 = L.layerGroup(italyArray);
-            france1 = L.layerGroup(franceArray);
-            suisse1 = L.layerGroup(suisseArray);
-            austria1 = L.layerGroup(austriaArray);
-            germany1 = L.layerGroup(germanyArray);
-            slovenia1 = L.layerGroup(sloveniaArray);
-
-            all = L.layerGroup([italy1, france1, suisse1, austria1, germany1, slovenia1]);
-            italy = L.layerGroup(italyArray);
-            france = L.layerGroup(franceArray);
-            suisse = L.layerGroup(suisseArray);
-            austria = L.layerGroup(austriaArray);
-            germany = L.layerGroup(germanyArray);
-            slovenia = L.layerGroup(sloveniaArray);
+            all = L.layerGroup(allArray);
+            tracks = L.layerGroup(tracksArray);
             
             layerControl.addOverlay(all, "All");
-            layerControl.addOverlay(italy, "Italy");
-            layerControl.addOverlay(suisse, "Suisse");
-            layerControl.addOverlay(france, "France");
-            layerControl.addOverlay(austria, "Austria");
-            layerControl.addOverlay(germany, "Germany");
-            layerControl.addOverlay(slovenia, "Slovenia");
+            layerControl.addOverlay(tracks, "Tracks");
 
             labels = 0;
             labels = layerControl.getContainer().querySelectorAll('label');
             clickevents();
 
-            if (markerClick){ markersCheckbox.click()};
-            if (italyClick){ italyCheckbox.click()};
-            if (franceClick){ franceCheckbox.click()};
-            if (suisseClick){ suisseCheckbox.click()};
-            if (austriaClick){ austriaCheckbox.click()};
-            if (germanyClick){ germanyCheckbox.click()};
-            if (sloveniaClick){ sloveniaCheckbox.click()};
+            if (markersClick){ markersCheckbox.click()};
+            if (tracksClick){ tracksCheckbox.click()};
             
             for (var i=0;i<=tableLength-1;i++){
                 if(tableArray[i]){
@@ -5884,111 +3055,69 @@
                     if (markersCheckbox) {
                         markersCheckbox.addEventListener('click', function (e) {
                             MarkersSelected = e.target.checked;
-                            if (MarkersSelected){
-                                if (ItalySelected){
-                                    italyCheckbox.click();
+                            if (!MarkersSelected){
+                                for(var i = 0; i <= numberOfElements; i++){
+                                    markerStates[i] = false;
+                                    markerStatesArray[i] = false;
+                                    if(geoJSONArray[i]){
+                                        var category = geoJSONArray[i].getLayers().length > 0 ? geoJSONArray[i].getLayers()[0].feature.properties.category : null;
+                                        switch (category) {
+                                            case 'Pass':
+                                                geoJSONArray[i].setStyle({ color: 'rgb(30,144,255)', weight: '1' }); break;
+                                            case 'Climb':
+                                                geoJSONArray[i].setStyle({ color: 'rgb(255,215,0)', weight: '1' }); break;
+                                            case 'Sackgasse':
+                                                geoJSONArray[i].setStyle({ color: 'rgb(255,99,71)', weight: '1' }); break;
+                                            default:
+                                                geoJSONArray[i].setStyle({ color: 'rgb(255,255,255,0)', weight: '1' }); break;
+                                        }
+                                        map.removeLayer(geoJSONArray[i]);
+                                    }
                                 }
-                                if (FranceSelected){
-                                    franceCheckbox.click();
-                                }
-                                if (SuisseSelected){
-                                    suisseCheckbox.click();
-                                }
-                                if (AustriaSelected){
-                                    austriaCheckbox.click();
-                                }
-                                if (GermanySelected){
-                                    germanyCheckbox.click();
-                                }
-                                if (SloveniaSelected){
-                                    sloveniaCheckbox.click();
-                                }
-                                markersCheckbox.click();
-                                markersCheckbox.click();
-                            }
-                        });
-                    }
-                } else if (text === 'Italy') {
-                    italyCheckbox = label.querySelector('input[type="checkbox"]');
-                    if (italyCheckbox) {
-                        italyCheckbox.addEventListener('click', function (e) {
-                            ItalySelected = e.target.checked;
-                            if (ItalySelected){
-                                if (MarkersSelected){
-                                    markersCheckbox.click();
-                                    italyCheckbox.click();
-                                    italyCheckbox.click();
+                                if (TracksSelected){
+                                    tracksCheckbox.click();  
                                 }
                             }
                         });
                     }
-                } else if (text === 'France') {
-                    franceCheckbox = label.querySelector('input[type="checkbox"]');
-                    if (franceCheckbox) {
-                        franceCheckbox.addEventListener('click', function (e) {
-                            FranceSelected = e.target.checked; 
-                            if (FranceSelected){
-                                if (MarkersSelected){
-                                    markersCheckbox.click();
-                                    franceCheckbox.click();
-                                    franceCheckbox.click();
+                } else if (text === 'Tracks') {
+                    tracksCheckbox = label.querySelector('input[type="checkbox"]');
+                    if (tracksCheckbox) {
+                        tracksCheckbox.addEventListener('click', function (e) {
+                            TracksSelected = e.target.checked;
+                            if (TracksSelected){
+                                if (!MarkersSelected){
+                                    markersCheckbox.click(); 
+                                } else {
+                                    tracksCheckbox.click();
+                                    tracksCheckbox.click();
+                                    for(var i = 0; i <= numberOfElements; i++){
+                                        markerStates[i] = false;
+                                        markerStatesArray[i] = false;
+                                    }
                                 }
-                            }
-                        });
-                    }
-                } else if (text === 'Suisse') {
-                    suisseCheckbox = label.querySelector('input[type="checkbox"]');
-                    if (suisseCheckbox) {
-                        suisseCheckbox.addEventListener('click', function (e) {
-                            SuisseSelected = e.target.checked;
-                            if (SuisseSelected){
+                            } else {
                                 if (MarkersSelected){
-                                    markersCheckbox.click();
-                                    suisseCheckbox.click();
-                                    suisseCheckbox.click();
+                                    for(var i = 0; i <= numberOfElements; i++){
+                                        markerStates[i] = false;
+                                        markerStatesArray[i] = false;
+                                        if(geoJSONArray[i]){
+                                            var category = geoJSONArray[i].getLayers().length > 0 ? geoJSONArray[i].getLayers()[0].feature.properties.category : null;
+                                            switch (category) {
+                                                case 'Pass':
+                                                    geoJSONArray[i].setStyle({ color: 'rgb(30,144,255)', weight: '1' }); break;
+                                                case 'Climb':
+                                                    geoJSONArray[i].setStyle({ color: 'rgb(255,215,0)', weight: '1' }); break;
+                                                case 'Sackgasse':
+                                                    geoJSONArray[i].setStyle({ color: 'rgb(255,99,71)', weight: '1' }); break;
+                                                default:
+                                                    geoJSONArray[i].setStyle({ color: 'rgb(255,255,255,0)', weight: '1' }); break;
+                                            }
+                                            map.removeLayer(geoJSONArray[i]);
+                                        }
+                                    }  
                                 }
-                            }
-                        });
-                    }
-                } else if (text === 'Austria') {
-                    austriaCheckbox = label.querySelector('input[type="checkbox"]');
-                    if (austriaCheckbox) {
-                        austriaCheckbox.addEventListener('click', function (e) {
-                            AustriaSelected = e.target.checked;
-                            if (AustriaSelected){
-                                if (MarkersSelected){
-                                    markersCheckbox.click();
-                                    austriaCheckbox.click();
-                                    austriaCheckbox.click();
-                                }
-                            }
-                        });
-                    }
-                } else if (text === 'Germany') {
-                    germanyCheckbox = label.querySelector('input[type="checkbox"]');
-                    if (germanyCheckbox) {
-                        germanyCheckbox.addEventListener('click', function (e) {
-                            GermanySelected = e.target.checked;
-                            if (GermanySelected){
-                                if (MarkersSelected){
-                                    markersCheckbox.click();
-                                    germanyCheckbox.click();
-                                    germanyCheckbox.click();
-                                }
-                            }
-                        });
-                    }
-                } else if (text === 'Slovenia') {
-                    sloveniaCheckbox = label.querySelector('input[type="checkbox"]');
-                    if (sloveniaCheckbox) {
-                        sloveniaCheckbox.addEventListener('click', function (e) {
-                            SloveniaSelected = e.target.checked;
-                            if (SloveniaSelected){
-                                if (MarkersSelected){
-                                    markersCheckbox.click();
-                                    sloveniaCheckbox.click();
-                                    sloveniaCheckbox.click();
-                                }
+                                
                             }
                         });
                     }

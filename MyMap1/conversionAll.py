@@ -99,15 +99,7 @@ def write_leaflet_code_to_file(geojson_data, output_directory):
     modified_geojson_str = f"var {XX} = {geojson_str}"
     geojson_data = modified_geojson_str
     # Create the Leaflet JavaScript code string
-    leaflet_code = f"""
-var g{XX} = L.geoJSON({XX}, {{
-    style: TrackStyle,
-    onEachFeature: onEachFeature
-}});
-var id{XX} = {XX}.features[0].properties.idd;
-geoJSONArray[id{XX}] = g{XX};
-geoJSONs.push(g{XX});
-"""
+    leaflet_code = f"""addGeoJSONTrack(map, geoJSONs, geoJSONArray, {XX});\n"""
     # Write the code to a text file
     output_file_path = os.path.join(output_directory, f"{XX}.js")
     with open(output_file_path, 'w') as output_file:
