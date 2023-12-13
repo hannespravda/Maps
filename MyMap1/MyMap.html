@@ -572,10 +572,45 @@
             max-width: 1200px;
             color: rgb(126, 121, 121);
             text-align: center;
-          }
-          .textbox-link {
-            color: lightblue;
-          }
+        }
+        .textbox-link {
+        color: lightblue;
+        }
+
+        .range-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            margin-left: 10px; /* Remove default margin */
+            width: 95px; /* Set the desired width */
+            height: 5px; /* Set the desired height */
+            background-color: #ccc; /* Set your desired color here */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 14px; /* Set the desired height of the thumb */
+            width: 14px; /* Set the desired width of the thumb */
+            background-color: lightblue; /* Set the color of the thumb */
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .slider-value1 {
+            width: 40px; /* Set the desired width for the value display */
+            text-align: center; /* Center the text within the value display */
+            margin-left: 1px;
+            color: rgb(126, 121, 121);
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        .slider-value2 {
+            width: 40px; /* Set the desired width for the value display */
+            text-align: center; /* Center the text within the value display */
+            margin-left: 1px;
+            color: rgb(126, 121, 121);
+            font-family: Helvetica, Arial, sans-serif;
+        }
     </style>
     <!--------------------- add geoJSON files renamed to .js files here -------------------------------------->
     <!-------------------------------------------------------------------------------------------------------->
@@ -981,6 +1016,7 @@
     <script src="Tracks/Riedl.js"></script>
     <script src="Tracks/Eibsee.js"></script>
     <script src="Tracks/Kesselberg.js"></script>
+    <script src="Tracks/Matajur.js"></script>
     <!-------------------------------------------------------------------------------------------------------->
     <!-------------------------------------------------------------------------------------------------------->
 </head>
@@ -1031,6 +1067,13 @@
             <input type="number" id="minSlope" step="10" class="min-slope filter-input" placeholder="min %">
             <input type="number" id="maxSlope" step="10" class="max-slope filter-input" placeholder="max %">
         </div>
+        <hr class="separator-line">
+        <div class="filter-row">
+            <label class="radius-slider1">Nearby:</label>
+            <input type="range" id="rangeSlider1" min="0" max="200" value = "0" class="range-slider">
+            <div class="slider-value1">&#8212</div>
+        </div>
+        <hr class="separator-line">
         <div class="filter-row">
             <div class="container">
                 <label class="switch" for="switchslider1">
@@ -1130,6 +1173,13 @@
             <input type="number" id="minSlope2" step="10" class="min-slope2 filter2-input" placeholder="min %">
             <input type="number" id="maxSlope2" step="10" class="max-slope2 filter2-input" placeholder="max %">
         </div>
+        <hr class="separator-line2">
+        <div class="filter2-row">
+            <label class="radius-slider2">Nearby:</label>
+            <input type="range" id="rangeSlider2" min="0" max="200" value = "0" class="range-slider">
+            <div class="slider-value2">&#8212</div>
+        </div>
+        <hr class="separator-line2">
         <div class="filter2-row">
             <button id="resetFilter2">Reset</button>
             <button id="applyFilter2">Apply</button>
@@ -1148,6 +1198,44 @@
         L.control.zoom({
             position: 'bottomright'
         }).addTo(map);
+
+        //counter
+        function countHttpOccurrences(passi) {
+            const passiString = JSON.stringify(passi);
+            const httpOccurrences = (passiString.match(/http/g) || []).length;
+            return httpOccurrences;
+        }
+        const numberOfHttpOccurrences = countHttpOccurrences(passi)-1;
+
+        //scale
+        L.control.scale({
+            metric: true,
+            imperial: false,
+            maxwidth: 100,
+            position: 'bottomleft'
+        }).addTo(map);
+
+        //location
+        var lat = 45.484741239199046;
+        var lng = 9.221152379797923;
+        var locateControl = L.control.locate().addTo(map);
+        map.on('locationfound', function (e) {
+            var latlng = e.latlng;
+            lat = latlng.lat;
+            lng = latlng.lng;
+        });
+
+        //map at start
+        var osm = L.tileLayer('https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=5oOhPnaZPwb4EiDFpWyW', {
+            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> | <a> '+ numberOfHttpOccurrences +' climbs inluded </a>'
+        }).addTo(map);
+        //add other maps
+        var satellite = L.tileLayer('https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key=5oOhPnaZPwb4EiDFpWyW', {
+            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> | <a> '+ numberOfHttpOccurrences +' climbs inluded </a>'
+        });
+        var topo = L.tileLayer('https://api.maptiler.com/maps/topo-v2/{z}/{x}/{y}.png?key=5oOhPnaZPwb4EiDFpWyW', {
+            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> | <a> '+ numberOfHttpOccurrences +' climbs inluded </a>'
+        });
 
         //elevation profile
         var elevation_options = {
@@ -1554,6 +1642,20 @@
         var buttonDE = false;
         var buttonSLO = false;
 
+        var range2 = 0;
+        var rangeSlider2 = document.getElementById('rangeSlider2');
+        var sliderValue2 = document.querySelector('.slider-value2');
+        rangeSlider2.addEventListener('input', function () {
+            if (this.value < 1){
+                sliderValue2.textContent = "—";
+                range2 = 0;
+            } else {
+                sliderValue2.textContent = this.value + " km";
+                //locateControl.start();
+                range2 = this.value;
+            }
+        });
+
         var ITbutton = document.getElementById("ITbutton").addEventListener("click", function(){;
             if(buttonIT){
                 buttonIT = false;
@@ -1713,6 +1815,9 @@
             FilterArray2[14] = false;
             FilterArray2[15] = false;
             FilterArray2[16] = false;
+            rangeSlider2.value = 0;
+            range2 = 0;
+            sliderValue2.textContent = "—";
             filter2.style.display = "none";
             document.getElementById("sort-options").value = "empty";
             clearSearch();
@@ -1727,7 +1832,6 @@
         };
         resetFilterButton2.click();
 //////////////////////////////////////////////////////////////////////////////////////////////////
-
         //Filter1
         var slider1 = false;
         var filterToggle = document.getElementById("filter-toggle");
@@ -1738,6 +1842,21 @@
         switchSlider1.addEventListener("change", function() {
             slider1 = switchSlider1.checked;
         });
+
+        var range = 0;
+        var rangeSlider = document.getElementById('rangeSlider1');
+        var sliderValue = document.querySelector('.slider-value1');
+        rangeSlider.addEventListener('input', function () {
+            if (this.value < 1){
+                sliderValue.textContent = "—";
+                range = 0;
+            } else {
+                sliderValue.textContent = this.value + " km";
+                //locateControl.start();
+                range = this.value;
+            }
+        });
+
         var applyFilter = false;
         var FilterArray = [];
         var buttonIT1 = false;
@@ -1908,6 +2027,9 @@
             if(switchSlider1.checked){
                 switchSlider1.click();
             }
+            rangeSlider.value = 0;
+            range = 0;
+            sliderValue.textContent = "—";
             filter.style.display = "none";
         });
 
@@ -1920,36 +2042,7 @@
         });
         resetFilterButton.click();
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-        //counter
-        function countHttpOccurrences(passi) {
-            const passiString = JSON.stringify(passi);
-            const httpOccurrences = (passiString.match(/http/g) || []).length;
-            return httpOccurrences;
-        }
-        const numberOfHttpOccurrences = countHttpOccurrences(passi)-1;
-
-        //scale
-        L.control.scale({
-            metric: true,
-            imperial: false,
-            maxwidth: 100,
-            position: 'bottomleft'
-        }).addTo(map);
-
-        //location
-        L.control.locate().addTo(map);
-
-        //map at start
-        var osm = L.tileLayer('https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=5oOhPnaZPwb4EiDFpWyW', {
-            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> | <a> '+ numberOfHttpOccurrences +' climbs inluded </a>'
-        }).addTo(map);
-        //add other maps
-        var satellite = L.tileLayer('https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key=5oOhPnaZPwb4EiDFpWyW', {
-            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> | <a> '+ numberOfHttpOccurrences +' climbs inluded </a>'
-        });
-        var topo = L.tileLayer('https://api.maptiler.com/maps/topo-v2/{z}/{x}/{y}.png?key=5oOhPnaZPwb4EiDFpWyW', {
-            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> | <a> '+ numberOfHttpOccurrences +' climbs inluded </a>'
-        });
+        
 
         //variables
         const numberOfElements = passi.features[passi.features.length - 1].properties.idd;
@@ -2690,6 +2783,7 @@
         addGeoJSONTrack(map, geoJSONs, geoJSONArray, Zoncolan);
         addGeoJSONTrack(map, geoJSONs, geoJSONArray, Zovo);
         addGeoJSONTrack(map, geoJSONs, geoJSONArray, Zumis);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Matajur);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////        
         //table data
@@ -2706,6 +2800,7 @@
         var temp = [];
         var numberOfFeatures = 0;
         var j = 0;
+        var insideRange2 = 0;
 
         function fillTable() {
             const tableCheckboxes = document.querySelectorAll('.checkbox99');
@@ -2757,10 +2852,15 @@
                     const country = featureLayer.feature.properties.country;
                     const category= featureLayer.feature.properties.category;
                     const idd = featureLayer.feature.properties.idd;
+                    const coordinates = featureLayer.feature.geometry.coordinates;
+
                     var link = featureLayer.feature.properties.link;
                     var length = lengthArray[idd];
                     var elevation = elevationArray[idd];
                     var slope = slopeArray[idd];
+                    const latitude = coordinates[1];
+                    const longitude = coordinates[0];
+                    insideRange2 = isInsideCircle(lat, lng, latitude, longitude, range2);
 
                     var layerOK = false;
                     var tracksOK = false;
@@ -2768,7 +2868,7 @@
 
                     const layerDone = localStorage.getItem(`TickedCheckboxState${idd}`);
 
-                    if((((category === 'Pass' && FilterArray2[0]) || (category === 'Climb' && FilterArray2[1]) || (category == 'Sackgasse' && FilterArray2[2])) || (!FilterArray2[0] && !FilterArray2[1] && !FilterArray2[2])) && height >= FilterArray2[3] && height <= FilterArray2[4] && (((country === 'IT' && FilterArray2[11]) || (country === 'FR' && FilterArray2[12]) || (country == 'CH' && FilterArray2[13]) || (country == 'AT' && FilterArray2[14]) || (country == 'DE' && FilterArray2[15]) || (country == 'SLO' && FilterArray2[16])) || (!FilterArray2[11] && !FilterArray2[12] && !FilterArray2[13] && !FilterArray2[14] && !FilterArray2[15] && !FilterArray2[16]))){
+                    if((((category === 'Pass' && FilterArray2[0]) || (category === 'Climb' && FilterArray2[1]) || (category == 'Sackgasse' && FilterArray2[2])) || (!FilterArray2[0] && !FilterArray2[1] && !FilterArray2[2])) && height >= FilterArray2[3] && height <= FilterArray2[4] && (((country === 'IT' && FilterArray2[11]) || (country === 'FR' && FilterArray2[12]) || (country == 'CH' && FilterArray2[13]) || (country == 'AT' && FilterArray2[14]) || (country == 'DE' && FilterArray2[15]) || (country == 'SLO' && FilterArray2[16])) || (!FilterArray2[11] && !FilterArray2[12] && !FilterArray2[13] && !FilterArray2[14] && !FilterArray2[15] && !FilterArray2[16])) && insideRange2 >= 0){
                         if(!slider){
                             layerOK = true;
                         } else {
@@ -2869,6 +2969,35 @@
             }
         }
 
+        function isInsideCircle(locationLat, locationLng, targetLat, targetLng, radius) {
+            // Haversine formula to calculate distance between two points on a sphere
+            function haversine(lat1, lon1, lat2, lon2) {
+                const R = 6371; // Radius of Earth in kilometers
+                const dLat = toRadians(lat2 - lat1);
+                const dLon = toRadians(lon2 - lon1);
+                const a =
+                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                    Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
+                    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                const distance = R * c; // Distance in kilometers
+                return distance;
+            }
+            function toRadians(degrees) {
+                return degrees * (Math.PI / 180);
+            }
+            const distance = haversine(locationLat, locationLng, targetLat, targetLng);
+            if (radius <= 0.1) {
+                return 0;
+            } else {
+                if (distance <= radius) {
+                    return 1; // Point is inside circle
+                } else {
+                    return -1; // Point is outside circle
+                }
+            }
+        }
+
         // Filter
         var MarkersSelected = false;
         var TracksSelected = false;
@@ -2880,6 +3009,7 @@
         var allArray = [];
         var tracksArray = [];
         var iddArray = [];
+        var insideRange = 0;
 
         var all= L.layerGroup([]);;
         var tracks = L.layerGroup([]);
@@ -2952,7 +3082,11 @@
                     const height = featureLayer.feature.properties.height;
                     const idd = featureLayer.feature.properties.idd;
                     const layerDone = localStorage.getItem(`TickedCheckboxState${idd}`);
-                    if((((category === 'Pass' && FilterArray[0]) || (category === 'Climb' && FilterArray[1]) || (category == 'Sackgasse' && FilterArray[2])) || (!FilterArray[0] && !FilterArray[1] && !FilterArray[2])) && height >= FilterArray[3] && height <= FilterArray[4] && (((country === 'IT' && FilterArray[11]) || (country === 'FR' && FilterArray[12]) || (country == 'CH' && FilterArray[13]) || (country == 'AT' && FilterArray[14]) || (country == 'DE' && FilterArray[15]) || (country == 'SLO' && FilterArray[16])) || (!FilterArray[11] && !FilterArray[12] && !FilterArray[13] && !FilterArray[14] && !FilterArray[15] && !FilterArray[16]))){
+                    const coordinates = featureLayer.feature.geometry.coordinates;
+                    const latitude = coordinates[1];
+                    const longitude = coordinates[0];
+                    insideRange = isInsideCircle(lat, lng, latitude, longitude, range);
+                    if((((category === 'Pass' && FilterArray[0]) || (category === 'Climb' && FilterArray[1]) || (category == 'Sackgasse' && FilterArray[2])) || (!FilterArray[0] && !FilterArray[1] && !FilterArray[2])) && height >= FilterArray[3] && height <= FilterArray[4] && (((country === 'IT' && FilterArray[11]) || (country === 'FR' && FilterArray[12]) || (country == 'CH' && FilterArray[13]) || (country == 'AT' && FilterArray[14]) || (country == 'DE' && FilterArray[15]) || (country == 'SLO' && FilterArray[16])) || (!FilterArray[11] && !FilterArray[12] && !FilterArray[13] && !FilterArray[14] && !FilterArray[15] && !FilterArray[16])) && insideRange >= 0){
                         if(!slider1){
                             markerIDArray[idd] = idd;
                         } else {
