@@ -1202,10 +1202,10 @@
         //counter
         function countHttpOccurrences(passi) {
             const passiString = JSON.stringify(passi);
-            const httpOccurrences = (passiString.match(/http/g) || []).length;
+            const httpOccurrences = (passiString.match(/"https/g) || []).length;
             return httpOccurrences;
         }
-        const numberOfHttpOccurrences = countHttpOccurrences(passi)-1;
+        const numberOfHttpOccurrences = countHttpOccurrences(passi);
 
         //scale
         L.control.scale({
@@ -3020,7 +3020,7 @@
             "Topo": topo
         };
         var overlayMaps1= {
-            "All": all,
+            "Markers": all,
             "Tracks": tracks
         };
         var layerControl = L.control.layers(baseMaps, overlayMaps1,{position: 'topright'}).addTo(map);
@@ -3159,7 +3159,7 @@
             all = L.layerGroup(allArray);
             tracks = L.layerGroup(tracksArray);
             
-            layerControl.addOverlay(all, "All");
+            layerControl.addOverlay(all, "Markers");
             layerControl.addOverlay(tracks, "Tracks");
 
             labels = 0;
@@ -3184,7 +3184,7 @@
         function clickevents(){
             labels.forEach(function (label) {
                 text = label.textContent.trim();
-                if (text === 'All') {
+                if (text === 'Markers') {
                     markersCheckbox = label.querySelector('input[type="checkbox"]');
                     if (markersCheckbox) {
                         markersCheckbox.addEventListener('click', function (e) {
