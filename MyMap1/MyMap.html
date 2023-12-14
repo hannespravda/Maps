@@ -437,6 +437,11 @@
         .min-slope2 {
             margin-left: 10px;
         }
+        #button-container3 {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2px; /* Adjust the gap according to your preference */
+        }
         .round-button {
             width: 25px; /* Set the width */
             height: 25px; /* Set the height */
@@ -451,6 +456,43 @@
             color: rgb(126, 121, 121);
             margin-right: 5px;
         }
+        #ITbutton1,
+        #FRbutton1,
+        #CHbutton1,
+        #ATbutton1 {
+            margin-right: 10px;
+        }
+        #DEbutton1,
+        #SLObutton1,
+        #ANDbutton1,
+        #ESbutton1 {
+            margin-right: 10px;
+        }
+        #ITbutton1 {
+            margin-left: 18px;
+        }
+        #DEbutton1 {
+            margin-left: 36px;
+        }
+        #ITbutton,
+        #FRbutton,
+        #CHbutton,
+        #ATbutton {
+            margin-right: 10px;
+        }
+        #DEbutton,
+        #SLObutton,
+        #ANDbutton,
+        #ESbutton {
+            margin-right: 10px;
+        }
+        #ITbutton {
+            margin-left: 28px;
+        }
+        #DEbutton {
+            margin-left: 46px;
+        }
+
         input[type=checkbox] {
             accent-color: lightblue;
         }
@@ -740,7 +782,6 @@
     <script src="Tracks/Borcola.js"></script>
     <script src="Tracks/Bordala.js"></script>
     <script src="Tracks/Brandenberg.js"></script>
-    <script src="Tracks/Coe.js"></script>
     <script src="Tracks/Aune.js"></script>
     <script src="Tracks/Duft.js"></script>
     <script src="Tracks/Fittanze.js"></script>
@@ -1017,6 +1058,32 @@
     <script src="Tracks/Eibsee.js"></script>
     <script src="Tracks/Kesselberg.js"></script>
     <script src="Tracks/Matajur.js"></script>
+    <script src="Tracks/Tourmalet.js"></script>
+    <script src="Tracks/Pailheres.js"></script>
+    <script src="Tracks/Ordino.js"></script>
+    <script src="Tracks/Soulor.js"></script>
+    <script src="Tracks/Aspin.js"></script>
+    <script src="Tracks/Aubisque.js"></script>
+    <script src="Tracks/Peyresourd.js"></script>
+    <script src="Tracks/Mente.js"></script>
+    <script src="Tracks/PortetAspet.js"></script>
+    <script src="Tracks/Agnes.js"></script>
+    <script src="Tracks/MarieBlanque.js"></script>
+    <script src="Tracks/Lers.js"></script>
+    <script src="Tracks/Envalira.js"></script>
+    <script src="Tracks/Portillon.js"></script>
+    <script src="Tracks/Jau.js"></script>
+    <script src="Tracks/Bales.js"></script>
+    <script src="Tracks/Core.js"></script>
+    <script src="Tracks/PierreMartin.js"></script>
+    <script src="Tracks/Arcalis.js"></script>
+    <script src="Tracks/Imperatore.js"></script>
+    <script src="Tracks/Blockhaus.js"></script>
+    <script src="Tracks/Lenzerheide.js"></script>
+    <script src="Tracks/Tivo.js"></script>
+    <script src="Tracks/Coe.js"></script>
+    <script src="Tracks/Valbona.js"></script>
+    <script src="Tracks/Bonaigua.js"></script>
     <!-------------------------------------------------------------------------------------------------------->
     <!-------------------------------------------------------------------------------------------------------->
 </head>
@@ -1045,6 +1112,8 @@
             <button id="ATbutton1" class="round-button">AT</button>
             <button id="DEbutton1" class="round-button">DE</button>
             <button id="SLObutton1" class="round-button">SLO</button>
+            <button id="ESbutton1" class="round-button">ES</button>
+            <button id="ANDbutton1" class="round-button">AND</button>
         </div>
         <hr class="separator-line">
         <div class="filter-row">
@@ -1151,6 +1220,8 @@
             <button id="ATbutton" class="round-button">AT</button>
             <button id="DEbutton" class="round-button">DE</button>
             <button id="SLObutton" class="round-button">SLO</button>
+            <button id="ESbutton" class="round-button">ES</button>
+            <button id="ANDbutton" class="round-button">AND</button>
         </div>
         <hr class="separator-line2">
         <div class="filter2-row">
@@ -1641,6 +1712,8 @@
         var buttonAT = false;
         var buttonDE = false;
         var buttonSLO = false;
+        var buttonAND = false;
+        var buttonES = false;
 
         var range2 = 0;
         var rangeSlider2 = document.getElementById('rangeSlider2');
@@ -1710,6 +1783,24 @@
                 this.style.backgroundColor = "lightblue";
             }
         });
+        var ANDbutton = document.getElementById("ANDbutton").addEventListener("click", function(){;
+            if(buttonAND){
+                buttonAND = false;
+                this.style.backgroundColor = "white";
+            }else {
+                buttonAND = true;
+                this.style.backgroundColor = "lightblue";
+            }
+        });
+        var ESbutton = document.getElementById("ESbutton").addEventListener("click", function(){;
+            if(buttonES){
+                buttonES = false;
+                this.style.backgroundColor = "white";
+            }else {
+                buttonES = true;
+                this.style.backgroundColor = "lightblue";
+            }
+        });
         
         applyFilterButton2.addEventListener("click", function() {
             applyFilter2 = true;
@@ -1775,6 +1866,8 @@
             FilterArray2[14] = buttonAT;
             FilterArray2[15] = buttonDE;
             FilterArray2[16] = buttonSLO;
+            FilterArray2[17] = buttonAND;
+            FilterArray2[18] = buttonES;
             filter2.style.display = "none";
         });
 
@@ -1798,6 +1891,8 @@
             if(buttonAT){document.getElementById('ATbutton').click()};
             if(buttonDE){document.getElementById('DEbutton').click()};
             if(buttonSLO){document.getElementById('SLObutton').click()};
+            if(buttonAND){document.getElementById('ANDbutton').click()};
+            if(buttonES){document.getElementById('ESbutton').click()};
             FilterArray2[0] = false;
             FilterArray2[1] = false;
             FilterArray2[2] = false;
@@ -1815,6 +1910,8 @@
             FilterArray2[14] = false;
             FilterArray2[15] = false;
             FilterArray2[16] = false;
+            FilterArray2[17] = false;
+            FilterArray2[18] = false;
             rangeSlider2.value = 0;
             range2 = 0;
             sliderValue2.textContent = "—";
@@ -1865,6 +1962,8 @@
         var buttonAT1 = false;
         var buttonDE1 = false;
         var buttonSLO1 = false;
+        var buttonAND1 = false;
+        var buttonES1 = false;
 
         var ITbutton1 = document.getElementById("ITbutton1").addEventListener("click", function(){;
             if(buttonIT1){
@@ -1917,6 +2016,24 @@
                 this.style.backgroundColor = "white";
             }else {
                 buttonSLO1= true;
+                this.style.backgroundColor = "lightblue";
+            }
+        });
+        var ANDbutton1 = document.getElementById("ANDbutton1").addEventListener("click", function(){;
+            if(buttonAND1){
+                buttonAND1 = false;
+                this.style.backgroundColor = "white";
+            }else {
+                buttonAND1= true;
+                this.style.backgroundColor = "lightblue";
+            }
+        });
+        var ESbutton1 = document.getElementById("ESbutton1").addEventListener("click", function(){;
+            if(buttonES1){
+                buttonES1 = false;
+                this.style.backgroundColor = "white";
+            }else {
+                buttonES1= true;
                 this.style.backgroundColor = "lightblue";
             }
         });
@@ -1984,6 +2101,8 @@
             FilterArray[14] = buttonAT1;
             FilterArray[15] = buttonDE1;
             FilterArray[16] = buttonSLO1;
+            FilterArray[17] = buttonAND1;
+            FilterArray[18] = buttonES1;
             filter.style.display = "none";
         });
 
@@ -2007,6 +2126,8 @@
             if(buttonAT1){document.getElementById('ATbutton1').click()};
             if(buttonDE1){document.getElementById('DEbutton1').click()};
             if(buttonSLO1){document.getElementById('SLObutton1').click()};
+            if(buttonAND1){document.getElementById('ANDbutton1').click()};
+            if(buttonES1){document.getElementById('ESbutton1').click()};
             FilterArray[0] = false;
             FilterArray[1] = false;
             FilterArray[2] = false;
@@ -2024,6 +2145,8 @@
             FilterArray[14] = false;
             FilterArray[15] = false;
             FilterArray[16] = false;
+            FilterArray[17] = false;
+            FilterArray[18] = false;
             if(switchSlider1.checked){
                 switchSlider1.click();
             }
@@ -2045,7 +2168,7 @@
         
 
         //variables
-        const numberOfElements = passi.features[passi.features.length - 1].properties.idd;
+        const highestIDD = passi.features[passi.features.length - 1].properties.idd;
         var geoJSONArray = [];
         var geoJSONs = [];
         var marks = [];
@@ -2441,7 +2564,6 @@
         addGeoJSONTrack(map, geoJSONs, geoJSONArray, Chatillon);
         addGeoJSONTrack(map, geoJSONs, geoJSONArray, Cheneil);
         addGeoJSONTrack(map, geoJSONs, geoJSONArray, Ciampigotto);
-        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Coe);
         addGeoJSONTrack(map, geoJSONs, geoJSONArray, ColDeJouxAosta);
         addGeoJSONTrack(map, geoJSONs, geoJSONArray, ColDeLaCroix);
         addGeoJSONTrack(map, geoJSONs, geoJSONArray, ColettaSalse);
@@ -2784,6 +2906,32 @@
         addGeoJSONTrack(map, geoJSONs, geoJSONArray, Zovo);
         addGeoJSONTrack(map, geoJSONs, geoJSONArray, Zumis);
         addGeoJSONTrack(map, geoJSONs, geoJSONArray, Matajur);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Tourmalet);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Pailheres);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Ordino);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Soulor);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Aspin);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Aubisque);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Peyresourd);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Mente);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, PortetAspet);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Agnes);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, MarieBlanque);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Lers);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Envalira);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Portillon);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Jau);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Bales);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Core);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, PierreMartin);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Arcalis);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Imperatore);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Blockhaus);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Lenzerheide);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Tivo);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Coe);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Valbona);
+        addGeoJSONTrack(map, geoJSONs, geoJSONArray, Bonaigua);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////        
         //table data
@@ -2820,7 +2968,7 @@
             markerTable = [];
             trackTable = [];
 
-            for (j=0; j<=numberOfElements; j++){
+            for (j=0; j<=highestIDD; j++){
                 lengthArray[j] = 0;
                 elevationArray[j] = 0;
                 slopeArray[j] = 0;
@@ -2837,9 +2985,9 @@
                     const slopeOrig = (elevation/(length*1000))*100;
                     const slope = slopeOrig.toFixed(1);
 
-                    if (length >= lengthArray[idd]){lengthArray[idd] = length};
-                    if (elevation >= elevationArray[idd]){elevationArray[idd] = elevation}; 
-                    if (slope*10 >= 10*slopeArray[idd]){slopeArray[idd] = slope};  
+                    if (length*100 >= 100*lengthArray[idd]){lengthArray[idd] = length};
+                    if (elevation*100 >= 100*elevationArray[idd]){elevationArray[idd] = elevation}; 
+                    if (slope*100 >= 100*slopeArray[idd]){slopeArray[idd] = slope};  
                 });
             });
 
@@ -2868,7 +3016,7 @@
 
                     const layerDone = localStorage.getItem(`TickedCheckboxState${idd}`);
 
-                    if((((category === 'Pass' && FilterArray2[0]) || (category === 'Climb' && FilterArray2[1]) || (category == 'Sackgasse' && FilterArray2[2])) || (!FilterArray2[0] && !FilterArray2[1] && !FilterArray2[2])) && height >= FilterArray2[3] && height <= FilterArray2[4] && (((country === 'IT' && FilterArray2[11]) || (country === 'FR' && FilterArray2[12]) || (country == 'CH' && FilterArray2[13]) || (country == 'AT' && FilterArray2[14]) || (country == 'DE' && FilterArray2[15]) || (country == 'SLO' && FilterArray2[16])) || (!FilterArray2[11] && !FilterArray2[12] && !FilterArray2[13] && !FilterArray2[14] && !FilterArray2[15] && !FilterArray2[16])) && insideRange2 >= 0){
+                    if((((category === 'Pass' && FilterArray2[0]) || (category === 'Climb' && FilterArray2[1]) || (category == 'Sackgasse' && FilterArray2[2])) || (!FilterArray2[0] && !FilterArray2[1] && !FilterArray2[2])) && height >= FilterArray2[3] && height <= FilterArray2[4] && (((country === 'IT' && FilterArray2[11]) || (country === 'FR' && FilterArray2[12]) || (country == 'CH' && FilterArray2[13]) || (country == 'AT' && FilterArray2[14]) || (country == 'DE' && FilterArray2[15]) || (country == 'SLO' && FilterArray2[16]) || (country == 'AND' && FilterArray2[17]) || (country == 'ES' && FilterArray2[18])) || (!FilterArray2[11] && !FilterArray2[12] && !FilterArray2[13] && !FilterArray2[14] && !FilterArray2[15] && !FilterArray2[16] && !FilterArray2[17] && !FilterArray2[18])) && insideRange2 >= 0){
                         if(!slider){
                             layerOK = true;
                         } else {
@@ -3086,7 +3234,7 @@
                     const latitude = coordinates[1];
                     const longitude = coordinates[0];
                     insideRange = isInsideCircle(lat, lng, latitude, longitude, range);
-                    if((((category === 'Pass' && FilterArray[0]) || (category === 'Climb' && FilterArray[1]) || (category == 'Sackgasse' && FilterArray[2])) || (!FilterArray[0] && !FilterArray[1] && !FilterArray[2])) && height >= FilterArray[3] && height <= FilterArray[4] && (((country === 'IT' && FilterArray[11]) || (country === 'FR' && FilterArray[12]) || (country == 'CH' && FilterArray[13]) || (country == 'AT' && FilterArray[14]) || (country == 'DE' && FilterArray[15]) || (country == 'SLO' && FilterArray[16])) || (!FilterArray[11] && !FilterArray[12] && !FilterArray[13] && !FilterArray[14] && !FilterArray[15] && !FilterArray[16])) && insideRange >= 0){
+                    if((((category === 'Pass' && FilterArray[0]) || (category === 'Climb' && FilterArray[1]) || (category == 'Sackgasse' && FilterArray[2])) || (!FilterArray[0] && !FilterArray[1] && !FilterArray[2])) && height >= FilterArray[3] && height <= FilterArray[4] && (((country === 'IT' && FilterArray[11]) || (country === 'FR' && FilterArray[12]) || (country == 'CH' && FilterArray[13]) || (country == 'AT' && FilterArray[14]) || (country == 'DE' && FilterArray[15]) || (country == 'SLO' && FilterArray[16]) || (country == 'AND' && FilterArray[17]) || (country == 'ES' && FilterArray[18])) || (!FilterArray[11] && !FilterArray[12] && !FilterArray[13] && !FilterArray[14] && !FilterArray[15] && !FilterArray[16] && !FilterArray[17] && !FilterArray[18])) && insideRange >= 0){
                         if(!slider1){
                             markerIDArray[idd] = idd;
                         } else {
@@ -3110,7 +3258,7 @@
                     const slope = (elevation/(length*1000))*100;
                     const idd = featureLayer.feature.properties.idd;
                     const layerDone = localStorage.getItem(`TickedCheckboxState${idd}`);
-                    if((((category === 'Pass' && FilterArray[0]) || (category === 'Climb' && FilterArray[1]) || (category == 'Sackgasse' && FilterArray[2])) || (!FilterArray[0] && !FilterArray[1] && !FilterArray[2])) && length >= FilterArray[7] && length <= FilterArray[8] && elevation >= FilterArray[5] && elevation <= FilterArray[6] && slope >= FilterArray[9] && slope <= FilterArray[10] && (((country === 'IT' && FilterArray[11]) || (country === 'FR' && FilterArray[12]) || (country == 'CH' && FilterArray[13]) || (country == 'AT' && FilterArray[14]) || (country == 'DE' && FilterArray[15]) || (country == 'SLO' && FilterArray[16])) || (!FilterArray[11] && !FilterArray[12] && !FilterArray[13] && !FilterArray[14] && !FilterArray[15] && !FilterArray[16]))){
+                    if((((category === 'Pass' && FilterArray[0]) || (category === 'Climb' && FilterArray[1]) || (category == 'Sackgasse' && FilterArray[2])) || (!FilterArray[0] && !FilterArray[1] && !FilterArray[2])) && length >= FilterArray[7] && length <= FilterArray[8] && elevation >= FilterArray[5] && elevation <= FilterArray[6] && slope >= FilterArray[9] && slope <= FilterArray[10] && (((country === 'IT' && FilterArray[11]) || (country === 'FR' && FilterArray[12]) || (country == 'CH' && FilterArray[13]) || (country == 'AT' && FilterArray[14]) || (country == 'DE' && FilterArray[15]) || (country == 'SLO' && FilterArray[16]) || (country == 'AND' && FilterArray[17]) || (country == 'ES' && FilterArray[18])) || (!FilterArray[11] && !FilterArray[12] && !FilterArray[13] && !FilterArray[14] && !FilterArray[15] && !FilterArray[16] && !FilterArray[17] && !FilterArray[18]))){
                         if(!slider1){
                             geoIDArray[idd] = idd;
                         } else {
@@ -3125,7 +3273,7 @@
             });
 
             iddArray = [];
-            for (var i=0; i<=numberOfElements; i++){
+            for (var i=0; i<=highestIDD; i++){
                 if (geoIDArray[i] == i && markerIDArray[i] == i){
                     iddArray[i] = i;
                 }
@@ -3190,7 +3338,7 @@
                         markersCheckbox.addEventListener('click', function (e) {
                             MarkersSelected = e.target.checked;
                             if (!MarkersSelected){
-                                for(var i = 0; i <= numberOfElements; i++){
+                                for(var i = 0; i <= highestIDD; i++){
                                     markerStates[i] = false;
                                     markerStatesArray[i] = false;
                                     if(geoJSONArray[i]){
@@ -3225,14 +3373,14 @@
                                 } else {
                                     tracksCheckbox.click();
                                     tracksCheckbox.click();
-                                    for(var i = 0; i <= numberOfElements; i++){
+                                    for(var i = 0; i <= highestIDD; i++){
                                         markerStates[i] = false;
                                         markerStatesArray[i] = false;
                                     }
                                 }
                             } else {
                                 if (MarkersSelected){
-                                    for(var i = 0; i <= numberOfElements; i++){
+                                    for(var i = 0; i <= highestIDD; i++){
                                         markerStates[i] = false;
                                         markerStatesArray[i] = false;
                                         if(geoJSONArray[i]){
