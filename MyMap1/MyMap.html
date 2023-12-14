@@ -447,14 +447,53 @@
             height: 25px; /* Set the height */
             border-radius: 50%; /* Make it a circle */
             cursor: pointer; /* Add pointer cursor for better user experience */
-            background-color: white;
-            border: 2px solid lightblue;
+            /*background-color: white;*/
+            background-size: contain; /* Use 'contain' to fit the entire image within the button */
+            background-position: center;
+            border: 1px solid;
             font-family: Helvetica, Arial, sans-serif;
             font-size: 9px;
             padding: 0px; /* Add padding to create space around the text */
             text-align: center; /* Center the text horizontally */
             color: rgb(126, 121, 121);
             margin-right: 5px;
+        }
+        #ITbutton,
+        #ITbutton1 {
+            background-image: url('Images/IT.png');
+        }
+        #FRbutton,
+        #FRbutton1 {
+            background-image: url('Images/FR.png');
+        }
+        #CHbutton,
+        #CHbutton1 {
+            background-image: url('Images/CH.png');
+        }
+        #ATbutton,
+        #ATbutton1 {
+            background-image: url('Images/AT.png');
+            background-size: 130%;
+        }
+        #DEbutton,
+        #DEbutton1 {
+            background-image: url('Images/DE.png');
+            background-size: 170%;
+        }
+        #SLObutton,
+        #SLObutton1 {
+            background-image: url('Images/SLO.png');
+            background-size: 200%;
+            background-position: 5% center;
+        }
+        #ESbutton,
+        #ESbutton1 {
+            background-image: url('Images/ES.png');
+            background-size: 120%;
+        }
+        #ANDbutton,
+        #ANDbutton1 {
+            background-image: url('Images/AND.png');
         }
         #ITbutton1,
         #FRbutton1,
@@ -652,6 +691,11 @@
             margin-left: 1px;
             color: rgb(126, 121, 121);
             font-family: Helvetica, Arial, sans-serif;
+        }
+
+        .flag-icon {
+            width: 20px; /* Adjust the width of the flag image */
+            border-radius: 10%;
         }
     </style>
     <!--------------------- add geoJSON files renamed to .js files here -------------------------------------->
@@ -1106,14 +1150,14 @@
         </div>
         <hr class="separator-line">
         <div id="button-container3">
-            <button id="ITbutton1" class="round-button">IT</button>
-            <button id="FRbutton1" class="round-button">FR</button>
-            <button id="CHbutton1" class="round-button">CH</button>
-            <button id="ATbutton1" class="round-button">AT</button>
-            <button id="DEbutton1" class="round-button">DE</button>
-            <button id="SLObutton1" class="round-button">SLO</button>
-            <button id="ESbutton1" class="round-button">ES</button>
-            <button id="ANDbutton1" class="round-button">AND</button>
+            <button id="ITbutton1" class="round-button"></button>
+            <button id="FRbutton1" class="round-button"></button>
+            <button id="CHbutton1" class="round-button"></button>
+            <button id="ATbutton1" class="round-button"></button>
+            <button id="DEbutton1" class="round-button"></button>
+            <button id="SLObutton1" class="round-button"></button>
+            <button id="ESbutton1" class="round-button"></button>
+            <button id="ANDbutton1" class="round-button"></button>
         </div>
         <hr class="separator-line">
         <div class="filter-row">
@@ -1214,14 +1258,14 @@
         </div>
         <hr class="separator-line2">
         <div id="button-container3">
-            <button id="ITbutton" class="round-button">IT</button>
-            <button id="FRbutton" class="round-button">FR</button>
-            <button id="CHbutton" class="round-button">CH</button>
-            <button id="ATbutton" class="round-button">AT</button>
-            <button id="DEbutton" class="round-button">DE</button>
-            <button id="SLObutton" class="round-button">SLO</button>
-            <button id="ESbutton" class="round-button">ES</button>
-            <button id="ANDbutton" class="round-button">AND</button>
+            <button id="ITbutton" class="round-button"></button>
+            <button id="FRbutton" class="round-button"></button>
+            <button id="CHbutton" class="round-button"></button>
+            <button id="ATbutton" class="round-button"></button>
+            <button id="DEbutton" class="round-button"></button>
+            <button id="SLObutton" class="round-button"></button>
+            <button id="ESbutton" class="round-button"></button>
+            <button id="ANDbutton" class="round-button"></button>
         </div>
         <hr class="separator-line2">
         <div class="filter2-row">
@@ -1457,8 +1501,8 @@
             const tbody = table.querySelector("tbody");
             const rows = Array.from(tbody.querySelectorAll("tr"));
             rows.sort((a, b) => {
-                const countryA = a.cells[3].textContent.trim();
-                const countryB = b.cells[3].textContent.trim();
+                const countryA = a.cells[3].dataset.country || a.cells[3].textContent.trim();
+                const countryB = b.cells[3].dataset.country || b.cells[3].textContent.trim();
                 const nameA = a.cells[2].textContent.trim();
                 const nameB = b.cells[2].textContent.trim();
                 const countryComparison = countryA.localeCompare(countryB);
@@ -1566,7 +1610,21 @@
             tableRow.appendChild(nameCell);
         
             const countryCell = document.createElement("td");
-            countryCell.textContent = country;
+            const flagImg = document.createElement("img");
+            switch (country) {
+                case "IT": flagImg.src = "Images/IT.png"; break;
+                case "FR": flagImg.src = "Images/FR.png"; break;
+                case "CH": flagImg.src = "Images/CH.png"; break;
+                case "AT": flagImg.src = "Images/AT.png"; break;
+                case "DE": flagImg.src = "Images/DE.png"; break;
+                case "SLO": flagImg.src = "Images/SLO.png"; break;
+                case "ES": flagImg.src = "Images/ES.png"; break;
+                case "AND": flagImg.src = "Images/AND.png"; break;
+                default: countryCell.textContent = country; break;
+            }
+            flagImg.classList.add("flag-icon");
+            countryCell.appendChild(flagImg);
+            countryCell.dataset.country = country;
             tableRow.appendChild(countryCell);
         
             const heightCell = document.createElement("td");
@@ -1732,73 +1790,89 @@
         var ITbutton = document.getElementById("ITbutton").addEventListener("click", function(){;
             if(buttonIT){
                 buttonIT = false;
-                this.style.backgroundColor = "white";
+                this.style.borderColor = "rgb(126, 121, 121)";
+                this.style.borderWidth = "1px"
             }else {
                 buttonIT = true;
-                this.style.backgroundColor = "lightblue";
+                this.style.borderColor = "lightblue";
+                this.style.borderWidth = "2px"
             }
         });
         var FRbutton = document.getElementById("FRbutton").addEventListener("click", function(){;
             if(buttonFR){
                 buttonFR = false;
-                this.style.backgroundColor = "white";
+                this.style.borderColor = "rgb(126, 121, 121)";
+                this.style.borderWidth = "1px"
             }else {
                 buttonFR = true;
-                this.style.backgroundColor = "lightblue";
+                this.style.borderColor = "lightblue";
+                this.style.borderWidth = "2px"
             }
         });
         var CHbutton = document.getElementById("CHbutton").addEventListener("click", function(){;
             if(buttonCH){
                 buttonCH = false;
-                this.style.backgroundColor = "white";
+                this.style.borderColor = "rgb(126, 121, 121)";
+                this.style.borderWidth = "1px"
             }else {
                 buttonCH = true;
-                this.style.backgroundColor = "lightblue";
+                this.style.borderColor = "lightblue";
+                this.style.borderWidth = "2px"
             }
         });
         var ATbutton = document.getElementById("ATbutton").addEventListener("click", function(){;
             if(buttonAT){
                 buttonAT = false;
-                this.style.backgroundColor = "white";
+                this.style.borderColor = "rgb(126, 121, 121)";
+                this.style.borderWidth = "1px"
             }else {
                 buttonAT = true;
-                this.style.backgroundColor = "lightblue";
+                this.style.borderColor = "lightblue";
+                this.style.borderWidth = "2px"
             }
         });
         var DEbutton = document.getElementById("DEbutton").addEventListener("click", function(){;
             if(buttonDE){
                 buttonDE = false;
-                this.style.backgroundColor = "white";
+                this.style.borderColor = "rgb(126, 121, 121)";
+                this.style.borderWidth = "1px"
             }else {
                 buttonDE = true;
-                this.style.backgroundColor = "lightblue";
+                this.style.borderColor = "lightblue";
+                this.style.borderWidth = "2px"
             }
         });
         var SLObutton = document.getElementById("SLObutton").addEventListener("click", function(){;
             if(buttonSLO){
                 buttonSLO = false;
-                this.style.backgroundColor = "white";
+                this.style.borderColor = "rgb(126, 121, 121)";
+                this.style.borderWidth = "1px"
             }else {
                 buttonSLO = true;
-                this.style.backgroundColor = "lightblue";
+                this.style.borderColor = "lightblue";
+                this.style.borderWidth = "2px"
             }
         });
         var ANDbutton = document.getElementById("ANDbutton").addEventListener("click", function(){;
             if(buttonAND){
                 buttonAND = false;
-                this.style.backgroundColor = "white";
+                this.style.borderColor = "rgb(126, 121, 121)";
+                this.style.borderWidth = "1px"
             }else {
                 buttonAND = true;
-                this.style.backgroundColor = "lightblue";
+                this.style.borderColor = "lightblue";
+                this.style.borderWidth = "2px"
             }
         });
         var ESbutton = document.getElementById("ESbutton").addEventListener("click", function(){;
             if(buttonES){
                 buttonES = false;
-                this.style.backgroundColor = "white";
+                this.style.borderColor = "rgb(126, 121, 121)";
+                this.style.borderWidth = "1px"
             }else {
                 buttonES = true;
-                this.style.backgroundColor = "lightblue";
+                this.style.borderColor = "lightblue";
+                this.style.borderWidth = "2px"
             }
         });
         
@@ -1968,73 +2042,89 @@
         var ITbutton1 = document.getElementById("ITbutton1").addEventListener("click", function(){;
             if(buttonIT1){
                 buttonIT1 = false;
-                this.style.backgroundColor = "white";
+                this.style.borderColor = "rgb(126, 121, 121)";
+                this.style.borderWidth = "1px"
             }else {
                 buttonIT1 = true;
-                this.style.backgroundColor = "lightblue";
+                this.style.borderColor = "lightblue";
+                this.style.borderWidth = "2px"
             }
         });
         var FRbutton1 = document.getElementById("FRbutton1").addEventListener("click", function(){;
             if(buttonFR1){
                 buttonFR1 = false;
-                this.style.backgroundColor = "white";
+                this.style.borderColor = "rgb(126, 121, 121)";
+                this.style.borderWidth = "1px"
             }else {
                 buttonFR1 = true;
-                this.style.backgroundColor = "lightblue";
+                this.style.borderColor = "lightblue";
+                this.style.borderWidth = "2px"
             }
         });
         var CHbutton1 = document.getElementById("CHbutton1").addEventListener("click", function(){;
             if(buttonCH1){
                 buttonCH1 = false;
-                this.style.backgroundColor = "white";
+                this.style.borderColor = "rgb(126, 121, 121)";
+                this.style.borderWidth = "1px"
             }else {
                 buttonCH1 = true;
-                this.style.backgroundColor = "lightblue";
+                this.style.borderColor = "lightblue";
+                this.style.borderWidth = "2px"
             }
         });
         var ATbutton1 = document.getElementById("ATbutton1").addEventListener("click", function(){;
             if(buttonAT1){
                 buttonAT1 = false;
-                this.style.backgroundColor = "white";
+                this.style.borderColor = "rgb(126, 121, 121)";
+                this.style.borderWidth = "1px"
             }else {
                 buttonAT1 = true;
-                this.style.backgroundColor = "lightblue";
+                this.style.borderColor = "lightblue";
+                this.style.borderWidth = "2px"
             }
         });
         var DEbutton1 = document.getElementById("DEbutton1").addEventListener("click", function(){;
             if(buttonDE1){
                 buttonDE1 = false;
-                this.style.backgroundColor = "white";
+                this.style.borderColor = "rgb(126, 121, 121)";
+                this.style.borderWidth = "1px"
             }else {
                 buttonDE1 = true;
-                this.style.backgroundColor = "lightblue";
+                this.style.borderColor = "lightblue";
+                this.style.borderWidth = "2px"
             }
         });
         var SLObutton1 = document.getElementById("SLObutton1").addEventListener("click", function(){;
             if(buttonSLO1){
                 buttonSLO1 = false;
-                this.style.backgroundColor = "white";
+                this.style.borderColor = "rgb(126, 121, 121)";
+                this.style.borderWidth = "1px"
             }else {
                 buttonSLO1= true;
-                this.style.backgroundColor = "lightblue";
+                this.style.borderColor = "lightblue";
+                this.style.borderWidth = "2px"
             }
         });
         var ANDbutton1 = document.getElementById("ANDbutton1").addEventListener("click", function(){;
             if(buttonAND1){
                 buttonAND1 = false;
-                this.style.backgroundColor = "white";
+                this.style.borderColor = "rgb(126, 121, 121)";
+                this.style.borderWidth = "1px"
             }else {
                 buttonAND1= true;
-                this.style.backgroundColor = "lightblue";
+                this.style.borderColor = "lightblue";
+                this.style.borderWidth = "2px"
             }
         });
         var ESbutton1 = document.getElementById("ESbutton1").addEventListener("click", function(){;
             if(buttonES1){
                 buttonES1 = false;
-                this.style.backgroundColor = "white";
+                this.style.borderColor = "rgb(126, 121, 121)";
+                this.style.borderWidth = "1px"
             }else {
                 buttonES1= true;
-                this.style.backgroundColor = "lightblue";
+                this.style.borderColor = "lightblue";
+                this.style.borderWidth = "2px"
             }
         });
 
