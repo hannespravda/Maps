@@ -21,6 +21,10 @@
     <link rel="stylesheet" href="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.css" />
     <script src="https://unpkg.com/@raruto/leaflet-elevation/dist/leaflet-elevation.js"></script>
 
+    <!-- dual slider -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.1/nouislider.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.1/nouislider.min.js"></script>
+
     <!-- style -->
     <style>
         html, body {
@@ -68,6 +72,18 @@
             color: rgb(179, 108, 108); 
         }
 
+        .leaflet-top.leaflet-right .leaflet-control {
+            top: 35px; /* Adjust the top position as needed */
+            user-select: none;
+        }
+        input[type=checkbox] {
+            accent-color: lightblue;
+        }
+        input[type=radio] {
+            accent-color: rgb(126, 121, 121);
+        }
+
+        /* Filter */
         #filter-toggle {
             position: absolute;
             top: 10px; /* Adjust the top position as needed */
@@ -91,7 +107,7 @@
         #filter {
             position: absolute;
             top: 10px; /* Adjust the top position as needed */
-            left: 87%; /* Adjust the left position as needed */
+            left: 82%; /* Adjust the left position as needed 87 */
             transform: translateX(-50%);
             z-index: 1000;
             background-color: white;
@@ -102,7 +118,7 @@
             font-size: 12px;
             padding: 5px; /* Add padding to create space around the text */
             text-align: center; /* Center the text horizontally */
-            width: 200px;
+            width: 320px;   /*200*/
             user-select: none;
             color: rgb(126, 121, 121);
           }
@@ -112,57 +128,12 @@
             justify-content: space-between;
             margin-bottom: 10px;
         }
-        .filter-input {
-            width: 50px;
-            text-align: center;
-            color: black;
-        }
-        .filter-row input:first-child {
-            width: 50px;
-            text-align: center;
-            color: black; /* Grey text */
-        }
-        .filter-input::placeholder {
-            color: rgb(126, 121, 121); /* Placeholder text color */
-            font-size: 12px;
-        }
         .separator-line {
             border-top: 1px solid #ccc;
             margin-top: 10px;
             margin-bottom: 10px;
         }
-        .height-label {
-            text-align: left;
-            width: 50px;
-        }
-        .elevation-label {
-            text-align: left;
-            width: 50px;
-        }
-        .length-label {
-            text-align: left;
-            width: 50px;
-        }
-        .slope-label {
-            text-align: left;
-            width: 50px;
-        }
-        .min-height {
-            margin-left: 10px;
-        }
-        .min-elevation {
-            margin-left: 10px;
-        }
-        .min-length {
-            margin-left: 10px;
-        }
-        .min-slope {
-            margin-left: 10px;
-        }
-        .leaflet-top.leaflet-right .leaflet-control {
-            top: 35px; /* Adjust the top position as needed */
-            user-select: none;
-        }
+        .filter2-row button,
         .filter-row button {
             /* Add styling to the buttons as needed */
             padding: 0px 7px; /* Adjust padding to desired size */
@@ -174,17 +145,15 @@
             cursor: pointer;
             user-select: none;
         }
+        #resetFilter2,
         #resetFilter {
             width: 150px;
             text-align: right;
             color: rgb(179, 108, 108); /* Text color */
             user-select: none;
         }
-        .filter-input[type="number"]::-webkit-inner-spin-button,
-        .filter-input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
+
+        /*List */
         #table-toggle {
             position: absolute;
             top: 10px; /* Adjust the top position as needed */
@@ -343,10 +312,11 @@
             user-select: none;
         }
 
+        /* filter2 */
         #filter2 {
             position: absolute;
-            top: 18px; /* Adjust the top position as needed 160*/
-            left: 500px; /* Adjust the left position as needed */
+            top: 16px; /* Adjust the top position as needed 160*/
+            left: 555px; /* Adjust the left position as needed */
             transform: translateX(-50%);
             z-index: 1000;
             background-color: white;
@@ -357,97 +327,22 @@
             font-size: 12px;
             padding: 5px; /* Add padding to create space around the text */
             text-align: center; /* Center the text horizontally */
-            width: 220px;
+            width: 320px;
             user-select: none;
             color: rgb(126, 121, 121);
         }
-        .filter2-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            color: rgb(126, 121, 121);
-        }
-        .filter2-input {
-            width: 50px;
-            text-align: center;
-            color: black;
-        }
-        .filter2-row input:first-child {
-            width: 50px;
-            text-align: center;
-            color: black; /* Grey text */
-        }
-        .filter2-input::placeholder {
-            color: rgb(126, 121, 121); /* Placeholder text color */
-            font-size: 12px;
-        }
-        .separator-line2 {
-            border-top: 1px solid #ccc;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-        .filter2-row button {
-            /* Add styling to the buttons as needed */
-            padding: 0px 7px; /* Adjust padding to desired size */
-            background-color: white; /* Example background color */
-            color: lightblue; /* Text color */
-            font-family: Helvetica, Arial, sans-serif;
-            font-size: 12px;
-            border: none; /* Remove border */
-            cursor: pointer;
-            user-select: none;
-        }
-        #resetFilter2 {
-            width: 150px;
-            text-align: right;
-            color: rgb(179, 108, 108); /* Text color */
-            user-select: none;
-        }
-        .filter2-input[type="number"]::-webkit-inner-spin-button,
-        .filter2-input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        .height-label2 {
-            text-align: left;
-            width: 50px;
-        }
-        .elevation-label2 {
-            text-align: left;
-            width: 50px;
-        }
-        .length-label2 {
-            text-align: left;
-            width: 50px;
-        }
-        .slope-label2 {
-            text-align: left;
-            width: 50px;
-        }
-        .min-height2 {
-            margin-left: 10px;
-        }
-        .min-elevation2{
-            margin-left: 10px;
-        }
-        .min-length2 {
-            margin-left: 10px;
-        }
-        .min-slope2 {
-            margin-left: 10px;
-        }
+
+        /* country buttons */
         #button-container3 {
             display: flex;
             flex-wrap: wrap;
-            gap: 2px; /* Adjust the gap according to your preference */
+            justify-content: space-between;
         }
         .round-button {
             width: 25px; /* Set the width */
             height: 25px; /* Set the height */
             border-radius: 50%; /* Make it a circle */
             cursor: pointer; /* Add pointer cursor for better user experience */
-            /*background-color: white;*/
             background-size: contain; /* Use 'contain' to fit the entire image within the button */
             background-position: center;
             border: 1px solid;
@@ -458,86 +353,77 @@
             color: rgb(126, 121, 121);
             margin-right: 5px;
         }
-        #ITbutton,
+        #Passbutton2,
+        #Passbutton1 {
+            background-image: url('Images/blau.png');
+            margin-top: 0px;
+        }
+        #Climbbutton2,
+        #Climbbutton1 {
+            background-image: url('Images/gelb.png');
+            margin-top: 0px;
+        }
+        #Sackgassebutton2,
+        #Sackgassebutton1 {
+            background-image: url('Images/rot.png');
+            margin-top: 0px;
+        }
+        label[for="Passbutton1"] {
+            margin-top: 5px; /* Adjust the margin-top value as needed */
+        }
+        label[for="Climbbutton1"] {
+            margin-top: 5px; /* Adjust the margin-top value as needed */
+        }
+        label[for="Sackgassebutton1"] {
+            margin-top: 5px; /* Adjust the margin-top value as needed */
+        }
+        label[for="Passbutton2"] {
+            margin-top: 5px; /* Adjust the margin-top value as needed */
+        }
+        label[for="Climbbutton2"] {
+            margin-top: 5px; /* Adjust the margin-top value as needed */
+        }
+        label[for="Sackgassebutton2"] {
+            margin-top: 5px; /* Adjust the margin-top value as needed */
+        }
+        #ITbutton2,
         #ITbutton1 {
             background-image: url('Images/IT.png');
         }
-        #FRbutton,
+        #FRbutton2,
         #FRbutton1 {
             background-image: url('Images/FR.png');
         }
-        #CHbutton,
+        #CHbutton2,
         #CHbutton1 {
             background-image: url('Images/CH.png');
         }
-        #ATbutton,
+        #ATbutton2,
         #ATbutton1 {
             background-image: url('Images/AT.png');
             background-size: 130%;
         }
-        #DEbutton,
+        #DEbutton2,
         #DEbutton1 {
             background-image: url('Images/DE.png');
             background-size: 170%;
         }
-        #SLObutton,
+        #SLObutton2,
         #SLObutton1 {
             background-image: url('Images/SLO.png');
             background-size: 200%;
             background-position: 5% center;
         }
-        #ESbutton,
+        #ESbutton2,
         #ESbutton1 {
             background-image: url('Images/ES.png');
             background-size: 120%;
         }
-        #ANDbutton,
+        #ANDbutton2,
         #ANDbutton1 {
             background-image: url('Images/AND.png');
         }
-        #ITbutton1,
-        #FRbutton1,
-        #CHbutton1,
-        #ATbutton1 {
-            margin-right: 10px;
-        }
-        #DEbutton1,
-        #SLObutton1,
-        #ANDbutton1,
-        #ESbutton1 {
-            margin-right: 10px;
-        }
-        #ITbutton1 {
-            margin-left: 18px;
-        }
-        #DEbutton1 {
-            margin-left: 36px;
-        }
-        #ITbutton,
-        #FRbutton,
-        #CHbutton,
-        #ATbutton {
-            margin-right: 10px;
-        }
-        #DEbutton,
-        #SLObutton,
-        #ANDbutton,
-        #ESbutton {
-            margin-right: 10px;
-        }
-        #ITbutton {
-            margin-left: 28px;
-        }
-        #DEbutton {
-            margin-left: 46px;
-        }
-
-        input[type=checkbox] {
-            accent-color: lightblue;
-        }
-        input[type=radio] {
-            accent-color: rgb(126, 121, 121);
-        }
+        
         #search-container {
             position: absolute;
             display: flex;
@@ -662,8 +548,8 @@
             -webkit-appearance: none;
             appearance: none;
             margin-left: 10px; /* Remove default margin */
-            width: 95px; /* Set the desired width */
-            height: 5px; /* Set the desired height */
+            width: 160px; /* Set the desired width */
+            height: 10px; /* Set the desired height */
             background-color: #ccc; /* Set your desired color here */
             border: none;
             border-radius: 5px;
@@ -672,20 +558,16 @@
         .range-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            height: 14px; /* Set the desired height of the thumb */
-            width: 14px; /* Set the desired width of the thumb */
-            background-color: lightblue; /* Set the color of the thumb */
+            height: 16px; /* Set the desired height of the thumb */
+            width: 16px; /* Set the desired width of the thumb */
+            border: 0px solid #D9D9D9;
             border-radius: 50%;
-            cursor: pointer;
+            background: #FFF;
+            cursor: default;
+            box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
         }
+        .slider-value2,
         .slider-value1 {
-            width: 40px; /* Set the desired width for the value display */
-            text-align: center; /* Center the text within the value display */
-            margin-left: 1px;
-            color: rgb(126, 121, 121);
-            font-family: Helvetica, Arial, sans-serif;
-        }
-        .slider-value2 {
             width: 40px; /* Set the desired width for the value display */
             text-align: center; /* Center the text within the value display */
             margin-left: 1px;
@@ -696,6 +578,78 @@
         .flag-icon {
             width: 20px; /* Adjust the width of the flag image */
             border-radius: 10%;
+        }
+
+        /* dual slider */
+        #heightSlider2,
+        #heightSlider {
+            width: 45%;
+            margin-top: 1px;
+            position: absolute; /* Ensure the position is relative */
+            margin-left: 110px;
+        }
+        #lengthSlider2,
+        #lengthSlider {
+            width: 45%;
+            margin-top: 1px;
+            position: absolute; /* Ensure the position is relative */
+            margin-left: 110px;
+        }
+        #elevationSlider2,
+        #elevationSlider {
+            width: 45%;
+            margin-top: 1px;
+            position: absolute; /* Ensure the position is relative */
+            margin-left: 110px;
+        }
+        #slopeSlider2,
+        #slopeSlider {
+            width: 45%;
+            margin-top: 1px;
+            position: absolute; /* Ensure the position is relative */
+            margin-left: 110px;
+        }
+        #minHeightSlider2,
+        #minHeightSlider {
+            position: absolute;
+            margin-left: 60px;
+        }
+        #minLengthSlider2,
+        #minLengthSlider {
+            position: absolute;
+            margin-left: 60px;
+        }
+        #minElevationSlider2,
+        #minElevationSlider {
+            position: absolute;
+            margin-left: 60px;
+        }
+        #minSlopeSlider2,
+        #minSlopeSlider {
+            position: absolute;
+            margin-left: 60px;
+        }
+        .noUi-horizontal .noUi-handle:before,
+        .noUi-horizontal .noUi-handle:after {
+            display: none; /* Hide the vertical stripes */
+        }
+        .noUi-horizontal {
+            height: 10px; /* Adjust the height according to your preference */
+            margin-top: -30px;
+        }
+        .noUi-horizontal .noUi-handle {
+            background-color: white; /* Set the background color to white */
+            border-radius: 50%;
+            width: 16px; /* Adjust the width according to your preference */
+            height: 16px; /* Adjust the height according to your preference */
+            right: -10px;
+            top: -4px;
+        }
+        .noUi-handle {
+            border: none; /* Remove the border */
+        }
+        .noUi-connect {
+            background-color: lightblue; /* Blue color */
         }
     </style>
     <!--------------------- add geoJSON files renamed to .js files here -------------------------------------->
@@ -1138,15 +1092,13 @@
 
     <div id="filter-toggle">Filter</div>
     <div id="filter" style="display: none;">
-        <div id="checkbox-container">
-            <div id="filter-bar">
-                <label for="passCheckbox">Pass</label>
-                <input type="checkbox" id="passCheckbox">
-                <label for="climbCheckbox">Climb</label>
-                <input type="checkbox" id="climbCheckbox">
-                <label for="sackgasseCheckbox">Sackgasse</label>
-                <input type="checkbox" id="sackgasseCheckbox">
-            </div>
+        <div id="button-container3">
+            <label for="Passbutton1">Pass</label>
+            <button id="Passbutton1" class="round-button"></button>
+            <label for="Climbbutton1">Climb</label>
+            <button id="Climbbutton1" class="round-button"></button>
+            <label for="Sackgassebutton1">Sackgasse</label>
+            <button id="Sackgassebutton1" class="round-button"></button>
         </div>
         <hr class="separator-line">
         <div id="button-container3">
@@ -1161,24 +1113,28 @@
         </div>
         <hr class="separator-line">
         <div class="filter-row">
-            <label class="height-label">Height:</label>
-            <input type="number" id="minHeight" class="min-height filter-input" step="10" placeholder="min m">
-            <input type="number" id="maxHeight" class="max-height filter-input" step="10" placeholder="max m">
+            <label for="heightSlider">Height:</label>
+            <span id="minHeightSlider">0 m</span>
+            <div id="heightSlider"></div>
+            <span id="maxHeightSlider">3000 m</span>
         </div>
         <div class="filter-row">
-            <label class="elevation-label">Elevation:</label>
-            <input type="number" id="minElevation" step="10" class="min-elevation filter-input" placeholder="min hm">
-            <input type="number" id="maxElevation" step="10" class="max-elevation filter-input" placeholder="max hm">
+            <label for="lengthSlider">Length:</label>
+            <span id="minLengthSlider">0 km</span>
+            <div id="lengthSlider"></div>
+            <span id="maxLengthSlider">60 km</span>
         </div>
         <div class="filter-row">
-            <label class="length-label">Length:</label>
-            <input type="number" id="minLength" step="10" class="min-length filter-input" placeholder="min km">
-            <input type="number" id="maxLength" step="10" class="max-length filter-input" placeholder="max km">
+            <label for="elevationSlider">Elevation:</label>
+            <span id="minElevationSlider">0 hm</span>
+            <div id="elevationSlider"></div>
+            <span id="maxElevationSlider">2500 hm</span>
         </div>
         <div class="filter-row">
-            <label class="slope-label">Slope:</label>
-            <input type="number" id="minSlope" step="10" class="min-slope filter-input" placeholder="min %">
-            <input type="number" id="maxSlope" step="10" class="max-slope filter-input" placeholder="max %">
+            <label for="slopeSlider">Slope:</label>
+            <span id="minSlopeSlider">0 %</span>
+            <div id="slopeSlider"></div>
+            <span id="maxSlopeSlider">15 %</span>
         </div>
         <hr class="separator-line">
         <div class="filter-row">
@@ -1246,56 +1202,58 @@
     </div>
 
     <div id="filter2" style="display: none;">
-        <div id="checkbox-container2">
-            <div id="filter2-bar">
-                <label for="passCheckbox2">Pass</label>
-                <input type="checkbox" id="passCheckbox2">
-                <label for="climbCheckbox2">Climb</label>
-                <input type="checkbox" id="climbCheckbox2">
-                <label for="sackgasseCheckbox2">Sackgasse</label>
-                <input type="checkbox" id="sackgasseCheckbox2">
-            </div>
-        </div>
-        <hr class="separator-line2">
         <div id="button-container3">
-            <button id="ITbutton" class="round-button"></button>
-            <button id="FRbutton" class="round-button"></button>
-            <button id="CHbutton" class="round-button"></button>
-            <button id="ATbutton" class="round-button"></button>
-            <button id="DEbutton" class="round-button"></button>
-            <button id="SLObutton" class="round-button"></button>
-            <button id="ESbutton" class="round-button"></button>
-            <button id="ANDbutton" class="round-button"></button>
+            <label for="Passbutton2">Pass</label>
+            <button id="Passbutton2" class="round-button"></button>
+            <label for="Climbbutton2">Climb</label>
+            <button id="Climbbutton2" class="round-button"></button>
+            <label for="Sackgassebutton2">Sackgasse</label>
+            <button id="Sackgassebutton2" class="round-button"></button>
         </div>
-        <hr class="separator-line2">
-        <div class="filter2-row">
-            <label class="height-label2">Height:</label>
-            <input type="number" id="minHeight2" class="min-height2 filter2-input" step="10" placeholder="min m">
-            <input type="number" id="maxHeight2" class="max-height2 filter2-input" step="10" placeholder="max m">
+        <hr class="separator-line">
+        <div id="button-container3">
+            <button id="ITbutton2" class="round-button"></button>
+            <button id="FRbutton2" class="round-button"></button>
+            <button id="CHbutton2" class="round-button"></button>
+            <button id="ATbutton2" class="round-button"></button>
+            <button id="DEbutton2" class="round-button"></button>
+            <button id="SLObutton2" class="round-button"></button>
+            <button id="ESbutton2" class="round-button"></button>
+            <button id="ANDbutton2" class="round-button"></button>
         </div>
-        <div class="filter2-row">
-            <label class="elevation-label2">Elevation:</label>
-            <input type="number" id="minElevation2" step="10" class="min-elevation2 filter2-input" placeholder="min hm">
-            <input type="number" id="maxElevation2" step="10" class="max-elevation2 filter2-input" placeholder="max hm">
+        <hr class="separator-line">
+        <div class="filter-row">
+            <label for="heightSlider2">Height:</label>
+            <span id="minHeightSlider2">0 m</span>
+            <div id="heightSlider2"></div>
+            <span id="maxHeightSlider2">3000 m</span>
         </div>
-        <div class="filter2-row">
-            <label class="length-label2">Length:</label>
-            <input type="number" id="minLength2" step="10" class="min-length2 filter2-input" placeholder="min km">
-            <input type="number" id="maxLength2" step="10" class="max-length2 filter2-input" placeholder="max km">
+        <div class="filter-row">
+            <label for="lengthSlider2">Length:</label>
+            <span id="minLengthSlider2">0 km</span>
+            <div id="lengthSlider2"></div>
+            <span id="maxLengthSlider2">60 km</span>
         </div>
-        <div class="filter2-row">
-            <label class="slope-label2">Slope:</label>
-            <input type="number" id="minSlope2" step="10" class="min-slope2 filter2-input" placeholder="min %">
-            <input type="number" id="maxSlope2" step="10" class="max-slope2 filter2-input" placeholder="max %">
+        <div class="filter-row">
+            <label for="elevationSlider2">Elevation:</label>
+            <span id="minElevationSlider2">0 hm</span>
+            <div id="elevationSlider2"></div>
+            <span id="maxElevationSlider2">2500 hm</span>
         </div>
-        <hr class="separator-line2">
-        <div class="filter2-row">
+        <div class="filter-row">
+            <label for="slopeSlider2">Slope:</label>
+            <span id="minSlopeSlider2">0 %</span>
+            <div id="slopeSlider2"></div>
+            <span id="maxSlopeSlider2">15 %</span>
+        </div>
+        <hr class="separator-line">
+        <div class="filter-row">
             <label class="radius-slider2">Nearby:</label>
             <input type="range" id="rangeSlider2" min="0" max="200" value = "0" class="range-slider">
             <div class="slider-value2">&#8212</div>
         </div>
-        <hr class="separator-line2">
-        <div class="filter2-row">
+        <hr class="separator-line">
+        <div class="filter-row">
             <button id="resetFilter2">Reset</button>
             <button id="applyFilter2">Apply</button>
         </div>
@@ -1589,7 +1547,6 @@
             pngCell.appendChild(pngImage);
             tableRow.appendChild(pngCell);
 
-        
             const nameCell = document.createElement("td");
             const nameLink = document.createElement("a");
             nameLink.href = link;
@@ -1764,220 +1721,289 @@
         var resetFilterButton2 = document.getElementById("resetFilter2");
         var applyFilter2 = false;
         var FilterArray2 = [];
-        var buttonIT = false;
-        var buttonFR = false;
-        var buttonCH = false;
-        var buttonAT = false;
-        var buttonDE = false;
-        var buttonSLO = false;
-        var buttonAND = false;
-        var buttonES = false;
+        var buttonPass2 = true;
+        var buttonClimb2 = true;
+        var buttonSackgasse2 = true;
+        var buttonIT2 = false;
+        var buttonFR2 = false;
+        var buttonCH2 = false;
+        var buttonAT2 = false;
+        var buttonDE2 = false;
+        var buttonSLO2 = false;
+        var buttonAND2 = false;
+        var buttonES2 = false;
+
+        var Passbutton2 = document.getElementById("Passbutton2").addEventListener("click", function(){;
+            if(buttonPass2){
+                buttonPass2 = false;
+                this.style.backgroundImage = "url('Images/leer.png')";
+            }else {
+                buttonPass2 = true;
+                this.style.backgroundImage = "url('Images/blau.png')";
+            }
+        });
+        var Climbbutton2 = document.getElementById("Climbbutton2").addEventListener("click", function(){;
+            if(buttonClimb2){
+                buttonClimb2 = false;
+                this.style.backgroundImage = "url('Images/leer.png')";
+            }else {
+                buttonClimb2 = true;
+                this.style.backgroundImage = "url('Images/gelb.png')";
+            }
+        });
+        var Sackgassebutton2 = document.getElementById("Sackgassebutton2").addEventListener("click", function(){;
+            if(buttonSackgasse2){
+                buttonSackgasse2 = false;
+                this.style.backgroundImage = "url('Images/leer.png')";
+            }else {
+                buttonSackgasse2 = true;
+                this.style.backgroundImage = "url('Images/rot.png')";
+            }
+        });
 
         var range2 = 0;
         var rangeSlider2 = document.getElementById('rangeSlider2');
         var sliderValue2 = document.querySelector('.slider-value2');
+        var activeControl2 = false;
         rangeSlider2.addEventListener('input', function () {
             if (this.value < 1){
                 sliderValue2.textContent = "—";
+                activeControl2 = false;
+                if (!activeControl && !activeControl2){
+                    locateControl.stop();
+                }
                 range2 = 0;
             } else {
                 sliderValue2.textContent = this.value + " km";
+                if(!activeControl && !activeControl2){
+                    locateControl.start();
+                    activeControl2 = true
+                }
                 //locateControl.start();
                 range2 = this.value;
             }
         });
 
-        var ITbutton = document.getElementById("ITbutton").addEventListener("click", function(){;
-            if(buttonIT){
-                buttonIT = false;
+        var ITbutton2 = document.getElementById("ITbutton2").addEventListener("click", function(){;
+            if(buttonIT2){
+                buttonIT2 = false;
                 this.style.borderColor = "rgb(126, 121, 121)";
                 this.style.borderWidth = "1px"
             }else {
-                buttonIT = true;
+                buttonIT2 = true;
                 this.style.borderColor = "lightblue";
                 this.style.borderWidth = "2px"
             }
         });
-        var FRbutton = document.getElementById("FRbutton").addEventListener("click", function(){;
-            if(buttonFR){
-                buttonFR = false;
+        var FRbutton2 = document.getElementById("FRbutton2").addEventListener("click", function(){;
+            if(buttonFR2){
+                buttonFR2 = false;
                 this.style.borderColor = "rgb(126, 121, 121)";
                 this.style.borderWidth = "1px"
             }else {
-                buttonFR = true;
+                buttonFR2 = true;
                 this.style.borderColor = "lightblue";
                 this.style.borderWidth = "2px"
             }
         });
-        var CHbutton = document.getElementById("CHbutton").addEventListener("click", function(){;
-            if(buttonCH){
-                buttonCH = false;
+        var CHbutton2 = document.getElementById("CHbutton2").addEventListener("click", function(){;
+            if(buttonCH2){
+                buttonCH2 = false;
                 this.style.borderColor = "rgb(126, 121, 121)";
                 this.style.borderWidth = "1px"
             }else {
-                buttonCH = true;
+                buttonCH2 = true;
                 this.style.borderColor = "lightblue";
                 this.style.borderWidth = "2px"
             }
         });
-        var ATbutton = document.getElementById("ATbutton").addEventListener("click", function(){;
-            if(buttonAT){
-                buttonAT = false;
+        var ATbutton2 = document.getElementById("ATbutton2").addEventListener("click", function(){;
+            if(buttonAT2){
+                buttonAT2 = false;
                 this.style.borderColor = "rgb(126, 121, 121)";
                 this.style.borderWidth = "1px"
             }else {
-                buttonAT = true;
+                buttonAT2 = true;
                 this.style.borderColor = "lightblue";
                 this.style.borderWidth = "2px"
             }
         });
-        var DEbutton = document.getElementById("DEbutton").addEventListener("click", function(){;
-            if(buttonDE){
-                buttonDE = false;
+        var DEbutton2 = document.getElementById("DEbutton2").addEventListener("click", function(){;
+            if(buttonDE2){
+                buttonDE2 = false;
                 this.style.borderColor = "rgb(126, 121, 121)";
                 this.style.borderWidth = "1px"
             }else {
-                buttonDE = true;
+                buttonDE2 = true;
                 this.style.borderColor = "lightblue";
                 this.style.borderWidth = "2px"
             }
         });
-        var SLObutton = document.getElementById("SLObutton").addEventListener("click", function(){;
-            if(buttonSLO){
-                buttonSLO = false;
+        var SLObutton2 = document.getElementById("SLObutton2").addEventListener("click", function(){;
+            if(buttonSLO2){
+                buttonSLO2 = false;
                 this.style.borderColor = "rgb(126, 121, 121)";
                 this.style.borderWidth = "1px"
             }else {
-                buttonSLO = true;
+                buttonSLO2 = true;
                 this.style.borderColor = "lightblue";
                 this.style.borderWidth = "2px"
             }
         });
-        var ANDbutton = document.getElementById("ANDbutton").addEventListener("click", function(){;
-            if(buttonAND){
-                buttonAND = false;
+        var ANDbutton2 = document.getElementById("ANDbutton2").addEventListener("click", function(){;
+            if(buttonAND2){
+                buttonAND2 = false;
                 this.style.borderColor = "rgb(126, 121, 121)";
                 this.style.borderWidth = "1px"
             }else {
-                buttonAND = true;
+                buttonAND2 = true;
                 this.style.borderColor = "lightblue";
                 this.style.borderWidth = "2px"
             }
         });
-        var ESbutton = document.getElementById("ESbutton").addEventListener("click", function(){;
-            if(buttonES){
-                buttonES = false;
+        var ESbutton2 = document.getElementById("ESbutton2").addEventListener("click", function(){;
+            if(buttonES2){
+                buttonES2 = false;
                 this.style.borderColor = "rgb(126, 121, 121)";
                 this.style.borderWidth = "1px"
             }else {
-                buttonES = true;
+                buttonES2 = true;
                 this.style.borderColor = "lightblue";
                 this.style.borderWidth = "2px"
             }
+        });
+
+        //dual sliders2
+        const heightSlider2 = document.getElementById("heightSlider2");
+        const minHeightSpan2 = document.getElementById("minHeightSlider2");
+        const maxHeightSpan2 = document.getElementById("maxHeightSlider2");
+        var [minHeight2, maxHeight2] = [0, 3000];
+        noUiSlider.create(heightSlider2, {
+            start: [0, 3000],
+            connect: true,
+            range: {
+                'min': 0,
+                'max': 3000
+            },
+            step: 1,
+        });
+        heightSlider2.noUiSlider.on('update', function (values, handle) {
+            [minHeight2, maxHeight2] = values.map(value => Math.round(value));
+            minHeightSpan2.textContent = minHeight2 + ' m';
+            maxHeightSpan2.textContent = maxHeight2 + ' m';
+        });
+
+        const lengthSlider2 = document.getElementById("lengthSlider2");
+        const minLengthSpan2 = document.getElementById("minLengthSlider2");
+        const maxLengthSpan2 = document.getElementById("maxLengthSlider2");
+        var [minLength2, maxLength2] = [0, 60];
+        noUiSlider.create(lengthSlider2, {
+            start: [0, 60],
+            connect: true,
+            range: {
+                'min': 0,
+                'max': 60
+            },
+            step: 0.5,
+        });
+        lengthSlider2.noUiSlider.on('update', function (values, handle) {
+            [minLength2, maxLength2] = values.map(value => Math.round(value * 2) / 2);
+            minLengthSpan2.textContent = minLength2 + ' km';
+            maxLengthSpan2.textContent = maxLength2 + ' km';
+        });
+
+        const elevationSlider2 = document.getElementById("elevationSlider2");
+        const minElevationSpan2 = document.getElementById("minElevationSlider2");
+        const maxElevationSpan2 = document.getElementById("maxElevationSlider2");
+        var [minElevation2, maxElevation2] = [0, 2500];
+        noUiSlider.create(elevationSlider2, {
+            start: [0, 2500],
+            connect: true,
+            range: {
+                'min': 0,
+                'max': 2500
+            },
+            step: 1,
+        });
+        elevationSlider2.noUiSlider.on('update', function (values, handle) {
+            [minElevation2, maxElevation2] = values.map(value => Math.round(value));
+            minElevationSpan2.textContent = minElevation2 + ' hm';
+            maxElevationSpan2.textContent = maxElevation2 + ' hm';
+        });
+
+        const slopeSlider2 = document.getElementById("slopeSlider2");
+        const minSlopeSpan2 = document.getElementById("minSlopeSlider2");
+        const maxSlopeSpan2 = document.getElementById("maxSlopeSlider2");
+        var [minSlope2, maxSlope2] = [0, 15];
+        noUiSlider.create(slopeSlider2, {
+            start: [0, 15],
+            connect: true,
+            range: {
+                'min': 0,
+                'max': 15
+            },
+            step: 0.1,
+        });
+        slopeSlider2.noUiSlider.on('update', function (values, handle) {
+            [minSlope2, maxSlope2] = values.map(value => Math.round(value * 10) / 10);
+            minSlopeSpan2.textContent = minSlope2 + ' %';
+            maxSlopeSpan2.textContent = maxSlope2 + ' %';
         });
         
         applyFilterButton2.addEventListener("click", function() {
             applyFilter2 = true;
             filterButton2.style.color = "lightblue";
-            var minHeight2 = document.getElementById("minHeight2").value;
-            var maxHeight2 = document.getElementById("maxHeight2").value;
-            var minElevation2 = document.getElementById("minElevation2").value;
-            var maxElevation2 = document.getElementById("maxElevation2").value;
-            var minLength2 = document.getElementById("minLength2").value;
-            var maxLength2 = document.getElementById("maxLength2").value;
-            var minSlope2 = document.getElementById("minSlope2").value;
-            var maxSlope2 = document.getElementById("maxSlope2").value;
-            var passCheckbox2 = document.getElementById("passCheckbox2").checked;
-            var climbCheckbox2 = document.getElementById("climbCheckbox2").checked;
-            var sackgasseCheckbox2 = document.getElementById("sackgasseCheckbox2").checked;
-            
-            FilterArray2[0] = passCheckbox2;
-            FilterArray2[1] = climbCheckbox2;
-            FilterArray2[2] = sackgasseCheckbox2;
-            if (!minHeight2){
-                FilterArray2[3] = 0; 
-            } else {
-                FilterArray2[3] = parseFloat(minHeight2);
-            }
-            if (!maxHeight2){
-                FilterArray2[4] = 10000; 
-            } else {
-                FilterArray2[4] = parseFloat(maxHeight2);
-            }
-            if (!minElevation2){
-                FilterArray2[5] = 0; 
-            } else {
-                FilterArray2[5] = parseFloat(minElevation2);
-            }
-            if (!maxElevation2){
-                FilterArray2[6] = 10000; 
-            } else {
-                FilterArray2[6] = parseFloat(maxElevation2);
-            }
-            if (!minLength2){
-                FilterArray2[7] = 0; 
-            } else {
-                FilterArray2[7] = parseFloat(minLength2);
-            }
-            if (!maxLength2){
-                FilterArray2[8] = 10000; 
-            } else {
-                FilterArray2[8] = parseFloat(maxLength2);
-            }
-            if (!minSlope2){
-                FilterArray2[9] = 0; 
-            } else {
-                FilterArray2[9] = parseFloat(minSlope2);
-            }
-            if (!maxSlope2){
-                FilterArray2[10] = 10000; 
-            } else {
-                FilterArray2[10] = parseFloat(maxSlope2);
-            }
-            FilterArray2[11] = buttonIT;
-            FilterArray2[12] = buttonFR;
-            FilterArray2[13] = buttonCH;
-            FilterArray2[14] = buttonAT;
-            FilterArray2[15] = buttonDE;
-            FilterArray2[16] = buttonSLO;
-            FilterArray2[17] = buttonAND;
-            FilterArray2[18] = buttonES;
+            FilterArray2[0] = buttonPass2;
+            FilterArray2[1] = buttonClimb2;
+            FilterArray2[2] = buttonSackgasse2;
+            FilterArray2[3] = minHeight2;
+            FilterArray2[4] = maxHeight2;
+            FilterArray2[5] = minElevation2;
+            FilterArray2[6] = maxElevation2;
+            FilterArray2[7] = minLength2;
+            FilterArray2[8] = maxLength2;
+            FilterArray2[9] = minSlope2;
+            FilterArray2[10] = maxSlope2;
+            FilterArray2[11] = buttonIT2;
+            FilterArray2[12] = buttonFR2;
+            FilterArray2[13] = buttonCH2;
+            FilterArray2[14] = buttonAT2;
+            FilterArray2[15] = buttonDE2;
+            FilterArray2[16] = buttonSLO2;
+            FilterArray2[17] = buttonAND2;
+            FilterArray2[18] = buttonES2;
             filter2.style.display = "none";
         });
 
         resetFilterButton2.addEventListener("click", function() {
             applyFilter2 = false;
             filterButton2.style.color = 'rgb(126, 121, 121)';
-            document.getElementById('minHeight2').value = '';
-            document.getElementById('maxHeight2').value = '';
-            document.getElementById('minElevation2').value = '';
-            document.getElementById('maxElevation2').value = '';
-            document.getElementById('minLength2').value = '';
-            document.getElementById('maxLength2').value = '';
-            document.getElementById('minSlope2').value = '';
-            document.getElementById('maxSlope2').value = '';
-            document.getElementById('passCheckbox2').checked = false;
-            document.getElementById('climbCheckbox2').checked = false;
-            document.getElementById('sackgasseCheckbox2').checked = false;
-            if(buttonIT){document.getElementById('ITbutton').click()};
-            if(buttonFR){document.getElementById('FRbutton').click()};
-            if(buttonCH){document.getElementById('CHbutton').click()};
-            if(buttonAT){document.getElementById('ATbutton').click()};
-            if(buttonDE){document.getElementById('DEbutton').click()};
-            if(buttonSLO){document.getElementById('SLObutton').click()};
-            if(buttonAND){document.getElementById('ANDbutton').click()};
-            if(buttonES){document.getElementById('ESbutton').click()};
-            FilterArray2[0] = false;
-            FilterArray2[1] = false;
-            FilterArray2[2] = false;
-            FilterArray2[3] = 0;
-            FilterArray2[4] = 10000;
-            FilterArray2[5] = 0;
-            FilterArray2[6] = 10000;
-            FilterArray2[7] = 0;
-            FilterArray2[8] = 10000;
-            FilterArray2[9] = 0;
-            FilterArray2[10] = 10000;
+            heightSlider2.noUiSlider.reset();
+            lengthSlider2.noUiSlider.reset();
+            elevationSlider2.noUiSlider.reset();
+            slopeSlider2.noUiSlider.reset();
+            if(!buttonPass2){document.getElementById('Passbutton2').click()};
+            if(!buttonClimb2){document.getElementById('Climbbutton2').click()};
+            if(!buttonSackgasse2){document.getElementById('Sackgassebutton2').click()};
+            if(buttonIT2){document.getElementById('ITbutton2').click()};
+            if(buttonFR2){document.getElementById('FRbutton2').click()};
+            if(buttonCH2){document.getElementById('CHbutton2').click()};
+            if(buttonAT2){document.getElementById('ATbutton2').click()};
+            if(buttonDE2){document.getElementById('DEbutton2').click()};
+            if(buttonSLO2){document.getElementById('SLObutton2').click()};
+            if(buttonAND2){document.getElementById('ANDbutton2').click()};
+            if(buttonES2){document.getElementById('ESbutton2').click()};
+            FilterArray2[0] = true;
+            FilterArray2[1] = true;
+            FilterArray2[2] = true;
+            FilterArray2[3] = minHeight2;
+            FilterArray2[4] = maxHeight2;
+            FilterArray2[5] = minElevation2;
+            FilterArray2[6] = maxElevation2;
+            FilterArray2[7] = minLength2;
+            FilterArray2[8] = maxLength2;
+            FilterArray2[9] = minSlope2;
+            FilterArray2[10] = maxSlope2;
             FilterArray2[11] = false;
             FilterArray2[12] = false;
             FilterArray2[13] = false;
@@ -1989,6 +2015,7 @@
             rangeSlider2.value = 0;
             range2 = 0;
             sliderValue2.textContent = "—";
+            activeControl2 = false;
             filter2.style.display = "none";
             document.getElementById("sort-options").value = "empty";
             clearSearch();
@@ -2017,12 +2044,21 @@
         var range = 0;
         var rangeSlider = document.getElementById('rangeSlider1');
         var sliderValue = document.querySelector('.slider-value1');
+        var activeControl = false;
         rangeSlider.addEventListener('input', function () {
             if (this.value < 1){
                 sliderValue.textContent = "—";
+                activeControl = false;
+                if (!activeControl && !activeControl2){
+                    locateControl.stop();
+                }
                 range = 0;
             } else {
                 sliderValue.textContent = this.value + " km";
+                if(!activeControl && !activeControl2){
+                    locateControl.start();
+                    activeControl = true
+                }
                 //locateControl.start();
                 range = this.value;
             }
@@ -2030,6 +2066,9 @@
 
         var applyFilter = false;
         var FilterArray = [];
+        var buttonPass1 = true;
+        var buttonClimb1 = true;
+        var buttonSackgasse1 = true;
         var buttonIT1 = false;
         var buttonFR1 = false;
         var buttonCH1 = false;
@@ -2038,6 +2077,34 @@
         var buttonSLO1 = false;
         var buttonAND1 = false;
         var buttonES1 = false;
+
+        var Passbutton1 = document.getElementById("Passbutton1").addEventListener("click", function(){;
+            if(buttonPass1){
+                buttonPass1 = false;
+                this.style.backgroundImage = "url('Images/leer.png')";
+            }else {
+                buttonPass1 = true;
+                this.style.backgroundImage = "url('Images/blau.png')";
+            }
+        });
+        var Climbbutton1 = document.getElementById("Climbbutton1").addEventListener("click", function(){;
+            if(buttonClimb1){
+                buttonClimb1 = false;
+                this.style.backgroundImage = "url('Images/leer.png')";
+            }else {
+                buttonClimb1 = true;
+                this.style.backgroundImage = "url('Images/gelb.png')";
+            }
+        });
+        var Sackgassebutton1 = document.getElementById("Sackgassebutton1").addEventListener("click", function(){;
+            if(buttonSackgasse1){
+                buttonSackgasse1 = false;
+                this.style.backgroundImage = "url('Images/leer.png')";
+            }else {
+                buttonSackgasse1 = true;
+                this.style.backgroundImage = "url('Images/rot.png')";
+            }
+        });
 
         var ITbutton1 = document.getElementById("ITbutton1").addEventListener("click", function(){;
             if(buttonIT1){
@@ -2128,63 +2195,97 @@
             }
         });
 
+        //dual sliders
+        const heightSlider = document.getElementById("heightSlider");
+        const minHeightSpan = document.getElementById("minHeightSlider");
+        const maxHeightSpan = document.getElementById("maxHeightSlider");
+        var [minHeight, maxHeight] = [0, 3000];
+        noUiSlider.create(heightSlider, {
+            start: [0, 3000],
+            connect: true,
+            range: {
+                'min': 0,
+                'max': 3000
+            },
+            step: 1,
+        });
+        heightSlider.noUiSlider.on('update', function (values, handle) {
+            [minHeight, maxHeight] = values.map(value => Math.round(value));
+            minHeightSpan.textContent = minHeight + ' m';
+            maxHeightSpan.textContent = maxHeight + ' m';
+        });
+
+        const lengthSlider = document.getElementById("lengthSlider");
+        const minLengthSpan = document.getElementById("minLengthSlider");
+        const maxLengthSpan = document.getElementById("maxLengthSlider");
+        var [minLength, maxLength] = [0, 60];
+        noUiSlider.create(lengthSlider, {
+            start: [0, 60],
+            connect: true,
+            range: {
+                'min': 0,
+                'max': 60
+            },
+            step: 0.5,
+        });
+        lengthSlider.noUiSlider.on('update', function (values, handle) {
+            [minLength, maxLength] = values.map(value => Math.round(value * 2) / 2);
+            minLengthSpan.textContent = minLength + ' km';
+            maxLengthSpan.textContent = maxLength + ' km';
+        });
+
+        const elevationSlider = document.getElementById("elevationSlider");
+        const minElevationSpan = document.getElementById("minElevationSlider");
+        const maxElevationSpan = document.getElementById("maxElevationSlider");
+        var [minElevation, maxElevation] = [0, 2500];
+        noUiSlider.create(elevationSlider, {
+            start: [0, 2500],
+            connect: true,
+            range: {
+                'min': 0,
+                'max': 2500
+            },
+            step: 1,
+        });
+        elevationSlider.noUiSlider.on('update', function (values, handle) {
+            [minElevation, maxElevation] = values.map(value => Math.round(value));
+            minElevationSpan.textContent = minElevation + ' hm';
+            maxElevationSpan.textContent = maxElevation + ' hm';
+        });
+
+        const slopeSlider = document.getElementById("slopeSlider");
+        const minSlopeSpan = document.getElementById("minSlopeSlider");
+        const maxSlopeSpan = document.getElementById("maxSlopeSlider");
+        var [minSlope, maxSlope] = [0, 15];
+        noUiSlider.create(slopeSlider, {
+            start: [0, 15],
+            connect: true,
+            range: {
+                'min': 0,
+                'max': 15
+            },
+            step: 0.1,
+        });
+        slopeSlider.noUiSlider.on('update', function (values, handle) {
+            [minSlope, maxSlope] = values.map(value => Math.round(value * 10) / 10);
+            minSlopeSpan.textContent = minSlope + ' %';
+            maxSlopeSpan.textContent = maxSlope + ' %';
+        });
+
         applyFilterButton.addEventListener("click", function() {
             applyFilter = true;
             filterToggle.style.color = "lightblue";
-            var minHeight = document.getElementById("minHeight").value;
-            var maxHeight = document.getElementById("maxHeight").value;
-            var minElevation = document.getElementById("minElevation").value;
-            var maxElevation = document.getElementById("maxElevation").value;
-            var minLength = document.getElementById("minLength").value;
-            var maxLength = document.getElementById("maxLength").value;
-            var minSlope = document.getElementById("minSlope").value;
-            var maxSlope = document.getElementById("maxSlope").value;
-            var passCheckbox = document.getElementById("passCheckbox").checked;
-            var climbCheckbox = document.getElementById("climbCheckbox").checked;
-            var sackgasseCheckbox = document.getElementById("sackgasseCheckbox").checked;
-            FilterArray[0] = passCheckbox;
-            FilterArray[1] = climbCheckbox;
-            FilterArray[2] = sackgasseCheckbox;
-            if (!minHeight){
-                FilterArray[3] = 0; 
-            } else {
-                FilterArray[3] = parseFloat(minHeight);
-            }
-            if (!maxHeight){
-                FilterArray[4] = 10000; 
-            } else {
-                FilterArray[4] = parseFloat(maxHeight);
-            }
-            if (!minElevation){
-                FilterArray[5] = 0; 
-            } else {
-                FilterArray[5] = parseFloat(minElevation);
-            }
-            if (!maxElevation){
-                FilterArray[6] = 10000; 
-            } else {
-                FilterArray[6] = parseFloat(maxElevation);
-            }
-            if (!minLength){
-                FilterArray[7] = 0; 
-            } else {
-                FilterArray[7] = parseFloat(minLength);
-            }
-            if (!maxLength){
-                FilterArray[8] = 10000; 
-            } else {
-                FilterArray[8] = parseFloat(maxLength);
-            }
-            if (!minSlope){
-                FilterArray[9] = 0; 
-            } else {
-                FilterArray[9] = parseFloat(minSlope);
-            }
-            if (!maxSlope){
-                FilterArray[10] = 10000; 
-            } else {
-                FilterArray[10] = parseFloat(maxSlope);
-            }
+            FilterArray[0] = buttonPass1;
+            FilterArray[1] = buttonClimb1;
+            FilterArray[2] = buttonSackgasse1;
+            FilterArray[3] = minHeight;
+            FilterArray[4] = maxHeight;
+            FilterArray[5] = minElevation;
+            FilterArray[6] = maxElevation;
+            FilterArray[7] = minLength;
+            FilterArray[8] = maxLength;
+            FilterArray[9] = minSlope;
+            FilterArray[10] = maxSlope;
             FilterArray[11] = buttonIT1;
             FilterArray[12] = buttonFR1;
             FilterArray[13] = buttonCH1;
@@ -2199,17 +2300,13 @@
         resetFilterButton.addEventListener("click", function() {
             applyFilter = false;
             filterToggle.style.color = 'rgb(126, 121, 121)';
-            document.getElementById('minHeight').value = '';
-            document.getElementById('maxHeight').value = '';
-            document.getElementById('minElevation').value = '';
-            document.getElementById('maxElevation').value = '';
-            document.getElementById('minLength').value = '';
-            document.getElementById('maxLength').value = '';
-            document.getElementById('minSlope').value = '';
-            document.getElementById('maxSlope').value = '';
-            document.getElementById('passCheckbox').checked = false;
-            document.getElementById('climbCheckbox').checked = false;
-            document.getElementById('sackgasseCheckbox').checked = false;
+            heightSlider.noUiSlider.reset();
+            lengthSlider.noUiSlider.reset();
+            elevationSlider.noUiSlider.reset();
+            slopeSlider.noUiSlider.reset();
+            if(!buttonPass1){document.getElementById('Passbutton1').click()};
+            if(!buttonClimb1){document.getElementById('Climbbutton1').click()};
+            if(!buttonSackgasse1){document.getElementById('Sackgassebutton1').click()};
             if(buttonIT1){document.getElementById('ITbutton1').click()};
             if(buttonFR1){document.getElementById('FRbutton1').click()};
             if(buttonCH1){document.getElementById('CHbutton1').click()};
@@ -2218,17 +2315,17 @@
             if(buttonSLO1){document.getElementById('SLObutton1').click()};
             if(buttonAND1){document.getElementById('ANDbutton1').click()};
             if(buttonES1){document.getElementById('ESbutton1').click()};
-            FilterArray[0] = false;
-            FilterArray[1] = false;
-            FilterArray[2] = false;
-            FilterArray[3] = 0;
-            FilterArray[4] = 10000;
-            FilterArray[5] = 0;
-            FilterArray[6] = 10000;
-            FilterArray[7] = 0;
-            FilterArray[8] = 10000;
-            FilterArray[9] = 0;
-            FilterArray[10] = 10000;
+            FilterArray[0] = true;
+            FilterArray[1] = true;
+            FilterArray[2] = true;
+            FilterArray[3] = minHeight;
+            FilterArray[4] = maxHeight;
+            FilterArray[5] = minElevation;
+            FilterArray[6] = maxElevation;
+            FilterArray[7] = minLength;
+            FilterArray[8] = maxLength;
+            FilterArray[9] = minSlope;
+            FilterArray[10] = maxSlope;
             FilterArray[11] = false;
             FilterArray[12] = false;
             FilterArray[13] = false;
@@ -2243,6 +2340,7 @@
             rangeSlider.value = 0;
             range = 0;
             sliderValue.textContent = "—";
+            activeControl = false;
             filter.style.display = "none";
         });
 
@@ -2255,8 +2353,6 @@
         });
         resetFilterButton.click();
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-        
-
         //variables
         const highestIDD = passi.features[passi.features.length - 1].properties.idd;
         var geoJSONArray = [];
@@ -3106,7 +3202,7 @@
 
                     const layerDone = localStorage.getItem(`TickedCheckboxState${idd}`);
 
-                    if((((category === 'Pass' && FilterArray2[0]) || (category === 'Climb' && FilterArray2[1]) || (category == 'Sackgasse' && FilterArray2[2])) || (!FilterArray2[0] && !FilterArray2[1] && !FilterArray2[2])) && height >= FilterArray2[3] && height <= FilterArray2[4] && (((country === 'IT' && FilterArray2[11]) || (country === 'FR' && FilterArray2[12]) || (country == 'CH' && FilterArray2[13]) || (country == 'AT' && FilterArray2[14]) || (country == 'DE' && FilterArray2[15]) || (country == 'SLO' && FilterArray2[16]) || (country == 'AND' && FilterArray2[17]) || (country == 'ES' && FilterArray2[18])) || (!FilterArray2[11] && !FilterArray2[12] && !FilterArray2[13] && !FilterArray2[14] && !FilterArray2[15] && !FilterArray2[16] && !FilterArray2[17] && !FilterArray2[18])) && insideRange2 >= 0){
+                    if(((category === 'Pass' && FilterArray2[0]) || (category === 'Climb' && FilterArray2[1]) || (category == 'Sackgasse' && FilterArray2[2])) && height >= FilterArray2[3] && height <= FilterArray2[4] && (((country === 'IT' && FilterArray2[11]) || (country === 'FR' && FilterArray2[12]) || (country == 'CH' && FilterArray2[13]) || (country == 'AT' && FilterArray2[14]) || (country == 'DE' && FilterArray2[15]) || (country == 'SLO' && FilterArray2[16]) || (country == 'AND' && FilterArray2[17]) || (country == 'ES' && FilterArray2[18])) || (!FilterArray2[11] && !FilterArray2[12] && !FilterArray2[13] && !FilterArray2[14] && !FilterArray2[15] && !FilterArray2[16] && !FilterArray2[17] && !FilterArray2[18])) && insideRange2 >= 0){
                         if(!slider){
                             layerOK = true;
                         } else {
@@ -3130,8 +3226,8 @@
                             trackArray3[j] = geoJSONArray[idd].getLayers()[j].feature.properties.elevation;
                             trackArray4[j] = ((geoJSONArray[idd].getLayers()[j].feature.properties.elevation/((geoJSONArray[idd].getLayers()[j].feature.properties.length)*1000))*100).toFixed(1);
                             trackArray5[j] = geoJSONArray[idd].getLayers()[j].feature.properties.link;
-
-                            if (trackArray2[j] >= FilterArray2[5] && trackArray2[j] <= FilterArray2[6] && trackArray3[j] >= FilterArray2[7] && trackArray3[j] <= FilterArray2[8] && trackArray4[j] >= FilterArray2[9] && trackArray4[j] <= FilterArray2[10]){
+                            
+                            if (trackArray2[j] >= FilterArray2[7] && trackArray2[j] <= FilterArray2[8] && trackArray3[j] >= FilterArray2[5] && trackArray3[j] <= FilterArray2[6] && trackArray4[j] >= FilterArray2[9] && trackArray4[j] <= FilterArray2[10]){
                                 trackOK[j] = true;
                             }
 
@@ -3324,7 +3420,7 @@
                     const latitude = coordinates[1];
                     const longitude = coordinates[0];
                     insideRange = isInsideCircle(lat, lng, latitude, longitude, range);
-                    if((((category === 'Pass' && FilterArray[0]) || (category === 'Climb' && FilterArray[1]) || (category == 'Sackgasse' && FilterArray[2])) || (!FilterArray[0] && !FilterArray[1] && !FilterArray[2])) && height >= FilterArray[3] && height <= FilterArray[4] && (((country === 'IT' && FilterArray[11]) || (country === 'FR' && FilterArray[12]) || (country == 'CH' && FilterArray[13]) || (country == 'AT' && FilterArray[14]) || (country == 'DE' && FilterArray[15]) || (country == 'SLO' && FilterArray[16]) || (country == 'AND' && FilterArray[17]) || (country == 'ES' && FilterArray[18])) || (!FilterArray[11] && !FilterArray[12] && !FilterArray[13] && !FilterArray[14] && !FilterArray[15] && !FilterArray[16] && !FilterArray[17] && !FilterArray[18])) && insideRange >= 0){
+                    if(((category === 'Pass' && FilterArray[0]) || (category === 'Climb' && FilterArray[1]) || (category == 'Sackgasse' && FilterArray[2])) && height >= FilterArray[3] && height <= FilterArray[4] && (((country === 'IT' && FilterArray[11]) || (country === 'FR' && FilterArray[12]) || (country == 'CH' && FilterArray[13]) || (country == 'AT' && FilterArray[14]) || (country == 'DE' && FilterArray[15]) || (country == 'SLO' && FilterArray[16]) || (country == 'AND' && FilterArray[17]) || (country == 'ES' && FilterArray[18])) || (!FilterArray[11] && !FilterArray[12] && !FilterArray[13] && !FilterArray[14] && !FilterArray[15] && !FilterArray[16] && !FilterArray[17] && !FilterArray[18])) && insideRange >= 0){
                         if(!slider1){
                             markerIDArray[idd] = idd;
                         } else {
@@ -3348,7 +3444,7 @@
                     const slope = (elevation/(length*1000))*100;
                     const idd = featureLayer.feature.properties.idd;
                     const layerDone = localStorage.getItem(`TickedCheckboxState${idd}`);
-                    if((((category === 'Pass' && FilterArray[0]) || (category === 'Climb' && FilterArray[1]) || (category == 'Sackgasse' && FilterArray[2])) || (!FilterArray[0] && !FilterArray[1] && !FilterArray[2])) && length >= FilterArray[7] && length <= FilterArray[8] && elevation >= FilterArray[5] && elevation <= FilterArray[6] && slope >= FilterArray[9] && slope <= FilterArray[10] && (((country === 'IT' && FilterArray[11]) || (country === 'FR' && FilterArray[12]) || (country == 'CH' && FilterArray[13]) || (country == 'AT' && FilterArray[14]) || (country == 'DE' && FilterArray[15]) || (country == 'SLO' && FilterArray[16]) || (country == 'AND' && FilterArray[17]) || (country == 'ES' && FilterArray[18])) || (!FilterArray[11] && !FilterArray[12] && !FilterArray[13] && !FilterArray[14] && !FilterArray[15] && !FilterArray[16] && !FilterArray[17] && !FilterArray[18]))){
+                    if(((category === 'Pass' && FilterArray[0]) || (category === 'Climb' && FilterArray[1]) || (category == 'Sackgasse' && FilterArray[2])) && length >= FilterArray[7] && length <= FilterArray[8] && elevation >= FilterArray[5] && elevation <= FilterArray[6] && slope >= FilterArray[9] && slope <= FilterArray[10] && (((country === 'IT' && FilterArray[11]) || (country === 'FR' && FilterArray[12]) || (country == 'CH' && FilterArray[13]) || (country == 'AT' && FilterArray[14]) || (country == 'DE' && FilterArray[15]) || (country == 'SLO' && FilterArray[16]) || (country == 'AND' && FilterArray[17]) || (country == 'ES' && FilterArray[18])) || (!FilterArray[11] && !FilterArray[12] && !FilterArray[13] && !FilterArray[14] && !FilterArray[15] && !FilterArray[16] && !FilterArray[17] && !FilterArray[18]))){
                         if(!slider1){
                             geoIDArray[idd] = idd;
                         } else {
