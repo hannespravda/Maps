@@ -40,6 +40,7 @@
         #map {
             flex: 1;
             height: 100%;
+            transition: width 0.5s ease;
         }
         .leaflet-top.leaflet-right .leaflet-control {
             top: 35px;
@@ -52,7 +53,7 @@
         .leaflet-top.leaflet-left .leaflet-control {
             top: 40px;
             user-select: none;
-        }   
+        }
         input[type=checkbox] {
             accent-color: lightblue;
         }
@@ -89,7 +90,13 @@
             border-radius: 50%;
             background-color: rgb(255,255,255,0);
             display: flex;
-            color: rgb(179, 108, 108); 
+            color: rgb(179, 108, 108);
+            z-index: 1001;
+            background-image: url('Images/closeGrau.png');
+            background-size: cover;
+        }
+        #custom-close-button:hover {
+            background-image: url('Images/closeRot.png');
         }
         .elevationprofile-textbox {
             position: absolute;
@@ -135,7 +142,7 @@
         #filter1 {
             position: absolute;
             top: 10px;
-            left: 80.5%;
+            left: 84.6%;    /* 80.5*/
             transform: translateX(-50%);
             z-index: 1000;
             background-color: white;
@@ -161,24 +168,6 @@
             cursor: pointer;
             user-select: none;
         }
-        #filter2 {
-            position: absolute;
-            top: 16px;
-            left: 610px;
-            transform: translateX(-50%);
-            z-index: 1000;
-            background-color: white;
-            border: 2px solid rgba(0,0,0,0.2);
-            background-clip: padding-box;
-            border-radius: 4px;
-            font-family: Helvetica, Arial, sans-serif;
-            font-size: 12px;
-            padding: 5px;
-            text-align: center;
-            width: 360px;
-            user-select: none;
-            color: rgb(126, 121, 121);
-        }
         .filter-row {
             display: flex;
             align-items: center;
@@ -195,22 +184,24 @@
             background-color: rgb(0,0,0,0);
             color: lightblue;
             font-family: Helvetica, Arial, sans-serif;
-            font-size: 14px;
+            font-size: 12px;
             text-align: left;
             border: none;
             cursor: pointer;
             user-select: none;
+            text-decoration: underline;
         }
         #resetFilter2,
         #resetFilter1 {
             text-align: right;
-            font-size: 14px;
+            font-size: 12px;
             background-color: rgb(0,0,0,0);
             border: none;
             color: rgb(179, 108, 108); /* Text color */
             cursor: pointer;
             user-select: none;
             margin-left: 100px;
+            text-decoration: underline;
         }
 
         /* List */
@@ -236,24 +227,60 @@
             border-radius: 4px;
         }
         #table-container {
-            position: absolute;
-            top: 10px;
-            left: 29%;
-            transform: translate(-50%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100vh;
+            transform: translateX(0);
             z-index: 1000;
             background-color: white;
             color: rgb(126, 121, 121);
-            border: 2px solid rgba(0,0,0,0.2);
-            background-clip: padding-box;
             border-radius: 4px;
             font-family: Helvetica, Arial, sans-serif;
             font-size: 12px;
             text-align: left;
-            max-width: 640px;
-            max-height: 555px;
             overflow: auto;
             display: none;
             user-select: none;
+            transition: width 0.5s ease;
+        }
+        #filter-options-container {
+            display: none;
+            background-color: #f1f0f0; /* Set your desired background color */
+            padding: 5px 15px 1px; /* Set your desired padding for left and right */
+        }
+        #closeFilter2 {
+            background-color: rgb(0,0,0,0);
+            color: rgb(126, 121, 121);
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            text-align: left;
+            border: none;
+            cursor: pointer;
+            user-select: none;
+            text-decoration: underline;
+        }
+        #close-table {
+            cursor: pointer;
+            width: 15px;
+            height: 15px;
+            padding: 0;
+            border: none;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgb(179, 108, 108);
+            margin-left: 230px;
+            margin-top: 0px;
+            background-image: url('Images/closeGrau.png');
+            background-size: cover;
+            z-index: 1001;
+        }
+        #close-table:hover {
+            background-image: url('Images/closeRot.png');
         }
         #data-table th,
         #data-table td {
@@ -385,9 +412,9 @@
             position: absolute;
             display: flex;
             align-items: center;
-            left: 460px;
-            top: 7px;
-            width: 150px;
+            left: 380px;
+            top: 10px;
+            width: 200px;
          }
         #search-input {
             font-family: Helvetica, Arial, sans-serif;
@@ -411,7 +438,7 @@
             padding: 0px 0px;
             cursor: pointer;
             position: absolute;
-            left: 88%;
+            left: 91%;
         }
         #clear-search:hover {
             color: rgb(179, 108, 108);
@@ -561,7 +588,7 @@
             -webkit-appearance: none;
             appearance: none;
             margin-left: 10px;
-            width: 160px;
+            width: 60%;
             height: 10px;
             background-color: #ccc;
             border: none;
@@ -589,30 +616,50 @@
         }
 
         /* dual slider */
-        #heightSlider2,
         #heightSlider1 {
             width: 45%;
             margin-top: 1px;
             position: absolute;
             margin-left: 130px;
         }
-        #lengthSlider2,
         #lengthSlider1 {
             width: 45%;
             margin-top: 1px;
             position: absolute;
             margin-left: 130px;
         }
-        #elevationSlider2,
         #elevationSlider1 {
             width: 45%;
             margin-top: 1px;
             position: absolute;
             margin-left: 130px;
         }
-        #slopeSlider2,
         #slopeSlider1 {
             width: 45%;
+            margin-top: 1px;
+            position: absolute;
+            margin-left: 130px;
+        }
+        #heightSlider2 {
+            width: 65%;
+            margin-top: 1px;
+            position: absolute;
+            margin-left: 130px;
+        }
+        #lengthSlider2 {
+            width: 65%;
+            margin-top: 1px;
+            position: absolute;
+            margin-left: 130px;
+        }
+        #elevationSlider2 {
+            width: 65%;
+            margin-top: 1px;
+            position: absolute;
+            margin-left: 130px;
+        }
+        #slopeSlider2 {
+            width: 65%;
             margin-top: 1px;
             position: absolute;
             margin-left: 130px;
@@ -1096,7 +1143,7 @@
 <body>
     <div id = "map"></div> 
 
-    <div id="custom-close-button" class="custom-close-button" onclick="closeElevationProfile()">✕</div>
+    <div id="custom-close-button" class="custom-close-button" onclick="closeElevationProfile()"></div>
 
     <div id="filter1-toggle">Filter</div>
     <div id="filter1" style="display: none;">
@@ -1185,11 +1232,70 @@
             </div>
             <button id="select-all" onclick="selectAll()">Alle</button>
             <button id="deselect-all" onclick="deselectAll()">Aufheben</button>
-            <button id="filter2-toggle" onclick="tableFilterToggle()">Filter</button>
+            <button id="filter2-toggle" onclick="tableFilterToggle1()">Filter</button>
             <div id="search-container">
                 <input type="text" id="search-input" list="suggestions" placeholder="Suche..." oninput="searchTable()">
                 <button id="clear-search" onclick="clearSearch()">✕</button>
                 <datalist id="suggestions"></datalist>
+            </div>
+            <button id="close-table" onclick="closeTable()"></button>
+        </div>
+        <div id="filter-options-container" style="display: none;">
+            <div id="button-container">
+                <label for="Passbutton2">Pass</label>
+                <button id="Passbutton2" class="round-button"></button>
+                <label for="Climbbutton2">Anstieg</label>
+                <button id="Climbbutton2" class="round-button"></button>
+                <label for="Sackgassebutton2">Sackgasse</label>
+                <button id="Sackgassebutton2" class="round-button"></button>
+            </div>
+            <hr class="separator-line">
+            <div id="button-container">
+                <button id="ITbutton2" class="round-button"></button>
+                <button id="FRbutton2" class="round-button"></button>
+                <button id="CHbutton2" class="round-button"></button>
+                <button id="ATbutton2" class="round-button"></button>
+                <button id="DEbutton2" class="round-button"></button>
+                <button id="SLObutton2" class="round-button"></button>
+                <button id="ESbutton2" class="round-button"></button>
+                <button id="ANDbutton2" class="round-button"></button>
+            </div>
+            <hr class="separator-line">
+            <div class="filter-row">
+                <label for="heightSlider2">Höhe:</label>
+                <span id="minHeightSlider2">0 m</span>
+                <div id="heightSlider2"></div>
+                <span id="maxHeightSlider2">3000 m</span>
+            </div>
+            <div class="filter-row">
+                <label for="lengthSlider2">Länge:</label>
+                <span id="minLengthSlider2">0 km</span>
+                <div id="lengthSlider2"></div>
+                <span id="maxLengthSlider2">60 km</span>
+            </div>
+            <div class="filter-row">
+                <label for="elevationSlider2">Höhenmeter:</label>
+                <span id="minElevationSlider2">0 hm</span>
+                <div id="elevationSlider2"></div>
+                <span id="maxElevationSlider2">2500 hm</span>
+            </div>
+            <div class="filter-row">
+                <label for="slopeSlider2">Steigung:</label>
+                <span id="minSlopeSlider2">0 %</span>
+                <div id="slopeSlider2"></div>
+                <span id="maxSlopeSlider2">15 %</span>
+            </div>
+            <hr class="separator-line">
+            <div class="filter-row">
+                <label class="radius-slider2">In der Nähe:</label>
+                <input type="range" id="rangeSlider2" min="0" max="200" value = "0" class="range-slider">
+                <div class="rangeslider-value2">&#8212</div>
+            </div>
+            <hr class="separator-line">
+            <div class="filter-row">
+                <button id="closeFilter2" onclick="closeFilter()">Schließen</button>
+                <button id="resetFilter2">Zurücksetzen</button>
+                <button id="applyFilter2">Anwenden</button>
             </div>
         </div>
         <table id="data-table">
@@ -1208,68 +1314,16 @@
             <tbody id="data-body"></tbody>
         </table>
     </div>
-
-    <div id="filter2" style="display: none;">
-        <div id="button-container">
-            <label for="Passbutton2">Pass</label>
-            <button id="Passbutton2" class="round-button"></button>
-            <label for="Climbbutton2">Anstieg</label>
-            <button id="Climbbutton2" class="round-button"></button>
-            <label for="Sackgassebutton2">Sackgasse</label>
-            <button id="Sackgassebutton2" class="round-button"></button>
-        </div>
-        <hr class="separator-line">
-        <div id="button-container">
-            <button id="ITbutton2" class="round-button"></button>
-            <button id="FRbutton2" class="round-button"></button>
-            <button id="CHbutton2" class="round-button"></button>
-            <button id="ATbutton2" class="round-button"></button>
-            <button id="DEbutton2" class="round-button"></button>
-            <button id="SLObutton2" class="round-button"></button>
-            <button id="ESbutton2" class="round-button"></button>
-            <button id="ANDbutton2" class="round-button"></button>
-        </div>
-        <hr class="separator-line">
-        <div class="filter-row">
-            <label for="heightSlider2">Höhe:</label>
-            <span id="minHeightSlider2">0 m</span>
-            <div id="heightSlider2"></div>
-            <span id="maxHeightSlider2">3000 m</span>
-        </div>
-        <div class="filter-row">
-            <label for="lengthSlider2">Länge:</label>
-            <span id="minLengthSlider2">0 km</span>
-            <div id="lengthSlider2"></div>
-            <span id="maxLengthSlider2">60 km</span>
-        </div>
-        <div class="filter-row">
-            <label for="elevationSlider2">Höhenmeter:</label>
-            <span id="minElevationSlider2">0 hm</span>
-            <div id="elevationSlider2"></div>
-            <span id="maxElevationSlider2">2500 hm</span>
-        </div>
-        <div class="filter-row">
-            <label for="slopeSlider2">Steigung:</label>
-            <span id="minSlopeSlider2">0 %</span>
-            <div id="slopeSlider2"></div>
-            <span id="maxSlopeSlider2">15 %</span>
-        </div>
-        <hr class="separator-line">
-        <div class="filter-row">
-            <label class="radius-slider2">In der Nähe:</label>
-            <input type="range" id="rangeSlider2" min="0" max="200" value = "0" class="range-slider">
-            <div class="rangeslider-value2">&#8212</div>
-        </div>
-        <hr class="separator-line">
-        <div class="filter-row">
-            <button id="resetFilter2">Zurücksetzen</button>
-            <button id="applyFilter2">Anwenden</button>
-        </div>
-    </div>
     <div id="textbox" class="elevationprofile-textbox" style="display: none;"></div>
 
     <script>
         //localStorage.clear();
+
+        //initial view
+        var map = L.map('map', {
+            minZoom: 2,
+            zoomControl: false
+        }).setView([45.464664, 9.188540],13);
 
         //https counter
         function countHttpsOccurrences(passi) {
@@ -1279,11 +1333,7 @@
         }
         const numberOfHttpOccurrences = countHttpsOccurrences(passi);
 
-        //initial view
-        var map = L.map('map', {
-            minZoom: 2,
-            zoomControl: false
-        }).setView([45.464664, 9.188540],13);
+        
 
         //zoom
         L.control.zoom({
@@ -1406,12 +1456,7 @@
         });
 
         tableToggle.addEventListener("click", function() {
-            if (table.style.display === "none" || table.style.display === "") {
-                table.style.display = "block";
-            } else {
-                table.style.display = "none";
-                filter2.style.display = "none";
-            }
+            toggleTable();
         });
 
         sortDropdown.addEventListener("change", function() {
@@ -1439,6 +1484,52 @@
                 sortRandom();
             }
         });
+
+        function closeTable() {
+            var tableContainer = document.getElementById("table-container");
+            toggleTable();
+            tableContainer.style.display = "none";
+        }
+
+        function toggleTable() {
+            var tableContainer = document.getElementById("table-container");
+            var map = document.getElementById("map");
+            var mapControls = document.querySelector(".leaflet-top.leaflet-left .leaflet-control");
+            var secondLeafletControl = document.querySelector('.leaflet-top.leaflet-left .leaflet-control:not(:first-child)');
+            var elevationControl = document.querySelector('.elevation-control');
+            var backgroundElement = elevationControl.querySelector('.background');
+            var elevationProfileTextbox = document.querySelector('.elevationprofile-textbox');
+            
+            if (tableContainer.style.display === "none") {
+                tableContainer.style.display = "block";
+                map.style.marginLeft = "50%";
+                mapControls.style.top = "0px";
+                if (elevationProfileTextbox){
+                    elevationProfileTextbox.style.marginLeft = '25%';
+                }
+                if (backgroundElement){
+                    backgroundElement.style.width = '50%';
+                    backgroundElement.style.marginLeft = '50%';
+                }
+                if (secondLeafletControl) {
+                    secondLeafletControl.style.top = '0px';
+                }
+            } else {
+                tableContainer.style.display = "none";
+                map.style.marginLeft = "0";
+                if (backgroundElement){
+                    backgroundElement.style.width = '100%';
+                    backgroundElement.style.marginLeft = '0';
+                }
+                if (elevationProfileTextbox){
+                    elevationProfileTextbox.style.marginLeft = '0';
+                }
+                mapControls.style.top = "40px";
+                if (secondLeafletControl) {
+                    secondLeafletControl.style.top = '40px';
+                }
+            }
+        }
 
         function toggleSortOrder() {
             const table = document.getElementById("data-table");
@@ -1731,7 +1822,6 @@
         const ESbutton1 = document.getElementById("ESbutton1");
         const ANDbutton1 = document.getElementById("ANDbutton1");
 
-
         var applyFilter1 = false;
         var FilterArray1 = [];
         var buttonPass1 = true;
@@ -1753,12 +1843,19 @@
         var [minElevation1, maxElevation1] = [0, 2500];
         var [minSlope1, maxSlope1] = [0, 15];
 
-        filterButton1.addEventListener("click", function() {
+        /*filterButton1.addEventListener("click", function() {
             if (filter1.style.display === "none" || filter1.style.display === "") {
                 filter1.style.display = "block";
             } else {
                 filter1.style.display = "none";
             }
+        });*/
+
+        filterButton1.addEventListener("mouseenter", function() {
+            filter1.style.display = "block";
+        });
+        filter1.addEventListener("mouseleave", function() {
+            filter1.style.display = "none";
         });
 
         switchSlider1.addEventListener("change", function() {
@@ -2031,7 +2128,6 @@
         resetFilterButton1.click();
 
         //filter2
-        const filter2 = document.getElementById("filter2");
         const filterButton2 = document.getElementById('filter2-toggle');
         const applyFilterButton2 = document.getElementById("applyFilter2");
         const resetFilterButton2 = document.getElementById("resetFilter2");
@@ -2081,13 +2177,15 @@
         var [minElevation2, maxElevation2] = [0, 2500];
         var [minSlope2, maxSlope2] = [0, 15];
 
-        function tableFilterToggle(){
-            if (filter2.style.display === "none" || filter2.style.display === "") {
-                filter2.style.display = "block";
-            } else {
-                filter2.style.display = "none";
-            }
-        };
+        function tableFilterToggle1() {
+            var filterOptionsContainer = document.getElementById("filter-options-container");
+            filterOptionsContainer.style.display = filterOptionsContainer.style.display === "none" ? "block" : "none";
+        }
+
+        function closeFilter() {
+            var filterOptionsContainer = document.getElementById("filter-options-container");
+            filterOptionsContainer.style.display = "none";
+        }
 
         Passbutton2.addEventListener("click", function(){
             if(buttonPass2){
@@ -2303,7 +2401,6 @@
             FilterArray2[16] = buttonSLO2;
             FilterArray2[17] = buttonAND2;
             FilterArray2[18] = buttonES2;
-            filter2.style.display = "none";
         });
 
         resetFilterButton2.addEventListener("click", function() {
@@ -2347,7 +2444,6 @@
             range2 = 0;
             sliderValue2.textContent = "—";
             activeControl2 = false;
-            filter2.style.display = "none";
             document.getElementById("sort-options").value = "empty";
             clearSearch();
         });
