@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display a map in Cesium JS</title>
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.98/Build/Cesium/Cesium.js"></script>
+  <style>
+    @import url(https://cesium.com/downloads/cesiumjs/releases/1.98/Build/Cesium/Widgets/widgets.css);
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    #cesiumContainer {position: absolute; top: 0; right: 0; bottom: 0; left: 0;}
+  </style>
+</head>
+<body>
+  <div id="cesiumContainer">
+    <a href="https://www.maptiler.com" style="position:absolute;right:10px;bottom:10px;z-index:999;"><img src="https://api.maptiler.com/resources/logo.svg" alt="MapTiler logo"></a>
+  </div>
+
+  <script src="CampoCarloMagno.js"></script>
+  <script src="Stelvio.js"></script>
+
+  <script>
+    const key = '5oOhPnaZPwb4EiDFpWyW';
+    
+    var viewer = new Cesium.Viewer('cesiumContainer', {
+      terrainProviderViewModels : [], //Disable terrain changing
+      infoBox : false, //Disable InfoBox widget
+      selectionIndicator : false //Disable selection indicator
+  });
+  
+  //Enable lighting based on sun/moon positions
+  viewer.scene.globe.enableLighting = true;
+  
+  viewer.dataSources.add(Cesium.KmlDataSource.load('map.kml')).then(function(dataSource) {
+      viewer.clock.shouldAnimate = false;
+  
+      //Create the entity after KML loaded
+      var entity = viewer.entities.add({
+          position: dataSource.entities.getById('tour').position,
+          model: {
+              uri: '../../SampleData/models/CesiumGround/Cesium_Ground.bgltf',
+              minimumPixelSize: 64
+          },
+  
+          path: {
+              resolution : 1,
+              material : new Cesium.PolylineGlowMaterialProperty({
+                  glowPower : 0.1,
+                  color : Cesium.Color.YELLOW
+              }),
+              width : 10
+          }
+  
+      });
+      viewer.flyTo(entity).then(function () {
+          viewer.trackedEntity = entity;
+          viewer.selectedEntity = viewer.trackedEntity;
+          viewer.clock.multiplier = 15;
+          viewer.clock.shouldAnimate = true;
+      });
+  });
+  </script>
+</body>
+</html>

@@ -51,7 +51,7 @@
             border-radius: 5px
         }
         .leaflet-top.leaflet-left .leaflet-control {
-            top: 40px;
+            top: 0px;
             user-select: none;
         }
         input[type=checkbox] {
@@ -59,6 +59,10 @@
         }
         input[type=radio] {
             accent-color: rgb(126, 121, 121);
+        }
+        .leaflet-bar a {
+            background-color: white;
+            color: rgb(126, 121, 121);
         }
     
         /* elevation profile */
@@ -97,6 +101,23 @@
         }
         #custom-close-button:hover {
             background-image: url('Images/closeRot.png');
+        }
+        #custom-close-button:hover::before {
+            content: "Höhenprofil schließen";
+            display: block;
+            position: absolute;
+            top: 0%;
+            left: -725%;
+            margin-right: 10px;
+            transform: translateY(-50%);
+            white-space: nowrap;
+            background-color: rgb(0,0,0,0.7);
+            color: #fff;
+            padding: 5px;
+            border-radius: 4px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            user-select: none;
         }
         .elevationprofile-textbox {
             position: absolute;
@@ -206,25 +227,42 @@
 
         /* List */
         #table-toggle {
+                background-color: white;
+                box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 12px 2px;
+                left: 0px;
+                position: absolute;
+                top: 50%;
+                z-index: 500;
+                padding-top: 0.8rem;
+                padding-bottom: 0.8rem;
+                padding-left: 0.4rem;
+                padding-right: 0.4rem;
+                border-bottom-right-radius: 8px;
+                border-top-right-radius: 8px;
+                transform: translateY(-50%);
+                cursor: pointer;
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 15px;
+                font-weight: 1200;
+                user-select: none;
+                color: rgb(126, 121, 121);
+        }
+        #table-toggle:hover::before {
+            content: "Liste ausklappen";
+            display: block;
             position: absolute;
-            top: 10px;
-            left: 2.1%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            background-color: white;
-            color: rgb(126, 121, 121);
-            font-family: Helvetica, Arial, sans-serif;
-            font-size: 0.75rem;
-            line-height: 1.5;
+            top: 10%;
+            left: 110%;
+            margin-right: 10px;
+            transform: translateY(-50%);
+            white-space: nowrap;
+            background-color: rgb(0,0,0,0.7);
+            color: #fff;
             padding: 5px;
-            text-align: center;
-            width: auto;
-            cursor: pointer;
-            user-select: none;
-            box-shadow: none;
-            border: 2px solid rgba(0,0,0,0.2);
-            background-clip: padding-box;
             border-radius: 4px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            user-select: none;
         }
         #table-container {
             position: fixed;
@@ -247,8 +285,8 @@
         }
         #filter-options-container {
             display: none;
-            background-color: #f1f0f0; /* Set your desired background color */
-            padding: 5px 15px 1px; /* Set your desired padding for left and right */
+            background-color: #f1f0f0;
+            padding: 5px 15px 1px;
         }
         #closeFilter2 {
             background-color: rgb(0,0,0,0);
@@ -260,27 +298,6 @@
             cursor: pointer;
             user-select: none;
             text-decoration: underline;
-        }
-        #close-table {
-            cursor: pointer;
-            width: 15px;
-            height: 15px;
-            padding: 0;
-            border: none;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgb(179, 108, 108);
-            margin-left: 230px;
-            margin-top: 0px;
-            background-image: url('Images/closeGrau.png');
-            background-size: cover;
-            z-index: 1001;
-        }
-        #close-table:hover {
-            background-image: url('Images/closeRot.png');
         }
         #data-table th,
         #data-table td {
@@ -334,6 +351,22 @@
             color: lightblue;
             border-radius: 0px;
             cursor: pointer;
+            user-select: none;
+            position: relative;
+        }
+        .show-more-button:hover::before {
+            content: attr(data-tooltip);
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 10%; 
+            white-space: nowrap;
+            background-color: rgb(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px;
+            border-radius: 4px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 10px;
             user-select: none;
         }
 
@@ -412,7 +445,7 @@
             position: absolute;
             display: flex;
             align-items: center;
-            left: 380px;
+            left: 66.5%;
             top: 10px;
             width: 200px;
          }
@@ -442,6 +475,137 @@
         }
         #clear-search:hover {
             color: rgb(179, 108, 108);
+        }
+
+        /* button tooltip hover */
+        button {
+            position: relative;
+        }
+        button:hover::before {
+            content: attr(data-tooltip);
+            display: block;
+            position: absolute;
+            top: 90%;
+            left: 90%;
+            white-space: nowrap;
+            background-color: rgb(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px;
+            border-radius: 4px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            user-select: none;
+            z-index: 500;
+        }
+        button.custom-tooltip-position1 {
+            position: relative;
+        }
+        button.custom-tooltip-position1:hover::before {
+            content: attr(data-tooltip);
+            display: block;
+            position: absolute;
+            top: 110%;
+            left: -850%; 
+            white-space: nowrap;
+            background-color: rgb(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px;
+            border-radius: 4px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            user-select: none;
+        }
+        button.custom-tooltip-position2 {
+            position: relative;
+        }
+        button.custom-tooltip-position2:hover::before {
+            content: attr(data-tooltip);
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: -250%;
+            white-space: nowrap;
+            background-color: rgb(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px;
+            border-radius: 4px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            user-select: none;
+        }
+        button.custom-tooltip-position3 {
+            position: relative;
+        }
+        button.custom-tooltip-position3:hover::before {
+            content: attr(data-tooltip);
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: -170%;
+            white-space: nowrap;
+            background-color: rgb(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px;
+            border-radius: 4px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            user-select: none;
+        }
+        button.custom-tooltip-position4 {
+            position: relative;
+        }
+        button.custom-tooltip-position4:hover::before {
+            content: attr(data-tooltip);
+            display: block;
+            position: absolute;
+            top: 125%;
+            left: 50%;
+            white-space: nowrap;
+            background-color: rgb(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px;
+            border-radius: 4px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            user-select: none;
+        }
+        button.custom-tooltip-position5 {
+            position: relative;
+        }
+        button.custom-tooltip-position5:hover::before {
+            content: attr(data-tooltip);
+            display: block;
+            position: absolute;
+            top: 125%;
+            left: -75%;
+            white-space: nowrap;
+            background-color: rgb(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px;
+            border-radius: 4px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            user-select: none;
+        }
+        button.custom-tooltip-position6 {
+            position: relative;
+        }
+        button.custom-tooltip-position6:hover::before {
+            content: attr(data-tooltip);
+            display: block;
+            position: absolute;
+            top: 120%;
+            left: 40%;
+            margin-left: 10px;
+            white-space: nowrap;
+            background-color: rgb(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px;
+            border-radius: 4px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            user-select: none;
+            z-index: 1002;
         }
 
         /* country buttons */
@@ -582,6 +746,24 @@
         .switchslider.round:before {
         border-radius: 50%;
         }
+        .switch:hover::before {
+            content: "Gemacht";
+            display: block;
+            position: absolute;
+            top: 175%;
+            left: 85%;
+            margin-right: 10px;
+            transform: translateY(-50%);
+            white-space: nowrap;
+            background-color: rgb(0,0,0,0.7);
+            color: #fff;
+            padding: 5px;
+            border-radius: 4px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            user-select: none;
+            z-index: 1001;
+        }
 
         /* range slider */
         .range-slider {
@@ -605,6 +787,7 @@
             background: #FFF;
             cursor: default;
             box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
+            cursor: pointer;
         }
         .rangeslider-value2,
         .rangeslider-value1 {
@@ -691,6 +874,7 @@
         .noUi-horizontal {
             height: 10px;
             margin-top: -30px;
+            cursor: pointer;
         }
         .noUi-horizontal .noUi-handle {
             background-color: white;
@@ -1149,22 +1333,22 @@
     <div id="filter1" style="display: none;">
         <div id="button-container">
             <label for="Passbutton1">Pass</label>
-            <button id="Passbutton1" class="round-button"></button>
+            <button id="Passbutton1" class="round-button" data-tooltip="Pass"></button>
             <label for="Climbbutton1">Anstieg</label>
-            <button id="Climbbutton1" class="round-button"></button>
+            <button id="Climbbutton1" class="round-button" data-tooltip="Anstieg"></button>
             <label for="Sackgassebutton1">Sackgasse</label>
-            <button id="Sackgassebutton1" class="round-button"></button>
+            <button id="Sackgassebutton1" class="round-button custom-tooltip-position2" data-tooltip="Sackgasse"></button>
         </div>
         <hr class="separator-line">
         <div id="button-container">
-            <button id="ITbutton1" class="round-button"></button>
-            <button id="FRbutton1" class="round-button"></button>
-            <button id="CHbutton1" class="round-button"></button>
-            <button id="ATbutton1" class="round-button"></button>
-            <button id="DEbutton1" class="round-button"></button>
-            <button id="SLObutton1" class="round-button"></button>
-            <button id="ESbutton1" class="round-button"></button>
-            <button id="ANDbutton1" class="round-button"></button>
+            <button id="ITbutton1" class="round-button" data-tooltip="Italien"></button>
+            <button id="FRbutton1" class="round-button" data-tooltip="Frankreich"></button>
+            <button id="CHbutton1" class="round-button" data-tooltip="Schweiz"></button>
+            <button id="ATbutton1" class="round-button" data-tooltip="Österreich"></button>
+            <button id="DEbutton1" class="round-button" data-tooltip="Deutschland"></button>
+            <button id="SLObutton1" class="round-button" data-tooltip="Slowenien"></button>
+            <button id="ESbutton1" class="round-button" data-tooltip="Spanien"></button>
+            <button id="ANDbutton1" class="round-button custom-tooltip-position3" data-tooltip="Andorra"></button>
         </div>
         <hr class="separator-line">
         <div class="filter-row">
@@ -1205,12 +1389,12 @@
                   <div class="switchslider round"></div>
                 </label>
             </div>
-            <button id="resetFilter1">Zurücksetzen</button>
-            <button id="applyFilter1">Anwenden</button>
+            <button id="resetFilter1" data-tooltip="Filter zurücksetzen" class="custom-tooltip-position4">Zurücksetzen</button>
+            <button id="applyFilter1" data-tooltip="Filter anwenden" class="custom-tooltip-position5">Anwenden</button>
         </div>
     </div>
 
-    <div id="table-toggle">Liste</div>
+    <div id="table-toggle"><strong style="font-weight: 1200;">&#9002;</strong></div>
     <div id="table-container" style="display: none;">
         <div class="sort-container">
             <label for="sort-options">Sortieren:</label>
@@ -1223,42 +1407,41 @@
                 <option value="elevation">Höhenmeter</option>
                 <option value="slope">Steigung</option>
             </select>
-            <button id="toggle-sort-order" onclick="toggleSortOrder()">↑↓</button>
+            <button id="toggle-sort-order" onclick="toggleSortOrder()" data-tooltip="Liste umkehren" class="custom-tooltip-position6">↑↓</button>
             <div class="container">
                 <label class="switch" for="switchslider2">
                   <input type="checkbox" id="switchslider2" />
                   <div class="switchslider round"></div>
                 </label>
             </div>
-            <button id="select-all" onclick="selectAll()">Alle</button>
-            <button id="deselect-all" onclick="deselectAll()">Aufheben</button>
-            <button id="filter2-toggle" onclick="tableFilterToggle1()">Filter</button>
+            <button id="select-all" onclick="selectAll()" data-tooltip="Alle sichtbar" class="custom-tooltip-position6">Alle</button>
+            <button id="deselect-all" onclick="deselectAll()" data-tooltip="Alle unsichtbar" class="custom-tooltip-position6">Aufheben</button>
+            <button id="filter2-toggle" onclick="tableFilterToggle1()" data-tooltip="Filter ausklappen" class="custom-tooltip-position6">Filter</button>
             <div id="search-container">
                 <input type="text" id="search-input" list="suggestions" placeholder="Suche..." oninput="searchTable()">
-                <button id="clear-search" onclick="clearSearch()">✕</button>
+                <button id="clear-search" onclick="clearSearch()" data-tooltip="Suchbegriff löschen" class="custom-tooltip-position1">✕</button>
                 <datalist id="suggestions"></datalist>
             </div>
-            <button id="close-table" onclick="closeTable()"></button>
         </div>
         <div id="filter-options-container" style="display: none;">
             <div id="button-container">
                 <label for="Passbutton2">Pass</label>
-                <button id="Passbutton2" class="round-button"></button>
+                <button id="Passbutton2" class="round-button" data-tooltip="Pass"></button>
                 <label for="Climbbutton2">Anstieg</label>
-                <button id="Climbbutton2" class="round-button"></button>
+                <button id="Climbbutton2" class="round-button" data-tooltip="Anstieg"></button>
                 <label for="Sackgassebutton2">Sackgasse</label>
-                <button id="Sackgassebutton2" class="round-button"></button>
+                <button id="Sackgassebutton2" class="round-button custom-tooltip-position2" data-tooltip="Sackgasse"></button>
             </div>
             <hr class="separator-line">
             <div id="button-container">
-                <button id="ITbutton2" class="round-button"></button>
-                <button id="FRbutton2" class="round-button"></button>
-                <button id="CHbutton2" class="round-button"></button>
-                <button id="ATbutton2" class="round-button"></button>
-                <button id="DEbutton2" class="round-button"></button>
-                <button id="SLObutton2" class="round-button"></button>
-                <button id="ESbutton2" class="round-button"></button>
-                <button id="ANDbutton2" class="round-button"></button>
+                <button id="ITbutton2" class="round-button" data-tooltip="Italien"></button>
+                <button id="FRbutton2" class="round-button" data-tooltip="Frankreich"></button>
+                <button id="CHbutton2" class="round-button" data-tooltip="Schweiz"></button>
+                <button id="ATbutton2" class="round-button" data-tooltip="Österreich"></button>
+                <button id="DEbutton2" class="round-button" data-tooltip="Deutschland"></button>
+                <button id="SLObutton2" class="round-button" data-tooltip="Slowenien"></button>
+                <button id="ESbutton2" class="round-button" data-tooltip="Spanien"></button>
+                <button id="ANDbutton2" class="round-button custom-tooltip-position3" data-tooltip="Andorra"></button>
             </div>
             <hr class="separator-line">
             <div class="filter-row">
@@ -1293,9 +1476,9 @@
             </div>
             <hr class="separator-line">
             <div class="filter-row">
-                <button id="closeFilter2" onclick="closeFilter()">Schließen</button>
-                <button id="resetFilter2">Zurücksetzen</button>
-                <button id="applyFilter2">Anwenden</button>
+                <button id="closeFilter2" onclick="closeFilter()" data-tooltip="Filter einklappen" class="custom-tooltip-position4">Schließen</button>
+                <button id="resetFilter2" data-tooltip="Filter zurücksetzen" class="custom-tooltip-position4">Zurücksetzen</button>
+                <button id="applyFilter2" data-tooltip="Filter anwenden" class="custom-tooltip-position5">Anwenden</button>
             </div>
         </div>
         <table id="data-table">
@@ -1348,16 +1531,6 @@
             position: 'bottomleft'
         }).addTo(map);
 
-        //location
-        var lat = 45.484741239199046;
-        var lng = 9.221152379797923;
-        var locateControl = L.control.locate().addTo(map);
-        map.on('locationfound', function (e) {
-            var latlng = e.latlng;
-            lat = latlng.lat;
-            lng = latlng.lng;
-        });
-
         //geo search
         var geoSearch = L.Control.geocoder({
             defaultMarkGeocode: false,
@@ -1373,16 +1546,32 @@
             ]);
             map.fitBounds(poly.getBounds());
         }).addTo(map);
+        const geosearchButton = document.querySelector('.leaflet-control-geocoder-icon');
+        if (geosearchButton) {
+            geosearchButton.dataset.tooltip = 'Suche';
+        }
+
+        //location
+        var lat = 45.484741239199046;
+        var lng = 9.221152379797923;
+        var locateControl = L.control.locate().addTo(map);
+        var locateButton = document.querySelector('.leaflet-bar-part[title="Show me where I am"]');
+        locateButton.setAttribute('title', 'Standort');
+        map.on('locationfound', function (e) {
+            var latlng = e.latlng;
+            lat = latlng.lat;
+            lng = latlng.lng;
+        });
 
         //maps
         var osm = L.tileLayer('https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=5oOhPnaZPwb4EiDFpWyW', {
-            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> | <a> '+ numberOfHttpOccurrences +' climbs inluded </a>'
+            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> | <a href="https://paypal.me/pravda99?country.x=DE&locale.x=de_DE" target="_blank">'+ numberOfHttpOccurrences +' climbs inluded</a>'
         }).addTo(map);
         var satellite = L.tileLayer('https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key=5oOhPnaZPwb4EiDFpWyW', {
-            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> | <a> '+ numberOfHttpOccurrences +' climbs inluded </a>'
+            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> | <a href="https://paypal.me/pravda99?country.x=DE&locale.x=de_DE" target="_blank">'+ numberOfHttpOccurrences +' climbs inluded</a>'
         });
         var topo = L.tileLayer('https://api.maptiler.com/maps/topo-v2/{z}/{x}/{y}.png?key=5oOhPnaZPwb4EiDFpWyW', {
-            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> | <a> '+ numberOfHttpOccurrences +' climbs inluded </a>'
+            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> | <a href="https://paypal.me/pravda99?country.x=DE&locale.x=de_DE" target="_blank">'+ numberOfHttpOccurrences +' climbs inluded</a>'
         });
 
         //elevation profile
@@ -1448,6 +1637,11 @@
         const dataBody = document.getElementById("data-body");
         const sortDropdown = document.getElementById("sort-options");
         const switchSlider2 = document.getElementById("switchslider2");
+
+        var styleSheet = document.styleSheets[0];
+        var newRule = '#table-toggle:hover::before { content: "Liste ausklappen"; }';
+        var ruleIndex = styleSheet.cssRules ? styleSheet.cssRules.length : styleSheet.rules.length;
+        styleSheet.insertRule(newRule, ruleIndex);
         
         var slider2 = false;
 
@@ -1485,25 +1679,21 @@
             }
         });
 
-        function closeTable() {
-            var tableContainer = document.getElementById("table-container");
-            toggleTable();
-            tableContainer.style.display = "none";
-        }
-
         function toggleTable() {
             var tableContainer = document.getElementById("table-container");
             var map = document.getElementById("map");
-            var mapControls = document.querySelector(".leaflet-top.leaflet-left .leaflet-control");
-            var secondLeafletControl = document.querySelector('.leaflet-top.leaflet-left .leaflet-control:not(:first-child)');
             var elevationControl = document.querySelector('.elevation-control');
             var backgroundElement = elevationControl.querySelector('.background');
             var elevationProfileTextbox = document.querySelector('.elevationprofile-textbox');
+            var tableToggle = document.getElementById("table-toggle");
             
             if (tableContainer.style.display === "none") {
                 tableContainer.style.display = "block";
                 map.style.marginLeft = "50%";
-                mapControls.style.top = "0px";
+                tableToggle.style.marginLeft = "50%";
+                tableToggle.innerHTML = '<strong style="font-weight: 1200;">&#9001;</strong>';
+                document.styleSheets[0].deleteRule(124);
+                document.styleSheets[0].insertRule('#table-toggle:hover::before { content: "Liste einklappen" !important; }', 124);
                 if (elevationProfileTextbox){
                     elevationProfileTextbox.style.marginLeft = '25%';
                 }
@@ -1511,12 +1701,13 @@
                     backgroundElement.style.width = '50%';
                     backgroundElement.style.marginLeft = '50%';
                 }
-                if (secondLeafletControl) {
-                    secondLeafletControl.style.top = '0px';
-                }
             } else {
                 tableContainer.style.display = "none";
                 map.style.marginLeft = "0";
+                tableToggle.style.marginLeft = "0";
+                tableToggle.innerHTML = '<strong style="font-weight: 1200;">&#9002;</strong>';
+                document.styleSheets[0].deleteRule(124);
+                document.styleSheets[0].insertRule('#table-toggle:hover::before { content: "Liste ausklappen" !important; }', 124);
                 if (backgroundElement){
                     backgroundElement.style.width = '100%';
                     backgroundElement.style.marginLeft = '0';
@@ -1524,12 +1715,9 @@
                 if (elevationProfileTextbox){
                     elevationProfileTextbox.style.marginLeft = '0';
                 }
-                mapControls.style.top = "40px";
-                if (secondLeafletControl) {
-                    secondLeafletControl.style.top = '40px';
-                }
             }
         }
+        
 
         function toggleSortOrder() {
             const table = document.getElementById("data-table");
@@ -1602,7 +1790,10 @@
 
             const buttonCell = document.createElement("td");
             const button = document.createElement("button");
-            button.className = "eye-button";
+            button.className = "eye-button custom-tooltip-position4";
+            if (button.classList.contains("eye-button")) {
+                button.dataset.tooltip = "Auf Karte anzeigen";
+            }
             const buttonId = `button${idd}`;
             button.setAttribute("id", buttonId);
             button.addEventListener("click", function () {
@@ -1610,9 +1801,11 @@
                 button.classList.toggle("active");
                 if (button.classList.contains("active")) {
                     focusOnGeoJSONElement(idd, event.isTrusted);
-                    button.style.backgroundImage = "url('Images/eye.png')"; 
+                    button.style.backgroundImage = "url('Images/eye.png')";
+                    button.dataset.tooltip = "Nicht mehr anzeigen";
                 } else {
-                    button.style.backgroundImage = "url('Images/hidden.png')"; // Replace with the path to your inactive image
+                    button.style.backgroundImage = "url('Images/hidden.png')";
+                    button.dataset.tooltip = "Auf Karte anzeigen";
                 }
             });
             buttonCell.appendChild(button);
@@ -1640,8 +1833,9 @@
             const showMoreButton = document.createElement("div");
             showMoreButton.textContent = "mehr";
             showMoreButton.className = "show-more-button";
+            showMoreButton.dataset.tooltip = 'Anfahrten anzeigen';
             showMoreButton.onclick = function () {
-                toggleAdditionalInfo(nameCell, additionalInfoArray);
+                toggleAdditionalInfo(nameCell, additionalInfoArray, showMoreButton, idd);
             };
             nameCell.appendChild(showMoreButton);
             tableRow.appendChild(nameCell);
@@ -1683,10 +1877,10 @@
             return tableRow;
         }
         
-        function toggleAdditionalInfo(container, additionalInfoArray) {
-            const row = container.closest("tr");
+        function toggleAdditionalInfo(container, additionalInfoArray,showMoreButton, idd) {
+            const row = container.closest("tr");        
             const newRow = row.cloneNode();
-            newRow.classList.add('additional-info-row');
+            newRow.classList.add('additional-info-row', `idd-${idd}`);
             const newCell = document.createElement("td");
             newCell.colSpan = row.cells.length;
             const newInfoContainer = document.createElement("div");
@@ -1709,15 +1903,18 @@
 
             newCell.appendChild(newInfoContainer);
             newRow.appendChild(newCell);
+
             if (container.querySelector(".show-more-button").textContent === "mehr") {
                 row.parentNode.insertBefore(newRow, row.nextSibling);
-                container.querySelector(".show-more-button").textContent = "weniger"
+                showMoreButton.textContent = "weniger";
+                showMoreButton.dataset.tooltip = "Anfahrten einklappen";
             } else if (container.querySelector(".show-more-button").textContent === "weniger") {
-                const addedRow = row.parentNode.querySelector('.additional-info-row');
+                const addedRow = row.parentNode.querySelector(`.additional-info-row.idd-${idd}`);
                 if (addedRow) {
                     row.parentNode.removeChild(addedRow);
                 }
-                container.querySelector(".show-more-button").textContent = "mehr";
+                showMoreButton.textContent = "mehr";
+                showMoreButton.dataset.tooltip = "Anfahrten anzeigen";
             }
         }
 
@@ -2180,6 +2377,11 @@
         function tableFilterToggle1() {
             var filterOptionsContainer = document.getElementById("filter-options-container");
             filterOptionsContainer.style.display = filterOptionsContainer.style.display === "none" ? "block" : "none";
+            if(filterOptionsContainer.style.display === "none"){
+                filterButton2.dataset.tooltip = "Filter ausklappen"
+            } else {
+                filterButton2.dataset.tooltip = "Filter einklappen"
+            }
         }
 
         function closeFilter() {
@@ -2686,24 +2888,23 @@
                             }
                             icons[ix].setIcon(icon)
 
-                            const checkboxes = document.getElementsByClassName('eye-button');
-                            const checkboxValues = {};
-                            var checkbox99idd = 0;
-                            for (let i = 0; i < checkboxes.length; i++) {
-                                const checkbox = checkboxes[i];
-                                const checkbox99idd = checkbox.getAttribute('id').replace('button', ''); // Extract idd from the checkbox id
-                                if (checkbox99idd !== null) {
-                                    checkboxValues[checkbox99idd] = button.classList.contains("active");
+                            const eyeButtons = document.querySelectorAll('.eye-button');
+                            const eyeButtonValues = {};
+                            for (let i = 0; i < eyeButtons.length; i++) {
+                                const eyeButton = eyeButtons[i];
+                                const eyeButtonidd = eyeButton.getAttribute('id').replace('button', '');
+                                if (eyeButtonidd !== null) {
+                                    eyeButtonValues[eyeButtonidd] = eyeButtons[i].classList.contains("active");
                                 }
                             }
 
                             resetFilterButton2.click();
                             
-                            for (let i = 0; i < checkboxes.length; i++) {
-                                if (checkboxValues[i]){
-                                    const checkboxId = `button${i}`;
-                                    const checkboxToClick = document.getElementById(checkboxId);
-                                    checkboxToClick.click();
+                            for (let i = 0; i < eyeButtons.length; i++) {
+                                if (eyeButtonValues[i]){
+                                    const buttonId = `button${i}`;
+                                    const buttonToClick = document.getElementById(buttonId);
+                                    buttonToClick.click();
                                 }
                             }
                         });
