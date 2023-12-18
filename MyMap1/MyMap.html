@@ -173,7 +173,7 @@
             top: 10px;
             left: 84.6%;    /* 80.5*/
             transform: translateX(-50%);
-            z-index: 1000;
+            z-index: 1005;
             background-color: white;
             border: 2px solid rgba(0,0,0,0.2);
             background-clip: padding-box;
@@ -254,6 +254,7 @@
                 font-weight: 1200;
                 user-select: none;
                 color: rgb(126, 121, 121);
+                z-index: 2000;
         }
         #table-toggle::before {
             content: "Liste ausklappen";
@@ -298,6 +299,7 @@
             display: none;
             user-select: none;
             transition: width 0.5s ease;
+            z-index: 2001;
         }
         #filter-options-container {
             display: none;
@@ -977,6 +979,42 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             position: relative;
             top: -3px;
+        }
+
+        .fakeButton {
+            background-size: contain;
+            background-position: center;
+            background-color: rgb(255,255,255,0);
+            border-radius: 0px;
+            cursor: default;
+            user-select: none;
+            position: relative;
+            width: 12px;
+            height: 12px;
+        }
+        .fakeButton::before {
+            content: attr(data-tooltip);
+            display: block;
+            position: absolute;
+            top: 180%;
+            left: 90%; 
+            white-space: nowrap;
+            background-color: rgb(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px;
+            border-radius: 4px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            user-select: none;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+            visibility: hidden;
+            z-index: 1005;
+        }
+        .fakeButton:hover::before {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 1s;
         }
     </style>
     <!--------------------- add geoJSON files renamed to .js files here -------------------------------------->
@@ -1778,16 +1816,15 @@
 
         function toggleTable() {
             var tableContainer = document.getElementById("table-container");
-            var map = document.getElementById("map");
+            var mapp = document.getElementById("map");
             var elevationControl = document.querySelector('.elevation-control');
             var backgroundElement = elevationControl.querySelector('.background');
             var elevationProfileTextbox = document.querySelector('.elevationprofile-textbox');
             var tableToggle = document.getElementById("table-toggle");
             
-            
             if (tableContainer.style.display === "none") {
                 tableContainer.style.display = "block";
-                map.style.marginLeft = "50%";
+                mapp.style.marginLeft = "50%";
                 tableToggle.style.marginLeft = "50%";
                 tableToggle.innerHTML = '<strong style="font-weight: 1200;">&#9001;</strong>';
                 document.styleSheets[0].deleteRule(124);
@@ -1800,24 +1837,25 @@
                     backgroundElement.style.width = '50%';
                     backgroundElement.style.marginLeft = '50%';
                 }
+                map.invalidateSize();
             } else {
                 tableContainer.style.display = "none";
-                map.style.marginLeft = "0";
-                tableToggle.style.marginLeft = "0";
+                mapp.style.marginLeft = "0%";
+                tableToggle.style.marginLeft = "0%";
                 tableToggle.innerHTML = '<strong style="font-weight: 1200;">&#9002;</strong>';
                 document.styleSheets[0].deleteRule(124);
                 document.styleSheets[0].insertRule('#table-toggle:hover::before { content: "Liste ausklappen" !important; }', 124);
                 if (backgroundElement){
                     backgroundElement.style.width = '100%';
-                    backgroundElement.style.marginLeft = '0';
+                    backgroundElement.style.marginLeft = '0%';
                 }
                 if (elevationProfileTextbox){
-                    elevationProfileTextbox.style.marginLeft = '0';
+                    elevationProfileTextbox.style.marginLeft = '0%';
                     elevationProfileTextbox.style.fontSize = '15px';
                 }
+                map.invalidateSize();
             }
         }
-        
 
         function toggleSortOrder() {
             const table = document.getElementById("data-table");
@@ -1885,7 +1923,7 @@
             rows.forEach((row) => tbody.appendChild(row));
         }
 
-        function createRow(idd, name, country, height, length, elevation, slope, additionalInfoArray, link) {
+        function createRow(idd, name, country, height, length, elevation, slope, additionalInfoArray, link, category) {
             const tableRow = document.createElement("tr");
 
             const buttonCell = document.createElement("td");
@@ -1897,8 +1935,8 @@
             const buttonId = `button${idd}`;
             button.setAttribute("id", buttonId);
             button.addEventListener("click", function () {
-                checkboxCallback(idd, !button.classList.contains("active"));
-                button.classList.toggle("active");
+                const isChecked = button.classList.toggle("active");
+                checkboxCallback(idd, isChecked);
                 if (button.classList.contains("active")) {
                     focusOnGeoJSONElement(idd, event.isTrusted);
                     button.style.backgroundImage = "url('Images/eye.png')";
@@ -1918,14 +1956,49 @@
             tableRow.appendChild(buttonCell);
 
             const pngCell = document.createElement('td');
-            const pngImage = document.createElement('img');
+            const pngButton = document.createElement("div");
+            pngButton.className = "fakeButton";
             const tickedValue = localStorage.getItem(`TickedCheckboxState${idd}`);
-            const tickedImagePath = tickedValue !== null && JSON.parse(tickedValue) ? 'Images/ticked.png' : 'Images/Empty.png';
-            pngImage.src = tickedImagePath;
-            pngImage.width = 10;
-            pngImage.height = 10;
-            pngImage.title = 'Gemacht';
-            pngCell.appendChild(pngImage);
+            var tickedImagePath = 0;
+
+            switch (category) {
+                case "Pass":
+                    tickedImagePath = tickedValue !== null && JSON.parse(tickedValue) ? 'Images/blauTicked.png' : 'Images/blau.png';
+                    if(tickedImagePath.includes("Ticked")){
+                        pngButton.dataset.tooltip = 'Gefahrener Pass';
+                        pngButton.style.width = '13px';
+                        pngButton.style.height = '13px';
+                    }else{
+                        pngButton.dataset.tooltip = 'Pass';
+                    }
+                    break;
+                case "Climb":
+                    tickedImagePath = tickedValue !== null && JSON.parse(tickedValue) ? 'Images/gelbTicked.png' : 'Images/gelb.png';
+                    if(tickedImagePath.includes("Ticked")){
+                        pngButton.dataset.tooltip = 'Gefahrener Anstieg';
+                        pngButton.style.width = '13px';
+                        pngButton.style.height = '13px';
+                    }else{
+                        pngButton.dataset.tooltip = 'Anstieg';
+                        pngButton.style.width = '13px';
+                        pngButton.style.height = '13px';
+                    }
+                    break;
+                case "Sackgasse":
+                    tickedImagePath = tickedValue !== null && JSON.parse(tickedValue) ? 'Images/rotTicked.png' : 'Images/rot.png';
+                    if(tickedImagePath.includes("Ticked")){
+                        pngButton.dataset.tooltip = 'Gefahrene Sackgasse';
+                    }else{
+                        pngButton.dataset.tooltip = 'Sackgasse';
+                    }
+                    break;
+                default:
+                    tickedImagePath = tickedValue !== null && JSON.parse(tickedValue) ? 'Images/Empty.png' : 'Images/Empty.png';
+                    pngButton.dataset.tooltip = 'Unbekannt'
+                    break;
+            }
+            pngButton.style.backgroundImage = `url(${tickedImagePath})`;
+            pngCell.appendChild(pngButton);
             tableRow.appendChild(pngCell);
 
             const nameCell = document.createElement("td");
@@ -1938,7 +2011,7 @@
             nameCell.appendChild(nameLink);
         
             const showMoreButton = document.createElement("div");
-            showMoreButton.textContent = "mehr";
+            showMoreButton.textContent = "\u2335";
             showMoreButton.className = "show-more-button";
             showMoreButton.dataset.tooltip = 'Anfahrten anzeigen';
             showMoreButton.onclick = function () {
@@ -2018,14 +2091,10 @@
                 buttonElement.dataset.idd = idd;
                 buttonElement.dataset.status = 0;
                 buttonElement.style.borderColor = 'rgb(126, 121, 121)'
+
                 buttonElement.addEventListener('mouseenter', function () {
-                    if(buttonElement.dataset.status == 0){
-                        this.style.borderColor = 'lightblue';
-                        this.style.borderWidth = '3px';
-                    } else if (buttonElement.dataset.status == 1) {
-                        this.style.borderColor = 'lightblue';
-                        this.style.borderWidth = '3px';
-                    }
+                    this.style.borderColor = 'lightblue';
+                    this.style.borderWidth = '3px';
                 });
                 buttonElement.addEventListener('mouseleave', function () {
                     if(buttonElement.dataset.status == 0){
@@ -2036,55 +2105,61 @@
                         this.style.borderWidth = '2px';
                     }
                 });
+
                 buttonElement.addEventListener("click", () => {
+                    buttonElement.dataset.status = buttonElement.dataset.status === '0' ? '1' : '0';
+
                     const eyeButtonID = `button${idd}`;
                     const eyeButton = document.getElementById(eyeButtonID);
-                    if (eyeButton && !eyeButton.classList.contains('active') && buttonElement.dataset.status == 0) {
-                        eyeButton.click();
 
+                    if (eyeButton && !eyeButton.classList.contains('active') && buttonElement.dataset.status == 1) {
+                        eyeButton.click();
                         const trackLayer = geoJSONArray[idd];
                         trackLayer.eachLayer(layer => {
                             if (layer.feature.properties.name === buttonElement.dataset.trackName) {
                                 layer.fire('click', { source: 'internalClick' });
-                                controlElevation.clear();
-                                controlElevation.addData(layer.feature);
                             }
                         });
 
                         const targetFeature = passi.features.find(feature => feature.properties.idd === idd);
                         if (targetFeature) {
                             const [longitude, latitude] = targetFeature.geometry.coordinates;
-                            map.setView([latitude, longitude], 12);
+                            map.setView([latitude, longitude], 13);
                         };
                     } else {
                         const trackLayer = geoJSONArray[idd];
                         trackLayer.eachLayer(layer => {
                             if (layer.feature.properties.name === buttonElement.dataset.trackName) {
-                                controlElevation.clear();
-                                controlElevation.addData(layer.feature);
-                                layer.fire('click', { source: 'internalClick' });
+                                layer.fire('click', {source:'internalClick'});
                             }
                         });
 
                         const targetFeature = passi.features.find(feature => feature.properties.idd === idd);
                         if (targetFeature) {
                             const [longitude, latitude] = targetFeature.geometry.coordinates;
-                            map.setView([latitude, longitude], 12);
+                            map.setView([latitude, longitude], 13);
                         };
                     }
 
                     if(buttonElement.dataset.status == 0){
-                        buttonElement.style.borderColor = 'lightblue';
-                        buttonElement.style.borderWidth = '2px';
-                        buttonElement.dataset.status = 1;
-                        buttonActive[idd] = true;
-                        resetStylesForOtherButtons(idd, info[1]);
-                    } else if(buttonElement.dataset.status == 1) {
                         buttonElement.style.borderColor = 'rgb(126, 121, 121)'; 
                         buttonElement.style.borderWidth = '1px';
                         buttonElement.dataset.status = 0;
-                        buttonActive[idd] = false;
+                        
                         closeElevationProfile();
+                    } else if(buttonElement.dataset.status == 1) {
+                        buttonElement.style.borderColor = 'lightblue';
+                        buttonElement.style.borderWidth = '2px';
+                        buttonElement.dataset.status = 1;
+                        
+                        const buttons = document.querySelectorAll('.showElevationProfile');
+                        buttons.forEach(button => {
+                            if((button.dataset.status == 1 && button.dataset.idd != idd) || (button.dataset.status == 1 && button.dataset.idd == idd && button.dataset.trackName != info[1])){
+                                button.style.borderColor = 'rgb(126, 121, 121)'; 
+                                button.style.borderWidth = '1px';
+                                button.dataset.status = 0;
+                            }
+                        });
                     }
                 });
                 paragraph.appendChild(buttonElement);
@@ -2092,33 +2167,18 @@
 
             newCell.appendChild(newInfoContainer);
             newRow.appendChild(newCell);
-
-            if (container.querySelector(".show-more-button").textContent === "mehr") {
+            if (container.querySelector(".show-more-button").textContent === "\u2335") {
                 row.parentNode.insertBefore(newRow, row.nextSibling);
-                showMoreButton.textContent = "weniger";
+                showMoreButton.textContent = "\u23F6";
                 showMoreButton.dataset.tooltip = "Anfahrten einklappen";
-            } else if (container.querySelector(".show-more-button").textContent === "weniger") {
+            } else if (container.querySelector(".show-more-button").textContent === "\u23F6") {
                 const addedRow = row.parentNode.querySelector(`.additional-info-row.idd-${idd}`);
                 if (addedRow) {
                     row.parentNode.removeChild(addedRow);
                 }
-                showMoreButton.textContent = "mehr";
+                showMoreButton.textContent = "\u2335";
                 showMoreButton.dataset.tooltip = "Anfahrten anzeigen";
             }
-        }
-
-        function resetStylesForOtherButtons(selectedIDD, selectedName) {
-            const buttons = document.querySelectorAll('.showElevationProfile');
-            buttons.forEach(button => {
-                const idd = button.dataset.idd;
-                const name = button.dataset.trackName;
-                if ((idd !== selectedIDD) || (idd == selectedIDD && name != selectedName)) {
-                    button.style.borderColor = 'rgb(126, 121, 121)';
-                    button.style.borderWidth = '1px';
-                    button.dataset.status = 0;
-                    buttonActive[idd] = false;
-                }
-            });
         }
 
         function selectAll() {
@@ -2155,8 +2215,8 @@
                 const name = nameCell.textContent.toLowerCase();
                 const nameUpper = nameCell.textContent;
                 const text = document.getElementById("search-input").value;
-                const nameWithoutShowMore = name.replace('mehr', '');
-                const nameWithoutShowMoreUpper = nameUpper.replace('mehr', '');
+                const nameWithoutShowMore = name.replace('\u2335', '');
+                const nameWithoutShowMoreUpper = nameUpper.replace('\u2335', '');
                 if (nameWithoutShowMore.includes(input)) {
                     row.style.display = "";
                     if (nameWithoutShowMore !== input && text.length >= 1){
@@ -3124,14 +3184,12 @@
         });
 
         function geoJSONTrackSettings(feature, layer) {
-            layer.bindTooltip(feature.properties.name + ' (' + feature.properties.length + ' km, ' + feature.properties.elevation + ' hm, ⌀ ' + ((feature.properties.elevation/(feature.properties.length*1000))*100).toFixed(1) + ' %)');
+            layer.bindTooltip(feature.properties.name + ' (\u27F7 ' + feature.properties.length + ' km \u0020\u0020\u0020\u0020 \u2197 ' + feature.properties.elevation + ' hm \u0020\u0020\u0020\u0020 ⌀ ' + ((feature.properties.elevation/(feature.properties.length*1000))*100).toFixed(1) + ' %)');
 
             layer.on('click', function (e) {
                 var closeButton = document.getElementById('custom-close-button');
-                if(!(e.source === 'internalClick')){
-                    controlElevation.clear();
-                    controlElevation.addData(feature);
-                }
+                controlElevation.clear();
+                controlElevation.addData(feature);
                 if (!isElevationExpanded) {
                     document.querySelector('.elevation-toggle-icon').click();
                     isElevationExpanded = true;
@@ -3140,7 +3198,7 @@
                 const iddToSearch = feature.properties.idd;
                 const passName = getNameById(iddToSearch);
                 var textbox = document.getElementById('textbox');
-                textbox.innerHTML = `<p class="textbox-content"><span class="textbox-name">${passName}</span> - <a class="textbox-link" href="${feature.properties.link}" target="_blank">${feature.properties.name}</a> - <span class="textbox-info">${feature.properties.length} km, ${feature.properties.elevation} hm, 	&#x2300; ${((feature.properties.elevation/(feature.properties.length*1000))*100).toFixed(1)} %</span></p>`;
+                textbox.innerHTML = `<p class="textbox-content"><span class="textbox-name">${passName}</span> &nbsp \u2013 &nbsp <a class="textbox-link" href="${feature.properties.link}" target="_blank">${feature.properties.name}</a> &nbsp \u2013 &nbsp <span class="textbox-info">\u27F7 ${feature.properties.length} km &nbsp \u2197 ${feature.properties.elevation} hm &nbsp &#x2300; ${((feature.properties.elevation/(feature.properties.length*1000))*100).toFixed(1)} %</span></p>`;
                 textbox.style.display = 'block';
 
                 const name = feature.properties.name;
@@ -3154,7 +3212,7 @@
                     }
                 });
                 showElevationProfileButtons.forEach(button => {
-                    if (button && button.dataset.idd == idd && button.dataset.trackName == name && button.dataset.status == 0 && !(e.source === 'internalClick')) {
+                    if (button && button.dataset.idd == idd && button.dataset.trackName == name && !(e.source === 'internalClick')) {
                         button.dataset.status = 1;
                         button.style.borderColor = 'lightblue';
                         button.style.borderWidth = '2px';
@@ -3773,7 +3831,7 @@
                             temp = [];
                             temp[0] = trackArray5[j];
                             temp[1] = trackArray1[j];
-                            temp[2] = " (" + trackArray2[j] + ' km, ' + trackArray3[j] + ' hm, ⌀ ' + trackArray4[j] + ' %)'
+                            temp[2] = "\u00A0\u00A0\u00A0 \u27F7 " + trackArray2[j] + ' km \u00A0 \u2197 ' + trackArray3[j] + ' hm \u00A0 ⌀ ' + trackArray4[j] + ' %'
                             addInfo[j] = temp;
                         }
                         for (j=0; j<= numberOfFeatures-1; j++){
@@ -3795,7 +3853,7 @@
                     }
 
                     if (tracksOK && layerOK){
-                        const tableRow = createRow(idd, name, country, height, length, elevation, slope, addInfo, link);
+                        const tableRow = createRow(idd, name, country, height, length, elevation, slope, addInfo, link, category);
                         dataBody.appendChild(tableRow);
                     }
                 });
@@ -3803,7 +3861,7 @@
         }
 
         function checkboxCallback(idd, isChecked) {
-            if (isChecked) {
+            if (isChecked == true) {
                 geoJSONArray[idd].addTo(map);
                 marker.eachLayer(function (layer) {
                     const iddd = layer.feature.properties.idd;
@@ -3811,17 +3869,17 @@
                         layer.addTo(map);
                     }
                 });
-
             } else {
                 var layerCheckboxes = document.querySelectorAll('.leaflet-control-layers-selector');
-                var k = 0;
                 var layerArray = [];
-                for(k=0;k<=1;k++){
-                    if (layerCheckboxes[k].checked){
-                        layerCheckboxes[k].click();
-                        layerArray[k] = true;
-                    }
-                }
+
+                layerArray[3] = layerCheckboxes[3].checked;
+                layerArray[4] = layerCheckboxes[4].checked;
+
+                if (layerCheckboxes[3].checked || layerCheckboxes[4].checked){
+                        layerCheckboxes[3].click();
+                };
+
                 map.removeLayer(geoJSONArray[idd]);
                 marker.eachLayer(function (layer) {
                     const iddd = layer.feature.properties.idd;
@@ -3829,10 +3887,12 @@
                         map.removeLayer(layer);
                     }
                 });
-                for(k=0;k<=1;k++){
-                    if (layerArray[k]){
-                        layerCheckboxes[k].click();
-                    }
+
+                if(layerArray[3] && layerArray[4]){
+                    layerCheckboxes[3].click();
+                    layerCheckboxes[4].click();
+                } else if(layerArray[3] && !layerArray[4]){
+                    layerCheckboxes[3].click();
                 }
             }
         }
@@ -3896,16 +3956,13 @@
             const eyeButtons = document.querySelectorAll('.eye-button');
             const tableLength = eyeButtons.length;
             var tableArray = [];
-            if (tableLength > 0){
+            var layerCheckboxes = document.querySelectorAll('.leaflet-control-layers-selector');
+            if (tableLength > 0 && (!layerCheckboxes[3].checked || !layerCheckboxes[4].checked)){
                 for (var i=0;i<=tableLength-1;i++){
                     if(eyeButtons[i].classList.contains("active")){
                         eyeButtons[i].click();
-                        tableArray[i] = true;
-                    }
-                }
-                for (var i=0;i<=tableLength-1;i++){
-                    if(tableArray[i]){
                         eyeButtons[i].click();
+                        tableArray[i] = true;
                     }
                 }
             }
