@@ -102,7 +102,7 @@
         #custom-close-button:hover {
             background-image: url('Images/closeRot.png');
         }
-        #custom-close-button:hover::before {
+        #custom-close-button::before {
             content: "Höhenprofil schließen";
             display: block;
             position: absolute;
@@ -118,6 +118,14 @@
             font-family: Helvetica, Arial, sans-serif;
             font-size: 10px;
             user-select: none;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+            visibility: hidden;
+        }
+        #custom-close-button:hover::before {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 1s;
         }
         .elevationprofile-textbox {
             position: absolute;
@@ -247,7 +255,7 @@
                 user-select: none;
                 color: rgb(126, 121, 121);
         }
-        #table-toggle:hover::before {
+        #table-toggle::before {
             content: "Liste ausklappen";
             display: block;
             position: absolute;
@@ -263,6 +271,14 @@
             font-family: Helvetica, Arial, sans-serif;
             font-size: 10px;
             user-select: none;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+            visibility: hidden;
+        }
+        #table-toggle:hover::before {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 1s;
         }
         #table-container {
             position: fixed;
@@ -354,7 +370,7 @@
             user-select: none;
             position: relative;
         }
-        .show-more-button:hover::before {
+        .show-more-button::before {
             content: attr(data-tooltip);
             display: block;
             position: absolute;
@@ -368,6 +384,14 @@
             font-family: Helvetica, Arial, sans-serif;
             font-size: 10px;
             user-select: none;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+            visibility: hidden;
+        }
+        .show-more-button:hover::before {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 1s;
         }
 
         /* sort container */
@@ -481,7 +505,7 @@
         button {
             position: relative;
         }
-        button:hover::before {
+        button::before {
             content: attr(data-tooltip);
             display: block;
             position: absolute;
@@ -496,11 +520,16 @@
             font-size: 10px;
             user-select: none;
             z-index: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+            visibility: hidden;
         }
-        button.custom-tooltip-position1 {
-            position: relative;
+        button:hover::before {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 1s;
         }
-        button.custom-tooltip-position1:hover::before {
+        button.custom-tooltip-position1::before {
             content: attr(data-tooltip);
             display: block;
             position: absolute;
@@ -514,11 +543,16 @@
             font-family: Helvetica, Arial, sans-serif;
             font-size: 10px;
             user-select: none;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+            visibility: hidden;
         }
-        button.custom-tooltip-position2 {
-            position: relative;
+        button.custom-tooltip-position1:hover::before {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 1s;
         }
-        button.custom-tooltip-position2:hover::before {
+        button.custom-tooltip-position2::before {
             content: attr(data-tooltip);
             display: block;
             position: absolute;
@@ -532,11 +566,16 @@
             font-family: Helvetica, Arial, sans-serif;
             font-size: 10px;
             user-select: none;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+            visibility: hidden;
         }
-        button.custom-tooltip-position3 {
-            position: relative;
+        button.custom-tooltip-position2:hover::before {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 1s;
         }
-        button.custom-tooltip-position3:hover::before {
+        button.custom-tooltip-position3::before {
             content: attr(data-tooltip);
             display: block;
             position: absolute;
@@ -550,11 +589,16 @@
             font-family: Helvetica, Arial, sans-serif;
             font-size: 10px;
             user-select: none;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+            visibility: hidden;
         }
-        button.custom-tooltip-position4 {
-            position: relative;
+        button.custom-tooltip-position3:hover::before {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 1s;
         }
-        button.custom-tooltip-position4:hover::before {
+        button.custom-tooltip-position4::before {
             content: attr(data-tooltip);
             display: block;
             position: absolute;
@@ -568,11 +612,16 @@
             font-family: Helvetica, Arial, sans-serif;
             font-size: 10px;
             user-select: none;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+            visibility: hidden;
         }
-        button.custom-tooltip-position5 {
-            position: relative;
+        button.custom-tooltip-position4:hover::before {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 1s;
         }
-        button.custom-tooltip-position5:hover::before {
+        button.custom-tooltip-position5::before {
             content: attr(data-tooltip);
             display: block;
             position: absolute;
@@ -586,11 +635,16 @@
             font-family: Helvetica, Arial, sans-serif;
             font-size: 10px;
             user-select: none;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+            visibility: hidden;
         }
-        button.custom-tooltip-position6 {
-            position: relative;
+        button.custom-tooltip-position5:hover::before {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 1s;
         }
-        button.custom-tooltip-position6:hover::before {
+        button.custom-tooltip-position6::before {
             content: attr(data-tooltip);
             display: block;
             position: absolute;
@@ -598,7 +652,7 @@
             left: 40%;
             margin-left: 10px;
             white-space: nowrap;
-            background-color: rgb(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.7);
             color: #fff;
             padding: 5px;
             border-radius: 4px;
@@ -606,6 +660,14 @@
             font-size: 10px;
             user-select: none;
             z-index: 1002;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+            visibility: hidden;
+        }
+        button.custom-tooltip-position6:hover::before {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 1s;
         }
 
         /* country buttons */
@@ -746,7 +808,7 @@
         .switchslider.round:before {
         border-radius: 50%;
         }
-        .switch:hover::before {
+        .switch::before {
             content: "Gemacht";
             display: block;
             position: absolute;
@@ -763,6 +825,14 @@
             font-size: 10px;
             user-select: none;
             z-index: 1001;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+            visibility: hidden;
+        }
+        .switch:hover::before {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 1s;
         }
 
         /* range slider */
@@ -889,6 +959,24 @@
         }
         .noUi-connect {
             background-color: lightblue;
+        }
+
+        .showElevationProfile {
+            color: #fff;
+            width: 20px;
+            height: 20px;
+            border: none;
+            padding: 0;
+            border-radius: 4px;
+            border: 1px solid rgb(126, 121, 121);
+            cursor: pointer;
+            background-size: contain;
+            background-position: center;
+            background-color: rgb(255,255,255,0);
+            background-image: url('Images/leer.png');
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            top: -3px;
         }
     </style>
     <!--------------------- add geoJSON files renamed to .js files here -------------------------------------->
@@ -1629,6 +1717,15 @@
 
             const textbox = document.querySelector('.textbox-content');
             textbox.style.display = 'none';
+
+            const showElevationProfileButtons = document.querySelectorAll('.showElevationProfile');
+            showElevationProfileButtons.forEach(button => {
+                if (button && button.dataset.status == 1) {
+                    button.dataset.status = 0;
+                    button.style.borderColor = 'rgb(126, 121, 121)';
+                    button.style.borderWidth = '1px';
+                }
+            });
         }
 
         //list
@@ -1687,6 +1784,7 @@
             var elevationProfileTextbox = document.querySelector('.elevationprofile-textbox');
             var tableToggle = document.getElementById("table-toggle");
             
+            
             if (tableContainer.style.display === "none") {
                 tableContainer.style.display = "block";
                 map.style.marginLeft = "50%";
@@ -1696,6 +1794,7 @@
                 document.styleSheets[0].insertRule('#table-toggle:hover::before { content: "Liste einklappen" !important; }', 124);
                 if (elevationProfileTextbox){
                     elevationProfileTextbox.style.marginLeft = '25%';
+                    elevationProfileTextbox.style.fontSize = '12px';
                 }
                 if (backgroundElement){
                     backgroundElement.style.width = '50%';
@@ -1714,6 +1813,7 @@
                 }
                 if (elevationProfileTextbox){
                     elevationProfileTextbox.style.marginLeft = '0';
+                    elevationProfileTextbox.style.fontSize = '15px';
                 }
             }
         }
@@ -1806,6 +1906,12 @@
                 } else {
                     button.style.backgroundImage = "url('Images/hidden.png')";
                     button.dataset.tooltip = "Auf Karte anzeigen";
+                    const showElevationProfileButtons = document.querySelectorAll('.showElevationProfile');
+                    showElevationProfileButtons.forEach(button => {
+                        if (button && button.dataset.idd == idd && button.dataset.status == 1) {
+                            button.click();
+                        }
+                    });
                 }
             });
             buttonCell.appendChild(button);
@@ -1818,6 +1924,7 @@
             pngImage.src = tickedImagePath;
             pngImage.width = 10;
             pngImage.height = 10;
+            pngImage.title = 'Gemacht';
             pngCell.appendChild(pngImage);
             tableRow.appendChild(pngCell);
 
@@ -1876,6 +1983,8 @@
         
             return tableRow;
         }
+
+        const buttonActive = [];
         
         function toggleAdditionalInfo(container, additionalInfoArray,showMoreButton, idd) {
             const row = container.closest("tr");        
@@ -1895,10 +2004,90 @@
                 linkElement.style.color = "inherit";
                 const paragraph = document.createElement("p");
                 paragraph.appendChild(linkElement);
+
                 const additionalText = document.createElement("span");
                 additionalText.textContent = info[2];
                 paragraph.appendChild(additionalText);
                 newInfoContainer.appendChild(paragraph);
+
+                const buttonElement = document.createElement("button");
+                buttonElement.classList.add("showElevationProfile");
+                buttonElement.style.marginLeft = "10px";
+                buttonElement.dataset.tooltip = 'Höhenprofil anzeigen';
+                buttonElement.dataset.trackName = info[1];
+                buttonElement.dataset.idd = idd;
+                buttonElement.dataset.status = 0;
+                buttonElement.style.borderColor = 'rgb(126, 121, 121)'
+                buttonElement.addEventListener('mouseenter', function () {
+                    if(buttonElement.dataset.status == 0){
+                        this.style.borderColor = 'lightblue';
+                        this.style.borderWidth = '3px';
+                    } else if (buttonElement.dataset.status == 1) {
+                        this.style.borderColor = 'lightblue';
+                        this.style.borderWidth = '3px';
+                    }
+                });
+                buttonElement.addEventListener('mouseleave', function () {
+                    if(buttonElement.dataset.status == 0){
+                        this.style.borderColor = 'rgb(126, 121, 121)';
+                        this.style.borderWidth = '1px';
+                    } else if (buttonElement.dataset.status == 1) {
+                        this.style.borderColor = 'lightblue';
+                        this.style.borderWidth = '2px';
+                    }
+                });
+                buttonElement.addEventListener("click", () => {
+                    const eyeButtonID = `button${idd}`;
+                    const eyeButton = document.getElementById(eyeButtonID);
+                    if (eyeButton && !eyeButton.classList.contains('active') && buttonElement.dataset.status == 0) {
+                        eyeButton.click();
+
+                        const trackLayer = geoJSONArray[idd];
+                        trackLayer.eachLayer(layer => {
+                            if (layer.feature.properties.name === buttonElement.dataset.trackName) {
+                                layer.fire('click', { source: 'internalClick' });
+                                controlElevation.clear();
+                                controlElevation.addData(layer.feature);
+                            }
+                        });
+
+                        const targetFeature = passi.features.find(feature => feature.properties.idd === idd);
+                        if (targetFeature) {
+                            const [longitude, latitude] = targetFeature.geometry.coordinates;
+                            map.setView([latitude, longitude], 12);
+                        };
+                    } else {
+                        const trackLayer = geoJSONArray[idd];
+                        trackLayer.eachLayer(layer => {
+                            if (layer.feature.properties.name === buttonElement.dataset.trackName) {
+                                controlElevation.clear();
+                                controlElevation.addData(layer.feature);
+                                layer.fire('click', { source: 'internalClick' });
+                            }
+                        });
+
+                        const targetFeature = passi.features.find(feature => feature.properties.idd === idd);
+                        if (targetFeature) {
+                            const [longitude, latitude] = targetFeature.geometry.coordinates;
+                            map.setView([latitude, longitude], 12);
+                        };
+                    }
+
+                    if(buttonElement.dataset.status == 0){
+                        buttonElement.style.borderColor = 'lightblue';
+                        buttonElement.style.borderWidth = '2px';
+                        buttonElement.dataset.status = 1;
+                        buttonActive[idd] = true;
+                        resetStylesForOtherButtons(idd, info[1]);
+                    } else if(buttonElement.dataset.status == 1) {
+                        buttonElement.style.borderColor = 'rgb(126, 121, 121)'; 
+                        buttonElement.style.borderWidth = '1px';
+                        buttonElement.dataset.status = 0;
+                        buttonActive[idd] = false;
+                        closeElevationProfile();
+                    }
+                });
+                paragraph.appendChild(buttonElement);
             });
 
             newCell.appendChild(newInfoContainer);
@@ -1918,6 +2107,20 @@
             }
         }
 
+        function resetStylesForOtherButtons(selectedIDD, selectedName) {
+            const buttons = document.querySelectorAll('.showElevationProfile');
+            buttons.forEach(button => {
+                const idd = button.dataset.idd;
+                const name = button.dataset.trackName;
+                if ((idd !== selectedIDD) || (idd == selectedIDD && name != selectedName)) {
+                    button.style.borderColor = 'rgb(126, 121, 121)';
+                    button.style.borderWidth = '1px';
+                    button.dataset.status = 0;
+                    buttonActive[idd] = false;
+                }
+            });
+        }
+
         function selectAll() {
             const buttons = document.querySelectorAll(".eye-button");
             buttons.forEach(function (button) {
@@ -1928,6 +2131,13 @@
         }
         
         function deselectAll() {
+            const showElevationProfileButtons = document.querySelectorAll('.showElevationProfile');
+            showElevationProfileButtons.forEach(button => {
+                if (button && button.dataset.status == 1) {
+                    button.click();
+                }
+            });
+            
             const buttons = document.querySelectorAll(".eye-button");
             buttons.forEach(function (button) {
                 if (button.classList.contains("active")) {
@@ -2914,12 +3124,14 @@
         });
 
         function geoJSONTrackSettings(feature, layer) {
-            layer.bindTooltip(feature.properties.name + ' (' + feature.properties.length + ' km, ' + feature.properties.elevation + ' hm)');
-            
+            layer.bindTooltip(feature.properties.name + ' (' + feature.properties.length + ' km, ' + feature.properties.elevation + ' hm, ⌀ ' + ((feature.properties.elevation/(feature.properties.length*1000))*100).toFixed(1) + ' %)');
+
             layer.on('click', function (e) {
                 var closeButton = document.getElementById('custom-close-button');
-                controlElevation.clear();
-                controlElevation.addData(feature);
+                if(!(e.source === 'internalClick')){
+                    controlElevation.clear();
+                    controlElevation.addData(feature);
+                }
                 if (!isElevationExpanded) {
                     document.querySelector('.elevation-toggle-icon').click();
                     isElevationExpanded = true;
@@ -2928,8 +3140,26 @@
                 const iddToSearch = feature.properties.idd;
                 const passName = getNameById(iddToSearch);
                 var textbox = document.getElementById('textbox');
-                textbox.innerHTML = `<p class="textbox-content"><span class="textbox-name">${passName}</span> - <a class="textbox-link" href="${feature.properties.link}" target="_blank">${feature.properties.name}</a> - <span class="textbox-info">${feature.properties.length} km, ${feature.properties.elevation} hm</span></p>`;
+                textbox.innerHTML = `<p class="textbox-content"><span class="textbox-name">${passName}</span> - <a class="textbox-link" href="${feature.properties.link}" target="_blank">${feature.properties.name}</a> - <span class="textbox-info">${feature.properties.length} km, ${feature.properties.elevation} hm, 	&#x2300; ${((feature.properties.elevation/(feature.properties.length*1000))*100).toFixed(1)} %</span></p>`;
                 textbox.style.display = 'block';
+
+                const name = feature.properties.name;
+                const idd = feature.properties.idd;
+                const showElevationProfileButtons = document.querySelectorAll('.showElevationProfile');
+                showElevationProfileButtons.forEach(button => {
+                    if (button && !(e.source === 'internalClick')) {
+                        button.dataset.status = 0;
+                        button.style.borderColor = 'rgb(126, 121, 121)';
+                        button.style.borderWidth = '1px';
+                    }
+                });
+                showElevationProfileButtons.forEach(button => {
+                    if (button && button.dataset.idd == idd && button.dataset.trackName == name && button.dataset.status == 0 && !(e.source === 'internalClick')) {
+                        button.dataset.status = 1;
+                        button.style.borderColor = 'lightblue';
+                        button.style.borderWidth = '2px';
+                    }
+                });
             });
             
             layer.on('mouseover', function (e) {
@@ -3543,7 +3773,7 @@
                             temp = [];
                             temp[0] = trackArray5[j];
                             temp[1] = trackArray1[j];
-                            temp[2] = " (" + trackArray2[j] + ' km, ' + trackArray3[j] + ' hm, ' + trackArray4[j] + ' %)'
+                            temp[2] = " (" + trackArray2[j] + ' km, ' + trackArray3[j] + ' hm, ⌀ ' + trackArray4[j] + ' %)'
                             addInfo[j] = temp;
                         }
                         for (j=0; j<= numberOfFeatures-1; j++){
