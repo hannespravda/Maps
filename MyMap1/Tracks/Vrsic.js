@@ -2265,7 +2265,8 @@ var Vrsic = {
         "elevation": 870.0,
         "category": "Pass",
         "country": "SLO",
-        "link": "https://www.quaeldich.de/paesse/vrsi269/profile/nordauffahrt-von-kranjska-gora/"
+        "link": "https://www.quaeldich.de/paesse/vrsi269/profile/nordauffahrt-von-kranjska-gora/",
+        "trackID": 919
       }
     },
     {
@@ -6657,12 +6658,13 @@ var Vrsic = {
       },
       "properties": {
         "idd": "121",
-        "name": "Südauffahrt von Trenta",
+        "name": "S\u00c3\u00bcdauffahrt von Trenta",
         "length": 30.9,
         "elevation": 1329.0,
         "category": "Pass",
         "country": "SLO",
-        "link": "https://www.quaeldich.de/paesse/vrsi269/profile/suedauffahrt-von-trenta/"
+        "link": "https://www.quaeldich.de/paesse/vrsi269/profile/suedauffahrt-von-trenta/",
+        "trackID": 920
       }
     }
   ]

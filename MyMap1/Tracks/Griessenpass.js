@@ -1230,7 +1230,8 @@ var Griessenpass = {
         "elevation": 218.0,
         "category": "Pass",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/griessenpass/profile/westauffahrt-von-fieberbrunn/"
+        "link": "https://www.quaeldich.de/paesse/griessenpass/profile/westauffahrt-von-fieberbrunn/",
+        "trackID": 354
       }
     },
     {
@@ -2827,7 +2828,8 @@ var Griessenpass = {
         "elevation": 260.0,
         "category": "Pass",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/griessenpass/profile/ostauffahrt-von-saalfelden-am-steinernen-meer/"
+        "link": "https://www.quaeldich.de/paesse/griessenpass/profile/ostauffahrt-von-saalfelden-am-steinernen-meer/",
+        "trackID": 355
       }
     }
   ]

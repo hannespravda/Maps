@@ -523,7 +523,8 @@ var ÄulemerKreuz = {
         "elevation": "220",
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/aeulemer-kreuz/profile/nordostauffahrt-von-aha/"
+        "link": "https://www.quaeldich.de/paesse/aeulemer-kreuz/profile/nordostauffahrt-von-aha/",
+        "trackID": 962
       }
     },
     {
@@ -1023,12 +1024,13 @@ var ÄulemerKreuz = {
       },
       "properties": {
         "idd": "299",
-        "name": "Südauffahrt",
+        "name": "S\u00c3\u00bcdauffahrt",
         "length": "5.76",
         "elevation": "320",
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/aeulemer-kreuz/profile/suedwestauffahrt-von-menzenschwand/"
+        "link": "https://www.quaeldich.de/paesse/aeulemer-kreuz/profile/suedwestauffahrt-von-menzenschwand/",
+        "trackID": 963
       }
     }
   ]

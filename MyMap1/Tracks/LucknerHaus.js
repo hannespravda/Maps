@@ -2785,12 +2785,13 @@ var LucknerHaus = {
       },
       "properties": {
         "idd": "811",
-        "name": "Kalser Großglocknerstraße",
+        "name": "Kalser Gro\u00c3\u0178glocknerstra\u00c3\u0178e",
         "length": 20.8,
         "elevation": 1157.0,
         "category": "Sackgasse",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/luckner-haus/profile/suedanfahrt-von-huben/"
+        "link": "https://www.quaeldich.de/paesse/luckner-haus/profile/suedanfahrt-von-huben/",
+        "trackID": 503
       }
     }
   ]

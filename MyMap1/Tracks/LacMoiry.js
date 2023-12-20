@@ -2075,12 +2075,13 @@ var LacMoiry = {
       },
       "properties": {
         "idd": "742",
-        "name": "Stichstraße zum See",
+        "name": "Stichstra\u00c3\u0178e zum See",
         "length": 15.4,
         "elevation": 1120.0,
         "category": "Sackgasse",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/lac-de-moiry/profile/nordanfahrt-ueber-vissoie-von-sierre/"
+        "link": "https://www.quaeldich.de/paesse/lac-de-moiry/profile/nordanfahrt-ueber-vissoie-von-sierre/",
+        "trackID": 466
       }
     }
   ]

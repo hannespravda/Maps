@@ -1995,7 +1995,8 @@ var RiedbergZillertal = {
         "elevation": 1233.0,
         "category": "Climb",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/zillertaler-hoehenstrasse/profile/von-kaltenbach-zum-zirmstadel/"
+        "link": "https://www.quaeldich.de/paesse/zillertaler-hoehenstrasse/profile/von-kaltenbach-zum-zirmstadel/",
+        "trackID": 695
       }
     },
     {
@@ -4127,7 +4128,8 @@ var RiedbergZillertal = {
         "elevation": 1236.0,
         "category": "Climb",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/zillertaler-hoehenstrasse/profile/von-ried-zum-zirmstadel/"
+        "link": "https://www.quaeldich.de/paesse/zillertaler-hoehenstrasse/profile/von-ried-zum-zirmstadel/",
+        "trackID": 696
       }
     },
     {
@@ -6014,7 +6016,8 @@ var RiedbergZillertal = {
         "elevation": 1219.0,
         "category": "Climb",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/zillertaler-hoehenstrasse/profile/von-aschau-zum-zirmstadel/"
+        "link": "https://www.quaeldich.de/paesse/zillertaler-hoehenstrasse/profile/von-aschau-zum-zirmstadel/",
+        "trackID": 697
       }
     },
     {
@@ -8146,7 +8149,8 @@ var RiedbergZillertal = {
         "elevation": 1232.0,
         "category": "Climb",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/zillertaler-hoehenstrasse/profile/von-kaltenbach-zum-zirmstadel/"
+        "link": "https://www.quaeldich.de/paesse/zillertaler-hoehenstrasse/profile/von-kaltenbach-zum-zirmstadel/",
+        "trackID": 698
       }
     },
     {
@@ -8928,12 +8932,13 @@ var RiedbergZillertal = {
       },
       "properties": {
         "idd": "783",
-        "name": "Zillertaler Höhenstraße",
+        "name": "Zillertaler H\u00c3\u00b6henstra\u00c3\u0178e",
         "length": 4.3,
         "elevation": 341.0,
         "category": "Climb",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/zillertaler-hoehenstrasse/profile/von-zellberg-zum-melchboden/"
+        "link": "https://www.quaeldich.de/paesse/zillertaler-hoehenstrasse/profile/von-zellberg-zum-melchboden/",
+        "trackID": 699
       }
     }
   ]

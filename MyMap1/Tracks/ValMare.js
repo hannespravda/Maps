@@ -1580,12 +1580,13 @@ var ValMare = {
       },
       "properties": {
         "idd": "797",
-        "name": "Südostauffahrt von Fucine",
+        "name": "S\u00c3\u00bcdostauffahrt von Fucine",
         "length": 11.4,
         "elevation": 818.0,
         "category": "Sackgasse",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/val-de-la-mare/profile/suedostauffahrt-von-fucine/"
+        "link": "https://www.quaeldich.de/paesse/val-de-la-mare/profile/suedostauffahrt-von-fucine/",
+        "trackID": 878
       }
     }
   ]

@@ -880,12 +880,13 @@ var Durone = {
       },
       "properties": {
         "idd": "386",
-        "name": "Südostauffahrt",
+        "name": "S\u00c3\u00bcdostauffahrt",
         "length": 7.5,
         "elevation": 402.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/passo-duron/profile/suedostauffahrt-von-fiave/"
+        "link": "https://www.quaeldich.de/paesse/passo-duron/profile/suedostauffahrt-von-fiave/",
+        "trackID": 202
       }
     },
     {
@@ -2227,7 +2228,8 @@ var Durone = {
         "elevation": 582.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/passo-duron/profile/ostauffahrt-von-ponte-arche-ueber-bivedo/"
+        "link": "https://www.quaeldich.de/paesse/passo-duron/profile/ostauffahrt-von-ponte-arche-ueber-bivedo/",
+        "trackID": 203
       }
     },
     {
@@ -2984,7 +2986,8 @@ var Durone = {
         "elevation": 488.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/passo-duron/profile/westauffahrt-ueber-zuclo/"
+        "link": "https://www.quaeldich.de/paesse/passo-duron/profile/westauffahrt-ueber-zuclo/",
+        "trackID": 204
       }
     }
   ]

@@ -3300,12 +3300,13 @@ var ColJoly = {
       },
       "properties": {
         "idd": "792",
-        "name": "Südwestauffahrt von Beaufort",
+        "name": "S\u00c3\u00bcdwestauffahrt von Beaufort",
         "length": 21.8,
         "elevation": 1266.0,
         "category": "Sackgasse",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-du-joly/profile/suedwestauffahrt-von-beaufort/"
+        "link": "https://www.quaeldich.de/paesse/col-du-joly/profile/suedwestauffahrt-von-beaufort/",
+        "trackID": 147
       }
     },
     {
@@ -5637,7 +5638,8 @@ var ColJoly = {
         "elevation": 907.0,
         "category": "Sackgasse",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-du-joly/profile/suedwestauffahrt-von-beaufort/"
+        "link": "https://www.quaeldich.de/paesse/col-du-joly/profile/suedwestauffahrt-von-beaufort/",
+        "trackID": 148
       }
     }
   ]

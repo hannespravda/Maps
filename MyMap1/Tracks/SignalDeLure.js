@@ -2360,12 +2360,13 @@ var SignalDeLure = {
       },
       "properties": {
         "idd": "832",
-        "name": "Südauffahrt von St. Etienne-les-Orgues",
+        "name": "S\u00c3\u00bcdauffahrt von St. Etienne-les-Orgues",
         "length": 18.0,
         "elevation": 1075.0,
         "category": "Climb",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/signal-de-lure/profile/suedauffahrt-von-st-etienne-les-orgues/"
+        "link": "https://www.quaeldich.de/paesse/signal-de-lure/profile/suedauffahrt-von-st-etienne-les-orgues/",
+        "trackID": 782
       }
     },
     {
@@ -6197,7 +6198,8 @@ var SignalDeLure = {
         "elevation": 1295.0,
         "category": "Climb",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/signal-de-lure/profile/nordauffahrt-von-valbelle/"
+        "link": "https://www.quaeldich.de/paesse/signal-de-lure/profile/nordauffahrt-von-valbelle/",
+        "trackID": 783
       }
     }
   ]

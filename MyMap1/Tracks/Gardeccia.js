@@ -920,12 +920,13 @@ var Gardeccia = {
       },
       "properties": {
         "idd": "806",
-        "name": "Stichstraße aus dem Fassatal",
+        "name": "Stichstra\u00c3\u0178e aus dem Fassatal",
         "length": 6.2,
         "elevation": 587.0,
         "category": "Sackgasse",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/rifugio-gardeccia/profile/stichstrasse-aus-dem-fassatal/"
+        "link": "https://www.quaeldich.de/paesse/rifugio-gardeccia/profile/stichstrasse-aus-dem-fassatal/",
+        "trackID": 310
       }
     }
   ]

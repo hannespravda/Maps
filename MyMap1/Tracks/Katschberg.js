@@ -420,7 +420,8 @@ var Katschberg = {
         "elevation": 595.0,
         "category": "Pass",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/katschberghoehe/profile/nordrampe-von-st-michael-im-lungau/"
+        "link": "https://www.quaeldich.de/paesse/katschberghoehe/profile/nordrampe-von-st-michael-im-lungau/",
+        "trackID": 434
       }
     },
     {
@@ -992,12 +993,13 @@ var Katschberg = {
       },
       "properties": {
         "idd": "851",
-        "name": "Südauffahrt von Rennweg am Katschberg",
+        "name": "S\u00c3\u00bcdauffahrt von Rennweg am Katschberg",
         "length": 4.7,
         "elevation": 457.0,
         "category": "Pass",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/katschberghoehe/profile/suedauffahrt-von-rennweg-am-katschberg/"
+        "link": "https://www.quaeldich.de/paesse/katschberghoehe/profile/suedauffahrt-von-rennweg-am-katschberg/",
+        "trackID": 435
       }
     }
   ]

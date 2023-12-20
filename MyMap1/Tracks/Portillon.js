@@ -1375,12 +1375,13 @@ var Portillon = {
       },
       "properties": {
         "idd": "117",
-        "name": "Ostanfahrt von Bossòst",
+        "name": "Ostanfahrt von Boss\u00c3\u00b2st",
         "length": 8.2,
         "elevation": 614.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-du-portillon/profile/ostanfahrt-von-bossost/"
+        "link": "https://www.quaeldich.de/paesse/col-du-portillon/profile/ostanfahrt-von-bossost/",
+        "trackID": 671
       }
     },
     {
@@ -2542,12 +2543,13 @@ var Portillon = {
       },
       "properties": {
         "idd": "117",
-        "name": "Westanfahrt von Bagnères-de-Luchon",
+        "name": "Westanfahrt von Bagn\u00c3\u00a8res-de-Luchon",
         "length": 8.8,
         "elevation": 661.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-du-portillon/profile/westanfahrt-von-bagneres-de-luchon/"
+        "link": "https://www.quaeldich.de/paesse/col-du-portillon/profile/westanfahrt-von-bagneres-de-luchon/",
+        "trackID": 672
       }
     }
   ]

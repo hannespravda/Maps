@@ -1795,12 +1795,13 @@ var Chatillon = {
       },
       "properties": {
         "idd": "838",
-        "name": "Südauffahrt",
+        "name": "S\u00c3\u00bcdauffahrt",
         "length": 13.5,
         "elevation": 782.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/cret-de-chatillon/profile/ostanfahrt-vom-col-de-leschaux/"
+        "link": "https://www.quaeldich.de/paesse/cret-de-chatillon/profile/ostanfahrt-vom-col-de-leschaux/",
+        "trackID": 132
       }
     },
     {
@@ -4317,7 +4318,8 @@ var Chatillon = {
         "elevation": 1184.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/cret-de-chatillon/profile/nordanfahrt-von-annecy/"
+        "link": "https://www.quaeldich.de/paesse/cret-de-chatillon/profile/nordanfahrt-von-annecy/",
+        "trackID": 133
       }
     },
     {
@@ -6439,7 +6441,8 @@ var Chatillon = {
         "elevation": 1055.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/cret-de-chatillon/profile/westanfahrt-von-quintal/"
+        "link": "https://www.quaeldich.de/paesse/cret-de-chatillon/profile/westanfahrt-von-quintal/",
+        "trackID": 134
       }
     }
   ]

@@ -3805,7 +3805,8 @@ var Sanetsch = {
         "elevation": 1809.0,
         "category": "Sackgasse",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/col-du-sanetsch/profile/suedanfahrt-von-conthey/"
+        "link": "https://www.quaeldich.de/paesse/col-du-sanetsch/profile/suedanfahrt-von-conthey/",
+        "trackID": 744
       }
     },
     {
@@ -8092,7 +8093,8 @@ var Sanetsch = {
         "elevation": 1860.0,
         "category": "Sackgasse",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/col-du-sanetsch/profile/suedostanfahrt-von-sion/"
+        "link": "https://www.quaeldich.de/paesse/col-du-sanetsch/profile/suedostanfahrt-von-sion/",
+        "trackID": 745
       }
     }
   ]

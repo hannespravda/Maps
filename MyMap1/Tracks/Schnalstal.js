@@ -2515,12 +2515,13 @@ var Schnalstal = {
       },
       "properties": {
         "idd": "780",
-        "name": "Südostauffahrt von Naturns",
+        "name": "S\u00c3\u00bcdostauffahrt von Naturns",
         "length": 23.3,
         "elevation": 1463.0,
         "category": "Sackgasse",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/schnalstal/profile/suedostauffahrt-von-naturns/"
+        "link": "https://www.quaeldich.de/paesse/schnalstal/profile/suedostauffahrt-von-naturns/",
+        "trackID": 760
       }
     }
   ]

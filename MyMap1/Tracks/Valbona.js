@@ -740,7 +740,8 @@ var Valbona = {
         "elevation": 265.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/forcella-valbona/profile/weiterfahrt-von-der-bochetta-degli-alpini-ost/"
+        "link": "https://www.quaeldich.de/paesse/forcella-valbona/profile/weiterfahrt-von-der-bochetta-degli-alpini-ost/",
+        "trackID": 887
       }
     },
     {
@@ -1382,7 +1383,8 @@ var Valbona = {
         "elevation": 260.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/forcella-valbona/profile/weiterfahrt-vom-passo-coe-west/"
+        "link": "https://www.quaeldich.de/paesse/forcella-valbona/profile/weiterfahrt-vom-passo-coe-west/",
+        "trackID": 888
       }
     }
   ]

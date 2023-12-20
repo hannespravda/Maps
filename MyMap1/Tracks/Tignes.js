@@ -1185,7 +1185,8 @@ var Tignes = {
         "elevation": 353.0,
         "category": "Sackgasse",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/val-claret-pass/profile/nordostanfahrt-von-der-barrage-de-tignes/"
+        "link": "https://www.quaeldich.de/paesse/val-claret-pass/profile/nordostanfahrt-von-der-barrage-de-tignes/",
+        "trackID": 833
       }
     },
     {
@@ -3102,7 +3103,8 @@ var Tignes = {
         "elevation": 598.0,
         "category": "Sackgasse",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/val-claret-pass/profile/nordostanfahrt-von-der-barrage-de-tignes/"
+        "link": "https://www.quaeldich.de/paesse/val-claret-pass/profile/nordostanfahrt-von-der-barrage-de-tignes/",
+        "trackID": 834
       }
     }
   ]

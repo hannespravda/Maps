@@ -2570,7 +2570,8 @@ var Weinebene = {
         "elevation": 1289.0,
         "category": "Pass",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/weinebene/profile/ostauffahrt-von-bad-schwanberg/"
+        "link": "https://www.quaeldich.de/paesse/weinebene/profile/ostauffahrt-von-bad-schwanberg/",
+        "trackID": 923
       }
     },
     {
@@ -4937,7 +4938,8 @@ var Weinebene = {
         "elevation": 1320.0,
         "category": "Pass",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/weinebene/profile/westauffahrt-von-frantschach-st-gertraud/"
+        "link": "https://www.quaeldich.de/paesse/weinebene/profile/westauffahrt-von-frantschach-st-gertraud/",
+        "trackID": 924
       }
     },
     {
@@ -7169,7 +7171,8 @@ var Weinebene = {
         "elevation": 1196.0,
         "category": "Pass",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/weinebene/profile/westauffahrt-von-frantschach-st-gertraud/"
+        "link": "https://www.quaeldich.de/paesse/weinebene/profile/westauffahrt-von-frantschach-st-gertraud/",
+        "trackID": 925
       }
     }
   ]

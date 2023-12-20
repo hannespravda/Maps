@@ -1515,7 +1515,8 @@ var Agnes = {
         "elevation": 807.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-d-agnes/profile/westauffahrt-von-aulus-les-bains/"
+        "link": "https://www.quaeldich.de/paesse/col-d-agnes/profile/westauffahrt-von-aulus-les-bains/",
+        "trackID": 2
       }
     },
     {
@@ -2302,7 +2303,8 @@ var Agnes = {
         "elevation": 296.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-d-agnes/profile/nordauffahrt-von-massat/"
+        "link": "https://www.quaeldich.de/paesse/col-d-agnes/profile/nordauffahrt-von-massat/",
+        "trackID": 3
       }
     }
   ]

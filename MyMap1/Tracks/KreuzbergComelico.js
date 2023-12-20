@@ -1660,7 +1660,8 @@ var KreuzbergComelico = {
         "elevation": 470.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/passo-monte-croce-di-comelico/profile/nordanfahrt-von-innichen-san-candido/"
+        "link": "https://www.quaeldich.de/paesse/passo-monte-croce-di-comelico/profile/nordanfahrt-von-innichen-san-candido/",
+        "trackID": 455
       }
     },
     {
@@ -4012,12 +4013,13 @@ var KreuzbergComelico = {
       },
       "properties": {
         "idd": "112",
-        "name": "Südanfahrt von Padola",
+        "name": "S\u00c3\u00bcdanfahrt von Padola",
         "length": 21.3,
         "elevation": 753.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/passo-monte-croce-di-comelico/profile/suedanfahrt-von-padola/"
+        "link": "https://www.quaeldich.de/paesse/passo-monte-croce-di-comelico/profile/suedanfahrt-von-padola/",
+        "trackID": 456
       }
     }
   ]

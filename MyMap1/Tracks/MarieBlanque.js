@@ -1535,7 +1535,8 @@ var MarieBlanque = {
         "elevation": 648.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-marie-blanque/profile/ostauffahrt-von-bielle/"
+        "link": "https://www.quaeldich.de/paesse/col-de-marie-blanque/profile/ostauffahrt-von-bielle/",
+        "trackID": 530
       }
     },
     {
@@ -2652,7 +2653,8 @@ var MarieBlanque = {
         "elevation": 715.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-marie-blanque/profile/westauffahrt-von-escot/"
+        "link": "https://www.quaeldich.de/paesse/col-de-marie-blanque/profile/westauffahrt-von-escot/",
+        "trackID": 531
       }
     }
   ]

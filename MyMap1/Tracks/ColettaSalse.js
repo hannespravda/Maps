@@ -2975,7 +2975,8 @@ var ColettaSalse = {
         "elevation": 1029.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/colletta-delle-salse/profile/ost-nordost-auffahrt-von-ponte-di-nava/"
+        "link": "https://www.quaeldich.de/paesse/colletta-delle-salse/profile/ost-nordost-auffahrt-von-ponte-di-nava/",
+        "trackID": 153
       }
     },
     {
@@ -5242,7 +5243,8 @@ var ColettaSalse = {
         "elevation": 714.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/colletta-delle-salse/profile/suedost-auffahrt-von-pieve-di-teco/"
+        "link": "https://www.quaeldich.de/paesse/colletta-delle-salse/profile/suedost-auffahrt-von-pieve-di-teco/",
+        "trackID": 154
       }
     }
   ]

@@ -2275,7 +2275,8 @@ var Obertauern = {
         "elevation": 925.0,
         "category": "Pass",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/radstaedter-tauernpass/profile/nordanfahrt-von-radstadt/"
+        "link": "https://www.quaeldich.de/paesse/radstaedter-tauernpass/profile/nordanfahrt-von-radstadt/",
+        "trackID": 612
       }
     },
     {
@@ -3597,12 +3598,13 @@ var Obertauern = {
       },
       "properties": {
         "idd": "833",
-        "name": "Südanfahrt von Mauterndorf",
+        "name": "S\u00c3\u00bcdanfahrt von Mauterndorf",
         "length": 16.4,
         "elevation": 600.0,
         "category": "Pass",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/radstaedter-tauernpass/profile/suedanfahrt-von-mauterndorf/"
+        "link": "https://www.quaeldich.de/paesse/radstaedter-tauernpass/profile/suedanfahrt-von-mauterndorf/",
+        "trackID": 613
       }
     }
   ]

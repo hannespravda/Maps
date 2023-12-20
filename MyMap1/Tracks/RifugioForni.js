@@ -850,7 +850,8 @@ var RifugioForni = {
         "elevation": 397.0,
         "category": "Sackgasse",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/rifugio-ghiacciaio-dei-forni/profile/westanfahrt-von-santa-caterina-valfurva/"
+        "link": "https://www.quaeldich.de/paesse/rifugio-ghiacciaio-dei-forni/profile/westanfahrt-von-santa-caterina-valfurva/",
+        "trackID": 704
       }
     }
   ]

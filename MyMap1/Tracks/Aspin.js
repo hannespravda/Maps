@@ -1640,7 +1640,8 @@ var Aspin = {
         "elevation": 806.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-d-aspin/profile/ostanfahrt-von-arreau/"
+        "link": "https://www.quaeldich.de/paesse/col-d-aspin/profile/ostanfahrt-von-arreau/",
+        "trackID": 28
       }
     },
     {
@@ -3257,7 +3258,8 @@ var Aspin = {
         "elevation": 638.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-d-aspin/profile/westanfahrt-von-ste-marie-de-campan/"
+        "link": "https://www.quaeldich.de/paesse/col-d-aspin/profile/westanfahrt-von-ste-marie-de-campan/",
+        "trackID": 29
       }
     }
   ]

@@ -2620,7 +2620,8 @@ var ValMuggio = {
         "elevation": 718.0,
         "category": "Sackgasse",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/valle-di-muggio/profile/anfahrt-ostseite-ueber-caneggio-nach-muggio/"
+        "link": "https://www.quaeldich.de/paesse/valle-di-muggio/profile/anfahrt-ostseite-ueber-caneggio-nach-muggio/",
+        "trackID": 879
       }
     },
     {
@@ -5042,7 +5043,8 @@ var ValMuggio = {
         "elevation": 611.0,
         "category": "Sackgasse",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/valle-di-muggio/profile/anfahrt-von-mendrisio-ueber-casima/"
+        "link": "https://www.quaeldich.de/paesse/valle-di-muggio/profile/anfahrt-von-mendrisio-ueber-casima/",
+        "trackID": 880
       }
     }
   ]

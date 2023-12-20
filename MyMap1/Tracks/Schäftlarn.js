@@ -795,12 +795,13 @@ var Schäftlarn = {
       },
       "properties": {
         "idd": "874",
-        "name": "Hohenschäftlarn",
+        "name": "Hohensch\u00c3\u00a4ftlarn",
         "length": 4.4,
         "elevation": 130.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/hohenschaeftlarn-pass/profile/suedostauffahrt-vom-kloster-schaeftlarn/"
+        "link": "https://www.quaeldich.de/paesse/hohenschaeftlarn-pass/profile/suedostauffahrt-vom-kloster-schaeftlarn/",
+        "trackID": 764
       }
     },
     {
@@ -1207,12 +1208,13 @@ var Schäftlarn = {
       },
       "properties": {
         "idd": "874",
-        "name": "Schäftlarn",
+        "name": "Sch\u00c3\u00a4ftlarn",
         "length": 2.8,
         "elevation": 110.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/hohenschaeftlarn-pass/profile/suedostauffahrt-vom-kloster-schaeftlarn/"
+        "link": "https://www.quaeldich.de/paesse/hohenschaeftlarn-pass/profile/suedostauffahrt-vom-kloster-schaeftlarn/",
+        "trackID": 765
       }
     }
   ]

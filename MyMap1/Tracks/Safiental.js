@@ -4430,7 +4430,8 @@ var Safiental = {
         "elevation": 1367.0,
         "category": "Sackgasse",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/safiental/profile/nordanfahrt-von-versam/"
+        "link": "https://www.quaeldich.de/paesse/safiental/profile/nordanfahrt-von-versam/",
+        "trackID": 723
       }
     },
     {
@@ -9177,7 +9178,8 @@ var Safiental = {
         "elevation": 1336.0,
         "category": "Sackgasse",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/safiental/profile/nordanfahrt-von-versam/"
+        "link": "https://www.quaeldich.de/paesse/safiental/profile/nordanfahrt-von-versam/",
+        "trackID": 724
       }
     }
   ]

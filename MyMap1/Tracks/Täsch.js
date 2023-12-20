@@ -915,12 +915,13 @@ var Täsch = {
       },
       "properties": {
         "idd": "750",
-        "name": "Westanfahrt von Täsch",
+        "name": "Westanfahrt von T\u00c3\u00a4sch",
         "length": 7.2,
         "elevation": 757.0,
         "category": "Sackgasse",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/taeschalp/profile/westanfahrt-von-taesch/"
+        "link": "https://www.quaeldich.de/paesse/taeschalp/profile/westanfahrt-von-taesch/",
+        "trackID": 871
       }
     }
   ]

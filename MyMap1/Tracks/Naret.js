@@ -4685,12 +4685,13 @@ var Naret = {
       },
       "properties": {
         "idd": "746",
-        "name": "Südanfahrt von Bignasco",
+        "name": "S\u00c3\u00bcdanfahrt von Bignasco",
         "length": 32.0,
         "elevation": 1934.0,
         "category": "Sackgasse",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/lago-del-naret/profile/suedanfahrt-von-bignasco/"
+        "link": "https://www.quaeldich.de/paesse/lago-del-naret/profile/suedanfahrt-von-bignasco/",
+        "trackID": 578
       }
     }
   ]

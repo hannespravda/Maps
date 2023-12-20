@@ -790,12 +790,13 @@ var Sertigtal = {
       },
       "properties": {
         "idd": "809",
-        "name": "Nordwestanfahrt von Davos über Clavadel",
+        "name": "Nordwestanfahrt von Davos \u00c3\u00bcber Clavadel",
         "length": 7.3,
         "elevation": 359.0,
         "category": "Sackgasse",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/sertigtal/profile/nordwestanfahrt-von-davos-ueber-clavadel/"
+        "link": "https://www.quaeldich.de/paesse/sertigtal/profile/nordwestanfahrt-von-davos-ueber-clavadel/",
+        "trackID": 777
       }
     },
     {
@@ -1777,7 +1778,8 @@ var Sertigtal = {
         "elevation": 374.0,
         "category": "Sackgasse",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/sertigtal/profile/nordwestanfahrt-von-davos-ueber-clavadel/"
+        "link": "https://www.quaeldich.de/paesse/sertigtal/profile/nordwestanfahrt-von-davos-ueber-clavadel/",
+        "trackID": 778
       }
     }
   ]

@@ -1925,7 +1925,8 @@ var Gurnigel = {
         "elevation": 612.0,
         "category": "Pass",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/gurnigelpass/profile/nordwestauffahrt-von-riffenmatt-um-die-broennti-egg/"
+        "link": "https://www.quaeldich.de/paesse/gurnigelpass/profile/nordwestauffahrt-von-riffenmatt-um-die-broennti-egg/",
+        "trackID": 366
       }
     },
     {
@@ -3957,7 +3958,8 @@ var Gurnigel = {
         "elevation": 731.0,
         "category": "Pass",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/gurnigelpass/profile/westauffahrt-aus-zollhaus/"
+        "link": "https://www.quaeldich.de/paesse/gurnigelpass/profile/westauffahrt-aus-zollhaus/",
+        "trackID": 367
       }
     },
     {
@@ -5859,7 +5861,8 @@ var Gurnigel = {
         "elevation": 916.0,
         "category": "Pass",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/gurnigelpass/profile/nordauffahrt-aus-riffenmatt-ueber-schwarzenbuehl/"
+        "link": "https://www.quaeldich.de/paesse/gurnigelpass/profile/nordauffahrt-aus-riffenmatt-ueber-schwarzenbuehl/",
+        "trackID": 368
       }
     },
     {
@@ -7601,12 +7604,13 @@ var Gurnigel = {
       },
       "properties": {
         "idd": "124",
-        "name": "Nordostauffahrt von Rüti bei Riggisberg",
+        "name": "Nordostauffahrt von R\u00c3\u00bcti bei Riggisberg",
         "length": 13.7,
         "elevation": 854.0,
         "category": "Pass",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/gurnigelpass/profile/nordostauffahrt-von-rueti-bei-riggisberg/"
+        "link": "https://www.quaeldich.de/paesse/gurnigelpass/profile/nordostauffahrt-von-rueti-bei-riggisberg/",
+        "trackID": 369
       }
     },
     {
@@ -10983,12 +10987,13 @@ var Gurnigel = {
       },
       "properties": {
         "idd": "124",
-        "name": "Panoramastraße",
+        "name": "Panoramastra\u00c3\u0178e",
         "length": 23.2,
         "elevation": 711.0,
         "category": "Pass",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/gurnigelpass/profile/nordostauffahrt-von-rueti-bei-riggisberg/"
+        "link": "https://www.quaeldich.de/paesse/gurnigelpass/profile/nordostauffahrt-von-rueti-bei-riggisberg/",
+        "trackID": 370
       }
     }
   ]

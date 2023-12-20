@@ -1265,12 +1265,13 @@ var PuyRichard = {
       },
       "properties": {
         "idd": "858",
-        "name": "Südschleife von Briancon über Puy-Saint-André",
+        "name": "S\u00c3\u00bcdschleife von Briancon \u00c3\u00bcber Puy-Saint-Andr\u00c3\u00a9",
         "length": 6.4,
         "elevation": 405.0,
         "category": "Sackgasse",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/puy-richard/profile/nordostauffahrt-von-briancon-ueber-puy-saint-andre/"
+        "link": "https://www.quaeldich.de/paesse/puy-richard/profile/nordostauffahrt-von-briancon-ueber-puy-saint-andre/",
+        "trackID": 684
       }
     },
     {
@@ -2297,7 +2298,8 @@ var PuyRichard = {
         "elevation": 391.0,
         "category": "Sackgasse",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/puy-richard/profile/nordostauffahrt-von-briancon-ueber-puy-saint-pierre/"
+        "link": "https://www.quaeldich.de/paesse/puy-richard/profile/nordostauffahrt-von-briancon-ueber-puy-saint-pierre/",
+        "trackID": 685
       }
     }
   ]

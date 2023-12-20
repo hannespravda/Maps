@@ -2970,12 +2970,13 @@ var Bales = {
       },
       "properties": {
         "idd": "147",
-        "name": "Nordanfahrt von Mauléon-Barousse",
+        "name": "Nordanfahrt von Maul\u00c3\u00a9on-Barousse",
         "length": 19.5,
         "elevation": 1247.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/port-de-bales/profile/nordanfahrt-von-mauleon-barousse/"
+        "link": "https://www.quaeldich.de/paesse/port-de-bales/profile/nordanfahrt-von-mauleon-barousse/",
+        "trackID": 49
       }
     },
     {
@@ -4957,12 +4958,13 @@ var Bales = {
       },
       "properties": {
         "idd": "147",
-        "name": "Südwestanfahrt von Bagnères-de-Luchon",
+        "name": "S\u00c3\u00bcdwestanfahrt von Bagn\u00c3\u00a8res-de-Luchon",
         "length": 15.4,
         "elevation": 994.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/port-de-bales/profile/suedwestanfahrt-von-bagneres-de-luchon/"
+        "link": "https://www.quaeldich.de/paesse/port-de-bales/profile/suedwestanfahrt-von-bagneres-de-luchon/",
+        "trackID": 50
       }
     }
   ]

@@ -630,12 +630,13 @@ var FinstertalerStausee = {
       },
       "properties": {
         "idd": "744",
-        "name": "Stichstraße zum See",
+        "name": "Stichstra\u00c3\u0178e zum See",
         "length": 3.6,
         "elevation": 377.0,
         "category": "Sackgasse",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/finstertaler-stausee/profile/stichstrasse-vom-kuehtaisattel/"
+        "link": "https://www.quaeldich.de/paesse/finstertaler-stausee/profile/stichstrasse-vom-kuehtaisattel/",
+        "trackID": 258
       }
     }
   ]

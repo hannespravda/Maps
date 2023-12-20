@@ -360,7 +360,8 @@ var EttalerSattel = {
         "elevation": 36.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/ettaler-sattel/profile/ostauffahrt-von-oberau/"
+        "link": "https://www.quaeldich.de/paesse/ettaler-sattel/profile/ostauffahrt-von-oberau/",
+        "trackID": 236
       }
     },
     {
@@ -1072,7 +1073,8 @@ var EttalerSattel = {
         "elevation": 218.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/ettaler-sattel/profile/ostauffahrt-von-oberau/"
+        "link": "https://www.quaeldich.de/paesse/ettaler-sattel/profile/ostauffahrt-von-oberau/",
+        "trackID": 237
       }
     }
   ]

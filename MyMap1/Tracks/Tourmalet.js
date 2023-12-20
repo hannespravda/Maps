@@ -2305,7 +2305,8 @@ var Tourmalet = {
         "elevation": 1288.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-du-tourmalet/profile/ostauffahrt-von-sainte-marie-de-campan/"
+        "link": "https://www.quaeldich.de/paesse/col-du-tourmalet/profile/ostauffahrt-von-sainte-marie-de-campan/",
+        "trackID": 849
       }
     },
     {
@@ -4732,7 +4733,8 @@ var Tourmalet = {
         "elevation": 1417.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-du-tourmalet/profile/westauffahrt-von-luz-saint-sauveur/"
+        "link": "https://www.quaeldich.de/paesse/col-du-tourmalet/profile/westauffahrt-von-luz-saint-sauveur/",
+        "trackID": 850
       }
     }
   ]

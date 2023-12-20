@@ -1070,7 +1070,8 @@ var Aubisque = {
         "elevation": 458.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-d-aubisque/profile/ostanfahrt-vom-col-du-solour/"
+        "link": "https://www.quaeldich.de/paesse/col-d-aubisque/profile/ostanfahrt-vom-col-du-solour/",
+        "trackID": 30
       }
     },
     {
@@ -3847,7 +3848,8 @@ var Aubisque = {
         "elevation": 1221.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-d-aubisque/profile/westanfahrt-von-laruns/"
+        "link": "https://www.quaeldich.de/paesse/col-d-aubisque/profile/westanfahrt-von-laruns/",
+        "trackID": 31
       }
     }
   ]

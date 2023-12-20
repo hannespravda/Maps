@@ -3203,7 +3203,8 @@ var Arlberg = {
         "elevation": "1090",
         "category": "Pass",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/arlbergpass/profile/ostanfahrt-von-st-anton/"
+        "link": "https://www.quaeldich.de/paesse/arlbergpass/profile/ostanfahrt-von-st-anton/",
+        "trackID": 25
       }
     },
     {
@@ -6376,7 +6377,8 @@ var Arlberg = {
         "elevation": "1250",
         "category": "Pass",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/arlbergpass/profile/westanfahrt-von-bings/"
+        "link": "https://www.quaeldich.de/paesse/arlbergpass/profile/westanfahrt-von-bings/",
+        "trackID": 26
       }
     }
   ]

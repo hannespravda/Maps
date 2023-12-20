@@ -520,7 +520,8 @@ var Guarda = {
         "elevation": 256.0,
         "category": "Climb",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/guarda/profile/westauffahrt-von-giarsun/"
+        "link": "https://www.quaeldich.de/paesse/guarda/profile/westauffahrt-von-giarsun/",
+        "trackID": 363
       }
     },
     {
@@ -1142,12 +1143,13 @@ var Guarda = {
       },
       "properties": {
         "idd": "842",
-        "name": "Panoramastraße",
+        "name": "Panoramastra\u00c3\u0178e",
         "length": 4.1,
         "elevation": 246.0,
         "category": "Climb",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/guarda/profile/ostauffahrt-von-ardez-ueber-bos-cha/"
+        "link": "https://www.quaeldich.de/paesse/guarda/profile/ostauffahrt-von-ardez-ueber-bos-cha/",
+        "trackID": 364
       }
     }
   ]

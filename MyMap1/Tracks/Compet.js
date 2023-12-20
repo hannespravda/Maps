@@ -1570,7 +1570,8 @@ var Compet = {
         "elevation": 901.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/passo-del-compet/profile/suedauffahrt-von-levico-terme/"
+        "link": "https://www.quaeldich.de/paesse/passo-del-compet/profile/suedauffahrt-von-levico-terme/",
+        "trackID": 160
       }
     },
     {
@@ -3327,7 +3328,8 @@ var Compet = {
         "elevation": 782.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/passo-del-compet/profile/suedauffahrt-von-levico-terme/"
+        "link": "https://www.quaeldich.de/paesse/passo-del-compet/profile/suedauffahrt-von-levico-terme/",
+        "trackID": 161
       }
     },
     {
@@ -4924,7 +4926,8 @@ var Compet = {
         "elevation": 837.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/passo-del-compet/profile/nordwestauffahrt-von-assizzi-kreuzung-sp228-sp12/"
+        "link": "https://www.quaeldich.de/paesse/passo-del-compet/profile/nordwestauffahrt-von-assizzi-kreuzung-sp228-sp12/",
+        "trackID": 162
       }
     },
     {
@@ -7121,7 +7124,8 @@ var Compet = {
         "elevation": 932.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/passo-del-compet/profile/nordwestauffahrt-von-assizzi-kreuzung-sp228-sp12/"
+        "link": "https://www.quaeldich.de/paesse/passo-del-compet/profile/nordwestauffahrt-von-assizzi-kreuzung-sp228-sp12/",
+        "trackID": 163
       }
     }
   ]

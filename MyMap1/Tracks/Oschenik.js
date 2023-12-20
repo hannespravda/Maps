@@ -1390,12 +1390,13 @@ var Oschenik = {
       },
       "properties": {
         "idd": "739",
-        "name": "Stichstraße zum See",
+        "name": "Stichstra\u00c3\u0178e zum See",
         "length": 9.4,
         "elevation": 1191.0,
         "category": "Sackgasse",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/grosser-oscheniksee/profile/westauffahrt-von-innerfragant/"
+        "link": "https://www.quaeldich.de/paesse/grosser-oscheniksee/profile/westauffahrt-von-innerfragant/",
+        "trackID": 618
       }
     }
   ]

@@ -5,13 +5,17 @@ Ideen:
 	komoot karten design
 	filter for regions
 	3d map seite statt track link
+	cleanup
+	trackID in python script
 	
 Bugs
-	Show routes checkboxes
 	search box behind X
-	eye-buttons persistent after slider/ filter reset
 	kein zoom nach profile closing
 	profile auch zeigen in table by click <--> link zu quäldich noch notwendig?
+	select-all special modus
+	select-all zoom
+	Show routes checkboxes
+	eye-buttons persistent after slider/ filter reset
 
 
 komootgpx -m hannes.pravida@outlook.com -p Hannes99 -a -o C:\Users\hanne\Hannes\Projekte\MyMap1\Komoot -e

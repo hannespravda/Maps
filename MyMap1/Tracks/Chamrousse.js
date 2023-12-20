@@ -2415,7 +2415,8 @@ var Chamrousse = {
         "elevation": 1189.0,
         "category": "Climb",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/chamrousse-pass/profile/auffahrt-von-uriage-les-bains-ueber-les-seiglieres/"
+        "link": "https://www.quaeldich.de/paesse/chamrousse-pass/profile/auffahrt-von-uriage-les-bains-ueber-les-seiglieres/",
+        "trackID": 129
       }
     },
     {
@@ -5007,12 +5008,13 @@ var Chamrousse = {
       },
       "properties": {
         "idd": "837",
-        "name": "Südwestauffahrt",
+        "name": "S\u00c3\u00bcdwestauffahrt",
         "length": 17.8,
         "elevation": 1327.0,
         "category": "Climb",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/chamrousse-pass/profile/auffahrt-von-uriage-les-bains-ueber-premol/"
+        "link": "https://www.quaeldich.de/paesse/chamrousse-pass/profile/auffahrt-von-uriage-les-bains-ueber-premol/",
+        "trackID": 130
       }
     },
     {
@@ -7699,7 +7701,8 @@ var Chamrousse = {
         "elevation": 1372.0,
         "category": "Climb",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/chamrousse-pass/profile/auffahrt-von-uriage-les-bains-ueber-premol/"
+        "link": "https://www.quaeldich.de/paesse/chamrousse-pass/profile/auffahrt-von-uriage-les-bains-ueber-premol/",
+        "trackID": 131
       }
     }
   ]

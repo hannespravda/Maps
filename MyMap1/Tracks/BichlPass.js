@@ -285,7 +285,8 @@ var BichlPass = {
         "elevation": 59.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/bichl-pass/profile/suedauffahrt-von-neukirchen/"
+        "link": "https://www.quaeldich.de/paesse/bichl-pass/profile/suedauffahrt-von-neukirchen/",
+        "trackID": 65
       }
     },
     {
@@ -637,7 +638,8 @@ var BichlPass = {
         "elevation": 126.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/bichl-pass/profile/nordwestauffahrt-von-der-b304-ueber-surberg/"
+        "link": "https://www.quaeldich.de/paesse/bichl-pass/profile/nordwestauffahrt-von-der-b304-ueber-surberg/",
+        "trackID": 66
       }
     }
   ]

@@ -2890,12 +2890,13 @@ var AlpeBernardo = {
       },
       "properties": {
         "idd": "856",
-        "name": "Südostanfahrt von Domodossola",
+        "name": "S\u00c3\u00bcdostanfahrt von Domodossola",
         "length": 18.1,
         "elevation": 1337.0,
         "category": "Sackgasse",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/alpe-san-bernardo/profile/suedostanfahrt-von-domodossola/"
+        "link": "https://www.quaeldich.de/paesse/alpe-san-bernardo/profile/suedostanfahrt-von-domodossola/",
+        "trackID": 11
       }
     }
   ]

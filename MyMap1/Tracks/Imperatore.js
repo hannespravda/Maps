@@ -865,12 +865,13 @@ var Imperatore = {
       },
       "properties": {
         "idd": "176",
-        "name": "Stichstraße von der SR17",
+        "name": "Stichstra\u00c3\u0178e von der SR17",
         "length": 9.8,
         "elevation": 479.0,
         "category": "Sackgasse",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/campo-imperatore/profile/stichstrasse-von-der-sr17/"
+        "link": "https://www.quaeldich.de/paesse/campo-imperatore/profile/stichstrasse-von-der-sr17/",
+        "trackID": 399
       }
     }
   ]

@@ -1605,12 +1605,13 @@ var Generoso = {
       },
       "properties": {
         "idd": "871",
-        "name": "Südauffahrt von Mendrisio",
+        "name": "S\u00c3\u00bcdauffahrt von Mendrisio",
         "length": 10.3,
         "elevation": 781.0,
         "category": "Sackgasse",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/monte-generoso/profile/suedauffahrt-von-mendrisio/"
+        "link": "https://www.quaeldich.de/paesse/monte-generoso/profile/suedauffahrt-von-mendrisio/",
+        "trackID": 315
       }
     }
   ]

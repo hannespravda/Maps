@@ -2270,7 +2270,8 @@ var Schoenfeldsattel = {
         "elevation": 856.0,
         "category": "Pass",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/schoenfeldsattel/profile/nordanfahrt-von-pichlern/"
+        "link": "https://www.quaeldich.de/paesse/schoenfeldsattel/profile/nordanfahrt-von-pichlern/",
+        "trackID": 761
       }
     },
     {
@@ -4227,7 +4228,8 @@ var Schoenfeldsattel = {
         "elevation": 832.0,
         "category": "Pass",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/schoenfeldsattel/profile/nordanfahrt-von-pichlern/"
+        "link": "https://www.quaeldich.de/paesse/schoenfeldsattel/profile/nordanfahrt-von-pichlern/",
+        "trackID": 762
       }
     },
     {
@@ -5784,7 +5786,8 @@ var Schoenfeldsattel = {
         "elevation": 752.0,
         "category": "Pass",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/schoenfeldsattel/profile/suedwestanfahrt-von-innerkrems/"
+        "link": "https://www.quaeldich.de/paesse/schoenfeldsattel/profile/suedwestanfahrt-von-innerkrems/",
+        "trackID": 763
       }
     }
   ]

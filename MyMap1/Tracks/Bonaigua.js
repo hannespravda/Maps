@@ -2305,12 +2305,13 @@ var Bonaigua = {
       },
       "properties": {
         "idd": "215",
-        "name": "Südostanfahrt von Esterri d'Àneu",
+        "name": "S\u00c3\u00bcdostanfahrt von Esterri d'\u00c3\u20acneu",
         "length": 19.8,
         "elevation": 1180.0,
         "category": "Pass",
         "country": "ES",
-        "link": "https://www.quaeldich.de/paesse/port-de-la-bonaigua/profile/suedostanfahrt-von-esterri-d-aneu/"
+        "link": "https://www.quaeldich.de/paesse/port-de-la-bonaigua/profile/suedostanfahrt-von-esterri-d-aneu/",
+        "trackID": 75
       }
     },
     {
@@ -4762,7 +4763,8 @@ var Bonaigua = {
         "elevation": 1161.0,
         "category": "Pass",
         "country": "ES",
-        "link": "https://www.quaeldich.de/paesse/port-de-la-bonaigua/profile/nordwestanfahrt-von-vielha/"
+        "link": "https://www.quaeldich.de/paesse/port-de-la-bonaigua/profile/nordwestanfahrt-von-vielha/",
+        "trackID": 76
       }
     }
   ]

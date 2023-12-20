@@ -675,12 +675,13 @@ var PierreMoelle = {
       },
       "properties": {
         "idd": "846",
-        "name": "Südostauffahrt von Ormont Dessous",
+        "name": "S\u00c3\u00bcdostauffahrt von Ormont Dessous",
         "length": 4.2,
         "elevation": 358.0,
         "category": "Climb",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/col-pierre-du-moelle/profile/suedostauffahrt-von-ormont-dessous/"
+        "link": "https://www.quaeldich.de/paesse/col-pierre-du-moelle/profile/suedostauffahrt-von-ormont-dessous/",
+        "trackID": 653
       }
     },
     {
@@ -1732,12 +1733,13 @@ var PierreMoelle = {
       },
       "properties": {
         "idd": "846",
-        "name": "Südwestauffahrt",
+        "name": "S\u00c3\u00bcdwestauffahrt",
         "length": 5.9,
         "elevation": 540.0,
         "category": "Climb",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/col-pierre-du-moelle/profile/suedostauffahrt-von-ormont-dessous/"
+        "link": "https://www.quaeldich.de/paesse/col-pierre-du-moelle/profile/suedostauffahrt-von-ormont-dessous/",
+        "trackID": 654
       }
     },
     {
@@ -5894,7 +5896,8 @@ var PierreMoelle = {
         "elevation": 1476.0,
         "category": "Climb",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/col-pierre-du-moelle/profile/nordauffahrt-von-bruecke-34/"
+        "link": "https://www.quaeldich.de/paesse/col-pierre-du-moelle/profile/nordauffahrt-von-bruecke-34/",
+        "trackID": 655
       }
     },
     {
@@ -7286,7 +7289,8 @@ var PierreMoelle = {
         "elevation": 396.0,
         "category": "Climb",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/col-pierre-du-moelle/profile/nordauffahrt-von-bruecke-34/"
+        "link": "https://www.quaeldich.de/paesse/col-pierre-du-moelle/profile/nordauffahrt-von-bruecke-34/",
+        "trackID": 656
       }
     }
   ]

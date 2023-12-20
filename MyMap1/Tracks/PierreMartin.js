@@ -3120,7 +3120,8 @@ var PierreMartin = {
         "elevation": 1512.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-la-pierre-saint-martin/profile/nordauffahrt-von-arette_a/"
+        "link": "https://www.quaeldich.de/paesse/col-de-la-pierre-saint-martin/profile/nordauffahrt-von-arette_a/",
+        "trackID": 646
       }
     },
     {
@@ -7272,7 +7273,8 @@ var PierreMartin = {
         "elevation": 1666.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-la-pierre-saint-martin/profile/nordauffahrt-von-arette_a/"
+        "link": "https://www.quaeldich.de/paesse/col-de-la-pierre-saint-martin/profile/nordauffahrt-von-arette_a/",
+        "trackID": 647
       }
     },
     {
@@ -11179,12 +11181,13 @@ var PierreMartin = {
       },
       "properties": {
         "idd": "154",
-        "name": "Südostauffahrt",
+        "name": "S\u00c3\u00bcdostauffahrt",
         "length": 28.8,
         "elevation": 1642.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-la-pierre-saint-martin/profile/nordauffahrt-von-arette_a/"
+        "link": "https://www.quaeldich.de/paesse/col-de-la-pierre-saint-martin/profile/nordauffahrt-von-arette_a/",
+        "trackID": 648
       }
     },
     {
@@ -15991,7 +15994,8 @@ var PierreMartin = {
         "elevation": 1859.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-la-pierre-saint-martin/profile/nordauffahrt-von-arette_a/"
+        "link": "https://www.quaeldich.de/paesse/col-de-la-pierre-saint-martin/profile/nordauffahrt-von-arette_a/",
+        "trackID": 649
       }
     },
     {
@@ -20573,7 +20577,8 @@ var PierreMartin = {
         "elevation": 1687.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-la-pierre-saint-martin/profile/nordauffahrt-von-arette_a/"
+        "link": "https://www.quaeldich.de/paesse/col-de-la-pierre-saint-martin/profile/nordauffahrt-von-arette_a/",
+        "trackID": 650
       }
     },
     {
@@ -21555,7 +21560,8 @@ var PierreMartin = {
         "elevation": 546.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-la-pierre-saint-martin/profile/westauffahrt-von-der-d26-val-de-larrau/"
+        "link": "https://www.quaeldich.de/paesse/col-de-la-pierre-saint-martin/profile/westauffahrt-von-der-d26-val-de-larrau/",
+        "trackID": 651
       }
     },
     {
@@ -24312,7 +24318,8 @@ var PierreMartin = {
         "elevation": 1066.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-la-pierre-saint-martin/profile/suedwestauffahrt-aus-richtung-isaba/"
+        "link": "https://www.quaeldich.de/paesse/col-de-la-pierre-saint-martin/profile/suedwestauffahrt-aus-richtung-isaba/",
+        "trackID": 652
       }
     }
   ]

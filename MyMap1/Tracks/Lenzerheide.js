@@ -1780,7 +1780,8 @@ var Lenzerheide = {
         "elevation": 945.0,
         "category": "Pass",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/lenzerheidepass/profile/nordanfahrt-von-chur/"
+        "link": "https://www.quaeldich.de/paesse/lenzerheidepass/profile/nordanfahrt-von-chur/",
+        "trackID": 482
       }
     },
     {
@@ -3377,7 +3378,8 @@ var Lenzerheide = {
         "elevation": 672.0,
         "category": "Pass",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/lenzerheidepass/profile/suedanfahrt-von-tiefencastel/"
+        "link": "https://www.quaeldich.de/paesse/lenzerheidepass/profile/suedanfahrt-von-tiefencastel/",
+        "trackID": 483
       }
     },
     {
@@ -4929,12 +4931,13 @@ var Lenzerheide = {
       },
       "properties": {
         "idd": "133",
-        "name": "Variante Süd I",
+        "name": "Variante S\u00c3\u00bcd I",
         "length": 11.8,
         "elevation": 713.0,
         "category": "Pass",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/lenzerheidepass/profile/westanfahrt-von-solis/"
+        "link": "https://www.quaeldich.de/paesse/lenzerheidepass/profile/westanfahrt-von-solis/",
+        "trackID": 484
       }
     },
     {
@@ -6996,12 +6999,13 @@ var Lenzerheide = {
       },
       "properties": {
         "idd": "133",
-        "name": "Variante Süd II",
+        "name": "Variante S\u00c3\u00bcd II",
         "length": 14.7,
         "elevation": 861.0,
         "category": "Pass",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/lenzerheidepass/profile/westanfahrt-von-solis/"
+        "link": "https://www.quaeldich.de/paesse/lenzerheidepass/profile/westanfahrt-von-solis/",
+        "trackID": 485
       }
     }
   ]

@@ -1075,7 +1075,8 @@ var Luesens = {
         "elevation": 453.0,
         "category": "Sackgasse",
         "country": "AT",
-        "link": "https://www.innsbruck.info/radsport/radfahren/rennrad/rennradtouren/touren/innsbruck-luesens.html"
+        "link": "https://www.innsbruck.info/radsport/radfahren/rennrad/rennradtouren/touren/innsbruck-luesens.html",
+        "trackID": 507
       }
     }
   ]

@@ -2850,12 +2850,13 @@ var Giw = {
       },
       "properties": {
         "idd": "800",
-        "name": "Südwestauffahrt von Visp",
+        "name": "S\u00c3\u00bcdwestauffahrt von Visp",
         "length": 15.9,
         "elevation": 1317.0,
         "category": "Sackgasse",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/giw/profile/suedwestauffahrt-von-visp/"
+        "link": "https://www.quaeldich.de/paesse/giw/profile/suedwestauffahrt-von-visp/",
+        "trackID": 324
       }
     }
   ]

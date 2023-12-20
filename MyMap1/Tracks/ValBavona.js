@@ -1565,12 +1565,13 @@ var ValBavona = {
       },
       "properties": {
         "idd": "870",
-        "name": "Stichstraße",
+        "name": "Stichstra\u00c3\u0178e",
         "length": 12.0,
         "elevation": 582.0,
         "category": "Sackgasse",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/bavonatal/profile/suedwestanfahrt-von-bignasco/"
+        "link": "https://www.quaeldich.de/paesse/bavonatal/profile/suedwestanfahrt-von-bignasco/",
+        "trackID": 877
       }
     }
   ]

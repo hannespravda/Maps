@@ -1920,12 +1920,13 @@ var Mangrt = {
       },
       "properties": {
         "idd": "770",
-        "name": "Auffahrt von der Predilstraße",
+        "name": "Auffahrt von der Predilstra\u00c3\u0178e",
         "length": 10.9,
         "elevation": 1009.0,
         "category": "Sackgasse",
         "country": "SLO",
-        "link": "https://www.quaeldich.de/paesse/mangrt/profile/suedostauffahrt-von-der-predilpassstrasse/"
+        "link": "https://www.quaeldich.de/paesse/mangrt/profile/suedostauffahrt-von-der-predilpassstrasse/",
+        "trackID": 523
       }
     }
   ]

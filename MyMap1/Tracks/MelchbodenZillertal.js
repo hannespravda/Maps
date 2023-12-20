@@ -2795,7 +2795,8 @@ var MelchbodenZillertal = {
         "elevation": 1527.0,
         "category": "Climb",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/zillertaler-hoehenstrasse/profile/von-aschau-zum-melchboden/"
+        "link": "https://www.quaeldich.de/paesse/zillertaler-hoehenstrasse/profile/von-aschau-zum-melchboden/",
+        "trackID": 544
       }
     },
     {
@@ -4182,12 +4183,13 @@ var MelchbodenZillertal = {
       },
       "properties": {
         "idd": "784",
-        "name": "Zillertaler Höhenstraße",
+        "name": "Zillertaler H\u00c3\u00b6henstra\u00c3\u0178e",
         "length": 8.3,
         "elevation": 635.0,
         "category": "Climb",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/zillertaler-hoehenstrasse/karte/"
+        "link": "https://www.quaeldich.de/paesse/zillertaler-hoehenstrasse/karte/",
+        "trackID": 545
       }
     },
     {
@@ -6824,7 +6826,8 @@ var MelchbodenZillertal = {
         "elevation": 1512.0,
         "category": "Climb",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/zillertaler-hoehenstrasse/profile/von-zellberg-zum-melchboden/"
+        "link": "https://www.quaeldich.de/paesse/zillertaler-hoehenstrasse/profile/von-zellberg-zum-melchboden/",
+        "trackID": 546
       }
     },
     {
@@ -9281,7 +9284,8 @@ var MelchbodenZillertal = {
         "elevation": 1403.0,
         "category": "Climb",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/zillertaler-hoehenstrasse/profile/von-hippach-zum-melchboden/"
+        "link": "https://www.quaeldich.de/paesse/zillertaler-hoehenstrasse/profile/von-hippach-zum-melchboden/",
+        "trackID": 547
       }
     }
   ]

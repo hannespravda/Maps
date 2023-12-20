@@ -2270,12 +2270,13 @@ var AlpeGalm = {
       },
       "properties": {
         "idd": "748",
-        "name": "Südanfahrt Variante über Brunnen von Susten",
+        "name": "S\u00c3\u00bcdanfahrt Variante \u00c3\u00bcber Brunnen von Susten",
         "length": 15.0,
         "elevation": 1328.0,
         "category": "Sackgasse",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/alpe-galm/profile/suedanfahrt-variante-ueber-brunnen-von-susten/"
+        "link": "https://www.quaeldich.de/paesse/alpe-galm/profile/suedanfahrt-variante-ueber-brunnen-von-susten/",
+        "trackID": 12
       }
     }
   ]

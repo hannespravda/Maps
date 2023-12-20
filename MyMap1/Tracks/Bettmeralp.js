@@ -2755,12 +2755,13 @@ var Bettmeralp = {
       },
       "properties": {
         "idd": "771",
-        "name": "Südauffahrt von Mörel",
+        "name": "S\u00c3\u00bcdauffahrt von M\u00c3\u00b6rel",
         "length": 15.1,
         "elevation": 1159.0,
         "category": "Sackgasse",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/bettmeralp/profile/suedauffahrt-von-moerel/"
+        "link": "https://www.quaeldich.de/paesse/bettmeralp/profile/suedauffahrt-von-moerel/",
+        "trackID": 64
       }
     }
   ]

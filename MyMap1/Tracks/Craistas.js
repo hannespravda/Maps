@@ -585,12 +585,13 @@ var Craistas = {
       },
       "properties": {
         "idd": "821",
-        "name": "Auffahrt aus dem Münstertal",
+        "name": "Auffahrt aus dem M\u00c3\u00bcnstertal",
         "length": 3.0,
         "elevation": 257.0,
         "category": "Climb",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/craistas/profile/suedostanfahrt-von-sta-maria/"
+        "link": "https://www.quaeldich.de/paesse/craistas/profile/suedostanfahrt-von-sta-maria/",
+        "trackID": 168
       }
     },
     {
@@ -1502,7 +1503,8 @@ var Craistas = {
         "elevation": 511.0,
         "category": "Climb",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/craistas/profile/suedostanfahrt-von-sta-maria/"
+        "link": "https://www.quaeldich.de/paesse/craistas/profile/suedostanfahrt-von-sta-maria/",
+        "trackID": 169
       }
     }
   ]

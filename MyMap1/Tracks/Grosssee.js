@@ -2280,12 +2280,13 @@ var Grosssee = {
       },
       "properties": {
         "idd": "860",
-        "name": "Westanfahrt von Döllach",
+        "name": "Westanfahrt von D\u00c3\u00b6llach",
         "length": 14.1,
         "elevation": 1271.0,
         "category": "Sackgasse",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/grosssee/profile/westanfahrt-von-doellach/"
+        "link": "https://www.quaeldich.de/paesse/grosssee/profile/westanfahrt-von-doellach/",
+        "trackID": 358
       }
     }
   ]

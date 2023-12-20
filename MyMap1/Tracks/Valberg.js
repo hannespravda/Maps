@@ -1960,12 +1960,13 @@ var Valberg = {
       },
       "properties": {
         "idd": "106",
-        "name": "Südwestauffahrt",
+        "name": "S\u00c3\u00bcdwestauffahrt",
         "length": 13.4,
         "elevation": 907.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-valberg/profile/westauffahrt-von-guillaumes-ueber-peone/"
+        "link": "https://www.quaeldich.de/paesse/col-de-valberg/profile/westauffahrt-von-guillaumes-ueber-peone/",
+        "trackID": 884
       }
     },
     {
@@ -4202,7 +4203,8 @@ var Valberg = {
         "elevation": 889.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-valberg/profile/westauffahrt-von-guillaumes-ueber-peone/"
+        "link": "https://www.quaeldich.de/paesse/col-de-valberg/profile/westauffahrt-von-guillaumes-ueber-peone/",
+        "trackID": 885
       }
     },
     {
@@ -8069,7 +8071,8 @@ var Valberg = {
         "elevation": 1411.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-valberg/profile/ostauffahrt-von-beuil/"
+        "link": "https://www.quaeldich.de/paesse/col-de-valberg/profile/ostauffahrt-von-beuil/",
+        "trackID": 886
       }
     }
   ]

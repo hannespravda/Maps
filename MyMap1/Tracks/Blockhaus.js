@@ -1330,7 +1330,8 @@ var Blockhaus = {
         "elevation": 723.0,
         "category": "Sackgasse",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/blockhaus/profile/nordwestanfahrt-von-scafa-ueber-lettomanopello/"
+        "link": "https://www.quaeldich.de/paesse/blockhaus/profile/nordwestanfahrt-von-scafa-ueber-lettomanopello/",
+        "trackID": 71
       }
     },
     {
@@ -3587,7 +3588,8 @@ var Blockhaus = {
         "elevation": 1505.0,
         "category": "Sackgasse",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/blockhaus/profile/nordwestauffahrt-von-roccamorice/"
+        "link": "https://www.quaeldich.de/paesse/blockhaus/profile/nordwestauffahrt-von-roccamorice/",
+        "trackID": 72
       }
     }
   ]

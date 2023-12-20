@@ -3260,12 +3260,13 @@ var ValleeClaree = {
       },
       "properties": {
         "idd": "778",
-        "name": "Südostauffahrt von La Vachette",
+        "name": "S\u00c3\u00bcdostauffahrt von La Vachette",
         "length": 26.2,
         "elevation": 678.0,
         "category": "Sackgasse",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/chalets-de-laval/profile/suedostauffahrt-von-la-vachette-n94/"
+        "link": "https://www.quaeldich.de/paesse/chalets-de-laval/profile/suedostauffahrt-von-la-vachette-n94/",
+        "trackID": 895
       }
     }
   ]

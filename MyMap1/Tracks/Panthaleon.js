@@ -2815,12 +2815,13 @@ var Panthaleon = {
       },
       "properties": {
         "idd": "845",
-        "name": "Südanfahrt ab Chambave",
+        "name": "S\u00c3\u00bcdanfahrt ab Chambave",
         "length": 17.4,
         "elevation": 1186.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/col-de-saint-panthaleon/profile/suedanfahrt-ab-chambave/"
+        "link": "https://www.quaeldich.de/paesse/col-de-saint-panthaleon/profile/suedanfahrt-ab-chambave/",
+        "trackID": 625
       }
     },
     {
@@ -5582,7 +5583,8 @@ var Panthaleon = {
         "elevation": 1187.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/col-de-saint-panthaleon/profile/suedanfahrt-ab-chambave/"
+        "link": "https://www.quaeldich.de/paesse/col-de-saint-panthaleon/profile/suedanfahrt-ab-chambave/",
+        "trackID": 626
       }
     },
     {
@@ -8799,12 +8801,13 @@ var Panthaleon = {
       },
       "properties": {
         "idd": "845",
-        "name": "Südwestauffahrt von Champagne",
+        "name": "S\u00c3\u00bcdwestauffahrt von Champagne",
         "length": 20.3,
         "elevation": 1234.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/col-de-saint-panthaleon/profile/suedwestauffahrt-von-champagne-sr42/"
+        "link": "https://www.quaeldich.de/paesse/col-de-saint-panthaleon/profile/suedwestauffahrt-von-champagne-sr42/",
+        "trackID": 627
       }
     },
     {
@@ -10131,12 +10134,13 @@ var Panthaleon = {
       },
       "properties": {
         "idd": "845",
-        "name": "Nordostauffahrt von Antey-Saint-André",
+        "name": "Nordostauffahrt von Antey-Saint-Andr\u00c3\u00a9",
         "length": 8.3,
         "elevation": 564.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/col-de-saint-panthaleon/profile/nordostauffahrt-von-antey-saint-andre/"
+        "link": "https://www.quaeldich.de/paesse/col-de-saint-panthaleon/profile/nordostauffahrt-von-antey-saint-andre/",
+        "trackID": 628
       }
     }
   ]

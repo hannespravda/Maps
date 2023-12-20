@@ -980,7 +980,8 @@ var ColNoyer = {
         "elevation": 516.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-du-noyer/profile/ostauffahrt-ab-le-noyer/"
+        "link": "https://www.quaeldich.de/paesse/col-du-noyer/profile/ostauffahrt-ab-le-noyer/",
+        "trackID": 149
       }
     },
     {
@@ -1797,12 +1798,13 @@ var ColNoyer = {
       },
       "properties": {
         "idd": "844",
-        "name": "Westauffahrt von St. Etienne en Dévoluy",
+        "name": "Westauffahrt von St. Etienne en D\u00c3\u00a9voluy",
         "length": 7.5,
         "elevation": 389.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-du-noyer/profile/westauffahrt-von-st-etienne-en-devoluy/"
+        "link": "https://www.quaeldich.de/paesse/col-du-noyer/profile/westauffahrt-von-st-etienne-en-devoluy/",
+        "trackID": 150
       }
     },
     {
@@ -2374,7 +2376,8 @@ var ColNoyer = {
         "elevation": 383.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-du-noyer/profile/westauffahrt-von-st-etienne-en-devoluy/"
+        "link": "https://www.quaeldich.de/paesse/col-du-noyer/profile/westauffahrt-von-st-etienne-en-devoluy/",
+        "trackID": 151
       }
     }
   ]

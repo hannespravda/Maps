@@ -3745,12 +3745,13 @@ var Cervinia = {
       },
       "properties": {
         "idd": "782",
-        "name": "Südauffahrt von Chatillon",
+        "name": "S\u00c3\u00bcdauffahrt von Chatillon",
         "length": 27.8,
         "elevation": 1546.0,
         "category": "Sackgasse",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/breuil-cervinia/profile/suedauffahrt-von-chatillon/"
+        "link": "https://www.quaeldich.de/paesse/breuil-cervinia/profile/suedauffahrt-von-chatillon/",
+        "trackID": 123
       }
     }
   ]

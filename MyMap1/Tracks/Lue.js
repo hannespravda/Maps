@@ -660,12 +660,13 @@ var Lue = {
       },
       "properties": {
         "idd": "807",
-        "name": "Südostanfahrt von der Ofenpass-Straße",
+        "name": "S\u00c3\u00bcdostanfahrt von der Ofenpass-Stra\u00c3\u0178e",
         "length": 3.8,
         "elevation": 329.0,
         "category": "Sackgasse",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/lue/profile/suedostanfahrt-von-der-ofenpass-strasse/"
+        "link": "https://www.quaeldich.de/paesse/lue/profile/suedostanfahrt-von-der-ofenpass-strasse/",
+        "trackID": 506
       }
     }
   ]

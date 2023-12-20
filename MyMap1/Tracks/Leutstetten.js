@@ -295,7 +295,8 @@ var Leutstetten = {
         "elevation": 49.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://climbfinder.com/de/anstiege/schwaige-leutstetten"
+        "link": "https://climbfinder.com/de/anstiege/schwaige-leutstetten",
+        "trackID": 490
       }
     },
     {
@@ -697,12 +698,13 @@ var Leutstetten = {
       },
       "properties": {
         "idd": "877",
-        "name": "Auffahrt von der Olympiastraße",
+        "name": "Auffahrt von der Olympiastra\u00c3\u0178e",
         "length": 3.7,
         "elevation": 53.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://climbfinder.com/de/anstiege/schwaige-leutstetten"
+        "link": "https://climbfinder.com/de/anstiege/schwaige-leutstetten",
+        "trackID": 491
       }
     }
   ]

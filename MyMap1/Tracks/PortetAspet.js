@@ -2235,7 +2235,8 @@ var PortetAspet = {
         "elevation": 582.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-portet-d-aspet/profile/ostanfahrt-von-saint-lary/"
+        "link": "https://www.quaeldich.de/paesse/col-de-portet-d-aspet/profile/ostanfahrt-von-saint-lary/",
+        "trackID": 669
       }
     },
     {
@@ -3537,7 +3538,8 @@ var PortetAspet = {
         "elevation": 566.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-portet-d-aspet/profile/westanfahrt-von-sengouagnet/"
+        "link": "https://www.quaeldich.de/paesse/col-de-portet-d-aspet/profile/westanfahrt-von-sengouagnet/",
+        "trackID": 670
       }
     }
   ]

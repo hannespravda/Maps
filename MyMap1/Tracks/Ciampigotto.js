@@ -2240,7 +2240,8 @@ var Ciampigotto = {
         "elevation": 1062.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/sella-ciampigotto/profile/westauffahrt-von-pelos-di-cadore/"
+        "link": "https://www.quaeldich.de/paesse/sella-ciampigotto/profile/westauffahrt-von-pelos-di-cadore/",
+        "trackID": 136
       }
     },
     {
@@ -4457,7 +4458,8 @@ var Ciampigotto = {
         "elevation": 1051.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/sella-ciampigotto/profile/westauffahrt-von-pelos-di-cadore/"
+        "link": "https://www.quaeldich.de/paesse/sella-ciampigotto/profile/westauffahrt-von-pelos-di-cadore/",
+        "trackID": 137
       }
     },
     {
@@ -8509,7 +8511,8 @@ var Ciampigotto = {
         "elevation": 1315.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/sella-ciampigotto/profile/nordostauffahrt-von-der-forcella-lavardet/"
+        "link": "https://www.quaeldich.de/paesse/sella-ciampigotto/profile/nordostauffahrt-von-der-forcella-lavardet/",
+        "trackID": 138
       }
     },
     {
@@ -13346,7 +13349,8 @@ var Ciampigotto = {
         "elevation": 1521.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/sella-ciampigotto/profile/nordostauffahrt-von-der-forcella-lavardet/"
+        "link": "https://www.quaeldich.de/paesse/sella-ciampigotto/profile/nordostauffahrt-von-der-forcella-lavardet/",
+        "trackID": 139
       }
     }
   ]

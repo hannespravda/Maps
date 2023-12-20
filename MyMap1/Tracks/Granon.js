@@ -2040,12 +2040,13 @@ var Granon = {
       },
       "properties": {
         "idd": "862",
-        "name": "Stichstraße von Saint-Chaffrey",
+        "name": "Stichstra\u00c3\u0178e von Saint-Chaffrey",
         "length": 11.1,
         "elevation": 1038.0,
         "category": "Sackgasse",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-granon/profile/suedanfahrt-von-saint-chaffrey-chantemerle/"
+        "link": "https://www.quaeldich.de/paesse/col-de-granon/profile/suedanfahrt-von-saint-chaffrey-chantemerle/",
+        "trackID": 343
       }
     }
   ]

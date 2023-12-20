@@ -970,12 +970,13 @@ var AlpeGiumelloComo = {
       },
       "properties": {
         "idd": "873",
-        "name": "Stichstraße",
+        "name": "Stichstra\u00c3\u0178e",
         "length": 6.3,
         "elevation": 538.0,
         "category": "Sackgasse",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/alpe-giumello-comer-see/profile/westanfahrt-von-bellano_a/"
+        "link": "https://www.quaeldich.de/paesse/alpe-giumello-comer-see/profile/westanfahrt-von-bellano_a/",
+        "trackID": 14
       }
     }
   ]

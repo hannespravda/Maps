@@ -2015,12 +2015,13 @@ var Hochfügen = {
       },
       "properties": {
         "idd": "786",
-        "name": "Nordostauffahrt von Fügen",
+        "name": "Nordostauffahrt von F\u00c3\u00bcgen",
         "length": 13.9,
         "elevation": 952.0,
         "category": "Sackgasse",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/hochfuegen/profile/nordostauffahrt-von-fuegen/"
+        "link": "https://www.quaeldich.de/paesse/hochfuegen/profile/nordostauffahrt-von-fuegen/",
+        "trackID": 381
       }
     }
   ]

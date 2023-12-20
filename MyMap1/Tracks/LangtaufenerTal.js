@@ -1065,7 +1065,8 @@ var LangtaufenerTal = {
         "elevation": 405.0,
         "category": "Sackgasse",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/langtauferer-tal/profile/westanfahrt-aus-graun/"
+        "link": "https://www.quaeldich.de/paesse/langtauferer-tal/profile/westanfahrt-aus-graun/",
+        "trackID": 471
       }
     }
   ]

@@ -1800,7 +1800,8 @@ var Panarotta = {
         "elevation": 1026.0,
         "category": "Sackgasse",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/rifugio-panarotta/profile/suedwestauffahrt-vom-passo-del-compet/"
+        "link": "https://www.quaeldich.de/paesse/rifugio-panarotta/profile/suedwestauffahrt-vom-passo-del-compet/",
+        "trackID": 621
       }
     },
     {
@@ -2377,12 +2378,13 @@ var Panarotta = {
       },
       "properties": {
         "idd": "831",
-        "name": "Südauffahrt vom Passo del Compet",
+        "name": "S\u00c3\u00bcdauffahrt vom Passo del Compet",
         "length": 4.7,
         "elevation": 397.0,
         "category": "Sackgasse",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/rifugio-panarotta/profile/suedwestauffahrt-vom-passo-del-compet/"
+        "link": "https://www.quaeldich.de/paesse/rifugio-panarotta/profile/suedwestauffahrt-vom-passo-del-compet/",
+        "trackID": 622
       }
     }
   ]

@@ -2255,12 +2255,13 @@ var SanFermo = {
       },
       "properties": {
         "idd": "345",
-        "name": "Südanstieg",
+        "name": "S\u00c3\u00bcdanstieg",
         "length": 16.3,
         "elevation": 894.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/colli-di-san-fermo/profile/suedanfahrt-von-villongo/"
+        "link": "https://www.quaeldich.de/paesse/colli-di-san-fermo/profile/suedanfahrt-von-villongo/",
+        "trackID": 742
       }
     },
     {
@@ -4012,7 +4013,8 @@ var SanFermo = {
         "elevation": 742.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/colli-di-san-fermo/profile/westanfahrt-ueber-grone/"
+        "link": "https://www.quaeldich.de/paesse/colli-di-san-fermo/profile/westanfahrt-ueber-grone/",
+        "trackID": 743
       }
     }
   ]

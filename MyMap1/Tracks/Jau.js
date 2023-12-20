@@ -2875,7 +2875,8 @@ var Jau = {
         "elevation": 1051.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-jau/profile/nordwestrampe-aus-dem-aude-tal/"
+        "link": "https://www.quaeldich.de/paesse/col-de-jau/profile/nordwestrampe-aus-dem-aude-tal/",
+        "trackID": 413
       }
     },
     {
@@ -7067,12 +7068,13 @@ var Jau = {
       },
       "properties": {
         "idd": "127",
-        "name": "Südseite von Prades",
+        "name": "S\u00c3\u00bcdseite von Prades",
         "length": 25.2,
         "elevation": 1212.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-jau/profile/suedseite-von-prades/"
+        "link": "https://www.quaeldich.de/paesse/col-de-jau/profile/suedseite-von-prades/",
+        "trackID": 414
       }
     }
   ]

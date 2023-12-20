@@ -2125,7 +2125,8 @@ var CroceSalven = {
         "elevation": 827.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/croce-di-salven/profile/ostanfahrt-von-malegno/"
+        "link": "https://www.quaeldich.de/paesse/croce-di-salven/profile/ostanfahrt-von-malegno/",
+        "trackID": 170
       }
     },
     {
@@ -3327,7 +3328,8 @@ var CroceSalven = {
         "elevation": 474.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/croce-di-salven/profile/nordwestanfahrt-von-dezzo-di-scalve/"
+        "link": "https://www.quaeldich.de/paesse/croce-di-salven/profile/nordwestanfahrt-von-dezzo-di-scalve/",
+        "trackID": 171
       }
     }
   ]

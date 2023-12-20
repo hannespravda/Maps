@@ -4450,12 +4450,13 @@ var Arolla = {
       },
       "properties": {
         "idd": "762",
-        "name": "Auffahrt von Sion durch das Val d'Hérens",
+        "name": "Auffahrt von Sion durch das Val d'H\u00c3\u00a9rens",
         "length": 37.2,
         "elevation": 1633.0,
         "category": "Sackgasse",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/arolla-pass/profile/nordanfahrt-von-sion_a/"
+        "link": "https://www.quaeldich.de/paesse/arolla-pass/profile/nordanfahrt-von-sion_a/",
+        "trackID": 27
       }
     }
   ]

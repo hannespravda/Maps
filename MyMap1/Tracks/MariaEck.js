@@ -380,7 +380,8 @@ var MariaEck = {
         "elevation": 178.0,
         "category": "Sackgasse",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/maria-eck/profile/auffahrt-von-siegsdorf/"
+        "link": "https://www.quaeldich.de/paesse/maria-eck/profile/auffahrt-von-siegsdorf/",
+        "trackID": 528
       }
     },
     {
@@ -807,12 +808,13 @@ var MariaEck = {
       },
       "properties": {
         "idd": "867",
-        "name": "Auffahrt von Eisenärzt",
+        "name": "Auffahrt von Eisen\u00c3\u00a4rzt",
         "length": 3.0,
         "elevation": 197.0,
         "category": "Sackgasse",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/maria-eck/profile/auffahrt-von-eisenaerzt/"
+        "link": "https://www.quaeldich.de/paesse/maria-eck/profile/auffahrt-von-eisenaerzt/",
+        "trackID": 529
       }
     }
   ]

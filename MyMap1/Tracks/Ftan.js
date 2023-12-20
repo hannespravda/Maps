@@ -865,7 +865,8 @@ var Ftan = {
         "elevation": 356.0,
         "category": "Climb",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/ftan/profile/ostanfahrt-von-scuol/"
+        "link": "https://www.quaeldich.de/paesse/ftan/profile/ostanfahrt-von-scuol/",
+        "trackID": 279
       }
     },
     {
@@ -1872,7 +1873,8 @@ var Ftan = {
         "elevation": 222.0,
         "category": "Climb",
         "country": "CH",
-        "link": "https://www.quaeldich.de/paesse/ftan/profile/westanfahrt-von-ardez/"
+        "link": "https://www.quaeldich.de/paesse/ftan/profile/westanfahrt-von-ardez/",
+        "trackID": 280
       }
     }
   ]

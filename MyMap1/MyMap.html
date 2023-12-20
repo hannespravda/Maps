@@ -86,7 +86,7 @@
         }
         #custom-close-button {
             position: absolute;
-            bottom: 200px;
+            bottom: 32%;
             right: 10px;
             cursor: pointer;
             width: 15px;
@@ -129,7 +129,7 @@
         }
         .elevationprofile-textbox {
             position: absolute;
-            bottom: 176px;
+            bottom: 27.5%;
             left: 50%;
             transform: translateX(-50%);
             background-color: rgb(255,255,255,0);
@@ -151,7 +151,7 @@
         #filter1-toggle {
             position: absolute;
             top: 10px;
-            left: 97.3%;
+            right: -12px;
             transform: translateX(-50%);
             z-index: 1000;
             background-color: white;
@@ -171,7 +171,7 @@
         #filter1 {
             position: absolute;
             top: 10px;
-            left: 84.6%;    /* 80.5*/
+            right: -180px;    /* 80.5*/
             transform: translateX(-50%);
             z-index: 1005;
             background-color: white;
@@ -289,7 +289,7 @@
             height: 100vh;
             transform: translateX(0);
             z-index: 1000;
-            background-color: white;
+            background-color: rgb(255,255,255);
             color: rgb(126, 121, 121);
             border-radius: 4px;
             font-family: Helvetica, Arial, sans-serif;
@@ -331,7 +331,7 @@
         }
         #data-table th:nth-child(3),
         #data-table td:nth-child(3) {
-            width: 276px;
+            width: 40%; /*276px;*/
         }
         #data-table th:nth-child(4),
         #data-table td:nth-child(4) {
@@ -471,7 +471,7 @@
             position: absolute;
             display: flex;
             align-items: center;
-            left: 66.5%;
+            right: 2%;
             top: 10px;
             width: 200px;
          }
@@ -1923,7 +1923,7 @@
             rows.forEach((row) => tbody.appendChild(row));
         }
 
-        function createRow(idd, name, country, height, length, elevation, slope, additionalInfoArray, link, category) {
+        function createRow(idd, name, country, height, length, elevation, slope, additionalInfoArray, link, category, coordinates, trackIDArray) {
             const tableRow = document.createElement("tr");
 
             const buttonCell = document.createElement("td");
@@ -1935,15 +1935,32 @@
             const buttonId = `button${idd}`;
             button.setAttribute("id", buttonId);
             button.addEventListener("click", function () {
-                const isChecked = button.classList.toggle("active");
-                checkboxCallback(idd, isChecked);
-                if (button.classList.contains("active")) {
-                    focusOnGeoJSONElement(idd, event.isTrusted);
+                const trackVisible = button.classList.toggle("active");
+                if (trackVisible) {
+                    if(markerOnMapIDD[idd]){
+                        if(!trackOnMapIDD[idd]){
+                            addTrackToMap(idd);
+                        }
+                        map.setView([coordinates[1],coordinates[0]], 11)
+                    } else {
+                        addMarkerToMap(idd);
+                        addTrackToMap(idd);
+                        map.setView([coordinates[1],coordinates[0]], 11)
+                    }
                     button.style.backgroundImage = "url('Images/eye.png')";
                     button.dataset.tooltip = "Nicht mehr anzeigen";
                 } else {
+                    var layerCheckboxes = document.querySelectorAll('.leaflet-control-layers-selector');
+                    if(!layerCheckboxes[3].checked && !layerCheckboxes[4].checked){
+                        removeMarkerFromMap(idd);
+                        removeTrackFromMap(idd);
+                    } else if(layerCheckboxes[3].checked && !layerCheckboxes[4].checked){
+                        removeTrackFromMap(idd);
+                    }
+
                     button.style.backgroundImage = "url('Images/hidden.png')";
                     button.dataset.tooltip = "Auf Karte anzeigen";
+
                     const showElevationProfileButtons = document.querySelectorAll('.showElevationProfile');
                     showElevationProfileButtons.forEach(button => {
                         if (button && button.dataset.idd == idd && button.dataset.status == 1) {
@@ -2124,7 +2141,7 @@
                         const targetFeature = passi.features.find(feature => feature.properties.idd === idd);
                         if (targetFeature) {
                             const [longitude, latitude] = targetFeature.geometry.coordinates;
-                            map.setView([latitude, longitude], 13);
+                            map.setView([latitude, longitude], 12);
                         };
                     } else {
                         const trackLayer = geoJSONArray[idd];
@@ -2137,7 +2154,7 @@
                         const targetFeature = passi.features.find(feature => feature.properties.idd === idd);
                         if (targetFeature) {
                             const [longitude, latitude] = targetFeature.geometry.coordinates;
-                            map.setView([latitude, longitude], 13);
+                            map.setView([latitude, longitude], 12);
                         };
                     }
 
@@ -2197,7 +2214,7 @@
                     button.click();
                 }
             });
-            
+
             const buttons = document.querySelectorAll(".eye-button");
             buttons.forEach(function (button) {
                 if (button.classList.contains("active")) {
@@ -2244,17 +2261,6 @@
                 option.value = suggestion;
                 datalist.appendChild(option);
             });
-        }
-
-        function focusOnGeoJSONElement(idd, isExternalClick) {
-            const feature = passi.features.find(feature => feature.properties.idd === idd);
-            if (feature) {
-                const coordinates = feature.geometry.coordinates;
-                const latLng = L.latLng(coordinates[1], coordinates[0]);
-                if (isExternalClick) {
-                    map.setView(latLng, 12);
-                }
-            }
         }
 
         //filter1
@@ -2544,6 +2550,8 @@
             FilterArray1[17] = buttonAND1;
             FilterArray1[18] = buttonES1;
             filter1.style.display = "none";
+
+            fillMap();
         });
 
         resetFilterButton1.addEventListener("click", function() {
@@ -2591,8 +2599,9 @@
             sliderValue1.textContent = "—";
             activeControl1 = false;
             filter1.style.display = "none";
+
+            fillMap();
         });
-        resetFilterButton1.click();
 
         //filter2
         const filterButton2 = document.getElementById('filter2-toggle');
@@ -2919,7 +2928,6 @@
             document.getElementById("sort-options").value = "empty";
             clearSearch();
         });
-        resetFilterButton2.click();
 
         //custom icons
         var yellowIcon = L.icon({
@@ -3174,7 +3182,7 @@
                                 if (eyeButtonValues[i]){
                                     const buttonId = `button${i}`;
                                     const buttonToClick = document.getElementById(buttonId);
-                                    buttonToClick.click();
+                                    //buttonToClick.click();
                                 }
                             }
                         });
@@ -3723,6 +3731,7 @@
         var trackArray3 = [];
         var trackArray4 = [];
         var trackArray5 = [];
+        var trackIDArray = [];
         var addInfo = [];
         var temp = [];
         var numberOfFeatures = 0;
@@ -3742,7 +3751,7 @@
             if (tableLength > 0){
                 for (var i=0;i<=tableLength-1;i++){
                     if(eyeButtons[i].classList.contains("active")){
-                        eyeButtons[i].click();
+                        //eyeButtons[i].click();
                     }
                 }
             }
@@ -3813,6 +3822,7 @@
 
                     addInfo = [];
                     temp = [];
+                    trackIDArray = [];
                     if (lengthArray[idd] > 0.1){
                         const layer = trackTable[idd];
                         numberOfFeatures = layer.getLayers().length;
@@ -3823,6 +3833,7 @@
                             trackArray3[j] = geoJSONArray[idd].getLayers()[j].feature.properties.elevation;
                             trackArray4[j] = ((geoJSONArray[idd].getLayers()[j].feature.properties.elevation/((geoJSONArray[idd].getLayers()[j].feature.properties.length)*1000))*100).toFixed(1);
                             trackArray5[j] = geoJSONArray[idd].getLayers()[j].feature.properties.link;
+                            trackIDArray[j] = geoJSONArray[idd].getLayers()[j].feature.properties.trackID;
                             
                             if (trackArray2[j] >= FilterArray2[7] && trackArray2[j] <= FilterArray2[8] && trackArray3[j] >= FilterArray2[5] && trackArray3[j] <= FilterArray2[6] && trackArray4[j] >= FilterArray2[9] && trackArray4[j] <= FilterArray2[10]){
                                 trackOK[j] = true;
@@ -3853,7 +3864,7 @@
                     }
 
                     if (tracksOK && layerOK){
-                        const tableRow = createRow(idd, name, country, height, length, elevation, slope, addInfo, link, category);
+                        const tableRow = createRow(idd, name, country, height, length, elevation, slope, addInfo, link, category, coordinates, trackIDArray);
                         dataBody.appendChild(tableRow);
                     }
                 });
@@ -3861,7 +3872,7 @@
         }
 
         function checkboxCallback(idd, isChecked) {
-            if (isChecked == true) {
+            /*if (isChecked == true) {
                 geoJSONArray[idd].addTo(map);
                 marker.eachLayer(function (layer) {
                     const iddd = layer.feature.properties.idd;
@@ -3894,7 +3905,7 @@
                 } else if(layerArray[3] && !layerArray[4]){
                     layerCheckboxes[3].click();
                 }
-            }
+            }*/
         }
 
         function isInsideCircle(locationLat, locationLng, targetLat, targetLng, radius) {
@@ -3925,6 +3936,10 @@
             }
         }
 
+        //filter1 data NEU
+        var markersLayerGroup = L.layerGroup();
+        var tracksLayerGroup = L.layerGroup();
+
         //filter1 data
         var MarkersSelected = false;
         var TracksSelected = false;
@@ -3933,13 +3948,24 @@
         var tracksCheckbox;
         var geoIDArray = [];
         var markerIDArray = [];
-        var allArray = [];
-        var tracksArray = [];
         var iddArray = [];
         var insideRange = 0;
 
+        var markerFeatureLayers = [];
+        var tracksFeatureLayers = [];
+        var markerOnMapIDD = [];
+        var trackOnMapIDD = [];
+        var trackOnMapTrackID = [];
+
         var all= L.layerGroup([]);;
         var tracks = L.layerGroup([]);
+
+
+        //layer control button
+        var all1= L.layerGroup([]);;
+        var tracks1 = L.layerGroup([]);
+        var checkbox3 = false;
+        var checkbox4 = false;
 
         var baseMaps = {
             "Standard": osm,
@@ -3947,36 +3973,28 @@
             "Topo": topo
         };
         var overlayMaps1= {
-            "Icons": all,
-            "Tracks": tracks
+            "Icons": all1,
+            "Tracks": tracks1
         };
         var layerControl = L.control.layers(baseMaps, overlayMaps1,{position: 'topright'}).addTo(map);
-
+        
         layerControl.getContainer().addEventListener('change', function (event) {
-            const eyeButtons = document.querySelectorAll('.eye-button');
-            const tableLength = eyeButtons.length;
-            var tableArray = [];
             var layerCheckboxes = document.querySelectorAll('.leaflet-control-layers-selector');
-            if (tableLength > 0 && (!layerCheckboxes[3].checked || !layerCheckboxes[4].checked)){
-                for (var i=0;i<=tableLength-1;i++){
-                    if(eyeButtons[i].classList.contains("active")){
-                        eyeButtons[i].click();
-                        eyeButtons[i].click();
-                        tableArray[i] = true;
-                    }
+            if(layerCheckboxes[4].checked && !layerCheckboxes[3].checked){
+                if(!checkbox3 && !checkbox4){
+                    layerCheckboxes[3].checked = true;
+                } else if(checkbox3 && checkbox4){
+                    layerCheckboxes[4].checked = false;
                 }
-            }
+               
+            };
+            checkbox3 = layerCheckboxes[3].checked;
+            checkbox4 = layerCheckboxes[4].checked;
+            fillMap();
         });
-
-        filterGeoJSONObjects();
-        fillTable();
-        //markersCheckbox.click();      //uncomment for user version
-        document.getElementById('applyFilter1').addEventListener('click', filterGeoJSONObjects);
-        document.getElementById('resetFilter1').addEventListener('click', filterGeoJSONObjects);
-
-        function filterGeoJSONObjects() {
-            allArray = [];
-            tracksArray = [];
+    
+        //fill map
+        function fillMap() {
             markerIDArray = [];
             geoIDArray = [];
 
@@ -3992,11 +4010,8 @@
                 }
             }
 
-            var markersClick = MarkersSelected;
-            var tracksClick = TracksSelected;
-
-            if (MarkersSelected){ markersCheckbox.click()};
-            if (TracksSelected){ tracksCheckbox.click()};
+            removeAllLayersFromMap();
+            
 
             marks.push(marker);
             marks.forEach(function (layer) {
@@ -4062,7 +4077,7 @@
                     const country = featureLayer.feature.properties.country;
                     const idd = featureLayer.feature.properties.idd;
                     if (iddArray[idd] == idd){
-                        allArray.push(featureLayer);
+                        markerFeatureLayers[idd] = featureLayer;
                     }
                 }); 
             });
@@ -4072,37 +4087,227 @@
                 features.forEach(function (featureLayer) {
                     const country = featureLayer.feature.properties.country;
                     const idd = featureLayer.feature.properties.idd;
+                    const trackID = featureLayer.feature.properties.trackID
                     if (iddArray[idd] == idd){
-                        tracksArray.push(featureLayer);
+                        tracksFeatureLayers[trackID] = featureLayer;
                     }
                 });
             });
 
-            layerControl.removeLayer(all);
-            layerControl.removeLayer(tracks);
-
-            all = L.layerGroup(allArray);
-            tracks = L.layerGroup(tracksArray);
-            
-            layerControl.addOverlay(all, "Icons");
-            layerControl.addOverlay(tracks, "Tracks");
 
             labels = 0;
             labels = layerControl.getContainer().querySelectorAll('label');
             clickevents();
 
-            if (markersClick){ markersCheckbox.click()};
-            if (tracksClick){ tracksCheckbox.click()};
+     
             
+            
+
+            var layerCheckboxes = document.querySelectorAll('.leaflet-control-layers-selector');
+            if(layerCheckboxes[3].checked){
+                addFilteredMarkersToMap(markerFeatureLayers);
+            }
+            if(layerCheckboxes[4].checked){
+                addFilteredTracksToMap(tracksFeatureLayers);
+            }
+            //removeTrackFromMap(668);
+            //removeMarkerFromMap(668);
+            //addTrackToMap(668);
+            //addMarkerToMap(668);
+
             for (var i=0;i<=tableLength-1;i++){
                 if(tableArray[i]){
                     eyeButtons[i].click();
                 }
             }
         };
+
+
+        //new functions
+        function getIDDfromTrackID(TrackID){
+            geoJSONArray.forEach(function (layer) {
+                const features = layer.getLayers();
+                features.forEach(function (featureLayer) {
+                    const idd = featureLayer.feature.properties.idd;
+                    const trackID = featureLayer.feature.properties.trackID
+                    if ( trackID == TrackID){
+                        return idd;
+                    }
+                });
+            });
+        }
+
+        function removeAllLayersFromMap() {
+            map.eachLayer(function (layer) {
+                if (!layer._url && !(layer instanceof L.LayerGroup)) {
+                    map.removeLayer(layer);
+                } else if (layer instanceof L.LayerGroup) {
+                    layer.eachLayer(function (subLayer) {
+                        map.removeLayer(subLayer);
+                    });
+                }
+            });
+            markerFeatureLayers = [];
+            tracksFeatureLayers = [];
+
+            for(var i=0; i<=highestIDD; i++){
+                markerOnMapIDD[i] = false;
+                trackOnMapIDD[i] = false;
+            }
+            for(var i=0; i<=977; i++){
+                trackOnMapTrackID = false;
+            }
+        }
+
+        function addFilteredMarkersToMap(markerFeatureLayers) {
+            for (var i = 0; i <= highestIDD; i++) {
+                if (markerFeatureLayers[i]) {
+                    markerOnMapIDD[i] = true;
+                    markersLayerGroup.addLayer(markerFeatureLayers[i]);
+                } else {
+                    markerOnMapIDD[i] = false;  
+                }
+            }
+            markersLayerGroup.addTo(map);
+        }
+
+        function addFilteredTracksToMap(tracksFeatureLayers) {
+            for (var i = 0; i <= 977; i++) {
+                if (tracksFeatureLayers[i]) {
+                    trackOnMapTrackID[i] = true;
+                    trackOnMapTrackID[getIDDfromTrackID(i)] = true;
+                    tracksLayerGroup.addLayer(tracksFeatureLayers[i]);
+                } else {
+                    trackOnMapTrackID[i] = false;
+                    trackOnMapTrackID[getIDDfromTrackID(i)] = false;
+                }
+            }
+            tracksLayerGroup.addTo(map);
+        }
+
+        function removeMarkerFromMap(idd) {
+            map.removeLayer(markersLayerGroup);
+
+            markersLayerGroup = L.layerGroup();
+            markerFeatureLayers[idd] = null;
+            markerOnMapIDD[idd] = false;
+            
+            for (var i = 0; i <= highestIDD; i++) {
+                if (markerOnMapIDD[i] && i != idd) {
+                    markersLayerGroup.addLayer(markerFeatureLayers[i]);
+                }
+            }
+            markersLayerGroup.addTo(map);
+        }
+
+        function removeTrackFromMap(iDD) {
+            map.removeLayer(tracksLayerGroup);
+
+            tracksLayerGroup = L.layerGroup();
+            tracksFeatureLayers = [];
+
+            geoJSONArray.forEach(function (layer) {
+                const features = layer.getLayers();
+                features.forEach(function (featureLayer) {
+                    const idd = featureLayer.feature.properties.idd;
+                    const trackID = featureLayer.feature.properties.trackID
+                    if (idd !== iDD && trackOnMapTrackID[trackID]){
+                        tracksFeatureLayers[trackID] = featureLayer;
+                        trackOnMapIDD[idd] = true;
+                        trackOnMapTrackID[trackID] = true;
+                    } else{
+                        tracksFeatureLayers[trackID] = null;
+                        trackOnMapIDD[idd] = false;
+                        trackOnMapTrackID[trackID] = false;
+                    }
+                });
+            });
+
+            for (var i = 0; i <= 977; i++) {
+                if (trackOnMapTrackID[i]) {
+                    tracksLayerGroup.addLayer(tracksFeatureLayers[i]);
+                }
+            }
+
+            tracksLayerGroup.addTo(map);
+        }
+
+        function addMarkerToMap(iDD) {
+            markersLayerGroup = L.layerGroup();
+            marks.forEach(function (layer) {
+                const features = layer.getLayers();
+                features.forEach(function (featureLayer) {
+                    const idd = featureLayer.feature.properties.idd;
+                    if (idd == iDD){
+                        markerFeatureLayers[iDD] = featureLayer;
+                        markerOnMapIDD[iDD] = true;
+                        markersLayerGroup.addLayer(markerFeatureLayers[iDD]);    
+                    } else if(idd != iDD && markerOnMapIDD[idd]){ 
+                        markerFeatureLayers[idd] = featureLayer;
+                        markersLayerGroup.addLayer(markerFeatureLayers[idd]);
+                    } else if(idd != iDD && !markerOnMapIDD[idd]){
+                        markerFeatureLayers[idd] = null;
+                    }
+                }); 
+            });
+
+            markersLayerGroup.addTo(map);
+        }
+
+        function addTrackToMap(iDD) {
+            tracksLayerGroup = L.layerGroup();
+            geoJSONArray.forEach(function (layer) {
+                const features = layer.getLayers();
+                features.forEach(function (featureLayer) {
+                    const idd = featureLayer.feature.properties.idd;
+                    const trackID = featureLayer.feature.properties.trackID
+                    if (idd == iDD){
+                        tracksFeatureLayers[trackID] = featureLayer;
+                        trackOnMapIDD[iDD] = true;
+                        trackOnMapTrackID[trackID] = true;
+                        tracksLayerGroup.addLayer(tracksFeatureLayers[trackID]);
+                    } else if(idd != iDD && trackOnMapIDD[idd]){
+                        tracksFeatureLayers[trackID] = featureLayer;
+                        tracksLayerGroup.addLayer(tracksFeatureLayers[trackID]);
+                    } else if(idd != iDD && !trackOnMapIDD[idd]){
+                        tracksFeatureLayers[trackID] = null;
+                    }
+                });
+            });
+
+            tracksLayerGroup.addTo(map);
+        }
+
+        //Initialize Map
+        resetFilterButton1.click();
+        resetFilterButton2.click();
+        fillMap();
+        fillTable();
+
         
+
+        
+        //trash
+        function removeLayerGroupFromMap(layer, layerGroup) {
+            map.removeLayer(layerGroup);
+
+            if(layer == 'markers'){
+                markerFeatureLayers = [];
+                markersLayerGroup = L.layerGroup();
+            } else if (layer == 'tracks'){
+                tracksFeatureLayers = [];
+                tracksLayerGroup = L.layerGroup();
+            }
+            
+        }
+
+        function addLayerGroupToMap(layerGroup) {
+            layerGroup.addTo(map);
+        }
+
+
         function clickevents(){
-            labels.forEach(function (label) {
+            /*labels.forEach(function (label) {
                 text = label.textContent.trim();
                 if (text === 'Icons') {
                     markersCheckbox = label.querySelector('input[type="checkbox"]');
@@ -4176,7 +4381,7 @@
                         });
                     }
                 }
-            });
+            });*/
         }
     </script>
 </body>

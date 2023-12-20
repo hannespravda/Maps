@@ -2600,7 +2600,8 @@ var Pailheres = {
         "elevation": 1177.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-pailheres/profile/ostanfahrt-von-ussons-les-bains/"
+        "link": "https://www.quaeldich.de/paesse/col-de-pailheres/profile/ostanfahrt-von-ussons-les-bains/",
+        "trackID": 619
       }
     },
     {
@@ -5087,7 +5088,8 @@ var Pailheres = {
         "elevation": 1267.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-pailheres/profile/westanfahrt-von-ax-les-thermes/"
+        "link": "https://www.quaeldich.de/paesse/col-de-pailheres/profile/westanfahrt-von-ax-les-thermes/",
+        "trackID": 620
       }
     }
   ]

@@ -340,7 +340,8 @@ var Riedl = {
         "elevation": 204.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/riedl-pass/profile/nordostauffahrt-von-loch-bei-neukirchen/"
+        "link": "https://www.quaeldich.de/paesse/riedl-pass/profile/nordostauffahrt-von-loch-bei-neukirchen/",
+        "trackID": 700
       }
     },
     {
@@ -657,7 +658,8 @@ var Riedl = {
         "elevation": 148.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/riedl-pass/profile/nordostauffahrt-von-loch-bei-neukirchen/"
+        "link": "https://www.quaeldich.de/paesse/riedl-pass/profile/nordostauffahrt-von-loch-bei-neukirchen/",
+        "trackID": 701
       }
     },
     {
@@ -1114,7 +1116,8 @@ var Riedl = {
         "elevation": 225.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/riedl-pass/profile/westauffahrt-aus-der-heutau/"
+        "link": "https://www.quaeldich.de/paesse/riedl-pass/profile/westauffahrt-aus-der-heutau/",
+        "trackID": 702
       }
     }
   ]

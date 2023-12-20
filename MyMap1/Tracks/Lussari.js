@@ -1660,12 +1660,13 @@ var Lussari = {
       },
       "properties": {
         "idd": "824",
-        "name": "Südwestauffahrt aus dem Val Sasieri",
+        "name": "S\u00c3\u00bcdwestauffahrt aus dem Val Sasieri",
         "length": 7.7,
         "elevation": 895.0,
         "category": "Sackgasse",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/monte-lussari/profile/suedwestauffahrt-aus-dem-val-sasieri/"
+        "link": "https://www.quaeldich.de/paesse/monte-lussari/profile/suedwestauffahrt-aus-dem-val-sasieri/",
+        "trackID": 510
       }
     }
   ]

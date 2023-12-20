@@ -2540,12 +2540,13 @@ var Bisanne = {
       },
       "properties": {
         "idd": "805",
-        "name": "Südauffahrt von Villard-sur-Doron",
+        "name": "S\u00c3\u00bcdauffahrt von Villard-sur-Doron",
         "length": 14.4,
         "elevation": 1236.0,
         "category": "Sackgasse",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/signal-de-bisanne/profile/suedauffahrt-von-villard-sur-doron/"
+        "link": "https://www.quaeldich.de/paesse/signal-de-bisanne/profile/suedauffahrt-von-villard-sur-doron/",
+        "trackID": 69
       }
     },
     {
@@ -3252,7 +3253,8 @@ var Bisanne = {
         "elevation": 366.0,
         "category": "Sackgasse",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/signal-de-bisanne/profile/nordanfahrt-von-les-saisies/"
+        "link": "https://www.quaeldich.de/paesse/signal-de-bisanne/profile/nordanfahrt-von-les-saisies/",
+        "trackID": 70
       }
     }
   ]

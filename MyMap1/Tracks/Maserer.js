@@ -525,7 +525,8 @@ var Maserer = {
         "elevation": 107.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/masererpass/profile/suedanfahrt-von-entfelden-reit-im-winkl/"
+        "link": "https://www.quaeldich.de/paesse/masererpass/profile/suedanfahrt-von-entfelden-reit-im-winkl/",
+        "trackID": 536
       }
     },
     {
@@ -1952,7 +1953,8 @@ var Maserer = {
         "elevation": 272.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/masererpass/profile/nordanfahrt-von-unterwoessen/"
+        "link": "https://www.quaeldich.de/paesse/masererpass/profile/nordanfahrt-von-unterwoessen/",
+        "trackID": 537
       }
     }
   ]

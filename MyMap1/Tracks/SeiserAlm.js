@@ -1485,12 +1485,13 @@ var SeiserAlm = {
       },
       "properties": {
         "idd": "823",
-        "name": "Nordostauffahrt aus dem Grödner Tal",
+        "name": "Nordostauffahrt aus dem Gr\u00c3\u00b6dner Tal",
         "length": 8.3,
         "elevation": 731.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/seiser-alm/profile/nordostauffahrt-aus-dem-groedner-tal/"
+        "link": "https://www.quaeldich.de/paesse/seiser-alm/profile/nordostauffahrt-aus-dem-groedner-tal/",
+        "trackID": 769
       }
     },
     {
@@ -2887,7 +2888,8 @@ var SeiserAlm = {
         "elevation": 511.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/seiser-alm/profile/nordrampe-vom-panider-sattel/"
+        "link": "https://www.quaeldich.de/paesse/seiser-alm/profile/nordrampe-vom-panider-sattel/",
+        "trackID": 770
       }
     },
     {
@@ -4349,7 +4351,8 @@ var SeiserAlm = {
         "elevation": 740.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/seiser-alm/profile/westauffahrt-von-seis/"
+        "link": "https://www.quaeldich.de/paesse/seiser-alm/profile/westauffahrt-von-seis/",
+        "trackID": 771
       }
     },
     {
@@ -6281,7 +6284,8 @@ var SeiserAlm = {
         "elevation": 790.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/seiser-alm/profile/nordwestauffahrt-von-der-torggler-bruecke/"
+        "link": "https://www.quaeldich.de/paesse/seiser-alm/profile/nordwestauffahrt-von-der-torggler-bruecke/",
+        "trackID": 772
       }
     }
   ]

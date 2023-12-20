@@ -2950,7 +2950,8 @@ var Baldo = {
         "elevation": 1537.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/monte-baldo/profile/nordauffahrt-von-mori/"
+        "link": "https://www.quaeldich.de/paesse/monte-baldo/profile/nordauffahrt-von-mori/",
+        "trackID": 40
       }
     },
     {
@@ -6252,7 +6253,8 @@ var Baldo = {
         "elevation": 1575.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/monte-baldo/profile/variante-der-nordauffahrt-ueber-chizzola-cazzano/"
+        "link": "https://www.quaeldich.de/paesse/monte-baldo/profile/variante-der-nordauffahrt-ueber-chizzola-cazzano/",
+        "trackID": 41
       }
     },
     {
@@ -10049,7 +10051,8 @@ var Baldo = {
         "elevation": 1682.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/monte-baldo/profile/variante-der-nordauffahrt-ueber-chizzola-cazzano/"
+        "link": "https://www.quaeldich.de/paesse/monte-baldo/profile/variante-der-nordauffahrt-ueber-chizzola-cazzano/",
+        "trackID": 42
       }
     },
     {
@@ -13101,7 +13104,8 @@ var Baldo = {
         "elevation": 1544.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/monte-baldo/profile/nordauffahrt-von-mori/"
+        "link": "https://www.quaeldich.de/paesse/monte-baldo/profile/nordauffahrt-von-mori/",
+        "trackID": 43
       }
     },
     {
@@ -16333,7 +16337,8 @@ var Baldo = {
         "elevation": 1524.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/monte-baldo/profile/ostauffahrt-von-avio-ueber-passo-di-san-valentino/"
+        "link": "https://www.quaeldich.de/paesse/monte-baldo/profile/ostauffahrt-von-avio-ueber-passo-di-san-valentino/",
+        "trackID": 44
       }
     },
     {
@@ -19825,7 +19830,8 @@ var Baldo = {
         "elevation": 1605.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/monte-baldo/profile/ostauffahrt-von-avio-ueber-passo-pozza-della-cola/"
+        "link": "https://www.quaeldich.de/paesse/monte-baldo/profile/ostauffahrt-von-avio-ueber-passo-pozza-della-cola/",
+        "trackID": 45
       }
     },
     {
@@ -24672,12 +24678,13 @@ var Baldo = {
       },
       "properties": {
         "idd": "857",
-        "name": "Südauffahrt",
+        "name": "S\u00c3\u00bcdauffahrt",
         "length": 36.9,
         "elevation": 1757.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/monte-baldo/profile/suedauffahrt-von-caprino-veronese/"
+        "link": "https://www.quaeldich.de/paesse/monte-baldo/profile/suedauffahrt-von-caprino-veronese/",
+        "trackID": 46
       }
     },
     {
@@ -29019,12 +29026,13 @@ var Baldo = {
       },
       "properties": {
         "idd": "857",
-        "name": "Südvariante I",
+        "name": "S\u00c3\u00bcdvariante I",
         "length": 31.3,
         "elevation": 1677.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/monte-baldo/profile/variante-der-suedauffahrt-von-caprino-veronese/"
+        "link": "https://www.quaeldich.de/paesse/monte-baldo/profile/variante-der-suedauffahrt-von-caprino-veronese/",
+        "trackID": 47
       }
     },
     {
@@ -33531,12 +33539,13 @@ var Baldo = {
       },
       "properties": {
         "idd": "857",
-        "name": "Südvariante II",
+        "name": "S\u00c3\u00bcdvariante II",
         "length": 35.2,
         "elevation": 1759.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/monte-baldo/profile/variante-der-suedauffahrt-von-caprino-veronese/"
+        "link": "https://www.quaeldich.de/paesse/monte-baldo/profile/variante-der-suedauffahrt-von-caprino-veronese/",
+        "trackID": 48
       }
     }
   ]

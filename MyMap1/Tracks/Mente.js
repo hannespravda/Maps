@@ -1865,7 +1865,8 @@ var Mente = {
         "elevation": 705.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-mente/profile/ostauffahrt-von-henne-morte-pont-de-l-oule/"
+        "link": "https://www.quaeldich.de/paesse/col-de-mente/profile/ostauffahrt-von-henne-morte-pont-de-l-oule/",
+        "trackID": 552
       }
     },
     {
@@ -3427,7 +3428,8 @@ var Mente = {
         "elevation": 810.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-mente/profile/westauffahrt-von-st-beat/"
+        "link": "https://www.quaeldich.de/paesse/col-de-mente/profile/westauffahrt-von-st-beat/",
+        "trackID": 553
       }
     }
   ]

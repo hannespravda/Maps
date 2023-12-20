@@ -1815,12 +1815,13 @@ var Zumis = {
       },
       "properties": {
         "idd": "835",
-        "name": "Südauffahrt von Lüsen",
+        "name": "S\u00c3\u00bcdauffahrt von L\u00c3\u00bcsen",
         "length": 10.5,
         "elevation": 844.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/parkplatz-zumis/profile/suedauffahrt-von-luesen/"
+        "link": "https://www.quaeldich.de/paesse/parkplatz-zumis/profile/suedauffahrt-von-luesen/",
+        "trackID": 956
       }
     },
     {
@@ -3642,12 +3643,13 @@ var Zumis = {
       },
       "properties": {
         "idd": "835",
-        "name": "Südauffahrt",
+        "name": "S\u00c3\u00bcdauffahrt",
         "length": 10.9,
         "elevation": 942.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/parkplatz-zumis/profile/suedauffahrt-von-luesen/"
+        "link": "https://www.quaeldich.de/paesse/parkplatz-zumis/profile/suedauffahrt-von-luesen/",
+        "trackID": 957
       }
     },
     {
@@ -5014,12 +5016,13 @@ var Zumis = {
       },
       "properties": {
         "idd": "835",
-        "name": "Nordauffahrt von Mühlbach",
+        "name": "Nordauffahrt von M\u00c3\u00bchlbach",
         "length": 7.6,
         "elevation": 721.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/parkplatz-zumis/profile/nordwestauffahrt-von-muehlbach-ueber-rodeneck/"
+        "link": "https://www.quaeldich.de/paesse/parkplatz-zumis/profile/nordwestauffahrt-von-muehlbach-ueber-rodeneck/",
+        "trackID": 958
       }
     }
   ]

@@ -850,12 +850,13 @@ var Reiterjoch = {
       },
       "properties": {
         "idd": "788",
-        "name": "Südauffahrt von der Lavazé-Straße",
+        "name": "S\u00c3\u00bcdauffahrt von der Lavaz\u00c3\u00a9-Stra\u00c3\u0178e",
         "length": 7.5,
         "elevation": 719.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/reiterjoch/profile/suedrampe-ab-tesero/"
+        "link": "https://www.quaeldich.de/paesse/reiterjoch/profile/suedrampe-ab-tesero/",
+        "trackID": 686
       }
     },
     {
@@ -1587,7 +1588,8 @@ var Reiterjoch = {
         "elevation": 427.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/reiterjoch/profile/nordanfahrt-ab-stenk-bei-birchabruck/"
+        "link": "https://www.quaeldich.de/paesse/reiterjoch/profile/nordanfahrt-ab-stenk-bei-birchabruck/",
+        "trackID": 687
       }
     }
   ]

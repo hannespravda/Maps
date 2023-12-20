@@ -2195,7 +2195,8 @@ var Core = {
         "elevation": 892.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-la-core/profile/ostanfahrt-von-seix/"
+        "link": "https://www.quaeldich.de/paesse/col-de-la-core/profile/ostanfahrt-von-seix/",
+        "trackID": 164
       }
     },
     {
@@ -4192,7 +4193,8 @@ var Core = {
         "elevation": 861.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-la-core/profile/westanfahrt-von-castillon-en-couserans/"
+        "link": "https://www.quaeldich.de/paesse/col-de-la-core/profile/westanfahrt-von-castillon-en-couserans/",
+        "trackID": 165
       }
     }
   ]

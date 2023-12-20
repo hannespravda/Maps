@@ -1665,12 +1665,13 @@ var JouxPlane = {
       },
       "properties": {
         "idd": "99",
-        "name": "Nordauffahrt von Morzine über den Col du Ranfolly",
+        "name": "Nordauffahrt von Morzine \u00c3\u00bcber den Col du Ranfolly",
         "length": 10.6,
         "elevation": 775.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-joux-plane/profile/nordauffahrt-von-morzine-ueber-den-col-du-ranfolly/"
+        "link": "https://www.quaeldich.de/paesse/col-de-joux-plane/profile/nordauffahrt-von-morzine-ueber-den-col-du-ranfolly/",
+        "trackID": 420
       }
     },
     {
@@ -3502,12 +3503,13 @@ var JouxPlane = {
       },
       "properties": {
         "idd": "99",
-        "name": "Südauffahrt von Samoëns",
+        "name": "S\u00c3\u00bcdauffahrt von Samo\u00c3\u00abns",
         "length": 11.8,
         "elevation": 1016.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-joux-plane/profile/suedauffahrt-von-samoens/"
+        "link": "https://www.quaeldich.de/paesse/col-de-joux-plane/profile/suedauffahrt-von-samoens/",
+        "trackID": 421
       }
     },
     {
@@ -5289,12 +5291,13 @@ var JouxPlane = {
       },
       "properties": {
         "idd": "99",
-        "name": "Alternative Südauffahrt",
+        "name": "Alternative S\u00c3\u00bcdauffahrt",
         "length": 11.4,
         "elevation": 996.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-de-joux-plane/profile/suedauffahrt-von-samoens/"
+        "link": "https://www.quaeldich.de/paesse/col-de-joux-plane/profile/suedauffahrt-von-samoens/",
+        "trackID": 422
       }
     }
   ]

@@ -755,7 +755,8 @@ var Coe = {
         "elevation": 448.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/passo-coe/profile/westanfahrt-von-calliano/"
+        "link": "https://www.quaeldich.de/paesse/passo-coe/profile/westanfahrt-von-calliano/",
+        "trackID": 140
       }
     },
     {
@@ -997,7 +998,8 @@ var Coe = {
         "elevation": 75.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/passo-coe/profile/westanfahrt-von-calliano/"
+        "link": "https://www.quaeldich.de/paesse/passo-coe/profile/westanfahrt-von-calliano/",
+        "trackID": 141
       }
     },
     {
@@ -1894,7 +1896,8 @@ var Coe = {
         "elevation": 382.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/passo-coe/profile/westanfahrt-von-calliano/"
+        "link": "https://www.quaeldich.de/paesse/passo-coe/profile/westanfahrt-von-calliano/",
+        "trackID": 142
       }
     }
   ]

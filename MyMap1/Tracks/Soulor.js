@@ -3645,12 +3645,13 @@ var Soulor = {
       },
       "properties": {
         "idd": "48",
-        "name": "Nordanfahrt von Ferrières",
+        "name": "Nordanfahrt von Ferri\u00c3\u00a8res",
         "length": 28.9,
         "elevation": 1309.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-du-soulor/profile/nordanfahrt-von-ferrieres/"
+        "link": "https://www.quaeldich.de/paesse/col-du-soulor/profile/nordanfahrt-von-ferrieres/",
+        "trackID": 796
       }
     },
     {
@@ -6457,7 +6458,8 @@ var Soulor = {
         "elevation": 1025.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-du-soulor/profile/ostanfahrt-von-argeles-gazost/"
+        "link": "https://www.quaeldich.de/paesse/col-du-soulor/profile/ostanfahrt-von-argeles-gazost/",
+        "trackID": 797
       }
     },
     {
@@ -6934,7 +6936,8 @@ var Soulor = {
         "elevation": 198.0,
         "category": "Pass",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/col-du-soulor/profile/westanfahrt-vom-col-d-aubisque/"
+        "link": "https://www.quaeldich.de/paesse/col-du-soulor/profile/westanfahrt-vom-col-d-aubisque/",
+        "trackID": 798
       }
     }
   ]

@@ -65,7 +65,8 @@ var Ludwigshöhe = {
         "elevation": 7.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.toelzer-land.de/a-rennradtour-ludwigshoehe"
+        "link": "https://www.toelzer-land.de/a-rennradtour-ludwigshoehe",
+        "trackID": 504
       }
     },
     {
@@ -237,12 +238,13 @@ var Ludwigshöhe = {
       },
       "properties": {
         "idd": "875",
-        "name": "Südauffahrt",
+        "name": "S\u00c3\u00bcdauffahrt",
         "length": 1.7,
         "elevation": 54.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.toelzer-land.de/a-rennradtour-ludwigshoehe"
+        "link": "https://www.toelzer-land.de/a-rennradtour-ludwigshoehe",
+        "trackID": 505
       }
     }
   ]

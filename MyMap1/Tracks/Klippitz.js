@@ -1680,7 +1680,8 @@ var Klippitz = {
         "elevation": 979.0,
         "category": "Pass",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/klippitztoerl/profile/ostauffahrt-von-vorderklippitz/"
+        "link": "https://www.quaeldich.de/paesse/klippitztoerl/profile/ostauffahrt-von-vorderklippitz/",
+        "trackID": 451
       }
     },
     {
@@ -4517,12 +4518,13 @@ var Klippitz = {
       },
       "properties": {
         "idd": "849",
-        "name": "Südwestauffahrt aus dem Görschitztal",
+        "name": "S\u00c3\u00bcdwestauffahrt aus dem G\u00c3\u00b6rschitztal",
         "length": 23.4,
         "elevation": 1221.0,
         "category": "Pass",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/klippitztoerl/profile/suedwestauffahrt-aus-dem-goerschitztal/"
+        "link": "https://www.quaeldich.de/paesse/klippitztoerl/profile/suedwestauffahrt-aus-dem-goerschitztal/",
+        "trackID": 452
       }
     },
     {
@@ -6314,7 +6316,8 @@ var Klippitz = {
         "elevation": 925.0,
         "category": "Pass",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/klippitztoerl/profile/suedwestauffahrt-aus-dem-goerschitztal/"
+        "link": "https://www.quaeldich.de/paesse/klippitztoerl/profile/suedwestauffahrt-aus-dem-goerschitztal/",
+        "trackID": 453
       }
     }
   ]

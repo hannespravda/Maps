@@ -2355,7 +2355,8 @@ var ColDeJouxAosta = {
         "elevation": 1055.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/col-de-joux/profile/westauffahrt-von-saint-vincent/"
+        "link": "https://www.quaeldich.de/paesse/col-de-joux/profile/westauffahrt-von-saint-vincent/",
+        "trackID": 143
       }
     },
     {
@@ -3217,7 +3218,8 @@ var ColDeJouxAosta = {
         "elevation": 358.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/col-de-joux/profile/ostauffahrt-von-brusson/"
+        "link": "https://www.quaeldich.de/paesse/col-de-joux/profile/ostauffahrt-von-brusson/",
+        "trackID": 144
       }
     }
   ]

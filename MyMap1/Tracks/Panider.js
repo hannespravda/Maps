@@ -715,7 +715,8 @@ var Panider = {
         "elevation": 269.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/panider-sattel/profile/ostauffahrt-von-ortisei-guggenoi/"
+        "link": "https://www.quaeldich.de/paesse/panider-sattel/profile/ostauffahrt-von-ortisei-guggenoi/",
+        "trackID": 623
       }
     },
     {
@@ -1687,7 +1688,8 @@ var Panider = {
         "elevation": 384.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/panider-sattel/profile/suedwestauffahrt-von-kastelruth/"
+        "link": "https://www.quaeldich.de/paesse/panider-sattel/profile/suedwestauffahrt-von-kastelruth/",
+        "trackID": 624
       }
     }
   ]

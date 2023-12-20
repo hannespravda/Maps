@@ -1105,12 +1105,13 @@ var Aval = {
       },
       "properties": {
         "idd": "794",
-        "name": "Südanfahrt von Modane",
+        "name": "S\u00c3\u00bcdanfahrt von Modane",
         "length": 5.8,
         "elevation": 486.0,
         "category": "Sackgasse",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/plan-d-aval/profile/suedanfahrt-von-modane/"
+        "link": "https://www.quaeldich.de/paesse/plan-d-aval/profile/suedanfahrt-von-modane/",
+        "trackID": 38
       }
     }
   ]

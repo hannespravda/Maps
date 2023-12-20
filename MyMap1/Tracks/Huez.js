@@ -1731,7 +1731,8 @@ var Huez = {
         "elevation": "1160",
         "category": "Climb",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/alpe-d-huez/profile/auffahrt-von-bourg-d-oisans/"
+        "link": "https://www.quaeldich.de/paesse/alpe-d-huez/profile/auffahrt-von-bourg-d-oisans/",
+        "trackID": 394
       }
     },
     {
@@ -3412,7 +3413,8 @@ var Huez = {
         "elevation": "1160",
         "category": "Climb",
         "country": "FR",
-        "link": "https://www.quaeldich.de/paesse/alpe-d-huez/profile/auffahrt-von-bourg-d-oisans/"
+        "link": "https://www.quaeldich.de/paesse/alpe-d-huez/profile/auffahrt-von-bourg-d-oisans/",
+        "trackID": 395
       }
     }
   ]

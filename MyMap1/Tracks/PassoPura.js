@@ -1410,12 +1410,13 @@ var PassoPura = {
       },
       "properties": {
         "idd": "826",
-        "name": "Südostanstieg von der SS52 bei Ampezzo",
+        "name": "S\u00c3\u00bcdostanstieg von der SS52 bei Ampezzo",
         "length": 8.1,
         "elevation": 707.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/passo-di-pura/profile/suedostanstieg-von-der-ss52-bei-ampezzo/"
+        "link": "https://www.quaeldich.de/paesse/passo-di-pura/profile/suedostanstieg-von-der-ss52-bei-ampezzo/",
+        "trackID": 633
       }
     },
     {
@@ -2552,12 +2553,13 @@ var PassoPura = {
       },
       "properties": {
         "idd": "826",
-        "name": "Nordanstieg von la Máina am Lago di Sauris",
+        "name": "Nordanstieg von la M\u00c3\u00a1ina am Lago di Sauris",
         "length": 7.0,
         "elevation": 506.0,
         "category": "Pass",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/passo-di-pura/profile/nordanstieg-von-la-maina-am-lago-di-sauris/"
+        "link": "https://www.quaeldich.de/paesse/passo-di-pura/profile/nordanstieg-von-la-maina-am-lago-di-sauris/",
+        "trackID": 634
       }
     }
   ]

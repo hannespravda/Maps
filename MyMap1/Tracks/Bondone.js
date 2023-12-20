@@ -3360,7 +3360,8 @@ var Bondone = {
         "elevation": 1382.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/monte-bondone/profile/nordauffahrt-von-trient/"
+        "link": "https://www.quaeldich.de/paesse/monte-bondone/profile/nordauffahrt-von-trient/",
+        "trackID": 77
       }
     },
     {
@@ -6137,7 +6138,8 @@ var Bondone = {
         "elevation": 1163.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/monte-bondone/profile/nordwestauffahrt-von-cadine/"
+        "link": "https://www.quaeldich.de/paesse/monte-bondone/profile/nordwestauffahrt-von-cadine/",
+        "trackID": 78
       }
     },
     {
@@ -8799,7 +8801,8 @@ var Bondone = {
         "elevation": 1203.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/monte-bondone/profile/nordwestauffahrt-von-cadine/"
+        "link": "https://www.quaeldich.de/paesse/monte-bondone/profile/nordwestauffahrt-von-cadine/",
+        "trackID": 79
       }
     },
     {
@@ -11731,7 +11734,8 @@ var Bondone = {
         "elevation": 1695.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/monte-bondone/profile/ostauffahrt-von-aldeno/"
+        "link": "https://www.quaeldich.de/paesse/monte-bondone/profile/ostauffahrt-von-aldeno/",
+        "trackID": 80
       }
     },
     {
@@ -13738,7 +13742,8 @@ var Bondone = {
         "elevation": 1249.0,
         "category": "Climb",
         "country": "IT",
-        "link": "https://www.quaeldich.de/paesse/monte-bondone/profile/westauffahrt-von-lasino/"
+        "link": "https://www.quaeldich.de/paesse/monte-bondone/profile/westauffahrt-von-lasino/",
+        "trackID": 81
       }
     }
   ]

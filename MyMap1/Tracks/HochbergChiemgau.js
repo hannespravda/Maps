@@ -430,7 +430,8 @@ var HochbergChiemgau = {
         "elevation": 162.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/hochberg-chiemgau/profile/suedauffahrt-von-siegsdorf/"
+        "link": "https://www.quaeldich.de/paesse/hochberg-chiemgau/profile/suedauffahrt-von-siegsdorf/",
+        "trackID": 378
       }
     },
     {
@@ -877,12 +878,13 @@ var HochbergChiemgau = {
       },
       "properties": {
         "idd": "878",
-        "name": "Südostauffahrt",
+        "name": "S\u00c3\u00bcdostauffahrt",
         "length": 3.4,
         "elevation": 137.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/hochberg-chiemgau/profile/suedauffahrt-von-siegsdorf/"
+        "link": "https://www.quaeldich.de/paesse/hochberg-chiemgau/profile/suedauffahrt-von-siegsdorf/",
+        "trackID": 379
       }
     },
     {
@@ -1249,7 +1251,8 @@ var HochbergChiemgau = {
         "elevation": 182.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/hochberg-chiemgau/profile/nordauffahrt-von-traunstein/"
+        "link": "https://www.quaeldich.de/paesse/hochberg-chiemgau/profile/nordauffahrt-von-traunstein/",
+        "trackID": 380
       }
     }
   ]

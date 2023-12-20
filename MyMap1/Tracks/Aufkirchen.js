@@ -245,7 +245,8 @@ var Aufkirchen = {
         "elevation": 48.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/"
+        "link": "https://www.quaeldich.de/paesse/",
+        "trackID": 32
       }
     },
     {
@@ -422,7 +423,8 @@ var Aufkirchen = {
         "elevation": 40.0,
         "category": "Climb",
         "country": "DE",
-        "link": "https://www.quaeldich.de/paesse/"
+        "link": "https://www.quaeldich.de/paesse/",
+        "trackID": 33
       }
     }
   ]

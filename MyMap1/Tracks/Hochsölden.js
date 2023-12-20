@@ -690,12 +690,13 @@ var Hochsölden = {
       },
       "properties": {
         "idd": "764",
-        "name": "Südwestanfahrt von Sölden",
+        "name": "S\u00c3\u00bcdwestanfahrt von S\u00c3\u00b6lden",
         "length": 3.6,
         "elevation": 366.0,
         "category": "Sackgasse",
         "country": "AT",
-        "link": "https://www.quaeldich.de/paesse/hochsoelden-pass/profile/suedwestanfahrt-von-soelden/"
+        "link": "https://www.quaeldich.de/paesse/hochsoelden-pass/profile/suedwestanfahrt-von-soelden/",
+        "trackID": 387
       }
     }
   ]
